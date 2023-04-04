@@ -3,7 +3,12 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
 }
+File secretsFile = rootProject.file("secret.properties")
+Properties secretsProperties = new Properties()
 
+if (secretsFile.exists()) {
+    secretsProperties.load(new FileInputStream(secretsFile))
+}
 android {
     namespace 'com.example.busybee'
     compileSdk 33
@@ -14,6 +19,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        buildConfigField("String", "API_KEY", secretsProperties.getProperty("API_KEY", System.getenv("API_KEY")))
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
