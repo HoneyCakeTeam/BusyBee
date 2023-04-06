@@ -2,9 +2,9 @@ package com.example.busybee
 
 import com.google.gson.annotations.SerializedName
 
-data class CreatePersonalTodoResponse(
+data class PersonalTodoCreationResponse(
     @SerializedName("value")
-    val value: CreatePersonalTodo? = null,
+    val value: PersonalCreationTodo? = null,
     @SerializedName("message")
     val message: String? = null,
     @SerializedName("isSuccess")
