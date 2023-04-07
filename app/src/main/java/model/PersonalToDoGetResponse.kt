@@ -1,4 +1,6 @@
-package com.example.busybee
+package model
+
+import model.Values
 
 data class PersonalToDoGetResponse(
     val value : List<Values>,

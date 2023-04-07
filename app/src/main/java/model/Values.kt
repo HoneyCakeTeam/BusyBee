@@ -1,4 +1,4 @@
-package com.example.busybee
+package model
 
 data class Values(
     val id: String,
