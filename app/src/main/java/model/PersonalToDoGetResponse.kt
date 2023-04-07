@@ -1,9 +1,7 @@
 package model
 
-import model.Values
-
 data class PersonalToDoGetResponse(
-    val value : List<Values>,
+    val value : List<ToDo>,
     val message : String? = null,
     val isSuccess : Boolean = false
 )

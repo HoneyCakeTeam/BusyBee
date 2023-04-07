@@ -1,6 +1,6 @@
 package model
 
-data class Values(
+data class ToDo(
     val id: String,
     val title: String,
     val description: String,
