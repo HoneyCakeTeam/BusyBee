@@ -15,9 +15,9 @@ data class TeamResponseModel(
 
 data class Value(
     val id: String,
-    val title: String?,
-    val description: String?,
-    val assignee: String?,
+    val title: String,
+    val description: String,
+    val assignee: String,
     val status: Int,
     val creationTime: String
 )
