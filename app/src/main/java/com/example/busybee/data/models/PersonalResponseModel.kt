@@ -1,6 +1,15 @@
-package com.example.busybee
+package com.example.busybee.data.models
 
 import com.google.gson.annotations.SerializedName
+
+data class PersonalTodoCreationResponse(
+    @SerializedName("value")
+    val value: PersonalCreationTodo? = null,
+    @SerializedName("message")
+    val message: String? = null,
+    @SerializedName("isSuccess")
+    val isSuccess: Boolean = true
+)
 
 data class PersonalCreationTodo(
     @SerializedName("id")
@@ -14,3 +23,4 @@ data class PersonalCreationTodo(
     @SerializedName("creationTime")
     val creationTime: String? = null,
 )
+
