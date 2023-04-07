@@ -8,19 +8,15 @@ class BaseDiffUtil<T>(
     private val checkIfSameItem : (oldItem:T , newItem :T) -> Boolean ,
     private val checkIfSameContent : (oldItem: T , newItem : T ) -> Boolean
 ) : DiffUtil.Callback() {
-    override fun getOldListSize(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getOldListSize() = oldList.size
 
-    override fun getNewListSize(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getNewListSize() = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        TODO("Not yet implemented")
+        return checkIfSameItem (oldList[oldItemPosition] , newList[newItemPosition])
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        TODO("Not yet implemented")
+        return checkIfSameContent (oldList[oldItemPosition] , newList[newItemPosition])
     }
 }
