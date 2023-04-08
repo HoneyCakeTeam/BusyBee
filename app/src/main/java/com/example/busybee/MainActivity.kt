@@ -5,7 +5,8 @@ import android.util.Base64
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.busybee.data.models.LoginResponse
-import com.example.busybee.data.source.execute
+import com.example.busybee.data.source.executeWithCallbacks
+import com.google.gson.reflect.TypeToken
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -37,14 +38,22 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             .build()
-        client.execute<LoginResponse>(request, {
-            Log.e("TAG", "onViewCreated:${it} ")
-            // handle successful response
-        }, { error ->
-            Log.e("TAG", "Error:$error ")
-            // handle error
+//        client.execute<LoginResponse>(request, {
+//            Log.e("TAG", "onViewCreated:${it} ")
+//            // handle successful response
+//        }, { error ->
+//            Log.e("TAG", "Error:$error ")
+//            // handle error
+//        })
+        val responseType = object : TypeToken<LoginResponse>() {}.type
+
+        client.executeWithCallbacks<LoginResponse>(request, responseType, {
+
+           Log.e("TAG", "onViewCreated:${it} ")
+
+        },{error->
+                     Log.e("TAG", "Error:$error ")
+
         })
-
-
     }
 }
