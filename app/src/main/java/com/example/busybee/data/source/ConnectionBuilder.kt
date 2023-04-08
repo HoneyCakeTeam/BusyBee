@@ -4,7 +4,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import java.io.IOException
-import java.lang.reflect.Type
 
 /**
  * Created by Aziza Helmy on 4/7/2023.
@@ -12,7 +11,7 @@ import java.lang.reflect.Type
 inline fun <reified T> OkHttpClient.execute(
     request: Request,
     crossinline onSuccess: (response: T) -> Unit,
-    crossinline onFailure: (error: String) -> Unit
+    crossinline onFailure: (error: Throwable) -> Unit
 ): Call {
 
     val call = newCall(request)
@@ -25,12 +24,12 @@ inline fun <reified T> OkHttpClient.execute(
                 val result = gson.fromJson<T>(responseBody, type)
                 onSuccess(result)
             } else {
-                onFailure("HttpException(response)")
+                onFailure(Throwable("$response"))
             }
         }
 
         override fun onFailure(call: Call, e: IOException) {
-            onFailure(e.message.toString())
+            onFailure(e)
         }
     }
     call.enqueue(callback)
