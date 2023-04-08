@@ -1,4 +1,4 @@
-package com.example.busybee.util
+package com.example.busybee.utils
 
 /**
  * Created by Aziza Helmy on 4/8/2023.
