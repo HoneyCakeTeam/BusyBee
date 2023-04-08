@@ -4,6 +4,7 @@
 /.idea/caches
 /.idea/gradle.xml
 /.idea/vcs.xml
+/.idea/misc.xml
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
@@ -15,3 +16,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+secret.properties

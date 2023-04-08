@@ -1,23 +1,32 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BusyBee" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.BusyBee" parent="Theme.MaterialComponents.Light.NoActionBar">
+
     </style>
-    <style name="createTaskEditeText">
-        <item name="android:padding">8dp</item>
-        <item name="android:drawablePadding">8dp</item>
-        <item name="android:textColorHint">#61121212</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:background">@drawable/shape_bottomsheet_edittext</item>
+
+    <style name="TextInputLayout" parent="ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense">
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="hintTextColor">@color/black_38</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/margin_medium</item>
+        <item name="android:textColor">@color/black_60</item>
+        <item name="android:textSize">16sp</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxBackgroundColor">@color/white_100</item>
+        <item name="boxStrokeColor">@color/primary_500</item>
     </style>
+
+    <style name="TextInputEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/padding_medium</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:drawablePadding">@dimen/padding_12</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
 </resources>
