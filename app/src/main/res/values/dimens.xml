@@ -1,22 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--Common dimens-->
-    <dimen name="dimens_zero">0dp</dimen>
-    <dimen name="dimens_4">4dp</dimen>
-    <dimen name="dimens_8">8dp</dimen>
-    <dimen name="dimens_10">10dp</dimen>
-    <dimen name="dimens_12">12dp</dimen>
-    <dimen name="dimens_16">16dp</dimen>
-    <dimen name="dimens_20">20dp</dimen>
-    <dimen name="dimens_24">24dp</dimen>
-    <dimen name="dimens_28">28dp</dimen>
+    <!--Margin dimens-->
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_giant">32dp</dimen>
+    <dimen name="margin_negative">-48dp</dimen>
 
-    <!--Text sizes-->
-    <dimen name="text_12">12sp</dimen>
-    <dimen name="text_14">14sp</dimen>
-    <dimen name="text_16">16sp</dimen>
-    <dimen name="text_18">18sp</dimen>
-    <dimen name="text_20">20sp</dimen>
+    <!--padding dimens-->
+    <dimen name="padding_tiny">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_semi_medium">10dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_giant">32dp</dimen>
+
+    <!--text dimens-->
+    <dimen name="text_tiny">12sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_large">18sp</dimen>
+    <dimen name="text_giant">20sp</dimen>
+    <dimen name="very_tiny">2sp</dimen>
+
+    <!--radius dimens-->
+    <dimen name="radius_tiny">4dp</dimen>
+    <dimen name="radius_small">8dp</dimen>
+    <dimen name="radius_semi_medium">12dp</dimen>
+    <dimen name="radius_medium">14dp</dimen>
+    <dimen name="radius_semi_large">16dp</dimen>
+    <dimen name="radius_large">18dp</dimen>
+    <dimen name="radius_semi_giant">20dp</dimen>
+    <dimen name="radius_giant">24dp</dimen>
+
+    <!--elevation dimens-->
+    <dimen name="elevation_small">4dp</dimen>
+    <dimen name="elevation_semi_medium">8dp</dimen>
+    <dimen name="elevation_medium">10dp</dimen>
+    <dimen name="elevation_semi_large">12dp</dimen>
+    <dimen name="elevation_large">14dp</dimen>
+    <dimen name="elevation_giant">16dp</dimen>
+
 
 </resources>
