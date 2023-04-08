@@ -19,15 +19,19 @@ class MainActivity : AppCompatActivity() {
         // BuildConfig.API_KEY
         val username = "nourelden515"
         val password = "123456789"
+
         val httpUrl = HttpUrl.Builder()
             .scheme("https")
             .host("team-todo-62dmq.ondigitalocean.app")
             .addPathSegment("login")
             .build()
+
         val logInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BASIC
         }
+
         val client = OkHttpClient.Builder().addInterceptor(logInterceptor).build()
+
         val request = Request.Builder()
             .url(httpUrl)
             .addHeader(
@@ -38,21 +42,12 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             .build()
-//        client.execute<LoginResponse>(request, {
-//            Log.e("TAG", "onViewCreated:${it} ")
-//            // handle successful response
-//        }, { error ->
-//            Log.e("TAG", "Error:$error ")
-//            // handle error
-//        })
+
         val responseType = object : TypeToken<LoginResponse>() {}.type
-
         client.executeWithCallbacks<LoginResponse>(request, responseType, {
+                response -> Log.e("TAG", "onViewCreated:${response} ")
 
-           Log.e("TAG", "onViewCreated:${it} ")
-
-        },{error->
-                     Log.e("TAG", "Error:$error ")
+        }, { error -> Log.e("TAG", "Error:$error ")
 
         })
     }
