@@ -13,4 +13,11 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="createTaskEditeText">
+        <item name="android:padding">8dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textColorHint">#61121212</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:background">@drawable/shape_bottomsheet_edittext</item>
+    </style>
 </resources>

@@ -2,11 +2,12 @@ package com.example.busybee
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.viewbinding.BuildConfig
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       // BuildConfig.API_KEY
+//       BuildConfig.API_KEY
     }
 }
