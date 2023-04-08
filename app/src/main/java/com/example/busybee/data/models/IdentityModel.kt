@@ -4,7 +4,7 @@ package com.example.busybee.data.models
 data class LoginRequest(
     val username: String,
     val password: String,
-    val teamId: String
+    //val teamId: String
 )
 
 data class LoginResponse(

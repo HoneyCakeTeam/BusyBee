@@ -8,6 +8,7 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.busybee.data.Repository
 import com.example.busybee.data.models.LoginRequest
 import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.data.source.ConnectionBuilder
@@ -23,11 +24,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         statusBarTheme()
 
+
         //=================4 Testing================
         val username = "nourelden515"
         val password = "123456789"
         val teamId=BuildConfig.API_KEY
 
+        /*
         val loginRequest= LoginRequest(username,password,teamId)
 
         val client = OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
@@ -51,7 +54,15 @@ class MainActivity : AppCompatActivity() {
 
         })
         //==================================
+*/
+
+
+        val repo = Repository()
+        repo.logIn<LoginResponse>(username , password , {Log.e("TAG", "SUCSSESS:$it ")} , {Log.e("TAG", "Error:$it ")} )
+
+
     }
+
 
     @Suppress("DEPRECATION")
     private fun statusBarTheme() {
