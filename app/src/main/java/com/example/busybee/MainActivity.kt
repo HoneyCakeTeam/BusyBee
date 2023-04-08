@@ -8,6 +8,7 @@ import com.example.busybee.data.models.LoginRequest
 import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.data.source.ConnectionBuilder.Companion.logInterceptor
 import com.example.busybee.data.source.executeWithCallbacks
+import com.example.busybee.util.Constant.baseUrl
 import com.example.busybee.util.Constant.loginUrl
 import com.google.gson.reflect.TypeToken
 import okhttp3.OkHttpClient
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         val loginRequest=LoginRequest(username,password,teamId)
 
         val client = OkHttpClient.Builder().addInterceptor(logInterceptor).build()
-//        val loginUrl = " https://team-todo-62dmq.ondigitalocean.app/login"
 
 
         val request = Request.Builder()
