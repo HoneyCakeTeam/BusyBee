@@ -21,5 +21,5 @@ abstract class BaseAdapter<T, VB : ViewBinding>(
 
 
 
-
+open fun areItemSame(oldItem: T, newItem: T) = oldItem?.equals(newItem) == true
 }
