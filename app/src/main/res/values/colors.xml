@@ -1,10 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!--Primary Colors-->
+    <color name="primary_50">#fff7e6</color>
+    <color name="primary_100">#ffe5b0</color>
+    <color name="primary_200">#ffd88a</color>
+    <color name="primary_300">#fec754</color>
+    <color name="primary_400">#febc33</color>
+    <color name="primary_500">#feab00</color>
+    <color name="primary_600">#e79c00</color>
+    <color name="primary_700">#b47900</color>
+    <color name="primary_800">#8c5e00</color>
+    <color name="primary_900">#6b4800</color>
+
+    <!--Secondary Colors-->
+    <color name="secondary_50">#eaf5ff</color>
+    <color name="secondary_100">#bde1ff</color>
+    <color name="secondary_200">#9dd3ff</color>
+    <color name="secondary_300">#70bfff</color>
+    <color name="secondary_400">#54b2ff</color>
+    <color name="secondary_500">#299fff</color>
+    <color name="secondary_600">#2591e8</color>
+    <color name="secondary_700">#1d71b5</color>
+    <color name="secondary_800">#17578c</color>
+    <color name="secondary_900">#11436b</color>
+
+    <!--Success Colors-->
+    <color name="success_50">#e6ffea</color>
+    <color name="success_100">#b0ffbf</color>
+    <color name="success_200">#8affa0</color>
+    <color name="success_300">#54ff75</color>
+    <color name="success_400">#33ff5a</color>
+    <color name="success_500">#00ff31</color>
+    <color name="success_600">#00e82d</color>
+    <color name="success_700">#00b523</color>
+    <color name="success_800">#008c1b</color>
+    <color name="success_900">#006b15</color>
+
+    <!--Error Colors-->
+    <color name="error_50">#ffe9e6</color>
+    <color name="error_100">#ffbab0</color>
+    <color name="error_200">#ff998a</color>
+    <color name="error_300">#ff6b54</color>
+    <color name="error_400">#ff4e33</color>
+    <color name="error_500">#ff2200</color>
+    <color name="error_600">#e81f00</color>
+    <color name="error_700">#b51800</color>
+    <color name="error_800">#8c1300</color>
+    <color name="error_900">#6b0e00</color>
+
+    <color name="white_100">#FFFFFF</color>
+    <color name="white_200">#FAFAFA</color>
+    <color name="white_300">#F6F6F6</color>
+    <color name="white_400">#ECECEC</color>
+    <color name="white_500">#E1E1E1</color>
+
+    <color name="black_100">#121212</color>
+    <color name="black_87">#DE121212</color>
+    <color name="black_78">#C7121212</color>
+    <color name="black_60">#99121212</color>
+    <color name="black_38">#61121212</color>
+    <color name="black_8">#14121212</color>
+
+    <!--Light theme-->
+    <color name="theme_light_outline">#79747E</color>
+    <color name="theme_light_onSurfaceVariant">#49454F</color>
+    <color name="theme_light_inverseSurface">#313033</color>
+    <color name="theme_light_inverseOnSurface">#F4EFF4</color>
+    <color name="theme_light_outlineVariant">#CAC4D0</color>
+
+    <!--Dark theme-->
+    <color name="theme_dark_onSecondary">#332D41</color>
+    <color name="theme_dark_secondaryContainer">#4A4458</color>
+    <color name="theme_dark_outline">#938F99</color>
+    <color name="theme_dark_background">#333</color>
+    <color name="theme_dark_onBackground">#E6E1E5</color>
+    <color name="theme_dark_surface">#1C1B1F</color>
+    <color name="theme_dark_surfaceVariant">#49454F</color>
+    <color name="theme_dark_onSurfaceVariant">#CAC4D0</color>
+    <color name="theme_dark_inverseSurface">#E6E1E5</color>
+    <color name="theme_dark_inverseOnSurface">#313033</color>
+    <color name="theme_dark_outlineVariant">#49454F</color>
 </resources>
