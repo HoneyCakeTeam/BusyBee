@@ -2,13 +2,20 @@ package com.example.busybee.data.source
 
 import com.google.gson.Gson
 import okhttp3.*
+import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
 import java.lang.reflect.Type
 
 /**
  * Created by Aziza Helmy on 4/7/2023.
 */
-
+class ConnectionBuilder {
+    companion object{
+        val logInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BASIC
+        }
+    }
+}
 fun <T> OkHttpClient.executeWithCallbacks(
     request: Request,
     responseType: Type,
@@ -34,3 +41,4 @@ fun <T> OkHttpClient.executeWithCallbacks(
     call.enqueue(callback)
     return call
 }
+
