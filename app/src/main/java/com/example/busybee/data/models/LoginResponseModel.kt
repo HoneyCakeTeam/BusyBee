@@ -1,7 +1,7 @@
-package com.example.busybee
+package com.example.busybee.data.models
 
 data class LoginResponseModel(
-    val value: List<LoginResponseValue>,
+    val value: LoginResponseValue,
     val message: String?,
     val isSuccess: Boolean
 )

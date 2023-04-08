@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 data class PersonalTodoCreationResponse(
     @SerializedName("value")
-    val value: PersonalCreationTodo? = null,
+    val value: PersonalTodo? = null,
     @SerializedName("message")
     val message: String? = null,
     @SerializedName("isSuccess")
     val isSuccess: Boolean = true
 )
 
-data class PersonalCreationTodo(
+data class PersonalTodo(
     @SerializedName("id")
     val id: String? = null,
     @SerializedName("title")

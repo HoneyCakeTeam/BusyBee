@@ -1,7 +1,4 @@
-package com.example.busybee
-
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+package com.example.busybee.data.models
 
 /**
  * Created by Aziza Helmy on 4/6/2023.
