@@ -1,6 +1,10 @@
 package com.example.busybee.data.models
 
 import com.google.gson.annotations.SerializedName
+data class PersonalCreateToDoRequest(
+    val title: TeamToDo,
+    val description: String?,
+)
 
 data class PersonalCreateToDoResponse(
     @SerializedName("value")
