@@ -48,12 +48,14 @@
     <color name="error_800">#8c1300</color>
     <color name="error_900">#6b0e00</color>
 
+    <!--White colors-->
     <color name="white_100">#FFFFFF</color>
     <color name="white_200">#FAFAFA</color>
     <color name="white_300">#F6F6F6</color>
     <color name="white_400">#ECECEC</color>
     <color name="white_500">#E1E1E1</color>
 
+    <!--Black Colors-->
     <color name="black_100">#121212</color>
     <color name="black_87">#DE121212</color>
     <color name="black_78">#C7121212</color>
