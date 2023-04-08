@@ -2,7 +2,7 @@ package com.example.busybee.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class PersonalTodoCreationResponse(
+data class PersonalCreateToDoResponse(
     @SerializedName("value")
     val value: PersonalTodo? = null,
     @SerializedName("message")
@@ -24,3 +24,27 @@ data class PersonalTodo(
     val creationTime: String? = null,
 )
 
+data class PersonalGetToDoListResponse(
+    val value: List<PersonalToDo>,
+    val message: String? = null,
+    val isSuccess: Boolean = false
+)
+
+data class PersonalToDo(
+    val id: String,
+    val title: String,
+    val description: String,
+    val status: Int,
+    val creationTime: String
+)
+
+data class PersonalUpdateStatusRequest(
+    val id: String,
+    val status: Int
+)
+
+data class PersonalUpdateStatusResponse(
+    val value: String,
+    val message: String?,
+    val isSuccess: Boolean
+)

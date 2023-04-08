@@ -1,16 +1,12 @@
 package com.example.busybee.data.models
 
-/**
- * Created by Aziza Helmy on 4/6/2023.
- */
-
-data class TeamResponseModel(
-    val value: List<Value>,
+data class TeamCreateToDoResponse(
+    val value: List<TeamToDo>,
     val message: String?,
     val isSuccess: Boolean
 )
 
-data class Value(
+data class TeamToDo(
     val id: String,
     val title: String,
     val description: String,
