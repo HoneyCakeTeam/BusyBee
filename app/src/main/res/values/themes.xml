@@ -1,7 +1,33 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.BusyBee" parent="Theme.MaterialComponents.Light.NoActionBar">
-
+        <!--Primary-->
+        <item name="colorPrimary">@color/primary_500</item>
+        <item name="colorOnPrimary">@color/white_100</item>
+        <item name="colorPrimaryContainer">@color/primary_100</item>
+        <item name="colorOnPrimaryContainer">@color/primary_400</item>
+        <!--Secondary-->
+        <item name="colorSecondary">@color/black_8</item>
+        <item name="colorOnSecondary">@color/white_100</item>
+        <item name="colorSecondaryContainer">@color/primary_100</item>
+        <item name="colorOnSecondaryContainer">@color/black_60</item>
+        <!--Tertiary-->
+        <item name="colorTertiary">@color/primary_300</item>
+        <item name="colorOnTertiary">@color/white_100</item>
+        <item name="colorTertiaryContainer">@color/primary_100</item>
+        <item name="colorOnTertiaryContainer">@color/primary_400</item>
+        <!--Surface & Background-->
+        <item name="colorOutline">@color/theme_light_outline</item>
+        <item name="android:colorBackground">@color/white_100</item>
+        <item name="colorOnBackground">@color/black_60</item>
+        <item name="colorSurface">@color/white_300</item>
+        <item name="colorOnSurface">@color/black_60</item>
+        <item name="colorSurfaceVariant">@color/white_300</item>
+        <item name="colorOnSurfaceVariant">@color/theme_light_onSurfaceVariant</item>
+        <item name="colorSurfaceInverse">@color/theme_light_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/theme_light_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/primary_100</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <style name="TextInputLayout" parent="ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense">
@@ -10,7 +36,7 @@
         <item name="boxCornerRadiusTopEnd">16dp</item>
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="hintTextColor">@color/black_38</item>
-        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/spacing_medium</item>
+        <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
         <item name="android:layout_marginTop">@dimen/spacing_medium</item>
         <item name="android:textColor">@color/black_60</item>
         <item name="android:textSize">16sp</item>
@@ -23,19 +49,19 @@
     <style name="TextInputEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingVertical" tools:targetApi="o">@dimen/spacing_medium</item>
+        <item name="android:paddingVertical">@dimen/spacing_medium</item>
         <item name="android:fontFamily">@font/notosans_regular</item>
         <item name="android:drawablePadding">@dimen/spacing_simi_medium</item>
         <item name="android:textSize">@dimen/text_small</item>
     </style>
-    
-    <style name="TextStyle" >
+
+    <style name="TextStyle">
         <item name="android:textColor">@color/black_38</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textSize">@dimen/text_tiny</item>
     </style>
 
-    <style name="HeaderTextStyle" >
+    <style name="HeaderTextStyle">
         <item name="android:textColor">@color/white_100</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textSize">@dimen/text_medium</item>
