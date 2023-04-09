@@ -22,12 +22,11 @@
         android:id="@+id/text_logo_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:fontFamily="@font/notosans_medium"
         android:text="@string/hello_honey"
         android:textColor="@color/black_87"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_giant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_logo" />
@@ -61,7 +60,8 @@
                 android:hint="@string/full_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:startIconDrawable="@drawable/ic_user">
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/TextInputEditText"
@@ -76,7 +76,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                app:endIconMode="password_toggle">
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/ic_lock_password_unlocked">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -94,7 +95,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/confirm_password"
-                app:endIconMode="password_toggle">
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/ic_lock_password_unlocked">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -127,8 +129,8 @@
                     style="@style/TextViewSginUpStyle"
                     android:layout_marginStart="@dimen/spacing_tiny"
                     android:text="@string/log_in"
-                    android:textSize="@dimen/text_medium"
-                    android:textColor="@color/primary_500" />
+                    android:textColor="@color/primary_500"
+                    android:textSize="@dimen/text_medium" />
             </LinearLayout>
 
 
