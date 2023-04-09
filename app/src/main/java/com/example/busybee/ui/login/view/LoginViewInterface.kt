@@ -1,9 +1,9 @@
 package com.example.busybee.ui.login.view
 
-interface LoginViewInterface {
+import com.example.busybee.data.models.LoginResponse
 
-    fun <T> logIn(
-        userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit
-    )
+interface LoginViewInterface {
+    fun logIn(userName: String, password: String)
+    fun onSuccessResponse(response: LoginResponse)
+    fun onFailureResponse(error: Throwable)
 }

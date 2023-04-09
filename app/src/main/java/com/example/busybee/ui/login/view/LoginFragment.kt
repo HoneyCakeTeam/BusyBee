@@ -18,61 +18,43 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         FragmentLoginBinding.inflate(layoutInflater)
 
     override fun setUp() {
-
         logIn("nourelden515", "123456789")
     }
 
-    /*private fun logIn(userName: String, password: String) {
-        presenter.logIn<LoginResponse>(
-            userName,
-            password,
-            {  },
-            {  })
-    }
 
-    override fun <T> logIn(
-        userName: String,
-        password: String,
-        onSuccessCallback: (response: T) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit
-    ) {
-
-    }*/
-
-    private fun logIn(userName: String, password: String) {
-        // Call the Presenter's login method with the provided username and password
+    override fun logIn(userName: String, password: String) {
         presenter.logIn<LoginResponse>(
             userName,
             password,
             onSuccessCallback = { response ->
-                // Handle the successful login response here
-                showLoginSuccessMessage(response)
+                onSuccessResponse(response)
             },
             onFailureCallback = { error ->
-                // Handle the login failure here
-                showLoginErrorMessage(error)
+                onFailureResponse(error)
             }
         )
     }
 
-    override fun <T> logIn(
-        userName: String,
-        password: String,
-        onSuccessCallback: (response: T) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit
-    ) {
-        // This method will be called by the Presenter when it receives the login response
-        // You can ignore this for now
+    override fun onSuccessResponse(response: LoginResponse) {
+        // here we will update the ui
+        activity?.runOnUiThread {
+            Toast.makeText(
+                requireContext(),
+                "Login successful! ${response.isSuccess}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
-    private fun showLoginSuccessMessage(response: LoginResponse) {
-        // Display a success message to the user
-        Toast.makeText(requireContext(), "Login successful!", Toast.LENGTH_SHORT).show()
+    override fun onFailureResponse(error: Throwable) {
+        activity?.runOnUiThread {
+            Toast.makeText(
+                requireContext(),
+                "Login faillll! ${error.message} ",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
-    private fun showLoginErrorMessage(error: Throwable) {
-        // Display an error message to the user
-        Toast.makeText(requireContext(), "Login failed: ${error.message}", Toast.LENGTH_SHORT)
-            .show()
-    }
+
 }

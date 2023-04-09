@@ -9,11 +9,11 @@ import com.google.gson.reflect.TypeToken
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
-class Repository {
+class Repository : RepositoryInterface {
 
     val client = OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
 
-    fun <T> logIn(
+    override fun <T> logIn(
         userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
@@ -40,6 +40,7 @@ class Repository {
             onSuccessCallback,
             onFailureCallback
         )
+
     }
 
 }
