@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.personalTask.inProgress
+package com.example.busybee.ui.home.personalTask.inProgressTask
 
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
