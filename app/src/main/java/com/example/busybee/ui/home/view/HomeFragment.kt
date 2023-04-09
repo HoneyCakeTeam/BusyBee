@@ -1,20 +1,30 @@
 package com.example.busybee.ui.home.view
 
 import androidx.fragment.app.Fragment
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.ui.home.HomeViewPagerAdapter
+import com.example.busybee.ui.home.personalTask.doneTask.PersonalDoneFragment
+import com.example.busybee.ui.home.personalTask.inProgressTask.PersonalInProgressFragment
+import com.example.busybee.ui.home.personalTask.toDoTask.PersonalToDoFragment
 import com.example.busybee.ui.home.teamTask.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamTask.inProgress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamTask.toDo.TeamToDoFragment
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    private lateinit var fragmentList: List<Fragment>
+    private lateinit var teamFragments: List<Fragment>
+    private lateinit var personalFragments: List<Fragment>
     private val teamToDoFragment = TeamToDoFragment()
     private val teamDoneFragment = TeamDoneFragment()
     private val teamInProgressFragment = TeamInProgressFragment()
-    private lateinit var homePagerAdapter:HomeViewPagerAdapter
+    private val personalToDoFragment = PersonalToDoFragment()
+    private val personalInProgressFragment = PersonalInProgressFragment()
+    private val personalDoneFragment = PersonalDoneFragment()
+    private lateinit var homePagerAdapter: HomeViewPagerAdapter
     override val TAG = "HomeFragment"
 
     override fun getViewBinding(): FragmentHomeBinding {
@@ -23,12 +33,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
 
     override fun setUp() {
-        fragmentList = listOf(teamToDoFragment ,teamInProgressFragment,teamDoneFragment)
-        initViewPager()
+        teamFragments = listOf(teamToDoFragment, teamInProgressFragment, teamDoneFragment)
+        personalFragments =
+            listOf(personalToDoFragment, personalInProgressFragment, personalDoneFragment)
+        initTabLayout()
+        initViewPager(personalFragments)
     }
 
-    private fun initViewPager() {
-        homePagerAdapter = HomeViewPagerAdapter(parentFragmentManager  , this.lifecycle,  fragmentList)
+    private fun initTabLayout() {
+        binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab?.text){
+                    getString(R.string.my_tasks) -> initViewPager(personalFragments)
+                    getString(R.string.team_tasks) -> initViewPager(teamFragments)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+    }
+
+    private fun initViewPager(fragmentList:List<Fragment>) {
+        homePagerAdapter =
+            HomeViewPagerAdapter(parentFragmentManager, this.lifecycle, fragmentList)
         binding.homeViewPager.adapter = homePagerAdapter
     }
 
