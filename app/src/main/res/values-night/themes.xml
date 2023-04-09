@@ -64,4 +64,32 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="ButtonSignUpStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="backgroundTint">@color/primary_500</item>
+        <item name="android:background">@drawable/background_signup_button</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_large</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+    <style name="TextViewSginUpStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textColor">@color/white_300</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="TextViewHelloStyle">
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textColor">@color/white_300</item>
+        <item name="android:textSize">@dimen/text_giant</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+    </style>
+
 </resources>
