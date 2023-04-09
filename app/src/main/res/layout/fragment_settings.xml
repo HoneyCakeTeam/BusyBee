@@ -154,7 +154,7 @@
         app:layout_constraintTop_toBottomOf="@id/view_theme_settings" />
 
     <ImageView
-        android:id="@+id/image_view_logout"
+        android:id="@+id/image_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
@@ -164,14 +164,15 @@
         app:layout_constraintTop_toTopOf="@id/view_logout_settings" />
 
     <TextView
+        android:id="@+id/text_logout"
         style="@style/HeaderTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
         android:text="@string/text_logout_settings"
-        app:layout_constraintBottom_toBottomOf="@id/image_view_logout"
-        app:layout_constraintStart_toEndOf="@id/image_view_logout"
-        app:layout_constraintTop_toTopOf="@id/image_view_logout" />
+        app:layout_constraintBottom_toBottomOf="@id/image_logout"
+        app:layout_constraintStart_toEndOf="@id/image_logout"
+        app:layout_constraintTop_toTopOf="@id/image_logout" />
 
     <View
         android:id="@+id/view_line_settings"
