@@ -67,5 +67,11 @@
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:gravity">center</item>
     </style>
-
+    <style name="BottomSheetEditeText">
+        <item name="android:padding">8dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="hintTextColor">@color/black_38</item>
+        <item name="android:background">@drawable/shape_bottomsheet_edittext</item>
+    </style>
 </resources>
