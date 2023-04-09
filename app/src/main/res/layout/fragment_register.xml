@@ -61,7 +61,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:startIconDrawable="@drawable/ic_user">
+                app:startIconDrawable="@drawable/ic_user2">
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/TextInputEditText"
