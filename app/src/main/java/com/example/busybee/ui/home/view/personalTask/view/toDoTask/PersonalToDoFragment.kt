@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.personalTask.toDoTask
+package com.example.busybee.ui.home.view.personalTask.view.toDoTask
 
 
 import com.example.busybee.base.BaseFragment
@@ -8,8 +8,7 @@ import com.example.busybee.ui.createTask.CreateNewTaskFragment
 class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>() {
     private lateinit var adapter: PersonalToDoAdapter
     private val createNewTaskFragment = CreateNewTaskFragment()
-    override val TAG = "ToDoFragment"
-
+    override val TAG = this::class.java.simpleName.toString()
     override fun getViewBinding(): FragmentPersonalToDoBinding {
         return FragmentPersonalToDoBinding.inflate(layoutInflater)
     }

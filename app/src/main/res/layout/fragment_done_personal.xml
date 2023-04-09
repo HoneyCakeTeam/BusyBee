@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/header_done"
-        layout="@layout/task_header"/>
+        layout="@layout/layout_task_header"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_Done"
@@ -16,7 +16,7 @@
         android:layout_height="0dp"
         android:paddingHorizontal="@dimen/spacing_small"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/task_item"
+        tools:listitem="@layout/item_task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_done" />

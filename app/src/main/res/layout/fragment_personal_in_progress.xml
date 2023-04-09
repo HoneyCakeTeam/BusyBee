@@ -5,11 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.personalTask.inProgressTask.PersonalInProgressFragment">
+    tools:context=".ui.home.view.personalTask.view.inProgressTask.PersonalInProgressFragment">
 
     <include
         android:id="@+id/header_inProgress"
-        layout="@layout/task_header"/>
+        layout="@layout/layout_task_header"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_InProgress"
@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/task_item"
+        tools:listitem="@layout/item_task"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

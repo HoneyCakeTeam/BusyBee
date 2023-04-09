@@ -4,18 +4,17 @@ import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentHomeBinding
-import com.example.busybee.ui.home.HomeViewPagerAdapter
-import com.example.busybee.ui.home.personalTask.doneTask.PersonalDoneFragment
-import com.example.busybee.ui.home.personalTask.inProgressTask.PersonalInProgressFragment
-import com.example.busybee.ui.home.personalTask.toDoTask.PersonalToDoFragment
-import com.example.busybee.ui.home.teamTask.done.TeamDoneFragment
-import com.example.busybee.ui.home.teamTask.inProgress.TeamInProgressFragment
-import com.example.busybee.ui.home.teamTask.toDo.TeamToDoFragment
+import com.example.busybee.ui.home.view.personalTask.view.doneTask.PersonalDoneFragment
+import com.example.busybee.ui.home.view.personalTask.view.inProgressTask.PersonalInProgressFragment
+import com.example.busybee.ui.home.view.personalTask.view.toDoTask.PersonalToDoFragment
+import com.example.busybee.ui.home.view.teamTask.view.done.TeamDoneFragment
+import com.example.busybee.ui.home.view.teamTask.view.inProgress.TeamInProgressFragment
+import com.example.busybee.ui.home.view.teamTask.view.toDo.TeamToDoFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener {
     private lateinit var teamFragments: List<Fragment>
     private lateinit var personalFragments: List<Fragment>
     private val teamToDoFragment = TeamToDoFragment()
@@ -25,7 +24,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val personalInProgressFragment = PersonalInProgressFragment()
     private val personalDoneFragment = PersonalDoneFragment()
     private lateinit var homePagerAdapter: HomeViewPagerAdapter
-    override val TAG = "HomeFragment"
+    override val TAG = this::class.java.simpleName.toString()
+
 
     override fun getViewBinding(): FragmentHomeBinding {
         return FragmentHomeBinding.inflate(layoutInflater)
@@ -41,25 +41,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun initTabLayout() {
-        binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab?.text){
-                    getString(R.string.my_tasks) -> initViewPager(personalFragments)
-                    getString(R.string.team_tasks) -> initViewPager(teamFragments)
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-        })
+        binding.tabLayout.addOnTabSelectedListener(this)
     }
 
-    private fun initViewPager(fragmentList:List<Fragment>) {
+    private fun initViewPager(fragmentList: List<Fragment>) {
         homePagerAdapter =
             HomeViewPagerAdapter(parentFragmentManager, this.lifecycle, fragmentList)
         binding.homeViewPager.adapter = homePagerAdapter
     }
+
+    override fun onTabSelected(tab: TabLayout.Tab?) {
+        when (tab?.text) {
+            getString(R.string.my_tasks) -> initViewPager(personalFragments)
+            getString(R.string.team_tasks) -> initViewPager(teamFragments)
+        }
+    }
+
+    override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+    override fun onTabReselected(tab: TabLayout.Tab?) {}
 
 
 }
