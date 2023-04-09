@@ -54,6 +54,22 @@
         <item name="android:drawablePadding">@dimen/spacing_simi_medium</item>
         <item name="android:textSize">@dimen/text_small</item>
     </style>
+    <style name="TabLayoutStyle" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="tabIndicatorColor">@null</item>
+        <item name="tabTextColor">@color/black_38</item>
+        <item name="tabMode">fixed</item>
+        <item name="android:paddingBottom">@dimen/spacing_small</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+    </style>
+    <style name="TabTextAppearance" parent="Base.Widget.Design.TabLayout">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/notosans_semibold</item>
+    </style>
+
 
     <style name="TextStyle">
         <item name="android:textColor">@color/black_38</item>
