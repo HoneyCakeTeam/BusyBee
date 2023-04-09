@@ -6,4 +6,5 @@
     <string name="assignee">Assignee</string>
     <string name="task_name">Task Name</string>
     <string name="content">Content</string>
+    <string name="task_created_successfully">Task Created Successfully</string>
 </resources>
