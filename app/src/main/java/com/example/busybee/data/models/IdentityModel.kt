@@ -1,11 +1,6 @@
 package com.example.busybee.data.models
 
 //region Login
-data class LoginRequest(
-    val username: String,
-    val password: String,
-    //val teamId: String
-)
 
 data class LoginResponse(
     val value: LoginResponseValue,

@@ -11,7 +11,7 @@ import com.example.busybee.ui.login.presenter.LoginPresenterInterface
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
 
-    private val presenter: LoginPresenterInterface by lazy { LoginPresenter(this, Repository()) }
+    private val presenter: LoginPresenterInterface by lazy { LoginPresenter(this, Repository(requireContext())) }
     override val TAG: String = this::class.simpleName.toString()
 
     override fun getViewBinding(): FragmentLoginBinding =
