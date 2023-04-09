@@ -13,4 +13,6 @@
     <string name="task_name">Task name</string>
     <string name="move_to_in_progress">Move to in progress</string>
     <string name="generate_model">Generate Model</string>
+    <string name="text_theme_settings">Theme</string>
+    <string name="text_logout_settings">Logout</string>
 </resources>
