@@ -1,11 +1,6 @@
 package com.example.busybee.ui.home.view
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.ui.home.teamTask.done.TeamDoneFragment
