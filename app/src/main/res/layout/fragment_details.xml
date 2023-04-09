@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F6F6"
+    android:background="@color/white_300"
     android:padding="@dimen/spacing_medium">
 
     <ImageView
@@ -23,30 +23,25 @@
         android:id="@+id/card_view_member_assign"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/left_arrow"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/left_arrow">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/text_task_member_assign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:drawablePadding="@dimen/spacing_tiny"
+            android:fontFamily="@font/notosans_regular"
+            android:text="@string/hamsa_ali"
+            android:textColor="@color/black_87"
+            android:textSize="@dimen/text_medium"
+            app:drawableStartCompat="@drawable/ic_user_details"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/text_task_member_assign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/notosans_regular"
-                android:text="@string/hamsa_ali"
-                android:textColor="@color/black_87"
-                android:textSize="@dimen/text_medium"
-                android:layout_marginStart="@dimen/spacing_tiny"
-                android:drawablePadding="@dimen/spacing_tiny"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:drawableStartCompat="@drawable/ic_user_details" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -87,9 +82,9 @@
                 android:drawablePadding="@dimen/spacing_tiny"
                 android:gravity="center"
                 android:text="@string/_01_july"
+                app:drawableStartCompat="@drawable/ic_date"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_task_name"
-                app:drawableStartCompat="@drawable/ic_date" />
+                app:layout_constraintTop_toBottomOf="@id/text_task_name" />
 
             <TextView
                 android:id="@+id/text_task_time"
@@ -101,9 +96,9 @@
                 android:drawablePadding="@dimen/spacing_tiny"
                 android:gravity="center"
                 android:text="@string/_10_30_am"
+                app:drawableStartCompat="@drawable/ic_time"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_task_name"
-                app:drawableStartCompat="@drawable/ic_time" />
+                app:layout_constraintTop_toBottomOf="@id/text_task_name" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -111,7 +106,7 @@
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
-        android:layout_height="363dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
         android:background="@drawable/user_shape"
         android:fontFamily="@font/notosans_regular"
@@ -129,9 +124,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="@drawable/button_shape"
-        android:drawableStart="@drawable/icon"
-        android:padding="@dimen/spacing_small"
+        android:drawableStart="@drawable/ic_move_arrow"
         android:drawablePadding="@dimen/spacing_tiny"
+        android:padding="@dimen/spacing_small"
         android:text="@string/move_to_in_progress"
         android:textColor="@color/white_100"
         app:layout_constraintEnd_toEndOf="parent"
