@@ -19,4 +19,12 @@
     <string name="team_tasks">Team Tasks</string>
     <string name="my_tasks">Personal Tasks</string>
     <string name="text_home_date">Tue, 4</string>
+    <string name="already_have_an_account">Already have an Account?</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="full_name">User Name</string>
+    <string name="create_account">Create Account</string>
+    <string name="hello_honey">Hello Honey</string>
 </resources>
