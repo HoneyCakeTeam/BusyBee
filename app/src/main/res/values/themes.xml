@@ -28,5 +28,17 @@
         <item name="android:drawablePadding">@dimen/spacing_simi_medium</item>
         <item name="android:textSize">@dimen/text_small</item>
     </style>
+    
+    <style name="TextStyle" >
+        <item name="android:textColor">@color/black_38</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textSize">@dimen/text_tiny</item>
+    </style>
+
+    <style name="HeaderTextStyle" >
+        <item name="android:textColor">@color/white_100</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
 
 </resources>
