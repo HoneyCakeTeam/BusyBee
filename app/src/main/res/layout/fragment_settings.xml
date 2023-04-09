@@ -13,7 +13,7 @@
         android:layout_height="186dp"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:background="@drawable/settings_chart_shape"
+        android:background="@drawable/shape_settings_chart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -104,7 +104,7 @@
         android:layout_height="@dimen/view_item_settings_height"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:background="@drawable/settings_theme_shape"
+        android:background="@drawable/shape_settings_theme"
         app:layout_constraintEnd_toEndOf="@id/view_chart_shape"
         app:layout_constraintStart_toStartOf="@id/view_chart_shape"
         app:layout_constraintTop_toBottomOf="@id/view_chart_shape" />
@@ -148,7 +148,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_item_settings_height"
         android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:background="@drawable/settings_logout_shape"
+        android:background="@drawable/shape_settings_logout"
         app:layout_constraintEnd_toEndOf="@id/view_theme_settings"
         app:layout_constraintStart_toStartOf="@id/view_theme_settings"
         app:layout_constraintTop_toBottomOf="@id/view_theme_settings" />
