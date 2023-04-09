@@ -6,38 +6,95 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.view.LoginFragment">
 
+
     <View
+        android:id="@+id/top_squre"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/squre"
         android:backgroundTint="@color/primary_500"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="200dp"
+        android:background="@drawable/squre"
+        android:backgroundTint="@color/primary_500" />
+
     <View
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginHorizontal="90dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rr"
         android:layout_marginTop="-16dp"
-        android:background ="@drawable/circle" />
+        android:background="@drawable/circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_mid" />
 
-    <View
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/app_logo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_date"
+        android:layout_marginTop="@dimen/spacing_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hallo_honey_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:text="Hello Honey"
+        android:textSize="@dimen/text_medium"
+        android:fontFamily="@font/notosans_semibold"
+        android:textColor="@color/black_78"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/card_mid"
+        app:layout_constraintTop_toBottomOf="@+id/app_logo"/>
+
+    <LinearLayout
+        android:id="@+id/card_mid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/squre"
-        android:layout_marginStart="200dp"
-        android:backgroundTint="@color/primary_500"/>
-
-    <View
-        android:id="@+id/rr"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/user_shape"
         android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:elevation="4dp"
         android:layout_marginTop="180dp"
-        android:layout_marginBottom="80dp"/>
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/user_shape"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_giant">
 
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            style="@style/TextInputEditText"
+            android:drawableStart="@drawable/ic_user_details"
+            android:layout_marginVertical="@dimen/spacing_medium"
+            android:hint="Full Name"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            style="@style/TextInputEditText"
+            android:layout_marginVertical="@dimen/spacing_medium"
+            android:hint="Password"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/sign_up_button"
+            android:layout_marginVertical="@dimen/spacing_medium"
+            android:radius = "24dp"
+            android:text="Sign up" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginVertical="@dimen/spacing_medium"
+            android:text="Don't have an account ? Singn Up"
+            android:gravity="center"
+            />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
