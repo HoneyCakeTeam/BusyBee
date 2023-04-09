@@ -60,28 +60,6 @@
             app:layout_constraintTop_toBottomOf="@id/task_describtion"
             app:layout_constraintVertical_bias="0.111" />
 
-        <ImageView
-            android:id="@+id/date_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:src="@drawable/date_icon"
-            app:layout_constraintStart_toStartOf="@id/task_constraint"
-            app:layout_constraintTop_toBottomOf="@id/task_describtion" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:text="@string/_01_july"
-            android:textColor="@color/black_38"
-            android:textSize="@dimen/text_tiny"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/date_icon"
-            app:layout_constraintTop_toBottomOf="@id/task_describtion" />
 
         <ImageView
             android:id="@+id/user_icon"
@@ -105,6 +83,30 @@
             android:textSize="@dimen/text_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/date_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:src="@drawable/date_icon"
+            app:layout_constraintStart_toEndOf="@id/time"
+            app:layout_constraintTop_toBottomOf="@id/task_describtion" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/_01_july"
+            android:textColor="@color/black_38"
+            android:textSize="@dimen/text_tiny"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/date_icon"
+            app:layout_constraintTop_toBottomOf="@id/task_describtion" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
