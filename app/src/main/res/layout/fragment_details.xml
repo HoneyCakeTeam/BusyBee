@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,15 +8,12 @@
     android:background="@color/white_300"
     android:padding="@dimen/spacing_medium">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/left_arrow"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/spacing_medium"
-        android:paddingEnd="340dp"
-        android:paddingBottom="@dimen/spacing_medium"
+        android:padding="@dimen/spacing_small"
         android:src="@drawable/arrow_back_24px"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,7 +21,9 @@
         android:id="@+id/card_view_member_assign"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginTop="@dimen/spacing_medium"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/left_arrow">
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center"
             android:layout_marginStart="@dimen/spacing_tiny"
-            android:drawablePadding="@dimen/spacing_tiny"
+            android:drawablePadding="@dimen/spacing_small"
             android:fontFamily="@font/notosans_regular"
             android:text="@string/hamsa_ali"
             android:textColor="@color/black_87"
@@ -105,7 +105,7 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
         android:background="@drawable/user_shape"
