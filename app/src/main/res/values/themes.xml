@@ -33,6 +33,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="tabIndicatorColor">@null</item>
         <item name="tabTextColor">@color/black_38</item>
+        <item name="tabMode">fixed</item>
         <item name="android:paddingBottom">@dimen/spacing_small</item>
         <item name="tabIndicator">@drawable/tab_indicator</item>
         <item name="tabIndicatorFullWidth">false</item>

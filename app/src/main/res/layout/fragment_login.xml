@@ -7,6 +7,38 @@
     android:background="#F6F6F6"
     tools:context=".ui.login.view.LoginFragment">
 
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_100"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tab_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:src="@drawable/name_logo" />
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:fontFamily="@font/notosans_regular"
+            android:src="@drawable/name_logo"
+            android:text="@string/text_home_date"
+            android:textColor="@color/black_87"
+            android:textSize="14sp" />
+    </LinearLayout>
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
@@ -14,8 +46,7 @@
         android:background="@drawable/background_tap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabMode="fixed"
+        app:layout_constraintTop_toBottomOf="@+id/linear"
         app:tabSelectedTextColor="@color/primary_500"
         app:tabTextAppearance="@style/TabTextAppearance">
 
