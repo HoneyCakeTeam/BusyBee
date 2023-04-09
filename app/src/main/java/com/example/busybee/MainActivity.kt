@@ -4,62 +4,14 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Base64
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.busybee.data.Repository
-import com.example.busybee.data.models.LoginRequest
-import com.example.busybee.data.models.LoginResponse
-import com.example.busybee.data.source.ConnectionBuilder
-import com.example.busybee.data.source.executeWithCallbacks
-import com.example.busybee.utils.Constant
-import com.google.gson.reflect.TypeToken
-import okhttp3.OkHttpClient
-import okhttp3.Request
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         statusBarTheme()
-
-
-        //=================4 Testing================
-        val username = "nourelden515"
-        val password = "123456789"
-        val teamId=BuildConfig.API_KEY
-
-        /*
-        val loginRequest= LoginRequest(username,password,teamId)
-
-        val client = OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
-
-
-        val request = Request.Builder()
-            .url(Constant.loginUrl)
-            .addHeader(
-                "Authorization",
-                "Basic " + Base64.encodeToString(
-                    "$username:$password".toByteArray(),
-                    Base64.NO_WRAP))
-            .build()
-
-        val responseType = object : TypeToken<LoginResponse>() {}.type
-
-        client.executeWithCallbacks<LoginResponse>(request, responseType, {
-                response -> Log.e("TAG", "onViewCreated:${response} ")
-
-        }, { error -> Log.e("TAG", "Error:$error ")
-
-        })
-        //==================================
-*/
-
-
-        val repo = Repository()
-        repo.logIn<LoginResponse>(username , password , {Log.e("TAG", "SUCSSESS:$it ")} , {Log.e("TAG", "Error:$it ")} )
-
 
     }
 

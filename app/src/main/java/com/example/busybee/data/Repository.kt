@@ -1,8 +1,6 @@
 package com.example.busybee.data
 
 import android.util.Base64
-import android.util.Log
-import com.example.busybee.data.models.LoginRequest
 import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
@@ -13,12 +11,15 @@ import okhttp3.Request
 
 class Repository {
 
-    //val client = OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
+    val client = OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
 
-    fun <T> logIn(userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
-              onFailureCallback: (error: Throwable) -> Unit ) {
+    fun <T> logIn(
+        userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    ) {
 
-        val logInClient = OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
+        val logInClient =
+            OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
 
         val request = Request.Builder()
             .url(Constant.loginUrl)
@@ -33,7 +34,12 @@ class Repository {
 
         val responseType = object : TypeToken<LoginResponse>() {}.type
 
-        logInClient.executeWithCallbacks(request, responseType,onSuccessCallback , onFailureCallback )
+        logInClient.executeWithCallbacks(
+            request,
+            responseType,
+            onSuccessCallback,
+            onFailureCallback
+        )
     }
 
 }
