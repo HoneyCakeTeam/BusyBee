@@ -5,6 +5,7 @@
     <dimen name="spacing_tiny">4dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_simi_medium">12dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_giant">32dp</dimen>
     <dimen name="spacing_negative">-48dp</dimen>
@@ -26,6 +27,7 @@
     <dimen name="radius_large">18dp</dimen>
     <dimen name="radius_semi_giant">20dp</dimen>
     <dimen name="radius_giant">24dp</dimen>
+    <dimen name="radius_huge">32dp</dimen>
 
     <!--elevation dimens-->
     <dimen name="elevation_small">4dp</dimen>
