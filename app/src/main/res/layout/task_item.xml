@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginStart="8dp"
-            android:src="@drawable/frame_1321314472"
+            android:src="@drawable/time_icon"
             app:layout_constraintStart_toEndOf="@id/date"
             app:layout_constraintEnd_toStartOf="@id/time"
             app:layout_constraintTop_toBottomOf="@id/task_describtion" />
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
-            android:src="@drawable/group"
+            android:src="@drawable/date_icon"
             app:layout_constraintStart_toStartOf="@id/task_constraint"
             app:layout_constraintTop_toBottomOf="@id/task_describtion" />
 
@@ -77,7 +77,28 @@
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/date_icon"
-            app:layout_constraintTop_toBottomOf="@id/task_describtion" />
+            app:layout_constraintTop_toBottomOf="@id/task_describtion"/>
+
+        <ImageView
+            android:id="@+id/user_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/user_icon"
+            tools:layout_editor_absoluteX="308dp"
+            tools:layout_editor_absoluteY="1dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/user_name"/>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hamsa Ali"
+            android:layout_marginStart="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
