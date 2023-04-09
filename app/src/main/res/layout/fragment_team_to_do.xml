@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/spacing_small"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <include
         layout="@layout/task_header"
@@ -19,6 +18,17 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/task_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_add_new_team_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/primary_500"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/spacing_giant"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
