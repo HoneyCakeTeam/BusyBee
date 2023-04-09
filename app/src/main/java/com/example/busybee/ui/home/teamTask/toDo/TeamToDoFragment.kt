@@ -1,14 +1,14 @@
 package com.example.busybee.ui.home.teamTask.toDo
 
 import com.example.busybee.base.BaseFragment
-import com.example.busybee.databinding.FragmentToDoBinding
+import com.example.busybee.databinding.FragmentTeamToDoBinding
 
-class TeamToDoFragment : BaseFragment<FragmentToDoBinding>() {
+class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() {
     private lateinit var adapter: TeamToDoAdapter
     override val TAG = "ToDoFragment"
 
-    override fun getViewBinding(): FragmentToDoBinding {
-        return FragmentToDoBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentTeamToDoBinding {
+        return FragmentTeamToDoBinding.inflate(layoutInflater)
     }
 
     override fun setUp() {

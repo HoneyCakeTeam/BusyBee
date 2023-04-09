@@ -1,14 +1,14 @@
 package com.example.busybee.ui.home.teamTask.inProgress
 
 import com.example.busybee.base.BaseFragment
-import com.example.busybee.databinding.FragmentInProgressBinding
+import com.example.busybee.databinding.FragmentTeamInProgressBinding
 
-class TeamInProgressFragment : BaseFragment<FragmentInProgressBinding>() {
+class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>() {
     private lateinit var adapter: TeamInProgressAdapter
     override val TAG = "InProgressFragment"
 
-    override fun getViewBinding(): FragmentInProgressBinding {
-        return FragmentInProgressBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentTeamInProgressBinding {
+        return FragmentTeamInProgressBinding.inflate(layoutInflater)
     }
 
     override fun setUp() {
