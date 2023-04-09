@@ -3,6 +3,7 @@ package com.example.busybee.ui.home.view
 import androidx.fragment.app.Fragment
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentHomeBinding
+import com.example.busybee.ui.home.HomeViewPagerAdapter
 import com.example.busybee.ui.home.teamTask.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamTask.inProgress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamTask.toDo.TeamToDoFragment
@@ -13,6 +14,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val teamToDoFragment = TeamToDoFragment()
     private val teamDoneFragment = TeamDoneFragment()
     private val teamInProgressFragment = TeamInProgressFragment()
+    private lateinit var homePagerAdapter:HomeViewPagerAdapter
     override val TAG = "HomeFragment"
 
     override fun getViewBinding(): FragmentHomeBinding {
@@ -22,6 +24,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun setUp() {
         fragmentList = listOf(teamToDoFragment ,teamInProgressFragment,teamDoneFragment)
+        initViewPager()
+    }
+
+    private fun initViewPager() {
+        homePagerAdapter = HomeViewPagerAdapter(parentFragmentManager  , this.lifecycle,  fragmentList)
+        binding.homeViewPager.adapter = homePagerAdapter
     }
 
 

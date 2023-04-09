@@ -14,6 +14,6 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="team_tasks">Team Tasks</string>
-    <string name="my_tasks">My Tasks</string>
+    <string name="my_tasks">Personal Tasks</string>
     <string name="text_home_date">Tue, 4</string>
 </resources>

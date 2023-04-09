@@ -9,7 +9,11 @@
 
     <include
         android:id="@+id/header_ToDo"
-        layout="@layout/task_header"/>
+        layout="@layout/task_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_ToDo"
