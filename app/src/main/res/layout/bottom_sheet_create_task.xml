@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/spacing_giant"
+    app:contentPadding="@dimen/spacing_medium">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textview_create_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/create_task"
+            android:textColor="@color/black_78"
+            android:textSize="@dimen/text_large" />
+
+        <EditText
+            android:id="@+id/text_task_name"
+            style="@style/BottomSheetEditeText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:drawableStart="@drawable/ic_add_square"
+            android:hint="@string/task_name"
+            android:textColorHint="@color/black_38" />
+
+        <EditText
+            android:id="@+id/text_assignee"
+            style="@style/BottomSheetEditeText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:drawableStart="@drawable/ic_user2"
+            android:hint="@string/assignee"
+            android:textColorHint="@color/black_38" />
+
+        <EditText
+            android:id="@+id/text_content"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_giant"
+            android:background="@drawable/shape_bottomsheet_edittext"
+            android:gravity="start"
+            android:hint="@string/content"
+            android:padding="@dimen/spacing_small"
+            android:textColorHint="@color/black_38" />
+
+        <Button
+            android:id="@+id/button_createTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_create_task_button"
+            android:backgroundTint="@color/primary_400"
+            android:fontFamily="@font/notosans_medium"
+            android:hint="@string/create_task"
+            android:textColorHint="@color/white_200" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="gone"
+            app:lottie_rawRes="@raw/create_successfuliy" />
+
+        <TextView
+            android:id="@+id/textview_created_successfully"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/task_created_successfully"
+            android:textColor="@color/black_78"
+            android:textSize="@dimen/text_large"
+            android:visibility="gone"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
