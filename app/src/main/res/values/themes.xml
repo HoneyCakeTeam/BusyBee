@@ -31,7 +31,6 @@
         <item name="android:textSize">@dimen/text_small</item>
     </style>
 
-
     <style name="ButtonSignUpStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -49,7 +48,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/notosans_regular</item>
-        <item name="android:backgroundTint">@color/black_60</item>
+        <item name="android:textColor">@color/black_60</item>
         <item name="android:textSize">@dimen/text_small</item>
     </style>
 
@@ -59,5 +58,4 @@
         <item name="android:textSize">@dimen/text_giant</item>
         <item name="android:layout_marginTop">@dimen/spacing_medium</item>
     </style>
-
 </resources>

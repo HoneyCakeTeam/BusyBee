@@ -30,7 +30,7 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
+        android:id="@+id/card_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
@@ -61,7 +61,6 @@
                     style="@style/TextInputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -73,14 +72,11 @@
                 app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_lock_password_unlocked">
 
-
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/TextInputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
-
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -92,14 +88,11 @@
                 app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_lock_password_unlocked">
 
-
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/TextInputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
-
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -114,12 +107,12 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/text_have_an_account"
                     style="@style/TextViewSginUpStyle"
                     android:text="@string/already_have_an_account" />
 
                 <TextView
-                    android:id="@+id/textView_sign_up"
+                    android:id="@+id/text_login"
                     style="@style/TextViewSginUpStyle"
                     android:layout_marginStart="@dimen/spacing_tiny"
                     android:text="@string/log_in"
@@ -127,11 +120,6 @@
                     android:textSize="@dimen/text_medium" />
             </LinearLayout>
 
-
         </LinearLayout>
-
-
     </com.google.android.material.card.MaterialCardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
