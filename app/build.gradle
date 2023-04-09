@@ -37,7 +37,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 }
@@ -45,7 +45,7 @@ android {
 dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.databinding:viewbinding:7.4.1'
     testImplementation 'junit:junit:4.13.2'
@@ -57,4 +57,8 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     //gson
     implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.airbnb.android:lottie:6.0.0'
+
+    // lottie dependency
+    implementation 'com.airbnb.android:lottie:6.0.0'
 }
