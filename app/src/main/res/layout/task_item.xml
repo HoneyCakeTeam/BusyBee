@@ -37,7 +37,7 @@
             android:id="@+id/time_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginStart="8dp"
             android:src="@drawable/frame_1321314472"
             app:layout_constraintStart_toEndOf="@id/date"
@@ -46,11 +46,10 @@
 
         <TextView
             android:id="@+id/time"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="4dp"
             android:text="10:30 AM"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
