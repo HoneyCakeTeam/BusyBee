@@ -94,6 +94,7 @@
     </style>
     <style name="BottomSheet_Button">
         <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
         <item name="android:background">@drawable/shape_create_task_button</item>
         <item name="android:backgroundTint">@color/primary_400</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
