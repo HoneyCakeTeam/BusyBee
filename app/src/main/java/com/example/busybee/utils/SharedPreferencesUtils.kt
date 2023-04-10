@@ -31,4 +31,5 @@ object SharedPreferencesUtils {
 
     private fun clearToken() = sharedPreferences?.edit()?.remove(USER_TOKEN)?.apply()
 
+    fun isTokenExpired(): Boolean = expirationDate!! <= System.currentTimeMillis()
 }
