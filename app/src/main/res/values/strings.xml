@@ -4,7 +4,7 @@
     <string name="create_task">create task</string>
     <string name="assignee">Assignee</string>
     <string name="content">Content</string>
-    <string name="Task_created_successfully">task is created successfully</string>
+    <string name="task_created_successfully">Task is created successfully</string>
     <string name="description">Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora</string>
     <string name="hamsa_ali">Hamsa Ali</string>
     <string name="test_description_create_busybee_project">Test description create busybee project</string>
