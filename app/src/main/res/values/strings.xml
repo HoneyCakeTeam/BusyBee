@@ -8,6 +8,8 @@
     <string name="_6_tasks">6 tasks</string>
     <string name="to_do">To do</string>
     <string name="task_name">Task name</string>
+    <string name="to_do">TO Do</string>
+    <string name="task_name">Task Name</string>
     <string name="move_to_in_progress">Move to in progress</string>
     <string name="generate_model">Generate Model</string>
     <string name="text_theme_settings">Theme</string>
