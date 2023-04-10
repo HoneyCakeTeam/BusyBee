@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.view.LoginFragment">
 
-
     <View
         android:id="@+id/top_squre"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         android:background="@drawable/squre"
         android:backgroundTint="@color/primary_500"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <View
         android:layout_width="match_parent"
@@ -31,7 +29,6 @@
         android:background="@drawable/circle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_sign_in" />
-
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_logo"
@@ -53,7 +50,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_logo" />
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_sign_in"
@@ -133,6 +129,4 @@
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
