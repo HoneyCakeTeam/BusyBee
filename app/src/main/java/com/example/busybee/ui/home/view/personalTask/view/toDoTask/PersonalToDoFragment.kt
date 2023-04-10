@@ -5,6 +5,7 @@ import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalGetToDoListResponse
+import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
 import com.example.busybee.ui.home.view.personalTask.view.PersonalTasksViewPresenter
@@ -30,10 +31,11 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     }
 
     override fun setUp() {
-
-
         addCallBacks()
+        getToDoTasks()
+    }
 
+    private fun getToDoTasks() {
         presenter.getPersonalTasks(::onSuccessResponse, ::onFailureResponse)
     }
 
@@ -60,15 +62,22 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     override fun onSuccessResponse(response: PersonalGetToDoListResponse) {
         log("Success : ${response.isSuccess}")
         requireActivity().runOnUiThread {
-            val personalTasks = response.value.filter { it.status == 0 }
-            binding.headerToDo.taskCount.text = getString(
-                R.string.tasks , personalTasks.size
-            )
-            adapter = PersonalToDoAdapter(personalTasks)
-            binding.recyclerToDo.adapter = adapter
-
+            val personalToDoTasks = getPersonalToDoTasks(response.value)
+            initAdapter(personalToDoTasks)
+            setHeader(personalToDoTasks)
         }
+    }
 
+    private fun setHeader(personalTasksList:List<PersonalTodo>) {
+        binding.headerToDo.taskCount.text = getString(R.string.tasks , personalTasksList.size)
+    }
+
+    private fun getPersonalToDoTasks(personalTasksList:List<PersonalTodo>):List<PersonalTodo> =
+        personalTasksList.filter { it.status == 0 }
+
+    private fun initAdapter(personalTasksList:List<PersonalTodo>) {
+        adapter = PersonalToDoAdapter(personalTasksList)
+        binding.recyclerToDo.adapter = adapter
     }
 
     override fun onFailureResponse(error: Throwable) {

@@ -23,6 +23,7 @@ class PersonalToDoAdapter(personalToDoList: List<PersonalTodo>) :
             textTaskName.text = currentItem.title
             textTaskDescription.text = currentItem.description
             textTaskTime.text = currentItem.creationTime
+            textTaskDate.text = currentItem.creationTime
             textUserName.visibility = View.GONE
         }
         }
