@@ -1,6 +1,7 @@
 package com.example.busybee.ui.home.view.personalTask.view.toDoTask
 
 
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalGetToDoListResponse
@@ -11,7 +12,6 @@ import com.example.busybee.ui.home.view.personalTask.view.presenter.PersonalTask
 import com.example.busybee.ui.home.view.personalTask.view.presenter.PersonalTasksPresenterInterface
 import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.login.presenter.LoginPresenterInterface
-import com.google.android.material.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
@@ -46,7 +46,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     private fun showBottomSheet() {
         val bottomSheet = BottomSheetDialog(
             requireContext(),
-            R.style.Theme_Design_BottomSheetDialog
+//            R.style.Theme_Design_BottomSheetDialog
         )
         val binding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
 
@@ -61,8 +61,12 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         log("Success : ${response.isSuccess}")
         requireActivity().runOnUiThread {
             val personalTasks = response.value.filter { it.status == 0 }
+            binding.headerToDo.taskCount.text = getString(
+                R.string.tasks , personalTasks.size
+            )
             adapter = PersonalToDoAdapter(personalTasks)
             binding.recyclerToDo.adapter = adapter
+
         }
 
     }
