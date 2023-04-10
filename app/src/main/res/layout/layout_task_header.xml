@@ -11,7 +11,7 @@
         style="@style/HeaderTextStyle"
         android:layout_width="80dp"
         android:layout_height="40dp"
-        android:background="@drawable/shape_section"
+        android:background="@drawable/shape_todo"
         android:text="@string/to_do"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

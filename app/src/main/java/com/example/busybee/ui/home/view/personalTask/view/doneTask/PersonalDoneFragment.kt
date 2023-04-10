@@ -44,6 +44,7 @@ class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>(),
 
     private fun setHeader(personalDoneTasks: List<PersonalTodo>) {
         binding.headerDone.taskCount.text = getString(R.string.tasks , personalDoneTasks.size)
+        binding.headerDone.todoSection.setBackgroundResource(R.drawable.shape_section_orange)
     }
     private fun initAdapter(personalDoneTasks: List<PersonalTodo>) {
         adapter = DoneAdapter(personalDoneTasks)
