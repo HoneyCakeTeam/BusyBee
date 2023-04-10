@@ -6,6 +6,10 @@ import android.view.ViewGroup
 import com.example.busybee.base.BaseAdapter
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.ItemTaskBinding
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
 
 class DoneAdapter(personalToDoList: List<PersonalTodo>) :
     BaseAdapter<PersonalTodo, ItemTaskBinding>(personalToDoList) {
@@ -19,9 +23,20 @@ class DoneAdapter(personalToDoList: List<PersonalTodo>) :
         currentItem: PersonalTodo
     ) {
         with(holder.binding) {
+            val inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+            val outputFormat = DateTimeFormatter.ofPattern("hh:mm a")
+
+
+            val inputTime = currentItem.creationTime
+            val dateTime = LocalDateTime.parse(inputTime, inputFormat)
+
+            val formattedTime = dateTime.format(outputFormat)
+            val formattedDate = dateTime.format(DateTimeFormatter.ofPattern("dd MMMM", Locale.US))
+
             textTaskName.text = currentItem.title
             textTaskDescription.text = currentItem.description
-            textTaskTime.text = currentItem.creationTime
+            textTaskTime.text = formattedTime
+            textTaskDate.text = formattedDate
             textUserName.visibility = View.GONE
         }
     }
