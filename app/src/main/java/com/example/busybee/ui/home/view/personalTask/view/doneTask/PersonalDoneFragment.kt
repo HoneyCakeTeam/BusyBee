@@ -54,7 +54,7 @@ class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>(),
         personalTaskList.filter { it.status == 2 }
 
     override fun onFailureResponse(error: Throwable) {
-
+        log("Failed: ${error.message}")
     }
 
 }
