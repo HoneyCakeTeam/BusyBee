@@ -34,7 +34,9 @@
             android:layout_marginStart="@dimen/spacing_tiny"
             android:drawablePadding="@dimen/spacing_small"
             android:fontFamily="@font/notosans_regular"
-            android:text="@string/hamsa_ali"
+            android:text="Hamsa Aliiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/black_87"
             android:textSize="@dimen/text_medium"
             app:drawableStartCompat="@drawable/ic_user_details"
@@ -81,7 +83,7 @@
                 android:layout_marginTop="@dimen/spacing_small"
                 android:drawablePadding="@dimen/spacing_tiny"
                 android:gravity="center"
-                android:text="@string/_01_july"
+                tools:text="1 july"
                 app:drawableStartCompat="@drawable/ic_date"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_task_name" />
@@ -95,7 +97,7 @@
                 android:layout_marginTop="@dimen/spacing_small"
                 android:drawablePadding="@dimen/spacing_tiny"
                 android:gravity="center"
-                android:text="@string/_10_30_am"
+                android:text="10:30 AM"
                 app:drawableStartCompat="@drawable/ic_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_task_name" />
@@ -112,7 +114,10 @@
         android:fontFamily="@font/notosans_regular"
         android:justificationMode="inter_word"
         android:padding="@dimen/spacing_small"
-        android:text="@string/description"
+        tools:text="Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit
+sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora
+Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit
+sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora "
         android:textSize="@dimen/text_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
