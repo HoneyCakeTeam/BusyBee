@@ -27,18 +27,18 @@ PersonalTasksViewPresenter {
     }
 
     override fun setUp() {
-        getToDoTasks()
+        getInProgressTasks()
     }
 
-    private fun getToDoTasks() {
+    private fun getInProgressTasks() {
         presenter.getPersonalTasks(::onSuccessResponse, ::onFailureResponse)
     }
 
     override fun onSuccessResponse(response: PersonalGetToDoListResponse) {
         requireActivity().runOnUiThread {
-            val personalToDoTasks = getPersonalInProgressTasks(response.value)
-            initiateAdapter(personalToDoTasks)
-            setHeader(personalToDoTasks)
+            val personalInProgressTasks = getPersonalInProgressTasks(response.value)
+            initiateAdapter(personalInProgressTasks)
+            setHeader(personalInProgressTasks)
         }
     }
 
@@ -48,8 +48,8 @@ PersonalTasksViewPresenter {
         binding.headerInProgress.todoSection.setBackgroundResource(R.drawable.shape_section_orange)
 
     }
-    private fun getPersonalInProgressTasks(personaTasksList: List<PersonalTodo>): List<PersonalTodo>
-        = personaTasksList.filter { it.status == 1 }
+    private fun getPersonalInProgressTasks(personalTasksList: List<PersonalTodo>): List<PersonalTodo>
+        = personalTasksList.filter { it.status == 1 }
 
 
     private fun initiateAdapter(personalTasksList: List<PersonalTodo>) {
