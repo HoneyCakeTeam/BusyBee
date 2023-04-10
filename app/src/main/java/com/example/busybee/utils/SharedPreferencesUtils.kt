@@ -2,7 +2,9 @@ package com.example.busybee.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.util.*
 
 object SharedPreferencesUtils {
     private var sharedPreferences: SharedPreferences? = null
@@ -34,10 +36,10 @@ object SharedPreferencesUtils {
 
     fun isTokenExpired(): Boolean {
         val expirationDateString = expirationDate ?: return false
+        val dateFormat = SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US)
+        val expireDate = dateFormat.parse(expirationDateString) ?: return true
 
-        val expirationDate = LocalDate.parse(expirationDateString)
-        val currentDate = LocalDate.now()
-
-        return currentDate.isAfter(expirationDate)
+        val currentTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).time
+        return currentTime.after(expireDate)
     }
 }
