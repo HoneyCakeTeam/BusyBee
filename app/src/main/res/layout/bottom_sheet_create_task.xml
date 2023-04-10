@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/spacing_medium"
     android:background="@drawable/shape_bottomsheet">
 
     <TextView
@@ -72,12 +74,13 @@
 
     <Button
         android:id="@+id/button_createTask"
+        style="@style/BottomSheet_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/create_task"
-        app:layout_constraintBottom_toTopOf="@id/lottie_created_successfully"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_layout_content"
-        style="@style/BottomSheet_Button" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_created_successfully"
