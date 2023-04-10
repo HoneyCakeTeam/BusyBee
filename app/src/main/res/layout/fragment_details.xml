@@ -9,7 +9,7 @@
     android:padding="@dimen/spacing_medium">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/left_arrow"
+        android:id="@+id/ic_left_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/spacing_small"
@@ -17,57 +17,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view_member_assign"
+    <TextView
+        android:id="@+id/text_task_member_assign"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="@dimen/spacing_medium"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center"
+        android:layout_marginStart="@dimen/spacing_tiny"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@drawable/shape_user"
+        android:drawablePadding="@dimen/spacing_small"
+        android:ellipsize="end"
+        android:fontFamily="@font/notosans_regular"
+        android:maxLines="1"
+        android:padding="@dimen/spacing_simi_medium"
+        android:textColor="@color/black_87"
+        android:textSize="@dimen/text_medium"
+        app:drawableStartCompat="@drawable/ic_user_details"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/left_arrow">
+        app:layout_constraintTop_toBottomOf="@id/ic_left_arrow"
+        tools:text="Hamsa Aliiiiiiiiiiiiiiiiiiiiii" />
 
-        <TextView
-            android:id="@+id/text_task_member_assign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center"
-            android:layout_marginStart="@dimen/spacing_tiny"
-            android:drawablePadding="@dimen/spacing_small"
-            android:fontFamily="@font/notosans_regular"
-            android:text="Hamsa Aliiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textColor="@color/black_87"
-            android:textSize="@dimen/text_medium"
-            app:drawableStartCompat="@drawable/ic_user_details"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/task_card"
         android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/text_task_member_assign"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:elevation="0dp"
         app:cardCornerRadius="@dimen/radius_semi_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_view_member_assign">
+        app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/card_constraint"
             android:layout_width="match_parent"
+            android:background="@drawable/shape_user"
             android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_small">
+            android:padding="@dimen/spacing_simi_medium">
 
             <TextView
                 android:id="@+id/text_task_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small"
                 android:fontFamily="@font/notosans_medium"
                 android:text="@string/generate_model"
                 android:textColor="@color/black_87"
@@ -97,7 +89,7 @@
                 android:layout_marginTop="@dimen/spacing_small"
                 android:drawablePadding="@dimen/spacing_tiny"
                 android:gravity="center"
-                android:text="10:30 AM"
+                tools:text="10:30 AM"
                 app:drawableStartCompat="@drawable/ic_time"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_task_name" />
@@ -106,14 +98,14 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/text_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
         android:background="@drawable/shape_user"
         android:fontFamily="@font/notosans_regular"
         android:justificationMode="inter_word"
-        android:padding="@dimen/spacing_small"
+        android:padding="@dimen/spacing_medium"
         tools:text="Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit
 sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora
 Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit
@@ -125,6 +117,7 @@ sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class apten
         tools:targetApi="o" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_move"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -135,7 +128,6 @@ sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class apten
         android:text="@string/move_to_in_progress"
         android:textColor="@color/white_100"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
-
+        app:layout_constraintTop_toBottomOf="@+id/text_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
