@@ -46,7 +46,7 @@ PersonalTasksViewPresenter {
         binding.headerInProgress.taskCount.text =
             getString(R.string.tasks, personalInProgressTasks.size)
         binding.headerInProgress.todoSection.setBackgroundResource(R.drawable.shape_section_orange)
-
+        binding.headerInProgress.todoSection.text = getString(R.string.in_progress)
     }
     private fun getPersonalInProgressTasks(personalTasksList: List<PersonalTodo>): List<PersonalTodo>
         = personalTasksList.filter { it.status == 1 }
