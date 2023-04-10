@@ -14,6 +14,8 @@
         android:layout_height="wrap_content"
         android:text="@string/create_task"
         app:layout_constraintBottom_toTopOf="@id/input_layout_task_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -23,6 +25,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/task_name"
         app:layout_constraintBottom_toTopOf="@id/input_layout_assignee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_create_task"
         app:startIconDrawable="@drawable/ic_add_square">
 
@@ -41,6 +45,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/assignee"
         app:layout_constraintBottom_toTopOf="@id/input_layout_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_layout_task_name"
         app:startIconDrawable="@drawable/ic_user2">
 
@@ -59,6 +65,8 @@
         android:layout_marginTop="@dimen/spacing_tiny"
         android:hint="@string/content"
         app:layout_constraintBottom_toTopOf="@id/button_createTask"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_layout_assignee"
         app:startIconTint="@color/primary_400">
 
@@ -79,8 +87,9 @@
         android:layout_height="wrap_content"
         android:hint="@string/create_task"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_layout_content"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_content" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_created_successfully"
@@ -88,54 +97,24 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/text_created_successfully"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_createTask"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/create_successfuliy" />
 
     <TextView
         android:id="@+id/text_created_successfully"
+        style="@style/BottomSheetHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/inter_semibold"
         android:text="@string/task_created_successfully"
-        android:textColor="@color/black_78"
-        android:textSize="@dimen/text_large"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lottie_created_successfully" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <!--        <EditText-->
-    <!--            android:id="@+id/text_task_name"-->
-    <!--            style="@style/BottomSheetEditeText"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="52dp"-->
-    <!--            android:drawableStart="@drawable/ic_add_square"-->
-    <!--            android:hint="@string/task_name"-->
-    <!--            android:textColorHint="@color/black_38" />-->
-    <!--        <com.google.android.material.textfield.TextInputLayout-->
-    <!--            android:id="@+id/text_content"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="@dimen/spacing_small"-->
-    <!--            android:layout_marginBottom="@dimen/spacing_giant"-->
-    <!--            android:background="@drawable/shape_bottomsheet_edittext"-->
-    <!--            android:gravity="start"-->
-    <!--            android:hint="@string/content"-->
-    <!--            android:padding="@dimen/spacing_small"-->
-    <!--            android:textColorHint="@color/black_38" >-->
-    <!--            <com.google.android.material.textfield.TextInputEditText-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="96dp"/>-->
-    <!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-
-    <!--        android:fontFamily="@font/inter_semibold"-->
-    <!--        android:gravity="center"-->
-    <!--        android:text="@string/create_task"-->
-    <!--        android:layout_marginTop="@dimen/spacing_medium"-->
-    <!--        android:textColor="@color/black_78"-->
-    <!--        android:textSize="@dimen/text_large"-->
