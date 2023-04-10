@@ -3,6 +3,7 @@ package com.example.busybee.data
 import android.content.Context
 import android.util.Base64
 import com.example.busybee.data.models.LoginResponse
+import com.example.busybee.data.models.PersonalGetToDoListResponse
 import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
@@ -26,7 +27,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
 
         val request = Request.Builder()
-            .url(Constant.loginUrl)
+            .url(Constant.LOGIN_URL_END_POINT)
             .addHeader(
                 "Authorization",
                 "Basic " + Base64.encodeToString(
@@ -46,5 +47,25 @@ class Repository(private val context: Context) : RepositoryInterface {
         )
 
     }
+
+    override fun <T> getPersonalTasks(
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    ) {
+        val request = Request.Builder()
+            .url(Constant.BASE_URL+Constant.PERSONAL_TASKS_END_POINT)
+            .build()
+
+        val responseType = object :TypeToken<PersonalGetToDoListResponse>(){}.type
+
+        client.executeWithCallbacks(
+            request,
+            responseType,
+            onSuccessCallback,
+            onFailureCallback
+        )
+
+    }
+
 
 }

@@ -11,6 +11,11 @@ data class PersonalCreateToDoResponse(
     val isSuccess: Boolean = true
 )
 
+data class PersonalGetToDoListResponse(
+    val value: List<PersonalTodo>,
+    val message: String? = null,
+    val isSuccess: Boolean = false
+)
 data class PersonalTodo(
     val id: String? = null,
     val title: String? = null,
@@ -19,12 +24,6 @@ data class PersonalTodo(
     val creationTime: String? = null,
 )
 
-
-data class PersonalGetToDoListResponse(
-    val value: List<PersonalTodo>,
-    val message: String? = null,
-    val isSuccess: Boolean = false
-)
 
 data class PersonalUpdateStatusRequest(
     val id: String,
