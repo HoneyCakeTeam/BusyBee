@@ -9,7 +9,7 @@
     <View
         android:id="@+id/top_squre"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="500dp"
         android:background="@drawable/squre"
         android:backgroundTint="@color/primary_500"
         app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +72,7 @@
             android:paddingBottom="48dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_name"
+                android:id="@+id/edit_text_name"
                 style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,12 +86,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_password"
+                android:id="@+id/edit_text_password"
                 style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 app:endIconMode="password_toggle"
+                app:endIconTint="@color/primary_400"
                 app:startIconDrawable="@drawable/ic_lock_password_unlocked">
 
                 <com.google.android.material.textfield.TextInputEditText
