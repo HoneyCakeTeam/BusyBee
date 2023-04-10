@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.view.teamTask.view.toDo
+package com.example.busybee.ui.home.teamtask.view.toDo
 
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentTeamToDoBinding

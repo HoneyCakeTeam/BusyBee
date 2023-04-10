@@ -10,7 +10,7 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.busybee.ui.home.view.personalTask.view.toDoTask.PersonalToDoFragment"
+        android:name="com.example.busybee.ui.home.personalTask.toDoTask.PersonalToDoFragment"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

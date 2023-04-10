@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.view.teamTask.view.inProgress
+package com.example.busybee.ui.home.teamtask.view.inProgress
 
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentTeamInProgressBinding

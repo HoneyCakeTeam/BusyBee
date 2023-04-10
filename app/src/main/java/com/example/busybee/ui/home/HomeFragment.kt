@@ -1,15 +1,15 @@
-package com.example.busybee.ui.home.view
+package com.example.busybee.ui.home
 
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentHomeBinding
-import com.example.busybee.ui.home.view.personalTask.view.doneTask.PersonalDoneFragment
-import com.example.busybee.ui.home.view.personalTask.view.inProgressTask.PersonalInProgressFragment
-import com.example.busybee.ui.home.view.personalTask.view.toDoTask.PersonalToDoFragment
-import com.example.busybee.ui.home.view.teamTask.view.done.TeamDoneFragment
-import com.example.busybee.ui.home.view.teamTask.view.inProgress.TeamInProgressFragment
-import com.example.busybee.ui.home.view.teamTask.view.toDo.TeamToDoFragment
+import com.example.busybee.ui.home.personalTask.doneTask.PersonalDoneFragment
+import com.example.busybee.ui.home.personalTask.inProgressTask.PersonalInProgressFragment
+import com.example.busybee.ui.home.personalTask.toDoTask.PersonalToDoFragment
+import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
+import com.example.busybee.ui.home.teamtask.view.inProgress.TeamInProgressFragment
+import com.example.busybee.ui.home.teamtask.view.toDo.TeamToDoFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
