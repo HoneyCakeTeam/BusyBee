@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.example.busybee.base.BaseAdapter
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.ItemTaskBinding
+import com.example.busybee.utils.DateTimeUtils
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -22,13 +23,7 @@ class PersonalInProgressAdapter(private var personalToDoList: List<PersonalTodo>
         currentItem: PersonalTodo
     ) {
         with(holder.binding) {
-            val inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
-            val outputFormat = DateTimeFormatter.ofPattern("hh:mm a")
-            val inputTime = currentItem.creationTime
-            val dateTime = LocalDateTime.parse(inputTime, inputFormat)
-            val formattedTime = dateTime.format(outputFormat)
-            val formattedDate = dateTime.format(DateTimeFormatter.ofPattern("dd MMMM", Locale.US))
-
+            val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(currentItem.creationTime ?: "")
             textTaskName.text = currentItem.title
             textTaskDescription.text = currentItem.description
             textTaskTime.text = formattedTime

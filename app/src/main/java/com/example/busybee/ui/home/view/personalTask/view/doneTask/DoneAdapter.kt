@@ -21,7 +21,6 @@ class DoneAdapter(personalToDoList: List<PersonalTodo>) :
     ) {
         with(holder.binding) {
             val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(currentItem.creationTime ?: "")
-
             textTaskName.text = currentItem.title
             textTaskDescription.text = currentItem.description
             textTaskTime.text = formattedTime
