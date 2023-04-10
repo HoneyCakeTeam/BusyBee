@@ -30,71 +30,109 @@
         android:layout_marginTop="-16dp"
         android:background="@drawable/circle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_mid" />
+        app:layout_constraintTop_toBottomOf="@+id/card_sign_in" />
+
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/app_logo"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/ic_date"
+        android:id="@+id/image_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="@dimen/spacing_medium"
+        android:gravity="center"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/hallo_honey_text"
-        android:layout_width="match_parent"
+        android:id="@+id/text_logo_name"
+        style="@style/TextViewHelloStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_medium"
-        android:text="Hello Honey"
-        android:textSize="@dimen/text_medium"
-        android:fontFamily="@font/notosans_semibold"
-        android:textColor="@color/black_78"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/card_mid"
-        app:layout_constraintTop_toBottomOf="@+id/app_logo"/>
+        android:text="@string/hello_honey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_logo" />
 
-    <LinearLayout
-        android:id="@+id/card_mid"
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_sign_in"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:layout_marginTop="180dp"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/user_shape"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_giant">
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="64dp"
+        app:cardCornerRadius="@dimen/radius_giant"
+        app:cardElevation="@dimen/elevation_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="24dp"
+            android:paddingBottom="48dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            style="@style/TextInputEditText"
-            android:drawableStart="@drawable/ic_user_details"
-            android:layout_marginVertical="@dimen/spacing_medium"
-            android:hint="Full Name"/>
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            style="@style/TextInputEditText"
-            android:layout_marginVertical="@dimen/spacing_medium"
-            android:hint="Password"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:background="@drawable/sign_up_button"
-            android:layout_marginVertical="@dimen/spacing_medium"
-            android:radius = "24dp"
-            android:text="Sign up" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_marginVertical="@dimen/spacing_medium"
-            android:text="Don't have an account ? Singn Up"
-            android:gravity="center"
-            />
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField_name"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/full_name"
+                app:startIconDrawable="@drawable/ic_user2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField_password"
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/ic_lock_password_unlocked">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_sign_up"
+                style="@style/ButtonSignUpStyle"
+                android:text="@string/log_in" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="@dimen/spacing_giant"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/text_have_an_account"
+                    style="@style/TextViewSginUpStyle"
+                    android:text="@string/Do_not_have_an_account" />
+
+                <TextView
+                    android:id="@+id/text_login"
+                    style="@style/TextViewSginUpStyle"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:text="@string/sign_up"
+                    android:textColor="@color/primary_500"
+                    android:textSize="@dimen/text_medium" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
