@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener 
 
 
     override fun setUp() {
+
         teamFragments = listOf(teamToDoFragment, teamInProgressFragment, teamDoneFragment)
         personalFragments =
             listOf(personalToDoFragment, personalInProgressFragment, personalDoneFragment)

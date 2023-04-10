@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="@dimen/spacing_medium"
     android:background="@drawable/shape_bottomsheet">
 
+    <ImageButton
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        android:background="@null"
+        android:padding="@dimen/spacing_small"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/text_create_task"
-        style="@style/BottomSheetHeader"
+        style="@style/HeaderTextStyle"
         android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:gravity="center"
+        android:textSize="@dimen/text_giant"
         android:layout_height="wrap_content"
         android:text="@string/create_task"
         app:layout_constraintBottom_toTopOf="@id/input_layout_task_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/button_cancel" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_task_name"
-        style="@style/BottomSheetEditeText"
+        style="@style/TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/task_name"
@@ -32,6 +45,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_task_name"
+            style="@style/TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/spacing_medium" />
@@ -40,7 +54,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_assignee"
-        style="@style/BottomSheetEditeText"
+        style="@style/TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/assignee"
@@ -82,10 +96,11 @@
 
     <Button
         android:id="@+id/button_createTask"
-        style="@style/BottomSheet_Button"
+        style="@style/ButtonSignUpStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/create_task"
+        android:layout_marginBottom="@dimen/spacing_giant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
