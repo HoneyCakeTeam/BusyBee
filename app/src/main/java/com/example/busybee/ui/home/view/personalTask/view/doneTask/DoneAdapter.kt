@@ -8,7 +8,6 @@ import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.ItemTaskBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.util.*
 
 class DoneAdapter(personalToDoList: List<PersonalTodo>) :
@@ -25,11 +24,8 @@ class DoneAdapter(personalToDoList: List<PersonalTodo>) :
         with(holder.binding) {
             val inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
             val outputFormat = DateTimeFormatter.ofPattern("hh:mm a")
-
-
             val inputTime = currentItem.creationTime
             val dateTime = LocalDateTime.parse(inputTime, inputFormat)
-
             val formattedTime = dateTime.format(outputFormat)
             val formattedDate = dateTime.format(DateTimeFormatter.ofPattern("dd MMMM", Locale.US))
 
