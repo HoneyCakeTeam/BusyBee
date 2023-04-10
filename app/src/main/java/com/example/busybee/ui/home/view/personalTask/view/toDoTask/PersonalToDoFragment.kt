@@ -70,6 +70,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
 
     private fun setHeader(personalTasksList:List<PersonalTodo>) {
         binding.headerToDo.taskCount.text = getString(R.string.tasks , personalTasksList.size)
+        binding.headerToDo.todoSection.text = getString(R.string.to_do)
     }
 
     private fun getPersonalToDoTasks(personalTasksList:List<PersonalTodo>):List<PersonalTodo> =
