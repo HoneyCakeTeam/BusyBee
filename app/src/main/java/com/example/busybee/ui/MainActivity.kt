@@ -1,4 +1,4 @@
-package com.example.busybee
+package com.example.busybee.ui
 
 import android.content.res.Configuration
 import android.graphics.Color
@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.busybee.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -3,6 +3,7 @@
 
     <!--spacing dimens-->
     <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_tiny_negative">-4dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
     <dimen name="spacing_simi_medium">12dp</dimen>
@@ -36,6 +37,10 @@
     <dimen name="elevation_semi_large">12dp</dimen>
     <dimen name="elevation_large">14dp</dimen>
     <dimen name="elevation_giant">16dp</dimen>
+
+    <!--items dimens-->
+    <dimen name="switch_height">32dp</dimen>
+    <dimen name="view_item_settings_height">64dp</dimen>
 
 
 </resources>

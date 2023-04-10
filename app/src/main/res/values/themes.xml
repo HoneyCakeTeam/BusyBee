@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.BusyBee" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!--Primary-->
@@ -36,9 +36,11 @@
         <item name="boxCornerRadiusTopEnd">16dp</item>
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="hintTextColor">@color/black_38</item>
-        <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/spacing_medium
+        </item>
         <item name="android:layout_marginTop">@dimen/spacing_medium</item>
         <item name="android:textColor">@color/black_60</item>
+        <item name="startIconTint">@color/primary_500</item>
         <item name="android:textSize">16sp</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxBackgroundMode">outline</item>
@@ -47,13 +49,54 @@
     </style>
 
     <style name="TextInputEditText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingVertical">@dimen/spacing_medium</item>
         <item name="android:fontFamily">@font/notosans_regular</item>
-        <item name="android:drawablePadding">@dimen/spacing_simi_medium</item>
+        <item name="android:drawablePadding">@dimen/spacing_small</item>
         <item name="android:textSize">@dimen/text_small</item>
     </style>
+
+    <style name="ButtonSignUpStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="backgroundTint">@color/primary_500</item>
+        <item name="android:background">@drawable/background_signup_button</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_large</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+    <style name="TextViewSginUpStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textColor">@color/black_60</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="TextViewHelloStyle">
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textColor">@color/black_87</item>
+        <item name="android:textSize">@dimen/text_giant</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+    </style>
+    <style name="TabLayoutStyle" >
+        <item name="tabIndicatorColor">@null</item>
+        <item name="tabTextColor">@color/black_38</item>
+        <item name="tabMode">fixed</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingBottom">@dimen/spacing_small</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+    </style>
+    <style name="TabTextAppearance" parent="Base.Widget.Design.TabLayout">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/notosans_semibold</item>
+    </style>
+
 
     <style name="TextStyle">
         <item name="android:textColor">@color/black_38</item>
@@ -62,10 +105,16 @@
     </style>
 
     <style name="HeaderTextStyle">
-        <item name="android:textColor">@color/white_100</item>
+        <item name="android:textColor">@color/black_87</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:gravity">center</item>
     </style>
-
+    <style name="BottomSheetEditeText">
+        <item name="android:padding">8dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="hintTextColor">@color/black_38</item>
+        <item name="android:background">@drawable/shape_bottomsheet_edittext</item>
+    </style>
 </resources>

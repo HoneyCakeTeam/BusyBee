@@ -1,16 +1,34 @@
 <resources>
     <string name="app_name">Busy Bee</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_task">create task</string>
+    <string name="assignee">Assignee</string>
+    <string name="content">Content</string>
+    <string name="task_created_successfully">Task is created successfully</string>
     <string name="description">Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora</string>
-
     <string name="hamsa_ali">Hamsa Ali</string>
     <string name="test_description_create_busybee_project">Test description create busybee project</string>
     <string name="_01_july">01 july</string>
     <string name="_10_30_am">10:30 AM</string>
     <string name="_6_tasks">6 tasks</string>
-    <string name="to_do">TO Do</string>
+    <string name="to_do">To do</string>
     <string name="task_name">Task name</string>
     <string name="move_to_in_progress">Move to in progress</string>
     <string name="generate_model">Generate Model</string>
+    <string name="text_theme_settings">Theme</string>
+    <string name="text_logout_settings">Logout</string>
+    <string name="in_progress">In progress</string>
+    <string name="done">Done</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="team_tasks">Team Tasks</string>
+    <string name="my_tasks">Personal Tasks</string>
+    <string name="text_home_date">Tue, 4</string>
+    <string name="already_have_an_account">Already have an Account?</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="full_name">User Name</string>
+    <string name="create_account">Create Account</string>
+    <string name="hello_honey">Hello Honey</string>
 </resources>

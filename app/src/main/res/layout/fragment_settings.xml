@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_300"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/view_chart_shape"
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/shape_settings_chart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_done_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginEnd="64dp"
+        android:drawablePadding="@dimen/spacing_tiny"
+        android:fontFamily="@font/notosans_semibold"
+        android:textColor="@color/black_87"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toEndOf="@id/view_chart_shape"
+        app:layout_constraintTop_toTopOf="@id/view_chart_shape"
+        tools:text="40 %"
+        app:drawableStartCompat="@drawable/ic_green_circle" />
+
+    <TextView
+        android:id="@+id/text_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosans_medium"
+        android:text="@string/done"
+        android:textColor="@color/black_38"
+        android:textSize="@dimen/text_small"
+        app:layout_constraintEnd_toEndOf="@id/text_done_percentage"
+        app:layout_constraintStart_toStartOf="@id/text_done_percentage"
+        app:layout_constraintTop_toBottomOf="@id/text_done_percentage" />
+
+    <TextView
+        android:id="@+id/text_in_progress_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/spacing_tiny"
+        android:fontFamily="@font/notosans_semibold"
+        android:textColor="@color/black_87"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toEndOf="@id/text_done"
+        app:layout_constraintStart_toStartOf="@id/text_done"
+        app:layout_constraintTop_toBottomOf="@id/text_done"
+        tools:text="30 %"
+        app:drawableStartCompat="@drawable/ic_yellow_circle" />
+
+    <TextView
+        android:id="@+id/text_in_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosans_medium"
+        android:text="@string/in_progress"
+        android:textColor="@color/black_38"
+        android:textSize="@dimen/text_small"
+        app:layout_constraintEnd_toEndOf="@id/text_in_progress_percentage"
+        app:layout_constraintStart_toStartOf="@id/text_in_progress_percentage"
+        app:layout_constraintTop_toBottomOf="@id/text_in_progress_percentage" />
+
+    <TextView
+        android:id="@+id/text_todo_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/spacing_tiny"
+        android:fontFamily="@font/notosans_semibold"
+        android:textColor="@color/black_87"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintEnd_toEndOf="@id/text_in_progress"
+        app:layout_constraintStart_toStartOf="@id/text_in_progress"
+        app:layout_constraintTop_toBottomOf="@id/text_in_progress"
+        tools:text="30 %"
+        app:drawableStartCompat="@drawable/ic_blue_circle" />
+
+    <TextView
+        android:id="@+id/text_todo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:fontFamily="@font/notosans_medium"
+        android:text="@string/to_do"
+        android:textColor="@color/black_38"
+        android:textSize="@dimen/text_small"
+        app:layout_constraintEnd_toEndOf="@id/text_todo_percentage"
+        app:layout_constraintStart_toStartOf="@id/text_todo_percentage"
+        app:layout_constraintTop_toBottomOf="@id/text_todo_percentage" />
+
+    <View
+        android:id="@+id/view_theme_settings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_settings_height"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@drawable/shape_settings_theme"
+        app:layout_constraintEnd_toEndOf="@id/view_chart_shape"
+        app:layout_constraintStart_toStartOf="@id/view_chart_shape"
+        app:layout_constraintTop_toBottomOf="@id/view_chart_shape" />
+
+    <ImageView
+        android:id="@+id/image_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:background="@drawable/ic_theme"
+        app:layout_constraintBottom_toBottomOf="@+id/view_theme_settings"
+        app:layout_constraintStart_toStartOf="@id/view_theme_settings"
+        app:layout_constraintTop_toTopOf="@id/view_theme_settings" />
+
+    <TextView
+        android:id="@+id/text_theme"
+        style="@style/HeaderTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:text="@string/text_theme_settings"
+        app:layout_constraintBottom_toBottomOf="@id/image_theme"
+        app:layout_constraintStart_toEndOf="@id/image_theme"
+        app:layout_constraintTop_toTopOf="@id/image_theme" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_small"
+        android:checked="true"
+        android:padding="@dimen/spacing_tiny"
+        android:thumb="@drawable/switch_thumb_selector"
+        app:layout_constraintBottom_toBottomOf="@id/image_theme"
+        app:layout_constraintEnd_toEndOf="@id/view_theme_settings"
+        app:layout_constraintTop_toTopOf="@id/image_theme"
+        app:track="@drawable/switch_track_selector" />
+
+    <View
+        android:id="@+id/view_logout_settings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_settings_height"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:background="@drawable/shape_settings_logout"
+        app:layout_constraintEnd_toEndOf="@id/view_theme_settings"
+        app:layout_constraintStart_toStartOf="@id/view_theme_settings"
+        app:layout_constraintTop_toBottomOf="@id/view_theme_settings" />
+
+    <ImageView
+        android:id="@+id/image_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:background="@drawable/ic_logout"
+        app:layout_constraintBottom_toBottomOf="@id/view_logout_settings"
+        app:layout_constraintStart_toStartOf="@id/view_logout_settings"
+        app:layout_constraintTop_toTopOf="@id/view_logout_settings" />
+
+    <TextView
+        android:id="@+id/text_logout"
+        style="@style/HeaderTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:text="@string/text_logout_settings"
+        app:layout_constraintBottom_toBottomOf="@id/image_logout"
+        app:layout_constraintStart_toEndOf="@id/image_logout"
+        app:layout_constraintTop_toTopOf="@id/image_logout" />
+
+    <View
+        android:id="@+id/view_line_settings"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:background="@color/black_38"
+        app:layout_constraintEnd_toEndOf="@id/view_theme_settings"
+        app:layout_constraintStart_toStartOf="@id/view_theme_settings"
+        app:layout_constraintTop_toBottomOf="@id/view_theme_settings" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
