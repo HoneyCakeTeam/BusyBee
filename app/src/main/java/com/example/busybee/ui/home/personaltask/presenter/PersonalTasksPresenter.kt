@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.view.personalTask.view.presenter
+package com.example.busybee.ui.home.personaltask.presenter
 
 import com.example.busybee.data.RepositoryInterface
 

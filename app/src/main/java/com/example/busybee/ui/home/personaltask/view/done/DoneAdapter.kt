@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.personaltask.doneTask
+package com.example.busybee.ui.home.personaltask.view.done
 
 import android.view.LayoutInflater
 import android.view.View
