@@ -4,8 +4,6 @@ import android.os.Bundle
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentDonePersonalBinding
 import com.example.busybee.domain.models.PersonalTodos
-import com.example.busybee.domain.models.TeamTodos
-import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
 
 class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>() {
     private lateinit var adapter: DoneAdapter
