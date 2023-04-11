@@ -9,6 +9,7 @@ import com.example.busybee.data.models.PersonalGetToDoListResponse
 import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.data.models.asDomainModel
 import com.example.busybee.databinding.FragmentHomeBinding
+import com.example.busybee.domain.models.TeamTodos
 import com.example.busybee.ui.home.personalTask.doneTask.PersonalDoneFragment
 import com.example.busybee.ui.home.personalTask.inProgressTask.PersonalInProgressFragment
 import com.example.busybee.ui.home.personalTask.toDoTask.PersonalToDoFragment
@@ -30,13 +31,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         listOf(personalToDoFragment, personalInProgressFragment, personalDoneFragment)
     }
     private lateinit var response: TeamToDoListResponse
-    private val teamToDoFragment by lazy { TeamToDoFragment.newInstance(response.asDomainModel()) }
-    private val teamDoneFragment = TeamDoneFragment()
-    private val teamInProgressFragment = TeamInProgressFragment()
+    private lateinit var homePagerAdapter: HomeViewPagerAdapter
+
+    private val teamToDoFragment by lazy { TeamToDoFragment.newInstance(teamToDos) }
+    private val teamDoneFragment by lazy { TeamDoneFragment.newInstance(teamDoneToDos) }
+    private val teamInProgressFragment by lazy {
+        TeamInProgressFragment.newInstance(
+            teamInProgressToDos
+        )
+    }
+
     private val personalToDoFragment = PersonalToDoFragment()
     private val personalInProgressFragment = PersonalInProgressFragment()
     private val personalDoneFragment = PersonalDoneFragment()
-    private lateinit var homePagerAdapter: HomeViewPagerAdapter
+
+    private val teamToDos by lazy {
+        TeamTodos(response.asDomainModel().values.filter { it.status == 0 })
+    }
+    private val teamDoneToDos by lazy {
+        TeamTodos(response.asDomainModel().values.filter { it.status == 2 })
+    }
+    private val teamInProgressToDos by lazy {
+        TeamTodos(response.asDomainModel().values.filter { it.status == 1 })
+    }
+
     override val TAG = this::class.java.simpleName.toString()
 
 

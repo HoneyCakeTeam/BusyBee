@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TeamTodos(
-    val values: List<TeamToDo>
+    var values: List<TeamToDo>
 ) : Parcelable
