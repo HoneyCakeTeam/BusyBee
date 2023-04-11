@@ -20,7 +20,9 @@ class PersonalToDoAdapter(personalToDoList: List<PersonalTodo>) :
         currentItem: PersonalTodo
     ) {
         with(holder.binding) {
-            val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(currentItem.creationTime ?: "")
+            val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(
+                currentItem.creationTime ?: ""
+            )
             textTaskName.text = currentItem.title
             textTaskDescription.text = currentItem.description
             textTaskTime.text = formattedTime

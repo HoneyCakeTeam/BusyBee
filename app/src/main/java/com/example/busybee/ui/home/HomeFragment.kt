@@ -1,6 +1,5 @@
 package com.example.busybee.ui.home
 
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
@@ -14,19 +13,31 @@ import com.example.busybee.domain.models.TeamTodos
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
 import com.example.busybee.ui.home.personaltask.view.done.PersonalDoneFragment
+import com.example.busybee.ui.home.personaltask.view.inProgress.PersonalInProgressFragment
 import com.example.busybee.ui.home.personaltask.view.toDo.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenter
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenterInterface
 import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.view.inProgress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.view.toDo.TeamToDoFragment
-import com.example.busybee.ui.home.personaltask.view.inProgress.PersonalInProgressFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeViewInterface {
-    private val teamPresenter: TeamPresenterInterface by lazy { TeamPresenter(Repository(requireContext())) }
-    private val personalPresenter: PersonalPresenterInterface by lazy { PersonalPresenter(Repository(requireContext())) }
+    private val teamPresenter: TeamPresenterInterface by lazy {
+        TeamPresenter(
+            Repository(
+                requireContext()
+            )
+        )
+    }
+    private val personalPresenter: PersonalPresenterInterface by lazy {
+        PersonalPresenter(
+            Repository(
+                requireContext()
+            )
+        )
+    }
     private val teamFragments: List<Fragment> by lazy {
         listOf(teamToDoFragment, teamInProgressFragment, teamDoneFragment)
     }
@@ -34,14 +45,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         listOf(personalToDoFragment, personalInProgressFragment, personalDoneFragment)
     }
     private lateinit var teamResponse: TeamToDoListResponse
-    private lateinit var personalResponse:PersonalToDoListResponse
+    private lateinit var personalResponse: PersonalToDoListResponse
     private lateinit var homePagerAdapter: HomeViewPagerAdapter
 
     private val teamToDoFragment by lazy { TeamToDoFragment.newInstance(teamToDos) }
-    private val teamInProgressFragment by lazy { TeamInProgressFragment.newInstance(teamInProgressToDos) }
+    private val teamInProgressFragment by lazy {
+        TeamInProgressFragment.newInstance(
+            teamInProgressToDos
+        )
+    }
     private val teamDoneFragment by lazy { TeamDoneFragment.newInstance(teamDoneToDos) }
     private val personalToDoFragment by lazy { PersonalToDoFragment.newInstance(personalToDos) }
-    private val personalInProgressFragment by lazy { PersonalInProgressFragment.newInstance(personalInProgressToDos) }
+    private val personalInProgressFragment by lazy {
+        PersonalInProgressFragment.newInstance(
+            personalInProgressToDos
+        )
+    }
     private val personalDoneFragment by lazy { PersonalDoneFragment.newInstance(personalDoneToDos) }
 
     private val teamToDos by lazy {
