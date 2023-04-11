@@ -12,7 +12,7 @@ interface RepositoryInterface {
     )
 
     fun <T> updateTasksPersonalStatus(
-        id: String, status: Int,
+        idTask: String, status: Int,
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     )

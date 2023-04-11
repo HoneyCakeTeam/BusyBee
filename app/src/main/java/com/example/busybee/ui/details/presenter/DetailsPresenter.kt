@@ -10,12 +10,12 @@ class DetailsPresenter(
     private val repository: RepositoryInterface,
 ) : DetailsPresenterInterface {
     override fun <T> updateTasksPersonalStatus(
-        id: String,
+        idTask: String,
         status: Int,
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     ) {
-        repository.updateTasksPersonalStatus(id, status, onSuccessCallback, onFailureCallback)
+        repository.updateTasksPersonalStatus(idTask, status, onSuccessCallback, onFailureCallback)
 
     }
 
