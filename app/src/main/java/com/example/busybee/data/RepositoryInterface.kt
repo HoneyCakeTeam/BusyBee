@@ -7,7 +7,7 @@ interface RepositoryInterface {
     )
 
     fun <T> updateTasksTeamStatus(
-        id: String, status: Int, onSuccessCallback: (response: T) -> Unit,
+        idTask: String, status: Int, onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
