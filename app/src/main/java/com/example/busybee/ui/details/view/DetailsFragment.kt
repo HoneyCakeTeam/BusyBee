@@ -18,7 +18,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         )
     }
 
-
     override fun getViewBinding(): FragmentDetailsBinding {
         return FragmentDetailsBinding.inflate(layoutInflater)
     }
@@ -36,8 +35,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             onFailureCallback = { error ->
                 onFailureResponse(error)
             })
-
-
     }
 
     override fun onSuccessPersonalResponse(response: PersonalUpdateStatusResponse) {
@@ -58,12 +55,22 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     override fun onSuccessTeamResponse(response: TeamUpdateStatusResponse) {
-        activity?.runOnUiThread{
+        activity?.runOnUiThread {
             Toast.makeText(
                 requireContext(), "update success ${response.isSuccess}", Toast.LENGTH_SHORT
             ).show()
         }
     }
 
-
+    override fun updateTasksTeamStatus(idTask: String, status: Int) {
+        presenter.updateTasksTeamStatus<TeamUpdateStatusResponse>(idTask,
+            status,
+            onSuccessCallback = { response ->
+                onSuccessTeamResponse(response)
+            },
+            onFailureCallback = { error ->
+                onFailureResponse(error)
+            }
+        )
+    }
 }

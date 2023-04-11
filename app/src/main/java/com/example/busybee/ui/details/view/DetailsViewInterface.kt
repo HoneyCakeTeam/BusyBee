@@ -8,4 +8,5 @@ interface DetailsViewInterface {
     fun onSuccessPersonalResponse(response: PersonalUpdateStatusResponse)
     fun onFailureResponse(error: Throwable)
     fun onSuccessTeamResponse(response: TeamUpdateStatusResponse)
+    fun updateTasksTeamStatus(idTask: String, status: Int)
 }
