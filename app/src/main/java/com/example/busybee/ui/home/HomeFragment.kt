@@ -10,14 +10,14 @@ import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.data.models.asDomainModel
 import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.domain.models.TeamTodos
-import com.example.busybee.ui.home.personaltask.view.doneTask.PersonalDoneFragment
-import com.example.busybee.ui.home.personaltask.view.inProgressTask.PersonalInProgressFragment
-import com.example.busybee.ui.home.personaltask.view.toDoTask.PersonalToDoFragment
+import com.example.busybee.ui.home.personaltask.view.done.PersonalDoneFragment
+import com.example.busybee.ui.home.personaltask.view.inProgress.PersonalInProgressFragment
+import com.example.busybee.ui.home.personaltask.view.todo.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenter
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenterInterface
 import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.view.inProgress.TeamInProgressFragment
-import com.example.busybee.ui.home.teamtask.view.toDo.TeamToDoFragment
+import com.example.busybee.ui.home.teamtask.view.todo.TeamToDoFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 

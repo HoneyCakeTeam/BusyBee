@@ -4,8 +4,6 @@ import android.os.Bundle
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentTeamInProgressBinding
 import com.example.busybee.domain.models.TeamTodos
-import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
-import com.example.busybee.ui.home.teamtask.view.toDo.TeamToDoFragment
 
 class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>() {
     private lateinit var adapter: TeamInProgressAdapter

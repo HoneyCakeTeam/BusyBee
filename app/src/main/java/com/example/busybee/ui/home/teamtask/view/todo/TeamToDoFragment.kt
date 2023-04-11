@@ -1,8 +1,7 @@
-package com.example.busybee.ui.home.teamtask.view.toDo
+package com.example.busybee.ui.home.teamtask.view.todo
 
 import android.os.Bundle
 import com.example.busybee.base.BaseFragment
-import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.databinding.FragmentTeamToDoBinding
 import com.example.busybee.domain.models.TeamTodos
 
