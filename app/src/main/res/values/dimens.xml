@@ -38,5 +38,9 @@
     <dimen name="elevation_large">14dp</dimen>
     <dimen name="elevation_giant">16dp</dimen>
 
+    <!--items dimens-->
+    <dimen name="switch_height">32dp</dimen>
+    <dimen name="view_item_settings_height">64dp</dimen>
+
 
 </resources>
