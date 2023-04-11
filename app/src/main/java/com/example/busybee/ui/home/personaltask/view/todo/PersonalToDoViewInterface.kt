@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.personaltask.view.toDo
+package com.example.busybee.ui.home.personaltask.view.todo
 import com.example.busybee.data.models.PersonalCreateToDoResponse
 
 interface PersonalToDoViewInterface {

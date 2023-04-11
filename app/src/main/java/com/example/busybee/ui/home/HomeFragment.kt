@@ -13,8 +13,8 @@ import com.example.busybee.domain.models.TeamTodos
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
 import com.example.busybee.ui.home.personaltask.view.done.PersonalDoneFragment
-import com.example.busybee.ui.home.personaltask.view.inProgress.PersonalInProgressFragment
-import com.example.busybee.ui.home.personaltask.view.toDo.PersonalToDoFragment
+import com.example.busybee.ui.home.personaltask.view.inprogress.PersonalInProgressFragment
+import com.example.busybee.ui.home.personaltask.view.todo.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenter
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenterInterface
 import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment

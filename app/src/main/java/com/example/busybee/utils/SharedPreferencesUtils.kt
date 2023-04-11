@@ -25,7 +25,7 @@ object SharedPreferencesUtils {
             sharedPreferences?.edit()?.putString(USER_TOKEN, value)?.apply()
         }
 
-    private var expirationDate: String?
+     var expirationDate: String?
         get() = sharedPreferences?.getString(EXPIRATION_DATE_KEY, null)
         set(value) {
             sharedPreferences?.edit()?.putString(EXPIRATION_DATE_KEY, value)?.apply()

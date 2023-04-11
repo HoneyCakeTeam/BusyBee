@@ -58,7 +58,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         // here we will update the ui
         activity?.runOnUiThread {
             SharedPreferencesUtils.token = response.value.token
-            //SharedPreferencesUtils.expirationDate = response.value.expireAt
+            SharedPreferencesUtils.expirationDate = response.value.expireAt
             // here we will move to home fragment
             if (response.isSuccess) {
                 Toast.makeText(

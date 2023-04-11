@@ -1,9 +1,8 @@
-package com.example.busybee.ui.home.personaltask.view.toDo
+package com.example.busybee.ui.home.personaltask.view.todo
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalCreateToDoResponse
