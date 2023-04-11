@@ -10,9 +10,9 @@ import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
 import com.example.busybee.utils.Constant
 import com.google.gson.reflect.TypeToken
-import okhttp3.*
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.HttpUrl
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 class Repository(private val context: Context) : RepositoryInterface {
 
@@ -57,8 +57,16 @@ class Repository(private val context: Context) : RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     ) {
+        val httpUrl = HttpUrl.Builder()
+            .scheme("https")
+            .host("team-todo-62dmq.ondigitalocean.app")
+            .addPathSegment(Constant.PERSONAL_TASKS_END_POINT)
+            .addQueryParameter("id", idTask)
+            .addQueryParameter("status", status.toString())
+            .build()
+
         val request = Request.Builder()
-            .url(Constant.BASE_URL + Constant.PERSONAL_TASKS_END_POINT)
+            .url(httpUrl)
             .build()
 
         val responseType = object : TypeToken<PersonalUpdateStatusResponse>() {}.type
