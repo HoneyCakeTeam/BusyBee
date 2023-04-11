@@ -56,8 +56,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         activity?.runOnUiThread {
             token = response.value.token
             expirationDate = response.value.expireAt
-            // here we will move to home fragment
+//             here we will move to home fragment
             if (response.isSuccess) {
+
                 Toast.makeText(
                     requireContext(),
                     "Loged in successfully", Toast.LENGTH_SHORT
@@ -75,7 +76,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {
             Toast.makeText(
-                requireContext(), "cant log in", Toast.LENGTH_SHORT
+                requireContext(), "${error.message}", Toast.LENGTH_SHORT
             ).show()
         }
     }
