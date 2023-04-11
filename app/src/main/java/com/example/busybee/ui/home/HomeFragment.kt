@@ -20,6 +20,8 @@ import com.example.busybee.ui.home.teamtask.presenter.TeamPresenterInterface
 import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.view.inprogress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoFragment
+import com.example.busybee.ui.setting.SettingFragment
+import com.example.busybee.utils.replaceFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
@@ -49,7 +51,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     private lateinit var homePagerAdapter: HomeViewPagerAdapter
 
     private val teamToDoFragment by lazy { TeamToDoFragment.newInstance(teamToDos) }
-    private val teamInProgressFragment by lazy { TeamInProgressFragment.newInstance(teamInProgressToDos) }
+    private val teamInProgressFragment by lazy {
+        TeamInProgressFragment.newInstance(
+            teamInProgressToDos
+        )
+    }
     private val teamDoneFragment by lazy { TeamDoneFragment.newInstance(teamDoneToDos) }
     private val personalToDoFragment by lazy { PersonalToDoFragment.newInstance(personalToDos) }
     private val personalInProgressFragment by lazy {
@@ -79,6 +85,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 2 })
     }
 
+    private val settingsFragment = SettingFragment()
+
     override val TAG = this::class.java.simpleName.toString()
 
 
@@ -87,6 +95,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun setUp() {
         getAllPersonalTasks()
         getAllTeamTasks()
+        addCallBacks()
+    }
+
+    private fun addCallBacks() {
+        binding.settings.setOnClickListener {
+            replaceFragment(settingsFragment)
+        }
     }
 
     private fun initTabLayout() {
@@ -146,5 +161,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun onPersonalFailureResponse(error: Throwable) {
         // Show lottie animation in screen for error
     }
+
 
 }

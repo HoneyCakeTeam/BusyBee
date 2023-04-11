@@ -1,13 +1,15 @@
 package com.example.busybee.ui.setting
 
-import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentSettingsBinding
+import com.example.busybee.ui.login.view.LoginFragment
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.replaceFragment
 
 class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     override val TAG: String
         get() = this::class.simpleName.toString()
+    private val loginFragment = LoginFragment()
 
     override fun getViewBinding(): FragmentSettingsBinding =
         FragmentSettingsBinding.inflate(layoutInflater)
@@ -29,11 +31,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     private fun onClickLogout() {
         binding.viewLogoutSettings.setOnClickListener {
             SharedPreferencesUtils.token = null
-            Toast.makeText(
-                requireContext(),
-                "User logged out successfully!",
-                Toast.LENGTH_SHORT
-            )
+            replaceFragment(loginFragment)
         }
     }
 }
