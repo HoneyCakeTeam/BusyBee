@@ -1,6 +1,5 @@
 package com.example.busybee.ui.details.presenter
 
-import com.example.busybee.data.Repository
 import com.example.busybee.data.RepositoryInterface
 import com.example.busybee.ui.details.view.DetailsViewInterface
 
