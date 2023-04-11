@@ -17,6 +17,6 @@ class PersonalPresenter(private val repository: RepositoryInterface) :
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        repository.personalCreateToDo(title, description, onSuccessCallback, onFailureCallback)
+        repository.createPersonalToDo(title, description, onSuccessCallback, onFailureCallback)
     }
 }

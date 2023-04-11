@@ -27,7 +27,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
 
     override fun setUp() {
         getTodos()
-       // addCallBacks()
+        addCallBacks()
         adapter = TeamToDoAdapter(todos.values)
         binding.recyclerToDo.adapter = adapter
         binding.taskHeader.textTodoStatus.text="ToDo"
@@ -54,7 +54,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
             val assign = binding.textAssignee.text.toString()
             teamCreateToDo(title, description, assign)
         }
-        bottomSheet.setContentView(this.binding.root)
+        bottomSheet.setContentView(binding.root)
         bottomSheet.show()
     }
 
@@ -72,6 +72,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
 
     override fun onSuccessResponse(response: TeamToDoListResponse) {
         activity?.runOnUiThread {
+
            // binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
         }
     }

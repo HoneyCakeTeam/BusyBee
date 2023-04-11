@@ -128,7 +128,7 @@ class Repository(private val context: Context) : RepositoryInterface {
         )
     }
 
-    override fun <T> personalCreateToDo(
+    override fun <T> createPersonalToDo(
         title: String,
         description: String,
         onSuccessCallback: (response: T) -> Unit,
