@@ -7,4 +7,9 @@ interface DetailsPresenterInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     )
+    fun <T> updateTasksTeamStatus(
+        idTask: String, status: Int,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit,
+    )
 }
