@@ -15,10 +15,11 @@ import okhttp3.Request
 
 class Repository(private val context: Context) : RepositoryInterface {
 
-    val client = OkHttpClient.Builder().apply {
+    private val client = OkHttpClient.Builder().apply {
         addInterceptor(ConnectionBuilder.logInterceptor)
         addInterceptor(AuthorizationInterceptor(context))
     }.build()
+
     override fun <T> logIn(
         userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
@@ -56,7 +57,7 @@ class Repository(private val context: Context) : RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit,
     ) {
         val request = Request.Builder()
-            .url(Constant.BASE_URL+Constant.PERSONAL_TASKS_END_POINT)
+            .url(Constant.BASE_URL + Constant.PERSONAL_TASKS_END_POINT)
             .build()
 
         val responseType = object : TypeToken<PersonalUpdateStatusResponse>() {}.type
