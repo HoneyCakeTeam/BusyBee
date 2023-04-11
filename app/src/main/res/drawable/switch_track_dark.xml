@@ -10,7 +10,7 @@
         <shape >
             <solid android:color="@color/secondary_800"/>
             <corners android:radius="@dimen/radius_giant"/>
-            <size android:height="@dimen/switch_height"/>
+            <size android:height="32dp"/>
 
         </shape>
     </item>

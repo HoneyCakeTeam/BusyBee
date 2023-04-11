@@ -97,6 +97,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun setUp() {
         getAllPersonalTasks()
         getAllTeamTasks()
+        initTabLayout()
         addCallBacks()
     }
 
@@ -148,7 +149,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun onTeamSuccessResponse(response: TeamToDoListResponse) {
         teamResponse = response
         activity?.runOnUiThread {
-            initTabLayout()
             initViewPager(teamFragments)
         }
     }
@@ -167,7 +167,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun onPersonalSuccessResponse(response: PersonalToDoListResponse) {
         this.personalResponse = response
         activity?.runOnUiThread {
-            initTabLayout()
             initViewPager(personalFragments)
         }
     }
