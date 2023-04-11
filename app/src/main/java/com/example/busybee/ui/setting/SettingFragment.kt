@@ -23,9 +23,9 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
 
 
     override fun setUp() {
-        setUpPieChart()
+       // setUpPieChart()
         addCallBacks()
-        showToDosPrecentage()
+        showToDosPercentage()
     }
 
     private fun setUpPieChart() {
@@ -61,21 +61,20 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
         }
     }
 
-    private fun showToDosPrecentage() {
+    private fun showToDosPercentage() {
         val sumOfPersonalToDos = sum(personalTodos, personalInProgressTodos, personalDoneTodos)
-        val toDoPrecentage = calculatePrecentage(sumOfPersonalToDos, personalTodos)
-        val inProgressPrecentage = calculatePrecentage(sumOfPersonalToDos, personalInProgressTodos)
-        val donePrecentage = calculatePrecentage(sumOfPersonalToDos, personalDoneTodos)
+        val toDoPercentage = calculatePercentage(sumOfPersonalToDos, personalTodos)
+        val inProgressPercentage = calculatePercentage(sumOfPersonalToDos, personalInProgressTodos)
+        val donePercentage = calculatePercentage(sumOfPersonalToDos, personalDoneTodos)
 
-        binding.textTodoPercentage.text = toDoPrecentage.toString()
-        binding.textInProgressPercentage.text = inProgressPrecentage.toString()
-        binding.textDonePercentage.text = donePrecentage.toString()
+        binding.textTodoPercentage.text = toDoPercentage.toString()
+        binding.textInProgressPercentage.text = inProgressPercentage.toString()
+        binding.textDonePercentage.text = donePercentage.toString()
     }
 
-    private fun calculatePrecentage(sumOfToDos: Float, variableOfInterest: Float): Float {
+    private fun calculatePercentage(sumOfToDos: Float, variableOfInterest: Float): Float {
 
-        val percentage = (variableOfInterest / sumOfToDos) * 100
-        return percentage
+        return (variableOfInterest / sumOfToDos) * 100
     }
 
     private fun sum(
