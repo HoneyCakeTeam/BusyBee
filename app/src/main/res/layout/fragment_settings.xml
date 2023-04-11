@@ -18,71 +18,102 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <org.eazegraph.lib.charts.PieChart
+        android:id="@+id/piechart"
+        android:layout_width="152dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="@dimen/spacing_medium"
+        app:egHighlightStrength="1"
+        app:egInnerPadding="87"
+        app:layout_constraintBottom_toBottomOf="@id/view_chart_shape"
+        app:layout_constraintStart_toStartOf="@id/view_chart_shape"
+        app:layout_constraintTop_toTopOf="@id/view_chart_shape" />
+
     <TextView
         android:id="@+id/text_done_percentage"
+        style="@style/SettingsPrecentageTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginEnd="64dp"
-        style="@style/SettingsPrecentageTextStyle"
+        app:drawableStartCompat="@drawable/ic_green_circle"
         app:layout_constraintEnd_toEndOf="@id/view_chart_shape"
         app:layout_constraintTop_toTopOf="@id/view_chart_shape"
-        tools:text="40 %"
-        app:drawableStartCompat="@drawable/ic_green_circle" />
+        tools:text="40 %" />
+
+    <TextView
+        android:id="@+id/text_total_tasks_header"
+        style="@style/SettingsPrecentageTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_total_tasks"
+        app:layout_constraintBottom_toTopOf="@+id/text_total_tasks_num"
+        app:layout_constraintEnd_toEndOf="@id/piechart"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/piechart"
+        app:layout_constraintTop_toBottomOf="@+id/piechart" />
+
+    <TextView
+        android:id="@+id/text_total_tasks_num"
+        style="@style/SettingsPrecentageTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/piechart"
+        app:layout_constraintEnd_toEndOf="@id/piechart"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/piechart"
+        app:layout_constraintTop_toBottomOf="@+id/text_total_tasks_header"
+        tools:text="27" />
 
     <TextView
         android:id="@+id/text_done"
+        style="@style/SettingsStatusTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/notosans_medium"
         android:text="@string/done"
-        android:textColor="@color/black_38"
-        android:textSize="@dimen/text_small"
         app:layout_constraintEnd_toEndOf="@id/text_done_percentage"
         app:layout_constraintStart_toStartOf="@id/text_done_percentage"
         app:layout_constraintTop_toBottomOf="@id/text_done_percentage" />
 
     <TextView
         android:id="@+id/text_in_progress_percentage"
+        style="@style/SettingsPrecentageTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/SettingsPrecentageTextStyle"
+        app:drawableStartCompat="@drawable/ic_yellow_circle"
         app:layout_constraintEnd_toEndOf="@id/text_done"
         app:layout_constraintStart_toStartOf="@id/text_done"
         app:layout_constraintTop_toBottomOf="@id/text_done"
-        tools:text="30 %"
-        app:drawableStartCompat="@drawable/ic_yellow_circle" />
+        tools:text="30 %" />
 
     <TextView
         android:id="@+id/text_in_progress"
+        style="@style/SettingsStatusTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/in_progress"
-        style="@style/SettingsStatusTextStyle"
         app:layout_constraintEnd_toEndOf="@id/text_in_progress_percentage"
         app:layout_constraintStart_toStartOf="@id/text_in_progress_percentage"
         app:layout_constraintTop_toBottomOf="@id/text_in_progress_percentage" />
 
     <TextView
         android:id="@+id/text_todo_percentage"
+        style="@style/SettingsPrecentageTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/SettingsPrecentageTextStyle"
+        app:drawableStartCompat="@drawable/ic_blue_circle"
         app:layout_constraintEnd_toEndOf="@id/text_in_progress"
         app:layout_constraintStart_toStartOf="@id/text_in_progress"
         app:layout_constraintTop_toBottomOf="@id/text_in_progress"
-        tools:text="30 %"
-        app:drawableStartCompat="@drawable/ic_blue_circle" />
+        tools:text="30 %" />
 
     <TextView
         android:id="@+id/text_todo"
+        style="@style/SettingsStatusTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_small"
-        android:fontFamily="@font/notosans_medium"
         android:text="@string/to_do"
-        android:textColor="@color/black_38"
-        android:textSize="@dimen/text_small"
         app:layout_constraintEnd_toEndOf="@id/text_todo_percentage"
         app:layout_constraintStart_toStartOf="@id/text_todo_percentage"
         app:layout_constraintTop_toBottomOf="@id/text_todo_percentage" />
