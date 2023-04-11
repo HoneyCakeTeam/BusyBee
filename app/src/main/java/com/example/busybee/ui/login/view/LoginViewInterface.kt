@@ -6,4 +6,6 @@ interface LoginViewInterface {
     fun logIn(userName: String, password: String)
     fun onSuccessResponse(response: LoginResponse)
     fun onFailureResponse(error: Throwable)
+
+
 }

@@ -6,4 +6,7 @@ interface LoginPresenterInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
+
+    fun saveTokenInShared (token : String)
+    fun saveExpirationDateInShared (expirationDate : String)
 }

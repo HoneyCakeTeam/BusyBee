@@ -17,4 +17,11 @@ class LoginPresenter(
 
     }
 
+    override fun saveTokenInShared (token : String){
+        repository.saveTokenInShared(token)
+    }
+    override fun saveExpirationDateInShared (expirationDate : String){
+        repository.saveExpirationDateInShared(expirationDate)
+    }
+
 }

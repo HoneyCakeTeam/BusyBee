@@ -1,6 +1,5 @@
 package com.example.busybee.ui.login.view
 
-import android.util.Log
 import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -9,8 +8,6 @@ import com.example.busybee.databinding.FragmentLoginBinding
 import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.login.presenter.LoginPresenterInterface
 import com.example.busybee.utils.LoginValidation
-import com.example.busybee.utils.SharedPreferencesUtils
-import com.google.android.material.textfield.TextInputLayout
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
 
@@ -33,8 +30,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
             password = binding.editTextPassword.editText?.text.toString()
 
             if (loginValidation.checkCredintialForUserName(username , binding.editTextUsername)
-                && loginValidation.checkCredintialForPassword(password , binding.editTextPassword))
-                logIn(username, password)
+                && loginValidation.checkCredintialForPassword(password , binding.editTextPassword) )
+            logIn(username, password)
         }
 
         binding.textSignUp.setOnClickListener {
@@ -47,20 +44,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         presenter.logIn<LoginResponse>(
             userName,
             password,
-            onSuccessCallback = { response ->
-                onSuccessResponse(response)
-            },
-            onFailureCallback = { error ->
-                onFailureResponse(error)
-            }
+           ::onSuccessResponse,
+            ::onFailureResponse
         )
     }
 
     override fun onSuccessResponse(response: LoginResponse) {
         // here we will update the ui
         activity?.runOnUiThread {
-            SharedPreferencesUtils.token = response.value.token
-            SharedPreferencesUtils.expirationDate = response.value.expireAt
+
+            presenter.saveTokenInShared(response.value.token)
+            presenter.saveExpirationDateInShared(response.value.expireAt)
             // here we will move to home fragment
             if (response.isSuccess) {
                 Toast.makeText(
@@ -80,7 +74,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {
             Toast.makeText(
-                requireContext(), "Invalid username or password", Toast.LENGTH_SHORT
+                requireContext(), "cant log in", Toast.LENGTH_SHORT
             ).show()
         }
     }

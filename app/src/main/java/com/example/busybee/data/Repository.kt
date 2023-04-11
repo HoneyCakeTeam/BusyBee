@@ -7,11 +7,15 @@ import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
 import com.example.busybee.utils.Constant
+import com.example.busybee.utils.SharedPreferencesUtils
 import com.google.gson.reflect.TypeToken
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
 class Repository(private val context: Context) : RepositoryInterface {
+
+    val sharedPreferences = SharedPreferencesUtils
+
 
     val client = OkHttpClient.Builder().apply {
         addInterceptor(ConnectionBuilder.logInterceptor)
@@ -46,5 +50,9 @@ class Repository(private val context: Context) : RepositoryInterface {
         )
 
     }
+
+    override fun saveTokenInShared (token : String) { sharedPreferences.token = token }
+    override fun saveExpirationDateInShared (expirationDate : String) { sharedPreferences.expirationDate = expirationDate }
+
 
 }
