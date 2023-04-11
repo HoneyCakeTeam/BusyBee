@@ -1,6 +1,5 @@
 package com.example.busybee.ui.details.view
 
-import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.data.models.PersonalUpdateStatusResponse
 import com.example.busybee.data.models.TeamUpdateStatusResponse
 
