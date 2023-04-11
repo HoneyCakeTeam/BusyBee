@@ -6,6 +6,7 @@ import com.example.busybee.BuildConfig
 import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.data.models.SignUpResponse
+import com.example.busybee.data.models.PersonalCreateToDoResponse
 import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.data.models.PersonalUpdateStatusResponse
 import com.example.busybee.data.models.TeamUpdateStatusResponse
@@ -118,6 +119,26 @@ class Repository(private val context: Context) : RepositoryInterface {
             .build()
 
         val responseType = object : TypeToken<TeamToDoListResponse>() {}.type
+
+        client.executeWithCallbacks(
+            request,
+            responseType,
+            onSuccessCallback,
+            onFailureCallback
+        )
+    }
+
+    override fun <T> personalCreateToDo(
+        title: String,
+        description: String,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    ) {
+        val request = Request.Builder()
+            .url(Constant.PERSONAL_TODO_URL)
+            .build()
+
+        val responseType = object : TypeToken<PersonalCreateToDoResponse>() {}.type
 
         client.executeWithCallbacks(
             request,
