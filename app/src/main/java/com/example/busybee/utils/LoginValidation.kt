@@ -14,7 +14,7 @@ class LoginValidation {
 
     fun checkCredentialForPassword(password: String, textInputLayout: TextInputLayout): Boolean {
 
-        if (password.length > 8 && password.any { it != ' ' }) {
+        if (password.length >= 8 && password.any { it != ' ' }) {
             return true
         }
         showError(textInputLayout, "password must be egiht characters at least")

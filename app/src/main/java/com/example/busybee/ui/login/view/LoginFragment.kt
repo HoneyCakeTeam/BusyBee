@@ -13,12 +13,14 @@ import com.example.busybee.utils.SharedPreferencesUtils
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
 
     private val presenter: LoginPresenterInterface by lazy {
-        LoginPresenter(this, Repository(requireContext()) )
+        LoginPresenter( Repository(requireContext()) )
     }
     private val loginValidation : LoginValidation = LoginValidation()
     override val TAG: String = this::class.simpleName.toString()
     private var username = ""
     private var password = ""
+    private var token = ""
+    private var expirationDate = ""
     override fun getViewBinding(): FragmentLoginBinding =
         FragmentLoginBinding.inflate(layoutInflater)
 
@@ -31,7 +33,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
             password = binding.editTextPassword.editText?.text.toString()
 
             if (loginValidation.checkCredentialForUserName(username , binding.editTextUsername)
-                && loginValidation.checkCredentialForPassword(password , binding.editTextPassword))
+                && loginValidation.checkCredentialForPassword(password , binding.editTextPassword) )
                 logIn(username, password)
         }
 
@@ -42,23 +44,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     }
 
     override fun logIn(userName: String, password: String) {
-        presenter.logIn<LoginResponse>(
+        presenter.logIn(
             userName,
             password,
-            onSuccessCallback = { response ->
-                onSuccessResponse(response)
-            },
-            onFailureCallback = { error ->
-                onFailureResponse(error)
-            }
+            ::onSuccessResponse,
+            ::onFailureResponse
         )
     }
 
     override fun onSuccessResponse(response: LoginResponse) {
-        // here we will update the ui
         activity?.runOnUiThread {
-            SharedPreferencesUtils.token = response.value.token
-            SharedPreferencesUtils.expirationDate = response.value.expireAt
+            token = response.value.token
+            expirationDate = response.value.expireAt
             // here we will move to home fragment
             if (response.isSuccess) {
                 Toast.makeText(
@@ -78,9 +75,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {
             Toast.makeText(
-                requireContext(), "Invalid username or password", Toast.LENGTH_SHORT
+                requireContext(), "cant log in", Toast.LENGTH_SHORT
             ).show()
         }
     }
+    override fun saveTokenInShared(token: String) {
+        presenter.saveTokenInShared(token)
+    }
+
+    override fun saveExpirationDateInShared(expirationDate: String) {
+        presenter.saveExpirationDateInShared(expirationDate)
+    }
 
 }
+
+

@@ -2,7 +2,7 @@ package com.example.busybee.data
 
 import android.content.Context
 import android.util.Base64
-import com.example.busybee.BuildConfig
+///import com.example.busybee.BuildConfig
 import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.data.models.SignUpResponse
@@ -14,6 +14,7 @@ import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
 import com.example.busybee.utils.Constant
+import com.example.busybee.utils.SharedPreferencesUtils
 import com.google.gson.reflect.TypeToken
 import okhttp3.FormBody
 import okhttp3.HttpUrl
@@ -21,6 +22,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 
 class Repository(private val context: Context) : RepositoryInterface {
+
+    val sharedPreferences = SharedPreferencesUtils
 
     private val client = OkHttpClient.Builder().apply {
         addInterceptor(ConnectionBuilder.logInterceptor)
@@ -69,7 +72,7 @@ class Repository(private val context: Context) : RepositoryInterface {
         val formBody =  FormBody.Builder()
             .add("username", userName)
             .add("password", password)
-            .add("teamId",BuildConfig.API_KEY)
+           // .add("teamId",BuildConfig.API_KEY)
             .build()
 
         val request = Request.Builder()
@@ -221,4 +224,9 @@ class Repository(private val context: Context) : RepositoryInterface {
         client.executeWithCallbacks(request, responseType, onSuccessCallback, onFailureCallback)
 
     }
+
+    override fun saveTokenInShared (token : String) { sharedPreferences.token = token }
+    override fun saveExpirationDateInShared (expirationDate : String) { sharedPreferences.expirationDate = expirationDate }
+
+
 }

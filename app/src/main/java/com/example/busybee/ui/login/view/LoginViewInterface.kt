@@ -6,4 +6,7 @@ interface LoginViewInterface {
     fun logIn(userName: String, password: String)
     fun onSuccessResponse(response: LoginResponse)
     fun onFailureResponse(error: Throwable)
+    fun saveTokenInShared (token : String)
+    fun saveExpirationDateInShared (expirationDate : String)
+
 }
