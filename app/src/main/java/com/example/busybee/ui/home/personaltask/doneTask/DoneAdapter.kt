@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.personalTask.toDoTask
+package com.example.busybee.ui.home.personaltask.doneTask
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import com.example.busybee.base.BaseAdapter
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.ItemTaskBinding
 
-class PersonalToDoAdapter(personalToDoList: List<PersonalTodo>) :
+class DoneAdapter(personalToDoList: List<PersonalTodo>) :
     BaseAdapter<PersonalTodo, ItemTaskBinding>(personalToDoList) {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemTaskBinding
@@ -22,5 +22,5 @@ class PersonalToDoAdapter(personalToDoList: List<PersonalTodo>) :
             textTaskDescription.text = currentItem.description
             textTaskTime.text = currentItem.creationTime
         }
-        }
     }
+}

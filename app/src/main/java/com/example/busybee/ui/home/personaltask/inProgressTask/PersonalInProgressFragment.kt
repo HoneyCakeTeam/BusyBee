@@ -1,8 +1,7 @@
-package com.example.busybee.ui.home.personalTask.inProgressTask
+package com.example.busybee.ui.home.personaltask.inProgressTask
 
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
-import com.example.busybee.ui.home.personalTask.inProgressTask.PersonalInProgressAdapter
 
 class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBinding>() {
     private lateinit var adapter : PersonalInProgressAdapter

@@ -10,9 +10,9 @@ import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.data.models.asDomainModel
 import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.domain.models.TeamTodos
-import com.example.busybee.ui.home.personalTask.doneTask.PersonalDoneFragment
-import com.example.busybee.ui.home.personalTask.inProgressTask.PersonalInProgressFragment
-import com.example.busybee.ui.home.personalTask.toDoTask.PersonalToDoFragment
+import com.example.busybee.ui.home.personaltask.doneTask.PersonalDoneFragment
+import com.example.busybee.ui.home.personaltask.inProgressTask.PersonalInProgressFragment
+import com.example.busybee.ui.home.personaltask.toDoTask.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenter
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenterInterface
 import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
