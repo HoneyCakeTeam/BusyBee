@@ -1,18 +1,26 @@
 package com.example.busybee.ui.setting
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.busybee.R
+import com.example.busybee.base.BaseFragment
+import com.example.busybee.databinding.FragmentSettingsBinding
 
-class SettingFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
+    override val TAG: String
+        get() = this::class.simpleName.toString()
+
+    override fun getViewBinding(): FragmentSettingsBinding =
+        FragmentSettingsBinding.inflate(layoutInflater)
+
+
+    override fun setUp() {
+        setUpPieChart()
+        addCallBacks()
+    }
+
+    private fun setUpPieChart() {
+        TODO("Not yet implemented")
+    }
+
+    private fun addCallBacks() {
+        TODO("Not yet implemented")
     }
 }
