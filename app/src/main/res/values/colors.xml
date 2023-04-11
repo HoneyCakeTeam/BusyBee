@@ -85,4 +85,5 @@
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/primary_200
     </color>
+    <color name="color_green">#41B976</color>
 </resources>

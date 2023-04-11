@@ -21,15 +21,15 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>() {
     }
     private fun getInProgress() {
         arguments?.let {
-            inProgress = it.getParcelable(TEAM_INPREOGRESS_LIST)!!
+            inProgress = it.getParcelable(TEAM_IN_PROGRESS_LIST)!!
         }
     }
     companion object {
-        const val TEAM_INPREOGRESS_LIST = "Team_InProgress_List"
+        const val TEAM_IN_PROGRESS_LIST = "Team_InProgress_List"
         fun newInstance(tasks: TeamTodos) =
             TeamInProgressFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(TEAM_INPREOGRESS_LIST, tasks)
+                    putParcelable(TEAM_IN_PROGRESS_LIST, tasks)
                 }
             }
     }

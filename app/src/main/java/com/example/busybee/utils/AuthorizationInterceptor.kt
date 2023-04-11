@@ -9,7 +9,7 @@ class AuthorizationInterceptor(private val context: Context) : Interceptor {
         val bearerToken =
             "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwczovL3RoZS1jaGFuY2Uub3JnLyIsInN1YiI6IjNlZGY3YzAyLTgwYzUtNGQzMS04NTc1LTNiOTU1OTA3MzgwYyIsInRlYW1JZCI6ImVkMDFlODZmLWRlYWQtNGJhMC04NzhiLTY4YWVjOGE1MTU2NCIsImlzcyI6Imh0dHBzOi8vdGhlLWNoYW5jZS5vcmcvIiwiZXhwIjoxNjgxMzM4NTMzfQ.NrkzqfirrJdl6idTcZ76N_xjaIECBY-l6gVQbCbXqnA"
         val request = chain.request().newBuilder()
-            .addHeader(AUTHORIZATION, bearerToken)
+            .addHeader(AUTHORIZATION, "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwczovL3RoZS1jaGFuY2Uub3JnLyIsInN1YiI6ImVkN2RlMDgyLTU3ODYtNGE0ZS04NzhiLWU4ZWRhOTM0ZmExMCIsInRlYW1JZCI6ImVkMDFlODZmLWRlYWQtNGJhMC04NzhiLTY4YWVjOGE1MTU2NCIsImlzcyI6Imh0dHBzOi8vdGhlLWNoYW5jZS5vcmcvIiwiZXhwIjoxNjgxMjM2MjEwfQ.p4N7kgWx_a8KO9sIWoE8_rz6p8Aj1BHQQ5owig3c9oc")
             .build()
         return chain.proceed(request)
     }

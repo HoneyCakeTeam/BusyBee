@@ -6,6 +6,11 @@ interface RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     )
 
+    fun <T> getPersonalTasks(
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    )
+
     fun <T> getAllTeamTasks(
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit

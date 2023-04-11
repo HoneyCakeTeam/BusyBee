@@ -11,6 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/task_constraint"
+        android:background="@color/white_100"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/spacing_small">
