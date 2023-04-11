@@ -7,5 +7,5 @@ object Constant {
      const val baseUrl = "https://team-todo-62dmq.ondigitalocean.app"
      const val loginUrl = "$baseUrl/login"
      const val teamUrl = "$baseUrl/todo/team"
-
+     const val PERSONAL_TODO_URL = "$baseUrl/todo/personal"
 }

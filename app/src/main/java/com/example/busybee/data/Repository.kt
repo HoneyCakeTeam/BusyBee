@@ -66,4 +66,24 @@ class Repository(private val context: Context) : RepositoryInterface {
             onFailureCallback
         )
     }
+
+    override fun <T> personalCreateToDo(
+        title: String,
+        description: String,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    ) {
+        val request = Request.Builder()
+            .url(Constant.PERSONAL_TODO_URL)
+            .build()
+
+        val responseType = object :TypeToken<TeamToDoListResponse>() {}.type
+
+        client.executeWithCallbacks(
+            request,
+            responseType,
+            onSuccessCallback,
+            onFailureCallback
+        )
+    }
 }
