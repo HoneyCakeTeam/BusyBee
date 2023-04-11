@@ -58,7 +58,11 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     override fun onSuccessTeamResponse(response: TeamUpdateStatusResponse) {
-        TODO("Not yet implemented")
+        activity?.runOnUiThread{
+            Toast.makeText(
+                requireContext(), "update success ${response.isSuccess}", Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
 

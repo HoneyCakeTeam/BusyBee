@@ -16,5 +16,4 @@ interface RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     )
-
 }
