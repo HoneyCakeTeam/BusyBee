@@ -49,7 +49,7 @@ class Repository(private val context: Context) : RepositoryInterface {
     }
 
     override fun <T> updateTasksPersonalStatus(
-        id: String,
+        idTask: String,
         status: Int,
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
