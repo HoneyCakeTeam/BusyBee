@@ -2,7 +2,14 @@ package com.example.busybee.data
 
 interface RepositoryInterface {
     fun <T> logIn(
-        userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
+        userName: String,
+        password: String,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    )
+
+    fun <T> getPersonalTasks(
+        onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
@@ -10,5 +17,14 @@ interface RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
+
+    fun <T> createTeamToDo(title: String,
+                           description: String,
+                           assignee: String,
+                           onSuccessCallback: (response: T) -> Unit,
+                           onFailureCallback: (error: Throwable) -> Unit )
+
+    fun <T> signUp(userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
+                  onFailureCallback: (error: Throwable) -> Unit )
 
 }

@@ -11,6 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/task_constraint"
+        android:background="@color/white_100"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/spacing_small">
@@ -36,7 +37,7 @@
             android:fontFamily="@font/notosans_regular"
             android:maxLines="1"
             android:ellipsize="end"
-            android:text="task describtion  hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+            tools:text="task describtion  hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
             android:textColor="@color/black_38"
             android:textSize="@dimen/text_small"
             app:layout_constraintStart_toStartOf="@id/task_constraint"

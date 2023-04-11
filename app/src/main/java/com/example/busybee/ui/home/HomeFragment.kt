@@ -1,69 +1,91 @@
 package com.example.busybee.ui.home
 
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
-import com.example.busybee.data.models.PersonalGetToDoListResponse
+import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.data.models.asDomainModel
 import com.example.busybee.databinding.FragmentHomeBinding
+import com.example.busybee.domain.models.PersonalTodos
 import com.example.busybee.domain.models.TeamTodos
-import com.example.busybee.ui.home.personaltask.doneTask.PersonalDoneFragment
-import com.example.busybee.ui.home.personaltask.inProgressTask.PersonalInProgressFragment
-import com.example.busybee.ui.home.personaltask.toDoTask.PersonalToDoFragment
+import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
+import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
+import com.example.busybee.ui.home.personaltask.view.done.PersonalDoneFragment
+import com.example.busybee.ui.home.personaltask.view.inProgress.PersonalInProgressFragment
+import com.example.busybee.ui.home.personaltask.view.toDo.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenter
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenterInterface
 import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
-import com.example.busybee.ui.home.teamtask.view.inProgress.TeamInProgressFragment
-import com.example.busybee.ui.home.teamtask.view.toDo.TeamToDoFragment
+import com.example.busybee.ui.home.teamtask.view.inprogress.TeamInProgressFragment
+import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
-
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeViewInterface {
-    private val presenter: TeamPresenterInterface by lazy { TeamPresenter(Repository(requireContext())) }
+    private val teamPresenter: TeamPresenterInterface by lazy {
+        TeamPresenter(
+            Repository(
+                requireContext()
+            )
+        )
+    }
+    private val personalPresenter: PersonalPresenterInterface by lazy {
+        PersonalPresenter(
+            Repository(
+                requireContext()
+            )
+        )
+    }
     private val teamFragments: List<Fragment> by lazy {
         listOf(teamToDoFragment, teamInProgressFragment, teamDoneFragment)
     }
     private val personalFragments: List<Fragment> by lazy {
         listOf(personalToDoFragment, personalInProgressFragment, personalDoneFragment)
     }
-    private lateinit var response: TeamToDoListResponse
+    private lateinit var teamResponse: TeamToDoListResponse
+    private lateinit var personalResponse: PersonalToDoListResponse
     private lateinit var homePagerAdapter: HomeViewPagerAdapter
 
     private val teamToDoFragment by lazy { TeamToDoFragment.newInstance(teamToDos) }
+    private val teamInProgressFragment by lazy { TeamInProgressFragment.newInstance(teamInProgressToDos) }
     private val teamDoneFragment by lazy { TeamDoneFragment.newInstance(teamDoneToDos) }
-    private val teamInProgressFragment by lazy {
-        TeamInProgressFragment.newInstance(
-            teamInProgressToDos
+    private val personalToDoFragment by lazy { PersonalToDoFragment.newInstance(personalToDos) }
+    private val personalInProgressFragment by lazy {
+        PersonalInProgressFragment.newInstance(
+            personalInProgressToDos
         )
     }
-
-    private val personalToDoFragment = PersonalToDoFragment()
-    private val personalInProgressFragment = PersonalInProgressFragment()
-    private val personalDoneFragment = PersonalDoneFragment()
+    private val personalDoneFragment by lazy { PersonalDoneFragment.newInstance(personalDoneToDos) }
 
     private val teamToDos by lazy {
-        TeamTodos(response.asDomainModel().values.filter { it.status == 0 })
-    }
-    private val teamDoneToDos by lazy {
-        TeamTodos(response.asDomainModel().values.filter { it.status == 2 })
+        TeamTodos(teamResponse.asDomainModel().values.filter { it.status == 0 })
     }
     private val teamInProgressToDos by lazy {
-        TeamTodos(response.asDomainModel().values.filter { it.status == 1 })
+        TeamTodos(teamResponse.asDomainModel().values.filter { it.status == 1 })
+    }
+    private val teamDoneToDos by lazy {
+        TeamTodos(teamResponse.asDomainModel().values.filter { it.status == 2 })
+    }
+
+    private val personalToDos by lazy {
+        PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 0 })
+    }
+    private val personalInProgressToDos by lazy {
+        PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 1 })
+    }
+    private val personalDoneToDos by lazy {
+        PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 2 })
     }
 
     override val TAG = this::class.java.simpleName.toString()
 
 
-    override fun getViewBinding(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater)
-    }
-
+    override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun setUp() {
+        getAllPersonalTasks()
         getAllTeamTasks()
     }
 
@@ -88,49 +110,41 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     override fun onTabReselected(tab: TabLayout.Tab?) {}
     override fun getAllTeamTasks() {
-        presenter.getAllTeamTasks(
+        teamPresenter.getAllTeamTasks(
             ::onTeamSuccessResponse,
             ::onTeamFailureResponse
         )
     }
 
     override fun onTeamSuccessResponse(response: TeamToDoListResponse) {
-        // here we will update the ui
+        teamResponse = response
         activity?.runOnUiThread {
-            Toast.makeText(
-                requireContext(),
-                "Get successful! ${response.value[0].title}",
-                Toast.LENGTH_SHORT
-            ).show()
+            initTabLayout()
+            initViewPager(teamFragments)
         }
-        this.response = response
+    }
+
+    override fun onTeamFailureResponse(error: Throwable) {
+        // Show lottie animation in screen for error
+    }
+
+    override fun getAllPersonalTasks() {
+        personalPresenter.getPersonalTasks(
+            ::onPersonalSuccessResponse,
+            ::onPersonalFailureResponse
+        )
+    }
+
+    override fun onPersonalSuccessResponse(response: PersonalToDoListResponse) {
+        this.personalResponse = response
         activity?.runOnUiThread {
             initTabLayout()
             initViewPager(personalFragments)
         }
     }
 
-    override fun onTeamFailureResponse(error: Throwable) {
-        activity?.runOnUiThread {
-            Toast.makeText(
-                requireContext(),
-                "Get faillll! ${error.message} ",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
-    override fun getAllPersonalTasks() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onPersonalSuccessResponse(response: PersonalGetToDoListResponse) {
-        TODO("Not yet implemented")
-    }
-
     override fun onPersonalFailureResponse(error: Throwable) {
-        TODO("Not yet implemented")
+        // Show lottie animation in screen for error
     }
-
 
 }

@@ -27,6 +27,6 @@
     <string name="full_name">User Name</string>
     <string name="create_account">Create Account</string>
     <string name="hello_honey">Hello Honey</string>
-    <string name="total_tasks">Total tasks</string>
+    <string name="tasks">%d Tasks</string>
 
 </resources>
