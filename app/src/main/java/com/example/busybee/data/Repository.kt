@@ -3,15 +3,13 @@ package com.example.busybee.data
 import android.content.Context
 import android.util.Base64
 import com.example.busybee.data.models.LoginResponse
-import com.example.busybee.data.models.TeamUpdateStatusResponse
 import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
 import com.example.busybee.utils.Constant
 import com.google.gson.reflect.TypeToken
-import okhttp3.*
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 class Repository(private val context: Context) : RepositoryInterface {
 
@@ -19,7 +17,6 @@ class Repository(private val context: Context) : RepositoryInterface {
         addInterceptor(ConnectionBuilder.logInterceptor)
         addInterceptor(AuthorizationInterceptor(context))
     }.build()
-
     override fun <T> logIn(
         userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
@@ -49,6 +46,28 @@ class Repository(private val context: Context) : RepositoryInterface {
         )
 
     }
+
+    override fun <T> updateTasksPersonalStatus(
+        id: String,
+        status: Int,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit,
+    ) {
+        val request = Request.Builder()
+            .url(Constant.BASE_URL+Constant.PERSONAL_TASKS_END_POINT)
+            .build()
+
+        val responseType = object : TypeToken<PersonalUpdateStatusResponse>() {}.type
+
+        client.executeWithCallbacks(
+            request,
+            responseType,
+            onSuccessCallback,
+            onFailureCallback
+        )
+
+    }
+
 
     override fun <T> updateTasksTeamStatus(
         id: String,
