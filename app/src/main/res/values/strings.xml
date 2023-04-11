@@ -6,12 +6,12 @@
     <string name="content">Content</string>
     <string name="task_created_successfully">Task is created successfully</string>
     <string name="_6_tasks">6 tasks</string>
-    <string name="to_do">TO Do</string>
+    <string name="to_do">To Do</string>
     <string name="task_name">Task Name</string>
     <string name="move_to_in_progress">Move to in progress</string>
     <string name="generate_model">Generate Model</string>
-    <string name="text_theme_settings">Theme</string>
-    <string name="text_logout_settings">Logout</string>
+    <string name="theme_settings">Theme</string>
+    <string name="logout_settings">Logout</string>
     <string name="in_progress">In progress</string>
     <string name="done">Done</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -27,6 +27,6 @@
     <string name="full_name">User Name</string>
     <string name="create_account">Create Account</string>
     <string name="hello_honey">Hello Honey</string>
-    <string name="text_total_tasks">Total tasks</string>
+    <string name="total_tasks">Total tasks</string>
 
 </resources>

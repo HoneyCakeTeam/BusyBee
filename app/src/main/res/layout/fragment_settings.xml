@@ -46,7 +46,7 @@
         style="@style/SettingsPrecentageTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_total_tasks"
+        android:text="@string/total_tasks"
         app:layout_constraintBottom_toTopOf="@+id/text_total_tasks_num"
         app:layout_constraintEnd_toEndOf="@id/piechart"
         app:layout_constraintHorizontal_bias="0.5"
@@ -145,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
-        android:text="@string/text_theme_settings"
+        android:text="@string/theme_settings"
         app:layout_constraintBottom_toBottomOf="@id/image_theme"
         app:layout_constraintStart_toEndOf="@id/image_theme"
         app:layout_constraintTop_toTopOf="@id/image_theme" />
@@ -189,7 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
-        android:text="@string/text_logout_settings"
+        android:text="@string/logout_settings"
         app:layout_constraintBottom_toBottomOf="@id/image_logout"
         app:layout_constraintStart_toEndOf="@id/image_logout"
         app:layout_constraintTop_toTopOf="@id/image_logout" />
