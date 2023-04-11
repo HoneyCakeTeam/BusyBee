@@ -1,6 +1,7 @@
 package com.example.busybee.data.models
 
 import android.os.Parcelable
+import com.example.busybee.domain.models.PersonalTodos
 import kotlinx.parcelize.Parcelize
 
 data class PersonalCreateToDoRequest(
@@ -19,6 +20,7 @@ data class PersonalGetToDoListResponse(
     val message: String? = null,
     val isSuccess: Boolean = false
 )
+
 @Parcelize
 data class PersonalTodo(
     val id: String? = null,
@@ -26,8 +28,7 @@ data class PersonalTodo(
     val description: String? = null,
     val status: Int? = null,
     val creationTime: String? = null,
-):Parcelable
-
+) : Parcelable
 
 data class PersonalUpdateStatusRequest(
     val id: String,
@@ -39,3 +40,17 @@ data class PersonalUpdateStatusResponse(
     val message: String?,
     val isSuccess: Boolean
 )
+
+fun PersonalGetToDoListResponse.asDomainModel(): PersonalTodos {
+    return PersonalTodos(
+        values = this.value.map {
+            PersonalTodo(
+                id = it.id,
+                title = it.title,
+                description = it.description,
+                status = it.status,
+                creationTime = it.creationTime
+            )
+        }
+    )
+}
