@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.view.personalTask.view.doneTask
+package com.example.busybee.ui.home.personaltask.doneTask
 
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment

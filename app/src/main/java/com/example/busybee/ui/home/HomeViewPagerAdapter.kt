@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.view
+package com.example.busybee.ui.home
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

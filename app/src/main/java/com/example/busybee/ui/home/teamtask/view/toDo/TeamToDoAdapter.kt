@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.view.teamTask.view.inProgress
+package com.example.busybee.ui.home.teamtask.view.toDo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import com.example.busybee.base.BaseAdapter
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.ItemTaskBinding
 
-class TeamInProgressAdapter(private var teamInProgressList: List<TeamToDo>) :
-    BaseAdapter<TeamToDo, ItemTaskBinding>(teamInProgressList) {
+class TeamToDoAdapter(teamToDoList: List<TeamToDo>) :
+    BaseAdapter<TeamToDo, ItemTaskBinding>(teamToDoList) {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemTaskBinding
         get() = ItemTaskBinding::inflate
 
@@ -22,5 +22,7 @@ class TeamInProgressAdapter(private var teamInProgressList: List<TeamToDo>) :
             textTaskTime.text = currentItem.creationTime
         }
 
+
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.view.personalTask.view.toDoTask
+package com.example.busybee.ui.home.personaltask.toDoTask
 
 
 import com.example.busybee.R

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_300"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.home.view.personalTask.view.toDoTask.PersonalToDoFragment">
+    tools:context=".ui.home.personaltask.toDoTask.PersonalToDoFragment">
 
     <include
         android:id="@+id/header_ToDo"
