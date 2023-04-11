@@ -1,18 +1,13 @@
 package com.example.busybee.ui.setting
 
-import android.graphics.Color
-import com.example.busybee.R
+import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentSettingsBinding
-import org.eazegraph.lib.models.PieModel
+import com.example.busybee.utils.SharedPreferencesUtils
 
 class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     override val TAG: String
         get() = this::class.simpleName.toString()
-
-    private var personalTodos = 30.0f
-    private var personalInProgressTodos = 30.0f
-    private var personalDoneTodos = 40.0f
 
     override fun getViewBinding(): FragmentSettingsBinding =
         FragmentSettingsBinding.inflate(layoutInflater)
@@ -24,15 +19,21 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     }
 
     private fun setUpPieChart() {
-        binding.piechart.addPieSlice(PieModel( personalTodos,
-            Color.parseColor(R.color.secondary_500.toString())))
-        binding.piechart.addPieSlice(PieModel( personalInProgressTodos,
-            Color.parseColor(R.color.primary_500.toString())))
-        binding.piechart.addPieSlice(PieModel( personalDoneTodos,
-            Color.parseColor(R.color.color_green.toString())))
+        TODO("Not yet implemented")
     }
 
     private fun addCallBacks() {
-        TODO("Not yet implemented")
+        onClickLogout()
+    }
+
+    private fun onClickLogout() {
+        binding.viewLogoutSettings.setOnClickListener {
+            SharedPreferencesUtils.token = null
+            Toast.makeText(
+                requireContext(),
+                "User logged out successfully!",
+                Toast.LENGTH_SHORT
+            )
+        }
     }
 }
