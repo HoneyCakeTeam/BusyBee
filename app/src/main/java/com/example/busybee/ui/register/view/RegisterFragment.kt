@@ -11,10 +11,7 @@ import com.example.busybee.ui.register.presenter.RegisterPresenterInterface
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewInterface {
 
     private val presenter: RegisterPresenterInterface by lazy {
-        RegisterPresenter(
-            this,
-            Repository(requireContext())
-        )
+        RegisterPresenter(Repository(requireContext()))
     }
     override val TAG: String = this::class.simpleName.toString()
 

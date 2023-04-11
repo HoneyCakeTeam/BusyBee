@@ -23,7 +23,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
 
 
     override fun setUp() {
-       // setUpPieChart()
+        setUpPieChart()
         addCallBacks()
         showToDosPercentage()
     }

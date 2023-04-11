@@ -13,9 +13,7 @@ import com.example.busybee.ui.details.presenter.DetailsPresenterInterface
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInterface {
     override val TAG = this::class.java.simpleName.toString()
     private val presenter: DetailsPresenterInterface by lazy {
-        DetailsPresenter(
-            this, Repository(requireContext())
-        )
+        DetailsPresenter(Repository(requireContext()))
     }
 
     override fun getViewBinding(): FragmentDetailsBinding {

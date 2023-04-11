@@ -2,7 +2,7 @@ package com.example.busybee.data
 
 import android.content.Context
 import android.util.Base64
-///import com.example.busybee.BuildConfig
+import com.example.busybee.BuildConfig
 import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.data.models.SignUpResponse
@@ -72,7 +72,7 @@ class Repository(private val context: Context) : RepositoryInterface {
         val formBody =  FormBody.Builder()
             .add("username", userName)
             .add("password", password)
-           // .add("teamId",BuildConfig.API_KEY)
+            .add("teamId",BuildConfig.API_KEY)
             .build()
 
         val request = Request.Builder()
