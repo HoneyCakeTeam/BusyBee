@@ -6,6 +6,7 @@ import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.data.models.PersonalUpdateStatusResponse
+import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.models.TeamUpdateStatusResponse
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.details.presenter.DetailsPresenter
@@ -15,7 +16,8 @@ import com.example.busybee.ui.details.presenter.DetailsPresenterInterface
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInterface {
     override val TAG = this::class.java.simpleName.toString()
     private var flag: Int = 0
-    private lateinit var personalTodo : PersonalTodo
+    private var personalTodo: PersonalTodo? = null
+    private var teamTodo: TeamToDo? = null
     private val presenter: DetailsPresenterInterface by lazy {
         DetailsPresenter(
             this, Repository(requireContext())
@@ -28,8 +30,22 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
 
     override fun setUp() {
         flag = getTask().first
-        personalTodo = getTask().second
-        binding.textTaskName.text = personalTodo.title.toString()
+        if(flag == 1){
+            personalTodo = getTask().second
+            binding.textTaskName.text = personalTodo!!.title.toString()
+            Toast.makeText(
+                requireContext(), "personal", Toast.LENGTH_SHORT
+            ).show()
+        }
+        else{
+            teamTodo = getTeamTask().second
+            binding.textTaskName.text = teamTodo!!.title
+            Toast.makeText(
+                requireContext(), "team", Toast.LENGTH_SHORT
+            ).show()
+        }
+
+
 
 
     }
@@ -81,21 +97,24 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             }
         )
     }
+
     private fun getTask(): Pair<Int, PersonalTodo> {
         arguments?.let {
             flag = it.getInt(FLAG)
             personalTodo = it.getParcelable<PersonalTodo>(TASK)!!
-//            recipeType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//                it.getParcelable(RECIPE_LIST, SeeAllRecipesType::class.java)!!
-//            } else {
-//                it.getParcelable(RECIPE_LIST)!!
-//            }
-
         }
-        //return recipeType
-        return Pair(flag, personalTodo)
+        return Pair(flag, personalTodo!!)
     }
-        companion object {
+
+    private fun getTeamTask(): Pair<Int, TeamToDo> {
+        arguments?.let {
+            flag = it.getInt(FLAG)
+            teamTodo = it.getParcelable<TeamToDo>(TASK)!!
+        }
+        return Pair(flag, teamTodo!!)
+    }
+
+    companion object {
         const val FLAG = "flag"
         const val TASK = "task"
 
@@ -104,6 +123,14 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
                 arguments = Bundle().apply {
                     putInt(FLAG, flag)
                     putParcelable(TASK, personalToDo)
+                }
+            }
+
+        fun newTeamInstance(flag: Int, teamTodo: TeamToDo) =
+            DetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(FLAG, flag)
+                    putParcelable(TASK, teamTodo)
                 }
             }
 
