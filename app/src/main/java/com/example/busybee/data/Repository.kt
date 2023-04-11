@@ -7,12 +7,15 @@ import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.data.models.SignUpResponse
 import com.example.busybee.data.models.TeamToDoListResponse
+import com.example.busybee.data.models.PersonalUpdateStatusResponse
+import com.example.busybee.data.models.TeamUpdateStatusResponse
 import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
 import com.example.busybee.utils.Constant
 import com.google.gson.reflect.TypeToken
 import okhttp3.FormBody
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -144,4 +147,57 @@ class Repository(private val context: Context) : RepositoryInterface {
     }
 
 
+    override fun <T> updateTasksPersonalStatus(
+        idTask: String,
+        status: Int,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit,
+    ) {
+        val httpUrl = HttpUrl.Builder()
+            .scheme("https")
+            .host("team-todo-62dmq.ondigitalocean.app")
+            .addPathSegment(Constant.PERSONAL_TASKS_END_POINT)
+            .addQueryParameter("id", idTask)
+            .addQueryParameter("status", status.toString())
+            .build()
+
+        val request = Request.Builder()
+            .url(httpUrl)
+            .build()
+
+        val responseType = object : TypeToken<PersonalUpdateStatusResponse>() {}.type
+
+        client.executeWithCallbacks(
+            request,
+            responseType,
+            onSuccessCallback,
+            onFailureCallback
+        )
+
+    }
+
+
+    override fun <T> updateTasksTeamStatus(
+        idTask: String,
+        status: Int,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    ) {
+
+        val httpUrl = HttpUrl.Builder()
+            .scheme("https")
+            .host("team-todo-62dmq.ondigitalocean.app")
+            .addPathSegment(Constant.TEAM_TASKS_END_POINT)
+            .addQueryParameter("id", idTask)
+            .addQueryParameter("status", status.toString())
+            .build()
+
+        val request = Request.Builder()
+            .url(httpUrl)
+            .build()
+
+        val responseType = object : TypeToken<TeamUpdateStatusResponse>() {}.type
+        client.executeWithCallbacks(request, responseType, onSuccessCallback, onFailureCallback)
+
+    }
 }

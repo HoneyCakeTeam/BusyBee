@@ -3,7 +3,6 @@ package com.example.busybee.utils
 import android.content.Context
 import android.content.SharedPreferences
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 object SharedPreferencesUtils {
@@ -26,7 +25,7 @@ object SharedPreferencesUtils {
             sharedPreferences?.edit()?.putString(USER_TOKEN, value)?.apply()
         }
 
-    var expirationDate: String?
+    private var expirationDate: String?
         get() = sharedPreferences?.getString(EXPIRATION_DATE_KEY, null)
         set(value) {
             sharedPreferences?.edit()?.putString(EXPIRATION_DATE_KEY, value)?.apply()

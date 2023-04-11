@@ -26,5 +26,19 @@ interface RepositoryInterface {
 
     fun <T> signUp(userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
                   onFailureCallback: (error: Throwable) -> Unit )
+    fun <T> logIn(
+        userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    )
 
+    fun <T> updateTasksTeamStatus(
+        idTask: String, status: Int, onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    )
+
+    fun <T> updateTasksPersonalStatus(
+        idTask: String, status: Int,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit,
+    )
 }
