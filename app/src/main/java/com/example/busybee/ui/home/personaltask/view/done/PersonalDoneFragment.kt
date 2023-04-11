@@ -19,11 +19,14 @@ class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>() {
         getDons()
         adapter = DoneAdapter(done.values)
         binding.recyclerDone.adapter = adapter
+        binding.headerDone.textTodoStatus.text="Done"
+        binding.headerDone.taskCount.text="${done.values.size} Tasks"
+
     }
 
     private fun getDons() {
         arguments?.let {
-            done = it.getParcelable(PersonalDoneFragment.PERSONAL_DONE_LIST)!!
+            done = it.getParcelable(PERSONAL_DONE_LIST)!!
         }
     }
 

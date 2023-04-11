@@ -1,6 +1,7 @@
 package com.example.busybee.ui.home.teamtask.view.done
 
 import android.os.Bundle
+import android.util.Log
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentTeamDoneBinding
 import com.example.busybee.domain.models.TeamTodos
@@ -17,7 +18,10 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>() {
     override fun setUp() {
         getDons()
         adapter = TeamDoneAdapter(done.values)
+        Log.e(TAG, "setUp: ${done.values}", )
         binding.recyclerDone.adapter = adapter
+        binding.taskHeader.textTodoStatus.text="Done"
+        binding.taskHeader.taskCount.text="${done.values.size} Tasks"
     }
     private fun getDons() {
         arguments?.let {

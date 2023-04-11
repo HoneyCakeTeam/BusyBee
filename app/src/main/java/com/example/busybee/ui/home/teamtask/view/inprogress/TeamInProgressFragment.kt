@@ -18,6 +18,9 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>() {
         getInProgress()
         adapter = TeamInProgressAdapter(inProgress.values)
         binding.recyclerInProgress.adapter = adapter
+        binding.taskHeader.textTodoStatus.text="InProgress"
+        binding.taskHeader.taskCount.text="${inProgress.values.size} Tasks"
+
     }
     private fun getInProgress() {
         arguments?.let {

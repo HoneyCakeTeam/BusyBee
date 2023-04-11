@@ -19,11 +19,14 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
         getDons()
         adapter = PersonalInProgressAdapter(done.values)
         binding.recyclerInProgress.adapter = adapter
+        binding.headerInProgress.textTodoStatus.text="InProgress"
+        binding.headerInProgress.taskCount.text="${done.values.size} Tasks"
+
     }
 
     private fun getDons() {
         arguments?.let {
-            done = it.getParcelable(PersonalInProgressFragment.PERSONAL_IN_PROGRESS_LIST)!!
+            done = it.getParcelable(PERSONAL_IN_PROGRESS_LIST)!!
         }
     }
 

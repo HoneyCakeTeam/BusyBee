@@ -16,7 +16,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewInterface {
     private lateinit var adapter: TeamToDoAdapter
-    val binding_ = BottomSheetCreateTaskBinding.inflate(layoutInflater)
     override val TAG = this::class.java.simpleName.toString()
     private lateinit var todos: TeamTodos
     private val presenter: TeamToDoPresenterInterface by lazy {
@@ -28,8 +27,11 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
 
     override fun setUp() {
         getTodos()
+       // addCallBacks()
         adapter = TeamToDoAdapter(todos.values)
         binding.recyclerToDo.adapter = adapter
+        binding.taskHeader.textTodoStatus.text="ToDo"
+        binding.taskHeader.taskCount.text="${todos.values.size} Tasks"
     }
     private fun addCallBacks() {
         binding.buttonAddNewTeamTask.setOnClickListener {
@@ -41,17 +43,18 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
             requireContext(),
             R.style.Theme_Design_BottomSheetDialog
         )
+        val binding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
 
-        binding_.buttonCancel.setOnClickListener {
+        binding.buttonCancel.setOnClickListener {
             bottomSheet.dismiss()
         }
-        binding_.buttonCreateTask.setOnClickListener {
-            val title = binding_.textTaskName.text.toString()
-            val description = binding_.textContent.text.toString()
-            val assign = binding_.textAssignee.text.toString()
+        binding.buttonCreateTask.setOnClickListener {
+            val title = binding.textTaskName.text.toString()
+            val description = binding.textContent.text.toString()
+            val assign = binding.textAssignee.text.toString()
             teamCreateToDo(title, description, assign)
         }
-        bottomSheet.setContentView(binding.root)
+        bottomSheet.setContentView(this.binding.root)
         bottomSheet.show()
     }
 
@@ -69,7 +72,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
 
     override fun onSuccessResponse(response: TeamToDoListResponse) {
         activity?.runOnUiThread {
-            binding_.lottieCreatedSuccessfully.visibility = View.VISIBLE
+           // binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
         }
     }
 

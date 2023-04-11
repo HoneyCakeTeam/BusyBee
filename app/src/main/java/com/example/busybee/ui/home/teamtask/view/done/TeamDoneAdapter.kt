@@ -7,7 +7,7 @@ import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.ItemTaskBinding
 import com.example.busybee.utils.DateTimeUtils
 
-class TeamDoneAdapter(teamDoneList: List<TeamToDo>) :
+class TeamDoneAdapter(private var teamDoneList: List<TeamToDo>) :
     BaseAdapter<TeamToDo, ItemTaskBinding>(teamDoneList) {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemTaskBinding
         get() = ItemTaskBinding::inflate
