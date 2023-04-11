@@ -49,11 +49,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     private lateinit var homePagerAdapter: HomeViewPagerAdapter
 
     private val teamToDoFragment by lazy { TeamToDoFragment.newInstance(teamToDos) }
-    private val teamInProgressFragment by lazy {
-        TeamInProgressFragment.newInstance(
-            teamInProgressToDos
-        )
-    }
+    private val teamInProgressFragment by lazy { TeamInProgressFragment.newInstance(teamInProgressToDos) }
     private val teamDoneFragment by lazy { TeamDoneFragment.newInstance(teamDoneToDos) }
     private val personalToDoFragment by lazy { PersonalToDoFragment.newInstance(personalToDos) }
     private val personalInProgressFragment by lazy {
@@ -86,10 +82,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override val TAG = this::class.java.simpleName.toString()
 
 
-    override fun getViewBinding(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater)
-    }
-
+    override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun setUp() {
         getAllPersonalTasks()
