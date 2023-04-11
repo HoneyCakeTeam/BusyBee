@@ -1,7 +1,9 @@
 package com.example.busybee.ui.setting
 
+import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentSettingsBinding
+import com.example.busybee.utils.SharedPreferencesUtils
 
 class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     override val TAG: String
@@ -21,6 +23,17 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     }
 
     private fun addCallBacks() {
-        TODO("Not yet implemented")
+        onClickLogout()
+    }
+
+    private fun onClickLogout() {
+        binding.viewLogoutSettings.setOnClickListener {
+            SharedPreferencesUtils.token = null
+            Toast.makeText(
+                requireContext(),
+                "User logged out successfully!",
+                Toast.LENGTH_SHORT
+            )
+        }
     }
 }
