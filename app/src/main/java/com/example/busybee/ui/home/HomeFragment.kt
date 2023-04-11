@@ -1,5 +1,6 @@
 package com.example.busybee.ui.home
 
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
@@ -20,6 +21,7 @@ import com.example.busybee.ui.home.teamtask.presenter.TeamPresenterInterface
 import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.view.inprogress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoFragment
+import com.example.busybee.ui.setting.SettingFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
@@ -87,6 +89,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun setUp() {
         getAllPersonalTasks()
         getAllTeamTasks()
+        callBack()
     }
 
     private fun initTabLayout() {
@@ -145,6 +148,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     override fun onPersonalFailureResponse(error: Throwable) {
         // Show lottie animation in screen for error
+    }
+    fun callBack(){
+        binding.settings.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,SettingFragment()).addToBackStack(null)
+                .commit()
+
+        }
     }
 
 }
