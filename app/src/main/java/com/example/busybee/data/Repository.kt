@@ -28,7 +28,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
 
         val request = Request.Builder()
-            .url(Constant.loginUrl)
+            .url(Constant.LOGIN_URL)
             .addHeader(
                 "Authorization",
                 "Basic " + Base64.encodeToString(
@@ -54,10 +54,31 @@ class Repository(private val context: Context) : RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val request = Request.Builder()
-            .url(Constant.teamUrl)
+            .url(Constant.TEAM_TODO_URL)
             .build()
 
         val responseType = object : TypeToken<TeamToDoListResponse>() {}.type
+
+        client.executeWithCallbacks(
+            request,
+            responseType,
+            onSuccessCallback,
+            onFailureCallback
+        )
+    }
+
+    override fun <T> createTeamToDo(
+        title: String,
+        description: String,
+        assignee: String,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    ) {
+        val request = Request.Builder()
+            .url(Constant.TEAM_TODO_URL)
+            .build()
+
+        val responseType = object :TypeToken<TeamToDoListResponse>() {}.type
 
         client.executeWithCallbacks(
             request,

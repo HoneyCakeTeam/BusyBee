@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.teamtask.view.inProgress
+package com.example.busybee.ui.home.teamtask.view.inprogress
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

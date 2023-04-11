@@ -11,4 +11,10 @@ interface RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     )
 
+    fun <T> createTeamToDo(title: String,
+                           description: String,
+                           assignee: String,
+                           onSuccessCallback: (response: T) -> Unit,
+                           onFailureCallback: (error: Throwable) -> Unit )
+
 }

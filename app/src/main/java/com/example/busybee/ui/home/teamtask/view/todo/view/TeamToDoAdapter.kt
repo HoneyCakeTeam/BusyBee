@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.teamtask.view.toDo
+package com.example.busybee.ui.home.teamtask.view.todo.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

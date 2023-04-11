@@ -2,10 +2,8 @@ package com.example.busybee.ui.home.teamtask.view.done
 
 import android.os.Bundle
 import com.example.busybee.base.BaseFragment
-import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.FragmentTeamDoneBinding
 import com.example.busybee.domain.models.TeamTodos
-import com.example.busybee.ui.home.teamtask.view.toDo.TeamToDoFragment
 
 class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>() {
     private lateinit var adapter: TeamDoneAdapter

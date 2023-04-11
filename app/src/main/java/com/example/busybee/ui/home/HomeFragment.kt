@@ -16,8 +16,8 @@ import com.example.busybee.ui.home.personaltask.toDoTask.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenter
 import com.example.busybee.ui.home.teamtask.presenter.TeamPresenterInterface
 import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
-import com.example.busybee.ui.home.teamtask.view.inProgress.TeamInProgressFragment
-import com.example.busybee.ui.home.teamtask.view.toDo.TeamToDoFragment
+import com.example.busybee.ui.home.teamtask.view.inprogress.TeamInProgressFragment
+import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
