@@ -11,7 +11,6 @@ interface RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     )
 
-
     fun <T> updateTasksPersonalStatus(
         id: String, status: Int,
         onSuccessCallback: (response: T) -> Unit,
