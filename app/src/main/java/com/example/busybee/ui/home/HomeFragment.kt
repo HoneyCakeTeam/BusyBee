@@ -120,6 +120,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
             setUpTransformer()
         }
     }
+
     private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
         transformer.addTransformer { page, position ->
@@ -148,9 +149,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     override fun onTeamSuccessResponse(response: TeamToDoListResponse) {
         teamResponse = response
-        activity?.runOnUiThread {
-            initViewPager(teamFragments)
-        }
     }
 
     override fun onTeamFailureResponse(error: Throwable) {
