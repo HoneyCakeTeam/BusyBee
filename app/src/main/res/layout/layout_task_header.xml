@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:paddingVertical="@dimen/spacing_simi_medium">
+    android:paddingHorizontal="@dimen/spacing_tiny"
+    android:paddingBottom="@dimen/spacing_tiny"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/text_todo_status"

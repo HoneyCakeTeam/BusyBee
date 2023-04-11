@@ -1,6 +1,7 @@
 package com.example.busybee.ui.home
 
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -22,6 +23,7 @@ import com.example.busybee.ui.home.teamtask.view.inprogress.TeamInProgressFragme
 import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import kotlin.math.abs
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeViewInterface {
     private val teamPresenter: TeamPresenterInterface by lazy {
@@ -96,7 +98,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     private fun initViewPager(fragmentList: List<Fragment>) {
         homePagerAdapter =
             HomeViewPagerAdapter(parentFragmentManager, this.lifecycle, fragmentList)
-        binding.homeViewPager.adapter = homePagerAdapter
+        binding.homeViewPager.apply {
+            adapter = homePagerAdapter
+            offscreenPageLimit = 3
+            setUpTransformer()
+        }
+    }
+    private fun setUpTransformer() {
+        val transformer = CompositePageTransformer()
+        transformer.addTransformer { page, position ->
+            val r = 1 - abs(position)
+            page.scaleY = 0.85f + r * 0.14f
+        }
+        binding.homeViewPager.setPageTransformer(transformer)
     }
 
     override fun onTabSelected(tab: TabLayout.Tab?) {

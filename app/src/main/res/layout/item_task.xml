@@ -6,8 +6,8 @@
     android:id="@+id/task_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/spacing_tiny"
     android:layout_marginVertical="@dimen/spacing_tiny"
-    android:layout_marginHorizontal="@dimen/spacing_small"
     app:cardCornerRadius="@dimen/radius_semi_large">
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <include
         layout="@layout/layout_task_header"
-        android:id="@+id/task_header"/>
+        android:id="@+id/task_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_to_do"
         android:layout_width="match_parent"
