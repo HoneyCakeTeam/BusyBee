@@ -1,7 +1,6 @@
 package com.example.busybee.ui.home.teamtask.view.done
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.example.busybee.base.BaseAdapter
 import com.example.busybee.data.models.TeamToDo
