@@ -1,6 +1,5 @@
 package com.example.busybee.ui.login.view
 
-import android.util.Log
 import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -10,7 +9,6 @@ import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.login.presenter.LoginPresenterInterface
 import com.example.busybee.utils.LoginValidation
 import com.example.busybee.utils.SharedPreferencesUtils
-import com.google.android.material.textfield.TextInputLayout
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
 
@@ -32,8 +30,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
             username = binding.editTextUsername.editText?.text.toString().trim()
             password = binding.editTextPassword.editText?.text.toString()
 
-            if (loginValidation.checkCredintialForUserName(username , binding.editTextUsername)
-                && loginValidation.checkCredintialForPassword(password , binding.editTextPassword))
+            if (loginValidation.checkCredentialForUserName(username , binding.editTextUsername)
+                && loginValidation.checkCredentialForPassword(password , binding.editTextPassword))
                 logIn(username, password)
         }
 
