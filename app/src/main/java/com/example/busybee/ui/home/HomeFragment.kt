@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 1 })
     }
     private val personalDoneToDos by lazy {
-        PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 1 })
+        PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 2 })
     }
 
     override val TAG = this::class.java.simpleName.toString()
