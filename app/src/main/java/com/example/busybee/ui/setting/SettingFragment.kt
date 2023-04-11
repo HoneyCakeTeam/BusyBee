@@ -23,12 +23,16 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     override fun setUp() {
         setUpPieChart()
         addCallBacks()
+        showToDosPrecentage()
     }
 
     private fun setUpPieChart() {
-        binding.piechart.addPieSlice(PieModel(personalTodos,Color.parseColor(R.color.secondary_500.toString())))
-        binding.piechart.addPieSlice(PieModel(personalInProgressTodos,Color.parseColor(R.color.primary_500.toString())))
-        binding.piechart.addPieSlice(PieModel(personalDoneTodos,Color.parseColor(R.color.color_green.toString())))
+        binding.piechart.addPieSlice(PieModel(personalTodos,
+            Color.parseColor(R.color.secondary_500.toString())))
+        binding.piechart.addPieSlice(PieModel(personalInProgressTodos,
+            Color.parseColor(R.color.primary_500.toString())))
+        binding.piechart.addPieSlice(PieModel(personalDoneTodos,
+            Color.parseColor(R.color.color_green.toString())))
     }
 
     private fun addCallBacks() {
@@ -45,4 +49,24 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
             )
         }
     }
+
+    private fun showToDosPrecentage(){
+        val sumOfPersonalToDos = sum(personalTodos,personalInProgressTodos,personalDoneTodos)
+        val toDoPrecentage = calculatePrecentage(sumOfPersonalToDos , personalTodos)
+        val inProgressPrecentage = calculatePrecentage(sumOfPersonalToDos , personalInProgressTodos)
+        val donePrecentage = calculatePrecentage(sumOfPersonalToDos , personalDoneTodos)
+
+        binding.textTodoPercentage.text = toDoPrecentage.toString()
+        binding.textInProgressPercentage.text = inProgressPrecentage.toString()
+        binding.textDonePercentage.text = donePrecentage.toString()
+    }
+    private fun calculatePrecentage(sumOfToDos: Float, variableOfInterest: Float): Float {
+
+        val percentage = (variableOfInterest / sumOfToDos) * 100
+        return percentage
+    }
+    private fun sum(personalToDos : Float, personalInProgressToDos : Float,
+                           personalDoneToDos : Float)
+    = personalToDos + personalInProgressToDos + personalDoneToDos
+
 }
