@@ -5,7 +5,6 @@ import com.example.busybee.ui.details.view.DetailsViewInterface
 
 
 class DetailsPresenter(
-    val detailsViewInterface: DetailsViewInterface,
     private val repository: RepositoryInterface,
 ) : DetailsPresenterInterface {
     override fun <T> updateTasksPersonalStatus(
