@@ -121,7 +121,7 @@
     <View
         android:id="@+id/view_theme_settings"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/view_item_settings_height"
+        android:layout_height="64dp"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_medium"
         android:background="@drawable/shape_settings_theme"
@@ -166,7 +166,7 @@
     <View
         android:id="@+id/view_logout_settings"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/view_item_settings_height"
+        android:layout_height="64dp"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:background="@drawable/shape_settings_logout"
         app:layout_constraintEnd_toEndOf="@id/view_theme_settings"
