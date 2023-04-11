@@ -3,7 +3,7 @@ package com.example.busybee.data
 import android.content.Context
 import android.util.Base64
 import com.example.busybee.data.models.LoginResponse
-import com.example.busybee.data.models.PersonalGetToDoListResponse
+import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
@@ -76,7 +76,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             .url(Constant.BASE_URL+Constant.PERSONAL_TASKS_END_POINT)
             .build()
 
-        val responseType = object :TypeToken<PersonalGetToDoListResponse>(){}.type
+        val responseType = object :TypeToken<PersonalToDoListResponse>(){}.type
 
         client.executeWithCallbacks(
             request,

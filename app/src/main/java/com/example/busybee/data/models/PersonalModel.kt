@@ -15,7 +15,7 @@ data class PersonalCreateToDoResponse(
     val isSuccess: Boolean = true
 )
 
-data class PersonalGetToDoListResponse(
+data class PersonalToDoListResponse(
     val value: List<PersonalTodo>,
     val message: String? = null,
     val isSuccess: Boolean = false
@@ -41,7 +41,7 @@ data class PersonalUpdateStatusResponse(
     val isSuccess: Boolean
 )
 
-fun PersonalGetToDoListResponse.asDomainModel(): PersonalTodos {
+fun PersonalToDoListResponse.asDomainModel(): PersonalTodos {
     return PersonalTodos(
         values = this.value.map {
             PersonalTodo(

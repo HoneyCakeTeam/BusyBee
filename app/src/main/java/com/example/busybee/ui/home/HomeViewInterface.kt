@@ -1,6 +1,6 @@
 package com.example.busybee.ui.home
 
-import com.example.busybee.data.models.PersonalGetToDoListResponse
+import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.data.models.TeamToDoListResponse
 
 interface HomeViewInterface {
@@ -9,6 +9,6 @@ interface HomeViewInterface {
     fun onTeamFailureResponse(error: Throwable)
 
     fun getAllPersonalTasks()
-    fun onPersonalSuccessResponse(response: PersonalGetToDoListResponse)
+    fun onPersonalSuccessResponse(response: PersonalToDoListResponse)
     fun onPersonalFailureResponse(error: Throwable)
 }
