@@ -1,10 +1,9 @@
-package com.example.busybee.ui.home.personaltask.view.inProgress
+package com.example.busybee.ui.home.personaltask.view.inprogress
 
 import android.os.Bundle
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
 import com.example.busybee.domain.models.PersonalTodos
-import com.example.busybee.ui.home.personaltask.view.done.PersonalDoneFragment
 
 class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBinding>() {
     private lateinit var adapter: PersonalInProgressAdapter

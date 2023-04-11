@@ -1,4 +1,4 @@
-package com.example.busybee.ui.home.personaltask.view.toDo
+package com.example.busybee.ui.home.personaltask.view.inprogress
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.ItemTaskBinding
 import com.example.busybee.utils.DateTimeUtils
 
-class PersonalToDoAdapter(personalToDoList: List<PersonalTodo>) :
+class PersonalInProgressAdapter(private var personalToDoList: List<PersonalTodo>) :
     BaseAdapter<PersonalTodo, ItemTaskBinding>(personalToDoList) {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemTaskBinding
@@ -29,5 +29,6 @@ class PersonalToDoAdapter(personalToDoList: List<PersonalTodo>) :
             textTaskDate.text = formattedDate
             textUserName.visibility = View.GONE
         }
+
     }
 }

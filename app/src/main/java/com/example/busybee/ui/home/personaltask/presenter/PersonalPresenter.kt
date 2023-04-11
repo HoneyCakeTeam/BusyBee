@@ -11,4 +11,12 @@ class PersonalPresenter(private val repository: RepositoryInterface) :
         repository.getPersonalTasks(onSuccessCallback, onFailureCallback)
     }
 
+    override fun <T> personalCreateToDo(
+        title: String,
+        description: String,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    ) {
+        repository.createPersonalToDo(title, description, onSuccessCallback, onFailureCallback)
+    }
 }
