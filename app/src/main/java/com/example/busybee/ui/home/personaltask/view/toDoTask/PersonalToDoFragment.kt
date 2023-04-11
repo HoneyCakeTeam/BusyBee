@@ -2,6 +2,7 @@ package com.example.busybee.ui.home.personaltask.view.toDoTask
 
 
 import android.view.View
+import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalCreateToDoResponse
@@ -68,10 +69,18 @@ class PersonalToDoFragment : BaseFragment<FragmentPersonalToDoBinding>(),
     }
 
     override fun onSuccessResponse(response: PersonalCreateToDoResponse) {
-
+        activity?.runOnUiThread {
+            _binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+        }
     }
 
     override fun onFailureResponse(error: Throwable) {
-        TODO("Not yet implemented")
+        activity?.runOnUiThread {
+            Toast.makeText(
+                requireContext(),
+                "Try Again! ${error.message} ",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }
