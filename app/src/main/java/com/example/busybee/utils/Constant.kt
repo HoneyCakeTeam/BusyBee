@@ -6,6 +6,6 @@ package com.example.busybee.utils
 object Constant {
      const val baseUrl = "https://team-todo-62dmq.ondigitalocean.app"
      const val loginUrl = "$baseUrl/login"
-     const val teamToDoUrl = "$baseUrl/todo/team"
+     const val TEAM_TODO_URL = "$baseUrl/todo/team"
 
 }

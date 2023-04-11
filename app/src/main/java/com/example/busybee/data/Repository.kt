@@ -56,7 +56,7 @@ class Repository(private val context: Context) : RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val request = Request.Builder()
-            .url(Constant.teamToDoUrl)
+            .url(Constant.TEAM_TODO_URL)
             .build()
 
         val responseType = object :TypeToken<TeamToDoListResponse>() {}.type
