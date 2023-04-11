@@ -3,6 +3,7 @@ package com.example.busybee.data
 import android.content.Context
 import android.util.Base64
 import com.example.busybee.data.models.LoginResponse
+import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
@@ -45,6 +46,27 @@ class Repository(private val context: Context) : RepositoryInterface {
             onFailureCallback
         )
 
+    }
+
+    override fun <T> teamCreateToDo(
+        title: String,
+        description: String,
+        assignee: String,
+        onSuccessCallback: (response: T) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    ) {
+        val request = Request.Builder()
+            .url(Constant.teamToDoUrl)
+            .build()
+
+        val responseType = object :TypeToken<TeamToDoListResponse>() {}.type
+
+        client.executeWithCallbacks(
+            request,
+            responseType,
+            onSuccessCallback,
+            onFailureCallback
+        )
     }
 
 }
