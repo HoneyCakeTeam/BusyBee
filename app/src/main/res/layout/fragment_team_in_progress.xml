@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/spacing_small"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <include
         android:id="@+id/task_header"
-        layout="@layout/layout_task_header"/>
+        layout="@layout/layout_task_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_in_progress"
         android:layout_width="match_parent"
