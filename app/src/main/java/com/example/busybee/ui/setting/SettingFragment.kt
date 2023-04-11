@@ -1,6 +1,7 @@
 package com.example.busybee.ui.setting
 
 import android.graphics.Color
+import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentSettingsBinding
@@ -23,7 +24,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
 
 
     override fun setUp() {
-       // setUpPieChart()
+       setUpPieChart()
         addCallBacks()
         showToDosPercentage()
     }
@@ -32,19 +33,19 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
         binding.piechart.addPieSlice(
             PieModel(
                 personalTodos,
-                Color.parseColor(R.color.secondary_500.toString())
+                ContextCompat.getColor(requireContext(), R.color.secondary_500)
             )
         )
         binding.piechart.addPieSlice(
             PieModel(
                 personalInProgressTodos,
-                Color.parseColor(R.color.primary_500.toString())
+                ContextCompat.getColor(requireContext(), R.color.primary_500)
             )
         )
         binding.piechart.addPieSlice(
             PieModel(
                 personalDoneTodos,
-                Color.parseColor(R.color.color_green.toString())
+                ContextCompat.getColor(requireContext(), R.color.color_green)
             )
         )
 
@@ -67,9 +68,9 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
         val inProgressPercentage = calculatePercentage(sumOfPersonalToDos, personalInProgressTodos)
         val donePercentage = calculatePercentage(sumOfPersonalToDos, personalDoneTodos)
 
-        binding.textTodoPercentage.text = toDoPercentage.toString()
-        binding.textInProgressPercentage.text = inProgressPercentage.toString()
-        binding.textDonePercentage.text = donePercentage.toString()
+        binding.textTodoPercentage.text = getString(R.string.todos_percentage, toDoPercentage.toInt())
+        binding.textInProgressPercentage.text = getString(R.string.todos_percentage, toDoPercentage.toInt())
+        binding.textDonePercentage.text = getString(R.string.todos_percentage, toDoPercentage.toInt())
     }
 
     private fun calculatePercentage(sumOfToDos: Float, variableOfInterest: Float): Float {
