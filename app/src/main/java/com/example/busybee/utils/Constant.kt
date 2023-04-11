@@ -8,5 +8,6 @@ object Constant {
      const val LOGIN_URL = "$BASE_URL/login"
      const val TEAM_TODO_URL = "$BASE_URL/todo/team"
      const val PERSONAL_TODO_URL = "$BASE_URL/todo/personal"
+     const val registerUrl = "$baseUrl/signup"
 
 }
