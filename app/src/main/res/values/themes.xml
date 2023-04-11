@@ -18,7 +18,7 @@
         <item name="colorOnTertiaryContainer">@color/primary_400</item>
         <!--Surface & Background-->
         <item name="colorOutline">@color/theme_light_outline</item>
-        <item name="android:colorBackground">@color/white_100</item>
+        <item name="android:colorBackground">@color/white_300</item>
         <item name="colorOnBackground">@color/black_60</item>
         <item name="colorSurface">@color/white_300</item>
         <item name="colorOnSurface">@color/black_60</item>
