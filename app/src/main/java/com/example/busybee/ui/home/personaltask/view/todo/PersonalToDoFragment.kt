@@ -53,8 +53,8 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
         binding.buttonCreateTask.setOnClickListener {
             val title = binding.textTaskName.text.toString()
             val description = binding.textContent.text.toString()
-
             personalCreateToDo(title, description)
+            bottomSheet.dismiss()
         }
 
         binding.buttonCancel.setOnClickListener {
@@ -76,9 +76,13 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
             ::onSuccessResponse, ::onFailureResponse)
     }
 
-    override fun onSuccessResponse(response: PersonalToDoListResponse) {
+    override fun onSuccessResponse(response: PersonalCreateToDoResponse) {
         activity?.runOnUiThread {
            // _binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+            val newTask = response.value
+            done.values = done.values.toMutableList().apply { add(newTask!!) }
+            adapter.setItems(done.values)
+            binding.headerToDo.taskCount.text = "${done.values.size} Tasks"
             Toast.makeText(
                 requireContext(),
                 "success ${response.isSuccess} ",
