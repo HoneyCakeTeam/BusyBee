@@ -31,6 +31,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
 
     override fun setUp() {
         checkFlagFromHome()
+        addCallBacks()
     }
 
     private fun checkFlagFromHome() {
@@ -39,6 +40,11 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             handlePersonalTodo()
         } else if (flag == 0) {
             handleTeamTodo()
+        }
+    }
+    private fun addCallBacks() {
+        binding.buttonBack.setOnClickListener {
+            requireActivity().onBackPressed()
         }
     }
 
