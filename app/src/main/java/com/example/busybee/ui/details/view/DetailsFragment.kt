@@ -13,6 +13,7 @@ import com.example.busybee.data.models.TeamUpdateStatusResponse
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.details.presenter.DetailsPresenter
 import com.example.busybee.ui.details.presenter.DetailsPresenterInterface
+import com.example.busybee.utils.DateTimeUtils
 
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInterface {
@@ -68,6 +69,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         teamTodo = getTask().third
 
         binding.textTaskName.text = teamTodo?.title
+
         binding.btnMove.setOnClickListener {
             updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!! + 1)
         }
@@ -94,6 +96,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
                 onFailureResponse(error)
             })
     }
+
     override fun onSuccessPersonalResponse(response: PersonalUpdateStatusResponse) {
         activity?.runOnUiThread {
             Toast.makeText(
@@ -101,6 +104,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             ).show()
         }
     }
+
 
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {
@@ -144,15 +148,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         }
         return Triple(flag, personalTodo, teamTodo)
     }
-
-    private fun getTeamTask(): Pair<Int, TeamToDo> {
-        arguments?.let {
-            flag = it.getInt(FLAG)
-            teamTodo = it.getParcelable<TeamToDo>(TEAM_TASK)!!
-        }
-        return Pair(flag, teamTodo!!)
-    }
-
     companion object {
         const val FLAG = "flag"
         const val PERSONAL_TASK = "personalTask"
@@ -170,11 +165,14 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     private fun bindingPersonalToDosViews(personalToDo: PersonalTodo?){
+        val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(
+            personalToDo?.creationTime ?: ""
+        )
         with(binding) {
             textTaskName.text = personalTodo?.title
-            textTaskDate.text = personalTodo?.creationTime
+            textTaskDate.text = formattedDate
             textDescription.text = personalTodo?.description
-            textTaskTime.text = personalTodo?.creationTime
+            textTaskTime.text = formattedTime
             textTaskMemberAssign.visibility = View.GONE
         }
     }
