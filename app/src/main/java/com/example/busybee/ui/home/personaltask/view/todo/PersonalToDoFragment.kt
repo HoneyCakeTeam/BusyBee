@@ -16,6 +16,7 @@ import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 
 class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     PersonalToDoViewInterface,
@@ -61,6 +62,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
             val description = sheetCreateTaskBinding.textContent.text.toString()
 
             personalCreateToDo(title, description)
+            bottomSheet.dismiss()
         }
 
         sheetCreateTaskBinding.buttonCancel.setOnClickListener {
@@ -109,10 +111,10 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
 
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {
-            Toast.makeText(
-                requireContext(),
+            Snackbar.make(
+                binding.root,
                 "Try Again! ${error.message} ",
-                Toast.LENGTH_SHORT
+                Snackbar.LENGTH_SHORT
             ).show()
         }
     }

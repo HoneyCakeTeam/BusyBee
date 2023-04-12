@@ -107,11 +107,18 @@ class Repository(private val context: Context) : RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        val request = Request.Builder()
-            .url(Constant.TEAM_TODO_URL)
+        val formBody = FormBody.Builder()
+            .add("title", title)
+            .add("description", description)
+            .add("assignee", assignee)
             .build()
 
-        val responseType = object : TypeToken<TeamToDoListResponse>() {}.type
+        val request = Request.Builder()
+            .url(Constant.TEAM_TODO_URL)
+            .post(formBody)
+            .build()
+
+        val responseType = object : TypeToken<TeamCreateToDoResponse>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -127,11 +134,17 @@ class Repository(private val context: Context) : RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        val request = Request.Builder()
-            .url(Constant.PERSONAL_TODO_URL)
+        val formBody = FormBody.Builder()
+            .add("title", title)
+            .add("description", description)
             .build()
 
-        val responseType = object : TypeToken<PersonalToDoListResponse>() {}.type
+        val request = Request.Builder()
+            .url(Constant.PERSONAL_TODO_URL)
+            .post(formBody)
+            .build()
+
+        val responseType = object : TypeToken<PersonalCreateToDoResponse>() {}.type
 
         client.executeWithCallbacks(
             request,

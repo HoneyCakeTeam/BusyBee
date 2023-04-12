@@ -13,7 +13,7 @@ data class TeamCreateToDoRequest(
 data class TeamCreateToDoResponse(
     val value: TeamToDo,
     val message: String?,
-    val isSuccessful: String
+    val isSuccess: Boolean
 )
 
 data class TeamToDoListResponse(

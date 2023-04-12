@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.TeamToDo
+
 import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
@@ -15,6 +16,7 @@ import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresente
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 
 class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewInterface,
     TeamToDoAdapter.TeamToDoTaskInteractionListener {
@@ -59,6 +61,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
             val description = binding.textContent.text.toString()
             val assign = binding.textAssignee.text.toString()
             teamCreateToDo(title, description, assign)
+            bottomSheet.dismiss()
         }
         bottomSheet.setContentView(binding.root)
         bottomSheet.show()
@@ -76,19 +79,31 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         )
     }
 
-    override fun onSuccessResponse(response: TeamToDoListResponse) {
+    override fun onSuccessResponse(response: TeamCreateToDoResponse) {
         activity?.runOnUiThread {
 
+            val newTask = response.value
+            todos.values = todos.values.toMutableList().apply { add(newTask) }
+            adapter.setItems(todos.values)
+            binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
+            Snackbar.make(
+                binding.root,
+                "New task added successfully!",
+                Snackbar.LENGTH_SHORT
+            ).show()
+
+
             // binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+
         }
     }
 
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {
-            Toast.makeText(
-                requireContext(),
+            Snackbar.make(
+                binding.root,
                 "Try Again! ${error.message} ",
-                Toast.LENGTH_SHORT
+                Snackbar.LENGTH_SHORT
             ).show()
         }
 
