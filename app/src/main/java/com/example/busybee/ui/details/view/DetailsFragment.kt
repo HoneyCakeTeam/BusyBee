@@ -147,15 +147,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         }
         return Triple(flag, personalTodo, teamTodo)
     }
-
-    private fun getTeamTask(): Pair<Int, TeamToDo> {
-        arguments?.let {
-            flag = it.getInt(FLAG)
-            teamTodo = it.getParcelable<TeamToDo>(TEAM_TASK)!!
-        }
-        return Pair(flag, teamTodo!!)
-    }
-
     companion object {
         const val FLAG = "flag"
         const val PERSONAL_TASK = "personalTask"
