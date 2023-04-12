@@ -38,7 +38,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         if (flag == 1) {
             handlePersonalTodo()
         } else if (flag == 0) {
-            //handleTeamTodo()
+            handleTeamTodo()
         }
     }
 
@@ -59,6 +59,28 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
                 2 -> {
                     binding.btnMove.visibility = View.GONE
                 }
+            }
+        }
+    }
+
+    private fun handleTeamTodo() {
+        teamTodo = getTask().third
+
+        binding.textTaskName.text = teamTodo?.title
+
+        binding.btnMove.setOnClickListener {
+            updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!! + 1)
+        }
+
+        when (teamTodo?.status) {
+            0 -> {
+                binding.btnMove.text = "Move to in progress"
+            }
+            1 -> {
+                binding.btnMove.text = "Move to done"
+            }
+            2 -> {
+                binding.btnMove.visibility = View.GONE
             }
         }
     }
