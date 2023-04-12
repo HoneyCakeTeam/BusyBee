@@ -3,13 +3,7 @@ package com.example.busybee.data
 import android.content.Context
 import android.util.Base64
 import com.example.busybee.BuildConfig
-import com.example.busybee.data.models.LoginResponse
-import com.example.busybee.data.models.PersonalToDoListResponse
-import com.example.busybee.data.models.SignUpResponse
-import com.example.busybee.data.models.PersonalCreateToDoResponse
-import com.example.busybee.data.models.TeamToDoListResponse
-import com.example.busybee.data.models.PersonalUpdateStatusResponse
-import com.example.busybee.data.models.TeamUpdateStatusResponse
+import com.example.busybee.data.models.*
 import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
@@ -114,11 +108,18 @@ class Repository(private val context: Context) : RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        val request = Request.Builder()
-            .url(Constant.TEAM_TODO_URL)
+        val formBody = FormBody.Builder()
+            .add("title", title)
+            .add("description", description)
+            .add("assignee", assignee)
             .build()
 
-        val responseType = object : TypeToken<TeamToDoListResponse>() {}.type
+        val request = Request.Builder()
+            .url(Constant.TEAM_TODO_URL)
+            .post(formBody)
+            .build()
+
+        val responseType = object : TypeToken<TeamCreateToDoResponse>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -134,11 +135,17 @@ class Repository(private val context: Context) : RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        val request = Request.Builder()
-            .url(Constant.PERSONAL_TODO_URL)
+        val formBody = FormBody.Builder()
+            .add("title", title)
+            .add("description", description)
             .build()
 
-        val responseType = object : TypeToken<PersonalToDoListResponse>() {}.type
+        val request = Request.Builder()
+            .url(Constant.PERSONAL_TODO_URL)
+            .post(formBody)
+            .build()
+
+        val responseType = object : TypeToken<PersonalCreateToDoResponse>() {}.type
 
         client.executeWithCallbacks(
             request,
