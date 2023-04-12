@@ -3,20 +3,13 @@ package com.example.busybee.data
 import android.content.Context
 import android.util.Base64
 import com.example.busybee.BuildConfig
-import com.example.busybee.data.models.LoginResponse
-import com.example.busybee.data.models.PersonalToDoListResponse
-import com.example.busybee.data.models.SignUpResponse
-import com.example.busybee.data.models.PersonalCreateToDoResponse
-import com.example.busybee.data.models.TeamToDoListResponse
-import com.example.busybee.data.models.PersonalUpdateStatusResponse
-import com.example.busybee.data.models.TeamUpdateStatusResponse
+import com.example.busybee.data.models.*
 import com.example.busybee.data.source.ConnectionBuilder
 import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
 import com.example.busybee.utils.Constant
 import com.google.gson.reflect.TypeToken
 import okhttp3.FormBody
-import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -166,23 +159,21 @@ class Repository(private val context: Context) : RepositoryInterface {
 
     }
 
-
     override fun <T> updateTasksPersonalStatus(
         idTask: String,
         status: Int,
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     ) {
-        val httpUrl = HttpUrl.Builder()
-            .scheme("https")
-            .host("team-todo-62dmq.ondigitalocean.app")
-            .addPathSegment(Constant.PERSONAL_TODO_URL)
-            .addQueryParameter("id", idTask)
-            .addQueryParameter("status", status.toString())
+
+        val formBody = FormBody.Builder()
+            .add("id", idTask)
+            .add("status", status.toString())
             .build()
 
         val request = Request.Builder()
-            .url(httpUrl)
+            .url(Constant.PERSONAL_TODO_URL)
+            .put(formBody)
             .build()
 
         val responseType = object : TypeToken<PersonalUpdateStatusResponse>() {}.type
@@ -203,6 +194,7 @@ class Repository(private val context: Context) : RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
+
 
         val formBody = FormBody.Builder()
             .add("id", idTask)
