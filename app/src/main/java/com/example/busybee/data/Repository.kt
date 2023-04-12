@@ -138,7 +138,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             .url(Constant.PERSONAL_TODO_URL)
             .build()
 
-        val responseType = object : TypeToken<PersonalCreateToDoResponse>() {}.type
+        val responseType = object : TypeToken<PersonalToDoListResponse>() {}.type
 
         client.executeWithCallbacks(
             request,

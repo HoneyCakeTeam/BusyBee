@@ -6,9 +6,11 @@ import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalCreateToDoResponse
+import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
 import com.example.busybee.domain.models.PersonalTodos
+import com.example.busybee.domain.models.TeamTodos
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -70,12 +72,18 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
 
 
     override fun personalCreateToDo(title: String, description: String) {
-        presenter.personalCreateToDo(title, description, ::onSuccessResponse, ::onFailureResponse)
+        presenter.personalCreateToDo(title, description,
+            ::onSuccessResponse, ::onFailureResponse)
     }
 
-    override fun onSuccessResponse(response: PersonalCreateToDoResponse) {
+    override fun onSuccessResponse(response: PersonalToDoListResponse) {
         activity?.runOnUiThread {
            // _binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+            Toast.makeText(
+                requireContext(),
+                "success ${response.isSuccess} ",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
