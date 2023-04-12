@@ -47,7 +47,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     private fun handlePersonalTodo() {
         personalTodo = getTask().second
 
-        binding.textTaskName.text = personalTodo?.title
+        bindingPersonalToDosViews(personalTodo)
 
         binding.btnMove.setOnClickListener {
 
@@ -68,7 +68,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     private fun handleTeamTodo() {
         teamTodo = getTask().third
 
-        binding.textTaskName.text = teamTodo?.title
+        bindingTeamToDosViews(teamTodo)
 
         binding.btnMove.setOnClickListener {
             updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!! + 1)
@@ -86,6 +86,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             }
         }
     }
+
     override fun updateTasksPersonalStatus(idTask: String, status: Int) {
         presenter.updateTasksPersonalStatus<PersonalUpdateStatusResponse>(idTask,
             status,
@@ -148,6 +149,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         }
         return Triple(flag, personalTodo, teamTodo)
     }
+
     companion object {
         const val FLAG = "flag"
         const val PERSONAL_TASK = "personalTask"
@@ -164,16 +166,29 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
 
     }
 
-    private fun bindingPersonalToDosViews(personalToDo: PersonalTodo?){
+    private fun bindingPersonalToDosViews(personalToDo: PersonalTodo?) {
         val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(
             personalToDo?.creationTime ?: ""
         )
         with(binding) {
-            textTaskName.text = personalTodo?.title
+            textTaskName.text = personalToDo?.title
             textTaskDate.text = formattedDate
-            textDescription.text = personalTodo?.description
+            textDescription.text = personalToDo?.description
             textTaskTime.text = formattedTime
             textTaskMemberAssign.visibility = View.GONE
+        }
+    }
+
+    private fun bindingTeamToDosViews(teamToDo: TeamToDo?) {
+        val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(
+            teamToDo?.creationTime ?: ""
+        )
+        with(binding) {
+            textTaskName.text = teamToDo?.title
+            textTaskDate.text = formattedDate
+            textDescription.text = teamToDo?.description
+            textTaskTime.text = formattedTime
+            textTaskMemberAssign.text = teamToDo?.assignee
         }
     }
 }
