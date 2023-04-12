@@ -48,26 +48,22 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         binding.textTaskName.text = personalTodo?.title
 
         binding.btnMove.setOnClickListener {
-            updateTasksPersonalStatus(personalTodo?.id!!, personalTodo?.status!! + 1)
-        }
 
-        when (personalTodo?.status) {
-            0 -> {
-                binding.btnMove.text = "Move to in progress"
-            }
-            1 -> {
-                binding.btnMove.text = "Move to done"
-            }
-            2 -> {
-                binding.btnMove.visibility = View.GONE
+            when (personalTodo?.status) {
+                0 -> {
+                    binding.btnMove.text = "Move to in progress"
+                }
+                1 -> {
+                    binding.btnMove.text = "Move to done"
+                }
+                2 -> {
+                    binding.btnMove.visibility = View.GONE
+                }
             }
         }
     }
-
-
     override fun updateTasksPersonalStatus(idTask: String, status: Int) {
-        presenter.updateTasksPersonalStatus<PersonalUpdateStatusResponse>(
-            idTask,
+        presenter.updateTasksPersonalStatus<PersonalUpdateStatusResponse>(idTask,
             status,
             onSuccessCallback = { response ->
                 onSuccessPersonalResponse(response)
@@ -151,5 +147,15 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
                 }
             }
 
+    }
+
+    private fun bindingPersonalToDosViews(personalToDo: PersonalTodo?){
+        with(binding) {
+            textTaskName.text = personalTodo?.title
+            textTaskDate.text = personalTodo?.creationTime
+            textDescription.text = personalTodo?.description
+            textTaskTime.text = personalTodo?.creationTime
+            textTaskMemberAssign.visibility = View.GONE
+        }
     }
 }

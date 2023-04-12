@@ -2,10 +2,15 @@ package com.example.busybee.ui.home.personaltask.view.inprogress
 
 import android.os.Bundle
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
 import com.example.busybee.domain.models.PersonalTodos
+import com.example.busybee.ui.details.view.DetailsFragment
+import com.example.busybee.ui.home.personaltask.view.todo.PersonalToDoAdapter
+import com.example.busybee.utils.replaceFragment
 
-class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBinding>() {
+class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBinding>(),
+    PersonalToDoAdapter.TaskInteractionListener {
     private lateinit var adapter: PersonalInProgressAdapter
     private lateinit var done: PersonalTodos
     override val TAG = this::class.java.simpleName.toString()
@@ -16,7 +21,7 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
 
     override fun setUp() {
         getDons()
-        adapter = PersonalInProgressAdapter(done.values)
+        adapter = PersonalInProgressAdapter(done.values,this)
         binding.recyclerInProgress.adapter = adapter
         binding.headerInProgress.textTodoStatus.text="InProgress"
         binding.headerInProgress.taskCount.text="${done.values.size} Tasks"
@@ -37,6 +42,11 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
                     putParcelable(PERSONAL_IN_PROGRESS_LIST, tasks)
                 }
             }
+    }
+
+    override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
+        val detailsFragment = DetailsFragment.newInstance(flag, null , personalToDo)
+        replaceFragment(detailsFragment)
     }
 
 }
