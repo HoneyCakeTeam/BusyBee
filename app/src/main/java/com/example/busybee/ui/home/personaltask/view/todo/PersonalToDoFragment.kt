@@ -2,7 +2,6 @@ package com.example.busybee.ui.home.personaltask.view.todo
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -22,7 +21,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     PersonalToDoViewInterface,
     PersonalToDoAdapter.PersonalToDoTaskInteractionListener {
     private lateinit var adapter: PersonalToDoAdapter
-    private lateinit var done: PersonalTodos
+    private lateinit var todos: PersonalTodos
     private lateinit var bottomSheet: BottomSheetDialog
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
     override val TAG = this::class.java.simpleName.toString()
@@ -37,10 +36,10 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     override fun setUp() {
         getDons()
         addCallBacks()
-        adapter = PersonalToDoAdapter(done.values, this)
+        adapter = PersonalToDoAdapter(todos.values, this)
         binding.recyclerToDo.adapter = adapter
         binding.headerToDo.textTodoStatus.text="ToDo"
-        binding.headerToDo.taskCount.text="${done.values.size} Tasks"
+        binding.headerToDo.taskCount.text="${todos.values.size} Tasks"
     }
 
     private fun addCallBacks() {
@@ -52,6 +51,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     private fun showBottomSheet() {
         sheetCreateTaskBinding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
         sheetCreateTaskBinding.inputLayoutAssignee.visibility = View.GONE
+
         bottomSheet = BottomSheetDialog(
             requireContext(),
             com.google.android.material.R.style.Theme_Design_BottomSheetDialog
@@ -73,44 +73,45 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
 
     private fun getDons() {
         arguments?.let {
-            done = it.getParcelable(PERSONAL_TODO_LIST)!!
+            todos = it.getParcelable(PERSONAL_TODO_LIST)!!
         }
     }
 
 
     override fun personalCreateToDo(title: String, description: String) {
         presenter.personalCreateToDo(title, description,
-            ::onSuccessResponse, ::onFailureResponse)
+            ::onSuccessResponse, ::onFailureResponse
+        )
     }
 
     override fun onSuccessResponse(response: PersonalCreateToDoResponse) {
         activity?.runOnUiThread {
-
-            val newTask = response.value
-            done.values = done.values.toMutableList().apply { add(newTask!!) }
-            adapter.setItems(done.values)
-            binding.headerToDo.taskCount.text = "${done.values.size} Tasks"
-
-            with(sheetCreateTaskBinding) {
-                buttonCreateTask.text = getString(R.string.ok)
-                textCreateTask.visibility = View.GONE
-                inputLayoutAssignee.visibility = View.GONE
-                inputLayoutContent.visibility = View.GONE
-                inputLayoutTaskName.visibility = View.GONE
-                textCreatedSuccessfully.visibility = View.VISIBLE
-                buttonCreateTask.setOnClickListener {
-                    bottomSheet.dismiss()
-                }
-            }
-            sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
-
-            Toast.makeText(
-                requireContext(),
-                "success ${response.isSuccess} ",
-                Toast.LENGTH_SHORT
-            ).show()
+            setListAndUpdateUi(response)
+            hideFieldsAndShowDone()
 
         }
+    }
+
+    private fun setListAndUpdateUi(response: PersonalCreateToDoResponse) {
+        val newTask = response.value
+        todos.values = todos.values.toMutableList().apply { add(newTask!!) }
+        adapter.setItems(todos.values)
+        binding.headerToDo.taskCount.text = "${todos.values.size} Tasks"
+    }
+
+    private fun hideFieldsAndShowDone() {
+        with(sheetCreateTaskBinding) {
+            buttonCreateTask.text = getString(R.string.ok)
+            textCreateTask.visibility = View.GONE
+            inputLayoutAssignee.visibility = View.GONE
+            inputLayoutContent.visibility = View.GONE
+            inputLayoutTaskName.visibility = View.GONE
+            textCreatedSuccessfully.visibility = View.VISIBLE
+            buttonCreateTask.setOnClickListener {
+                bottomSheet.dismiss()
+            }
+        }
+        sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
     }
 
 

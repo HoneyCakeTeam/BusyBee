@@ -2,7 +2,6 @@ package com.example.busybee.ui.home.teamtask.view.todo.view
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -85,32 +84,33 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
     override fun onSuccessResponse(response: TeamCreateToDoResponse) {
         activity?.runOnUiThread {
 
-            val newTask = response.value
-            todos.values = todos.values.toMutableList().apply { add(newTask) }
-            adapter.setItems(todos.values)
-            binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
+            setListAndUpdateUi(response)
 
-            with(sheetCreateTaskBinding) {
-                buttonCreateTask.text = getString(R.string.ok)
-                textCreateTask.visibility = View.GONE
-                inputLayoutAssignee.visibility = View.GONE
-                inputLayoutContent.visibility = View.GONE
-                inputLayoutTaskName.visibility = View.GONE
-                textCreatedSuccessfully.visibility = View.VISIBLE
-                buttonCreateTask.setOnClickListener {
-                    bottomSheet.dismiss()
-                }
-            }
-            sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
-            Snackbar.make(
-                binding.root,
-                "New task added successfully!",
-                Snackbar.LENGTH_SHORT
-            ).show()
-
-
+            hideFieldsAndShowDone()
 
         }
+    }
+
+    private fun hideFieldsAndShowDone() {
+        with(sheetCreateTaskBinding) {
+            buttonCreateTask.text = getString(R.string.ok)
+            textCreateTask.visibility = View.GONE
+            inputLayoutAssignee.visibility = View.GONE
+            inputLayoutContent.visibility = View.GONE
+            inputLayoutTaskName.visibility = View.GONE
+            textCreatedSuccessfully.visibility = View.VISIBLE
+            buttonCreateTask.setOnClickListener {
+                bottomSheet.dismiss()
+            }
+        }
+        sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+    }
+
+    private fun setListAndUpdateUi(response: TeamCreateToDoResponse) {
+        val newTask = response.value
+        todos.values = todos.values.toMutableList().apply { add(newTask) }
+        adapter.setItems(todos.values)
+        binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
     }
 
     override fun onFailureResponse(error: Throwable) {
