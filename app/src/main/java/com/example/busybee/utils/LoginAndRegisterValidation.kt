@@ -4,7 +4,7 @@ import android.content.Context
 import com.example.busybee.R
 import com.google.android.material.textfield.TextInputLayout
 
-class LoginValidation(val context: Context) {
+class LoginAndRegisterValidation(val context: Context) {
 
     fun checkCredentialForUserName(userName: String, textInputLayout: TextInputLayout): Boolean {
         return if (userName.length < 4) {
@@ -17,12 +17,25 @@ class LoginValidation(val context: Context) {
     }
 
     fun checkCredentialForPassword(password: String, textInputLayout: TextInputLayout): Boolean {
-
         return if (password.length >= 8 && password.any { it != ' ' }) {
             hideError(textInputLayout)
             true
         } else {
             showError(textInputLayout, context.getString(R.string.validatePasswordMessage))
+            return false
+        }
+    }
+
+    fun checkCredentialForConfirmPasswordPassword(
+        password: String,
+        confirmPassword: String,
+        textInputLayout: TextInputLayout
+    ): Boolean {
+        return if (confirmPassword == password) {
+            hideError(textInputLayout)
+            true
+        } else {
+            showError(textInputLayout, context.getString(R.string.passwordIsNotTheSame))
             return false
         }
     }

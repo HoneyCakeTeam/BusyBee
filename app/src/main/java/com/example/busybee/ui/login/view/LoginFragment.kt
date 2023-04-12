@@ -9,7 +9,7 @@ import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.login.presenter.LoginPresenterInterface
 import com.example.busybee.ui.register.view.RegisterFragment
-import com.example.busybee.utils.LoginValidation
+import com.example.busybee.utils.LoginAndRegisterValidation
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
@@ -17,9 +17,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     private val presenter: LoginPresenterInterface by lazy {
         LoginPresenter(Repository(requireContext()))
     }
-    private val loginValidation:LoginValidation by lazy {
-        LoginValidation(requireContext())
+    private val loginAndRegisterValidation:LoginAndRegisterValidation by lazy {
+        LoginAndRegisterValidation(requireContext())
     }
+//    private val registerFragment by lazy { RegisterFragment() }
     override val TAG: String = this::class.simpleName.toString()
     private var username = ""
     private var password = ""
@@ -28,8 +29,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         FragmentLoginBinding.inflate(layoutInflater)
 
     override fun setUp() {
+        addCallBacks()
+    }
 
-
+    private fun addCallBacks() {
         binding.buttonLogin.setOnClickListener {
             getUserInputs()
             validateUserInputs()
@@ -41,12 +44,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         binding.textSignUp.setOnClickListener {
             replaceFragment(RegisterFragment())
         }
-
     }
 
     private fun validateUserInputs(): Boolean =
-        loginValidation.checkCredentialForUserName(username, binding.editTextUsername)
-                && loginValidation.checkCredentialForPassword(password, binding.editTextPassword)
+        loginAndRegisterValidation.checkCredentialForUserName(username, binding.editTextUsername)
+                && loginAndRegisterValidation.checkCredentialForPassword(password, binding.editTextPassword)
 
     private fun getUserInputs() {
         username = binding.editTextUsername.editText?.text.toString().trim()
@@ -64,10 +66,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
 
     override fun onSuccessResponse(response: LoginResponse) {
         activity?.runOnUiThread {
-            saveTokenInShared(response.value.token)
-            saveExpirationDateInShared(response.value.expireAt)
-
             if (response.isSuccess) {
+                saveTokenInShared(response.value.token)
+                saveExpirationDateInShared(response.value.expireAt)
                 replaceFragment(HomeFragment())
                 Snackbar.make(
                     binding.root,

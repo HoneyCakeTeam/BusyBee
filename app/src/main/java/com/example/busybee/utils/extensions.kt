@@ -1,5 +1,6 @@
 package com.example.busybee.utils
 
+import android.content.Context
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
@@ -13,10 +14,12 @@ fun Fragment.replaceFragment(fragment: Fragment) {
     fragmentTransaction.commit()
 }
 
-fun Fragment.onClickBackFromNavigation() {
+fun Fragment.onClickBackFromNavigation(context: Context) {
     val callback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             showAlertDialog()
+            SharedPreferencesUtils.initPreferencesUtil(context)
+            SharedPreferencesUtils.token = null
         }
     }
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
