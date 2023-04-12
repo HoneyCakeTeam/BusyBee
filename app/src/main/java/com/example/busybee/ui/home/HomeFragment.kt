@@ -22,6 +22,7 @@ import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.view.inprogress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoFragment
 import com.example.busybee.ui.setting.SettingFragment
+import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -87,7 +88,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 2 })
     }
 
-    private val settingsFragment = SettingFragment()
 
     override val TAG = this::class.java.simpleName.toString()
 
@@ -99,10 +99,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         getAllTeamTasks()
         initTabLayout()
         addCallBacks()
+        onClickBackFromNavigation(requireContext())
     }
 
     private fun addCallBacks() {
+        onClickSettings()
+    }
+
+    private fun onClickSettings() {
         binding.settings.setOnClickListener {
+            val personalTodos = personalToDos.values.size
+            val personalInProgressTodos = personalInProgressToDos.values.size
+            val personalDoneTodos = personalDoneToDos.values.size
+            val settingsFragment = SettingFragment.newInstance(
+                personalTodos,
+                personalInProgressTodos,
+                personalDoneTodos
+            )
             replaceFragment(settingsFragment)
         }
     }
@@ -120,6 +133,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
             setUpTransformer()
         }
     }
+
     private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
         transformer.addTransformer { page, position ->
@@ -148,9 +162,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     override fun onTeamSuccessResponse(response: TeamToDoListResponse) {
         teamResponse = response
-        activity?.runOnUiThread {
-            initViewPager(teamFragments)
-        }
     }
 
     override fun onTeamFailureResponse(error: Throwable) {

@@ -64,8 +64,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
         }
     }
     override fun teamCreateToDo(title: String, description: String, assignee: String) {
-        presenter.teamCreateToDo<TeamToDoListResponse>(
-            title, description, assignee,
+        presenter.teamCreateToDo( title, description, assignee,
             ::onSuccessResponse, ::onFailureResponse
         )
     }

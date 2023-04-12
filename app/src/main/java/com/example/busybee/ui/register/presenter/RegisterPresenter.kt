@@ -5,7 +5,6 @@ import com.example.busybee.ui.register.view.RegisterViewInterface
 
 
 class RegisterPresenter(
-    val registerViewInterface: RegisterViewInterface,
     private val repository: RepositoryInterface
 ) :
     RegisterPresenterInterface {
