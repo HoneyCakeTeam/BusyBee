@@ -8,12 +8,12 @@
     android:background="@color/white_300"
     android:padding="@dimen/spacing_medium">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ic_left_arrow"
+    <ImageButton
+        android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/spacing_small"
-        android:src="@drawable/ic_arrow_back"
+        android:background="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,7 @@
         android:textSize="@dimen/text_medium"
         app:drawableStartCompat="@drawable/ic_user_details"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_left_arrow"
+        app:layout_constraintTop_toBottomOf="@id/button_back"
         tools:text="Hamsa Aliiiiiiiiiiiiiiiiiiiiii" />
 
 
