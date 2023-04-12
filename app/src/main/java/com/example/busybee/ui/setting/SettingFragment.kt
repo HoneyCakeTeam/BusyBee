@@ -1,5 +1,6 @@
 package com.example.busybee.ui.setting
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
@@ -23,7 +24,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
 
 
     override fun setUp() {
-        setUpPieChart()
+        //setUpPieChart()
         addCallBacks()
         showToDosPercentage()
     }
@@ -61,15 +62,16 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showToDosPercentage() {
         val sumOfPersonalToDos = sum(personalTodos, personalInProgressTodos, personalDoneTodos)
         val toDoPercentage = calculatePercentage(sumOfPersonalToDos, personalTodos)
         val inProgressPercentage = calculatePercentage(sumOfPersonalToDos, personalInProgressTodos)
         val donePercentage = calculatePercentage(sumOfPersonalToDos, personalDoneTodos)
 
-        binding.textTodoPercentage.text = toDoPercentage.toString()
-        binding.textInProgressPercentage.text = inProgressPercentage.toString()
-        binding.textDonePercentage.text = donePercentage.toString()
+        binding.textTodoPercentage.text = "%.2f".format(toDoPercentage)
+        binding.textInProgressPercentage.text = "%.2f".format(inProgressPercentage)
+        binding.textDonePercentage.text = "%.2f".format(donePercentage)
     }
 
     private fun calculatePercentage(sumOfToDos: Float, variableOfInterest: Float): Float {
