@@ -32,21 +32,18 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         flag = getTask().first
         if(flag == 1){
             personalTodo = getTask().second
-            binding.textTaskName.text = personalTodo!!.title.toString()
+            binding.textTaskName.text = personalTodo?.title
             Toast.makeText(
                 requireContext(), "personal", Toast.LENGTH_SHORT
             ).show()
         }
-        else{
-            teamTodo = getTeamTask().second
-            binding.textTaskName.text = teamTodo!!.title
+        if(flag == 0){
+            teamTodo = getTask().third
+            binding.textTaskName.text = teamTodo?.title
             Toast.makeText(
                 requireContext(), "team", Toast.LENGTH_SHORT
             ).show()
         }
-
-
-
 
     }
 
@@ -98,39 +95,40 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         )
     }
 
-    private fun getTask(): Pair<Int, PersonalTodo> {
+    private fun getTask(): Triple<Int, PersonalTodo? , TeamToDo?> {
         arguments?.let {
             flag = it.getInt(FLAG)
-            personalTodo = it.getParcelable<PersonalTodo>(TASK)!!
+            if(flag == 1){
+                personalTodo = it.getParcelable<PersonalTodo>(PERSONAL_TASK)
+                teamTodo = null
+            }else{
+                personalTodo = null
+                teamTodo = it.getParcelable<TeamToDo>(TEAM_TASK)
+
+            }
         }
-        return Pair(flag, personalTodo!!)
+        return Triple(flag, personalTodo, teamTodo)
     }
 
     private fun getTeamTask(): Pair<Int, TeamToDo> {
         arguments?.let {
             flag = it.getInt(FLAG)
-            teamTodo = it.getParcelable<TeamToDo>(TASK)!!
+            teamTodo = it.getParcelable<TeamToDo>(TEAM_TASK)!!
         }
         return Pair(flag, teamTodo!!)
     }
 
     companion object {
         const val FLAG = "flag"
-        const val TASK = "task"
+        const val PERSONAL_TASK = "personalTask"
+        const val TEAM_TASK = "teamTask"
 
-        fun newInstance(flag: Int, personalToDo: PersonalTodo) =
+        fun newInstance(flag: Int, teamTodo: TeamToDo?, personalToDo: PersonalTodo?) =
             DetailsFragment().apply {
                 arguments = Bundle().apply {
                     putInt(FLAG, flag)
-                    putParcelable(TASK, personalToDo)
-                }
-            }
-
-        fun newTeamInstance(flag: Int, teamTodo: TeamToDo) =
-            DetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(FLAG, flag)
-                    putParcelable(TASK, teamTodo)
+                    putParcelable(TEAM_TASK, teamTodo)
+                    putParcelable(PERSONAL_TASK, personalToDo)
                 }
             }
 

@@ -104,7 +104,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
     }
 
     override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
-        val detailsFragment = DetailsFragment.newInstance(flag, personalToDo)
+        val detailsFragment = DetailsFragment.newInstance(flag, null , personalToDo)
         replaceFragment(detailsFragment)
     }
 }

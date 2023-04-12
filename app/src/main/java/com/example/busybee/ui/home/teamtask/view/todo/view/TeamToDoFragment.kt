@@ -107,7 +107,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
 
 
     override fun onTasKClicked(flag: Int, teamTodo: TeamToDo) {
-        val detailsFragment = DetailsFragment.newTeamInstance(flag, teamTodo)
+        val detailsFragment = DetailsFragment.newInstance(flag, teamTodo , null)
         replaceFragment(detailsFragment)
     }
 }
