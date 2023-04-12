@@ -6,16 +6,21 @@ import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalCreateToDoResponse
+import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.data.models.PersonalToDoListResponse
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
 import com.example.busybee.domain.models.PersonalTodos
+import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.domain.models.TeamTodos
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
+import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),PersonalToDoViewInterface{
+class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
+    PersonalToDoViewInterface,
+    PersonalToDoAdapter.PersonalToDoTaskInteractionListener {
     private lateinit var adapter: PersonalToDoAdapter
     private lateinit var done: PersonalTodos
 
@@ -23,6 +28,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
     private val presenter: PersonalPresenterInterface by lazy {
         PersonalPresenter(Repository(requireContext()))
     }
+
     override fun getViewBinding(): FragmentPersonalToDoBinding {
         return FragmentPersonalToDoBinding.inflate(layoutInflater)
     }
@@ -30,7 +36,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
     override fun setUp() {
         getDons()
         addCallBacks()
-        adapter = PersonalToDoAdapter(done.values)
+        adapter = PersonalToDoAdapter(done.values, this)
         binding.recyclerToDo.adapter = adapter
         binding.headerToDo.textTodoStatus.text="ToDo"
         binding.headerToDo.taskCount.text="${done.values.size} Tasks"
@@ -105,5 +111,10 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
                     putParcelable(PERSONAL_TODO_LIST, tasks)
                 }
             }
+    }
+
+    override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
+        val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
+        replaceFragment(detailsFragment)
     }
 }
