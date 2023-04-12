@@ -39,6 +39,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             personalTodo = getTask().second
             binding.textTaskName.text = personalTodo?.title
             updateTasksPersonalStatus(personalTodo?.id!!, personalTodo?.status!! + 1)
+            bindingPersonalToDosViews(personalTodo)
         }
         if (flag == 0) {
             teamTodo = getTask().third
@@ -103,13 +104,13 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         )
     }
 
-    private fun getTask(): Triple<Int, PersonalTodo?, TeamToDo?> {
+    private fun getTask(): Triple<Int, PersonalTodo? , TeamToDo?> {
         arguments?.let {
             flag = it.getInt(FLAG)
-            if (flag == 1) {
+            if(flag == 1){
                 personalTodo = it.getParcelable<PersonalTodo>(PERSONAL_TASK)
                 teamTodo = null
-            } else {
+            }else{
                 personalTodo = null
                 teamTodo = it.getParcelable<TeamToDo>(TEAM_TASK)
 
@@ -139,5 +140,16 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
                     putParcelable(PERSONAL_TASK, personalToDo)
                 }
             }
+
+    }
+
+    private fun bindingPersonalToDosViews(personalToDo: PersonalTodo?){
+        with(binding) {
+            textTaskName.text = personalTodo?.title
+            textTaskDate.text = personalTodo?.creationTime
+            textDescription.text = personalTodo?.description
+            textTaskTime.text = personalTodo?.creationTime
+            textTaskMemberAssign.visibility = View.GONE
+        }
     }
 }
