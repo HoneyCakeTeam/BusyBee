@@ -100,7 +100,8 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         val newTask = response.value
         todos.values = todos.values.toMutableList().apply { add(newTask!!) }
         adapter.setItems(todos.values)
-        binding.headerToDo.taskCount.text = "${todos.values.size} Tasks"
+        binding.headerToDo.taskCount.text = getString( R.string.tasks , todos.values.size )
+        binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
     }
 
     private fun hideFieldsAndShowDone() {
