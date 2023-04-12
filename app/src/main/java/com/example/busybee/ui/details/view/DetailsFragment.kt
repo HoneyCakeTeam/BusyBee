@@ -1,6 +1,7 @@
 package com.example.busybee.ui.details.view
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -35,20 +36,38 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     private fun checkFlagFromHome() {
         flag = getTask().first
         if (flag == 1) {
-            personalTodo = getTask().second
-            binding.textTaskName.text = personalTodo?.title
-            updateTasksPersonalStatus(personalTodo?.id!!, personalTodo?.status!! + 1)
+            handlePersonalTodo()
+        } else if (flag == 0) {
+            //handleTeamTodo()
         }
-        if (flag == 0) {
-            teamTodo = getTask().third
-            binding.textTaskName.text = teamTodo?.title
-            updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!! + 1)
-        }
-
     }
 
+    private fun handlePersonalTodo() {
+        personalTodo = getTask().second
+
+        binding.textTaskName.text = personalTodo?.title
+
+        binding.btnMove.setOnClickListener {
+            updateTasksPersonalStatus(personalTodo?.id!!, personalTodo?.status!! + 1)
+        }
+
+        when (personalTodo?.status) {
+            0 -> {
+                binding.btnMove.text = "Move to in progress"
+            }
+            1 -> {
+                binding.btnMove.text = "Move to done"
+            }
+            2 -> {
+                binding.btnMove.visibility = View.GONE
+            }
+        }
+    }
+
+
     override fun updateTasksPersonalStatus(idTask: String, status: Int) {
-        presenter.updateTasksPersonalStatus<PersonalUpdateStatusResponse>(idTask,
+        presenter.updateTasksPersonalStatus<PersonalUpdateStatusResponse>(
+            idTask,
             status,
             onSuccessCallback = { response ->
                 onSuccessPersonalResponse(response)
@@ -131,5 +150,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
                     putParcelable(PERSONAL_TASK, personalToDo)
                 }
             }
+
     }
 }
