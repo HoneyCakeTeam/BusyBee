@@ -2,6 +2,7 @@ package com.example.busybee.ui.home.personaltask.view.todo
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -38,7 +39,10 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         addCallBacks()
         adapter = PersonalToDoAdapter(todos.values, this)
         binding.recyclerToDo.adapter = adapter
-        binding.headerToDo.textTodoStatus.text="ToDo"
+        binding.headerToDo.textTodoStatus.apply {
+            text="ToDo"
+            background= ContextCompat.getDrawable(requireContext(), R.drawable.shape_todo)
+        }
         binding.headerToDo.taskCount.text="${todos.values.size} Tasks"
     }
 

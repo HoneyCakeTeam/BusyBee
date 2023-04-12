@@ -1,6 +1,8 @@
 package com.example.busybee.ui.home.personaltask.view.inprogress
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
@@ -22,7 +24,10 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
         getDons()
         adapter = PersonalInProgressAdapter(done.values, this)
         binding.recyclerInProgress.adapter = adapter
-        binding.headerInProgress.textTodoStatus.text = "InProgress"
+        binding.headerInProgress.textTodoStatus.apply {
+            text = "InProgress"
+            background= ContextCompat.getDrawable(requireContext(), R.drawable.shape_inprogress)
+        }
         binding.headerInProgress.taskCount.text = "${done.values.size} Tasks"
 
     }

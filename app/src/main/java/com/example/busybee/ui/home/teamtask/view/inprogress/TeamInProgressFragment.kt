@@ -1,6 +1,8 @@
 package com.example.busybee.ui.home.teamtask.view.inprogress
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.FragmentTeamInProgressBinding
@@ -23,7 +25,11 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
         getInProgress()
         adapter = TeamInProgressAdapter(inProgress.values,this)
         binding.recyclerInProgress.adapter = adapter
-        binding.taskHeader.textTodoStatus.text="InProgress"
+        binding.taskHeader.textTodoStatus.apply {
+            text="InProgress"
+          background= ContextCompat.getDrawable(requireContext(), R.drawable.shape_inprogress)
+        }
+
         binding.taskHeader.taskCount.text="${inProgress.values.size} Tasks"
 
     }

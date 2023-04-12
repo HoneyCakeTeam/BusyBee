@@ -2,6 +2,8 @@ package com.example.busybee.ui.home.teamtask.view.done
 
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContextCompat
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.FragmentTeamDoneBinding
@@ -24,7 +26,10 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
         adapter = TeamDoneAdapter(done.values, this)
         Log.e(TAG, "setUp: ${done.values}")
         binding.recyclerDone.adapter = adapter
-        binding.taskHeader.textTodoStatus.text = "Done"
+        binding.taskHeader.textTodoStatus.apply {
+            text = "Done"
+            background= ContextCompat.getDrawable(requireContext(), R.drawable.shape_done)
+        }
         binding.taskHeader.taskCount.text = "${done.values.size} Tasks"
     }
 

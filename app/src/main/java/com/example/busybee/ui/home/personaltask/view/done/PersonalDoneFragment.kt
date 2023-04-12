@@ -1,6 +1,8 @@
 package com.example.busybee.ui.home.personaltask.view.done
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.FragmentDonePersonalBinding
@@ -23,7 +25,10 @@ class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>(),
         getDons()
         adapter = PersonalDoneAdapter(done.values, this)
         binding.recyclerDone.adapter = adapter
-        binding.headerDone.textTodoStatus.text = "Done"
+        binding.headerDone.textTodoStatus.apply {
+            text = "Done"
+            background= ContextCompat.getDrawable(requireContext(), R.drawable.shape_done)
+        }
         binding.headerDone.taskCount.text = "${done.values.size} Tasks"
 
     }
