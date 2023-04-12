@@ -55,14 +55,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
 
     private fun addCallBacks() {
         onClickLogout()
-        onClickBackButton()
-    }
-
-    private fun onClickBackButton() {
-        binding.buttonBack.setOnClickListener {
-            val homeFragment = HomeFragment()
-            replaceFragment(homeFragment)
-        }
+        onClickButtonBack()
     }
 
     private fun onClickLogout() {
@@ -118,4 +111,9 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
         personalDoneToDos: Float
     ) = personalToDos + personalInProgressToDos + personalDoneToDos
 
+    private fun onClickButtonBack() {
+        binding.icLeftArrow.setOnClickListener {
+            replaceFragment(HomeFragment())
+        }
+    }
 }

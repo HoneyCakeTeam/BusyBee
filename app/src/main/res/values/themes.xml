@@ -142,6 +142,12 @@
         <item name="android:textSize">@dimen/text_small</item>
     </style>
 
+    <style name="SettingsTextStyle">
+        <item name="android:textColor">@color/black_87</item>
+        <item name="android:fontFamily">@font/notosans_semibold</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
     <style name="alertDialogCustomStyle">
         <item name="android:background">@color/white_100</item>
     </style>
