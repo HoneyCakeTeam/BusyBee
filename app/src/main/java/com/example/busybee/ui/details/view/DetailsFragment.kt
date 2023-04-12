@@ -67,7 +67,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         teamTodo = getTask().third
 
         binding.textTaskName.text = teamTodo?.title
-
         binding.btnMove.setOnClickListener {
             updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!! + 1)
         }
@@ -94,7 +93,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
                 onFailureResponse(error)
             })
     }
-
     override fun onSuccessPersonalResponse(response: PersonalUpdateStatusResponse) {
         activity?.runOnUiThread {
             Toast.makeText(
@@ -102,7 +100,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             ).show()
         }
     }
-
 
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {

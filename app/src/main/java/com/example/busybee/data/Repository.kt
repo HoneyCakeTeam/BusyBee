@@ -64,19 +64,18 @@ class Repository(private val context: Context) : RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val signUpClient =
-        OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
+            OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
 
-        val formBody =  FormBody.Builder()
+        val formBody = FormBody.Builder()
             .add("username", userName)
             .add("password", password)
-            .add("teamId",BuildConfig.API_KEY)
+            .add("teamId", BuildConfig.API_KEY)
             .build()
 
         val request = Request.Builder()
             .url(Constant.REGISTER_URL)
             .post(formBody)
             .build()
-
 
 
         val responseType = object : TypeToken<SignUpResponse>() {}.type
@@ -205,16 +204,14 @@ class Repository(private val context: Context) : RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     ) {
 
-        val httpUrl = HttpUrl.Builder()
-            .scheme("https")
-            .host("team-todo-62dmq.ondigitalocean.app")
-            .addPathSegment(Constant.TEAM_TODO_URL)
-            .addQueryParameter("id", idTask)
-            .addQueryParameter("status", status.toString())
+        val formBody = FormBody.Builder()
+            .add("id", idTask)
+            .add("status", status.toString())
             .build()
 
         val request = Request.Builder()
-            .url(httpUrl)
+            .url(Constant.TEAM_TODO_URL)
+            .put(formBody)
             .build()
 
         val responseType = object : TypeToken<TeamUpdateStatusResponse>() {}.type
