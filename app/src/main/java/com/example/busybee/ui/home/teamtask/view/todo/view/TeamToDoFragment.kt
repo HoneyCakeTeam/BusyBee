@@ -1,12 +1,13 @@
 package com.example.busybee.ui.home.teamtask.view.todo.view
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
+import com.example.busybee.data.models.TeamCreateToDoResponse
 import com.example.busybee.data.models.TeamToDo
-
-import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
 import com.example.busybee.domain.models.TeamTodos
@@ -14,15 +15,17 @@ import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresenter
 import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresenterInterface
 import com.example.busybee.utils.replaceFragment
-import com.google.android.material.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
+
 
 class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewInterface,
     TeamToDoAdapter.TeamToDoTaskInteractionListener {
     private lateinit var adapter: TeamToDoAdapter
     override val TAG = this::class.java.simpleName.toString()
     private lateinit var todos: TeamTodos
+    private lateinit var bottomSheet: BottomSheetDialog
+    private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
     private val presenter: TeamToDoPresenterInterface by lazy {
         TeamToDoPresenter(Repository(requireContext()))
     }
@@ -35,6 +38,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         getTodos()
         addCallBacks()
         adapter = TeamToDoAdapter(todos.values, this)
+
         binding.recyclerToDo.adapter = adapter
         binding.taskHeader.textTodoStatus.text = "ToDo"
         binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
@@ -47,23 +51,22 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
     }
 
     private fun showBottomSheet() {
-        val bottomSheet = BottomSheetDialog(
+        bottomSheet = BottomSheetDialog(
             requireContext(),
-            R.style.Theme_Design_BottomSheetDialog
+           com.google.android.material.R.style.Theme_Design_BottomSheetDialog
         )
-        val binding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
+        sheetCreateTaskBinding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
 
-        binding.buttonCancel.setOnClickListener {
+        sheetCreateTaskBinding.buttonCancel.setOnClickListener {
             bottomSheet.dismiss()
         }
-        binding.buttonCreateTask.setOnClickListener {
-            val title = binding.textTaskName.text.toString()
-            val description = binding.textContent.text.toString()
-            val assign = binding.textAssignee.text.toString()
+        sheetCreateTaskBinding.buttonCreateTask.setOnClickListener {
+            val title = sheetCreateTaskBinding.textTaskName.text.toString()
+            val description = sheetCreateTaskBinding.textContent.text.toString()
+            val assign = sheetCreateTaskBinding.textAssignee.text.toString()
             teamCreateToDo(title, description, assign)
-            bottomSheet.dismiss()
         }
-        bottomSheet.setContentView(binding.root)
+        bottomSheet.setContentView(sheetCreateTaskBinding.root)
         bottomSheet.show()
     }
 
@@ -86,6 +89,19 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
             todos.values = todos.values.toMutableList().apply { add(newTask) }
             adapter.setItems(todos.values)
             binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
+
+            with(sheetCreateTaskBinding) {
+                buttonCreateTask.text = getString(R.string.ok)
+                textCreateTask.visibility = View.GONE
+                inputLayoutAssignee.visibility = View.GONE
+                inputLayoutContent.visibility = View.GONE
+                inputLayoutTaskName.visibility = View.GONE
+                textCreatedSuccessfully.visibility = View.VISIBLE
+                buttonCreateTask.setOnClickListener {
+                    bottomSheet.dismiss()
+                }
+            }
+            sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
             Snackbar.make(
                 binding.root,
                 "New task added successfully!",
@@ -93,7 +109,6 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
             ).show()
 
 
-            // binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
 
         }
     }

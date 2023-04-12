@@ -6,7 +6,7 @@ import android.widget.Toast
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
-import com.example.busybee.data.models.PersonalToDoListResponse
+import com.example.busybee.data.models.PersonalCreateToDoResponse
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
@@ -62,7 +62,6 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
             val description = sheetCreateTaskBinding.textContent.text.toString()
 
             personalCreateToDo(title, description)
-            bottomSheet.dismiss()
         }
 
         sheetCreateTaskBinding.buttonCancel.setOnClickListener {
@@ -84,9 +83,14 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
             ::onSuccessResponse, ::onFailureResponse)
     }
 
-    override fun onSuccessResponse(response: PersonalToDoListResponse) {
-
+    override fun onSuccessResponse(response: PersonalCreateToDoResponse) {
         activity?.runOnUiThread {
+
+            val newTask = response.value
+            done.values = done.values.toMutableList().apply { add(newTask!!) }
+            adapter.setItems(done.values)
+            binding.headerToDo.taskCount.text = "${done.values.size} Tasks"
+
             with(sheetCreateTaskBinding) {
                 buttonCreateTask.text = getString(R.string.ok)
                 textCreateTask.visibility = View.GONE
@@ -108,6 +112,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
 
         }
     }
+
 
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {
