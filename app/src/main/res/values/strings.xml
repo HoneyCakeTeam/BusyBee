@@ -29,5 +29,9 @@
     <string name="hello_honey">Hello Honey</string>
     <string name="tasks">%d Tasks</string>
     <string name="total_tasks">Total tasks</string>
+    <string name="move_to_inprogress">Move to in progress</string>
+    <string name="move_to_done">Move to done</string>
+
+
 
 </resources>

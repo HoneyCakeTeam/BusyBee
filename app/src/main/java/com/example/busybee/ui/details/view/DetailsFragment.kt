@@ -3,6 +3,7 @@ package com.example.busybee.ui.details.view
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalTodo
@@ -73,10 +74,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
 
         when (teamTodo?.status) {
             0 -> {
-                binding.btnMove.text = "Move to in progress"
+                binding.btnMove.text = getString(R.string.move_to_in_progress)
             }
             1 -> {
-                binding.btnMove.text = "Move to done"
+                binding.btnMove.text = getString(R.string.move_to_done)
             }
             2 -> {
                 binding.btnMove.visibility = View.GONE
