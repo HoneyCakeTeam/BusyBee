@@ -30,5 +30,6 @@
     <string name="tasks">%d Tasks</string>
     <string name="total_tasks">Total tasks</string>
     <string name="todos_percentage">%d%%</string>
+    <string name="settings">Settings</string>
 
 </resources>
