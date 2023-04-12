@@ -14,14 +14,12 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     override val TAG: String
         get() = this::class.simpleName.toString()
     private val loginFragment = LoginFragment()
-
     private var personalTodos = 30.0f
     private var personalInProgressTodos = 30.0f
     private var personalDoneTodos = 40.0f
 
     override fun getViewBinding(): FragmentSettingsBinding =
         FragmentSettingsBinding.inflate(layoutInflater)
-
 
     override fun setUp() {
         setUpPieChart()
@@ -57,6 +55,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
 
     private fun onClickLogout() {
         binding.viewLogoutSettings.setOnClickListener {
+            SharedPreferencesUtils.initPreferencesUtil(requireContext())
             SharedPreferencesUtils.token = null
             replaceFragment(loginFragment)
         }
@@ -75,7 +74,6 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     }
 
     private fun calculatePercentage(sumOfToDos: Float, variableOfInterest: Float): Float {
-
         return (variableOfInterest / sumOfToDos) * 100
     }
 
