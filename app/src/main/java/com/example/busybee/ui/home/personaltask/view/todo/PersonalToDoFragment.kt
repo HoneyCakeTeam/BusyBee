@@ -3,16 +3,15 @@ package com.example.busybee.ui.home.personaltask.view.todo
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
-import com.example.busybee.data.models.PersonalCreateToDoResponse
-import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.data.models.PersonalToDoListResponse
+import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
 import com.example.busybee.domain.models.PersonalTodos
 import com.example.busybee.ui.details.view.DetailsFragment
-import com.example.busybee.domain.models.TeamTodos
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
 import com.example.busybee.utils.replaceFragment
@@ -23,7 +22,8 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     PersonalToDoAdapter.PersonalToDoTaskInteractionListener {
     private lateinit var adapter: PersonalToDoAdapter
     private lateinit var done: PersonalTodos
-
+    private lateinit var bottomSheet: BottomSheetDialog
+    private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
     override val TAG = this::class.java.simpleName.toString()
     private val presenter: PersonalPresenterInterface by lazy {
         PersonalPresenter(Repository(requireContext()))
@@ -49,24 +49,24 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     }
 
     private fun showBottomSheet() {
-         val binding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
-        binding.inputLayoutAssignee.visibility = View.GONE
-        val bottomSheet = BottomSheetDialog(
+        sheetCreateTaskBinding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
+        sheetCreateTaskBinding.inputLayoutAssignee.visibility = View.GONE
+        bottomSheet = BottomSheetDialog(
             requireContext(),
             com.google.android.material.R.style.Theme_Design_BottomSheetDialog
         )
 
-        binding.buttonCreateTask.setOnClickListener {
-            val title = binding.textTaskName.text.toString()
-            val description = binding.textContent.text.toString()
+        sheetCreateTaskBinding.buttonCreateTask.setOnClickListener {
+            val title = sheetCreateTaskBinding.textTaskName.text.toString()
+            val description = sheetCreateTaskBinding.textContent.text.toString()
 
             personalCreateToDo(title, description)
         }
 
-        binding.buttonCancel.setOnClickListener {
+        sheetCreateTaskBinding.buttonCancel.setOnClickListener {
             bottomSheet.dismiss()
         }
-        bottomSheet.setContentView(binding.root)
+        bottomSheet.setContentView(sheetCreateTaskBinding.root)
         bottomSheet.show()
     }
 
@@ -83,13 +83,27 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     }
 
     override fun onSuccessResponse(response: PersonalToDoListResponse) {
+
         activity?.runOnUiThread {
-           // _binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+            with(sheetCreateTaskBinding) {
+                buttonCreateTask.text = getString(R.string.ok)
+                textCreateTask.visibility = View.GONE
+                inputLayoutAssignee.visibility = View.GONE
+                inputLayoutContent.visibility = View.GONE
+                inputLayoutTaskName.visibility = View.GONE
+                textCreatedSuccessfully.visibility = View.VISIBLE
+                buttonCreateTask.setOnClickListener {
+                    bottomSheet.dismiss()
+                }
+            }
+            sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+
             Toast.makeText(
                 requireContext(),
                 "success ${response.isSuccess} ",
                 Toast.LENGTH_SHORT
             ).show()
+
         }
     }
 
@@ -103,6 +117,11 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         }
     }
 
+    override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
+        val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
+        replaceFragment(detailsFragment)
+    }
+
     companion object {
         const val PERSONAL_TODO_LIST = "Personal_Todo_List"
         fun newInstance(tasks: PersonalTodos) =
@@ -113,8 +132,5 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
             }
     }
 
-    override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
-        val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
-        replaceFragment(detailsFragment)
-    }
+
 }
