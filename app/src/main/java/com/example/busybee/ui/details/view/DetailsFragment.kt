@@ -13,7 +13,9 @@ import com.example.busybee.data.models.TeamUpdateStatusResponse
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.details.presenter.DetailsPresenter
 import com.example.busybee.ui.details.presenter.DetailsPresenterInterface
+import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.utils.DateTimeUtils
+import com.example.busybee.utils.replaceFragment
 
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInterface {
@@ -42,9 +44,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             handleTeamTodo()
         }
     }
+
     private fun addCallBacks() {
         binding.buttonBack.setOnClickListener {
-            requireActivity().onBackPressed()
+            replaceFragment(HomeFragment())
         }
     }
 
@@ -54,17 +57,18 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         bindingPersonalToDosViews(personalTodo)
 
         binding.btnMove.setOnClickListener {
+            updateTasksPersonalStatus(personalTodo?.id!!, personalTodo?.status!! + 1)
+        }
 
-            when (personalTodo?.status) {
-                0 -> {
-                    binding.btnMove.text = getString(R.string.move_to_in_progress)
-                }
-                1 -> {
-                    binding.btnMove.text = getString(R.string.move_to_done)
-                }
-                2 -> {
-                    binding.btnMove.visibility = View.GONE
-                }
+        when (personalTodo?.status) {
+            0 -> {
+                binding.btnMove.text = getString(R.string.move_to_in_progress)
+            }
+            1 -> {
+                binding.btnMove.text = getString(R.string.move_to_done)
+            }
+            2 -> {
+                binding.btnMove.visibility = View.GONE
             }
         }
     }
@@ -107,6 +111,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             Toast.makeText(
                 requireContext(), "update success! ${response.isSuccess}", Toast.LENGTH_SHORT
             ).show()
+            replaceFragment(HomeFragment())
         }
     }
 
@@ -124,6 +129,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             Toast.makeText(
                 requireContext(), "update success ${response.isSuccess}", Toast.LENGTH_SHORT
             ).show()
+            replaceFragment(HomeFragment())
         }
     }
 
