@@ -100,7 +100,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         getAllTeamTasks()
         initTabLayout()
         addCallBacks()
-        onClickBackFromNavigation(requireContext())
+        onClickBackFromNavigation()
     }
 
     private fun addCallBacks() {

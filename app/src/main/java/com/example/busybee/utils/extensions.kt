@@ -14,12 +14,10 @@ fun Fragment.replaceFragment(fragment: Fragment) {
     fragmentTransaction.commit()
 }
 
-fun Fragment.onClickBackFromNavigation(context: Context) {
+fun Fragment.onClickBackFromNavigation() {
     val callback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             showAlertDialog()
-            SharedPreferencesUtils.initPreferencesUtil(context)
-            SharedPreferencesUtils.token = null
         }
     }
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
