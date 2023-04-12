@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
+import com.example.busybee.data.models.TeamCreateToDoResponse
 import com.example.busybee.data.models.TeamToDoListResponse
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
@@ -53,6 +54,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
             val description = binding.textContent.text.toString()
             val assign = binding.textAssignee.text.toString()
             teamCreateToDo(title, description, assign)
+            bottomSheet.dismiss()
         }
         bottomSheet.setContentView(binding.root)
         bottomSheet.show()
@@ -69,10 +71,17 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
         )
     }
 
-    override fun onSuccessResponse(response: TeamToDoListResponse) {
+    override fun onSuccessResponse(response: TeamCreateToDoResponse) {
         activity?.runOnUiThread {
-
-           // binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+            val newTask = response.value
+            todos.values = todos.values.toMutableList().apply { add(newTask) }
+            adapter.setItems(todos.values)
+            binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
+            Toast.makeText(
+                requireContext(),
+                "New task added successfully!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
