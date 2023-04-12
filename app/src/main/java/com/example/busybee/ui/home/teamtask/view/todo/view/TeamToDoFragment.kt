@@ -14,6 +14,7 @@ import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresente
 import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresenterInterface
 import com.google.android.material.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 
 class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewInterface {
     private lateinit var adapter: TeamToDoAdapter
@@ -77,20 +78,20 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>() , TeamToDoViewI
             todos.values = todos.values.toMutableList().apply { add(newTask) }
             adapter.setItems(todos.values)
             binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
-            Toast.makeText(
-                requireContext(),
+            Snackbar.make(
+                binding.root,
                 "New task added successfully!",
-                Toast.LENGTH_SHORT
+                Snackbar.LENGTH_SHORT
             ).show()
         }
     }
 
     override fun onFailureResponse(error: Throwable) {
         activity?.runOnUiThread {
-            Toast.makeText(
-                requireContext(),
+            Snackbar.make(
+                binding.root,
                 "Try Again! ${error.message} ",
-                Toast.LENGTH_SHORT
+                Snackbar.LENGTH_SHORT
             ).show()
         }
 
