@@ -145,7 +145,7 @@
     <style name="SettingsTextStyle">
         <item name="android:textColor">@color/black_87</item>
         <item name="android:fontFamily">@font/notosans_semibold</item>
-        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textSize">@dimen/text_large</item>
     </style>
 
     <style name="alertDialogCustomStyle">
