@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         setContentView(R.layout.activity_main)
         statusBarTheme()
         presenter.getTokenFromShared()
-        //initSubView()
     }
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
