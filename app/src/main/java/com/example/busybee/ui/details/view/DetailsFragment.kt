@@ -29,21 +29,34 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     override fun setUp() {
-       checkFlagFromHome()
+        checkFlagFromHome()
     }
 
-    private fun checkFlagFromHome(){
+    private fun checkFlagFromHome() {
         flag = getTask().first
-        if(flag == 1){
+        if (flag == 1) {
             personalTodo = getTask().second
             binding.textTaskName.text = personalTodo?.title
-           updateTasksPersonalStatus(personalTodo?.id!!, personalTodo?.status!!)
+            updateTasksPersonalStatus(personalTodo?.id!!, personalTodo?.status!! + 1)
         }
-        if(flag == 0){
+        if (flag == 0) {
             teamTodo = getTask().third
             binding.textTaskName.text = teamTodo?.title
-           updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!!)
+            updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!! + 1)
         }
+
+    }
+
+    fun checkFlagBasedOnFlag(){
+        flag = getTask().first
+        if (flag == 1) {
+        }
+        if (flag == 0) {
+            teamTodo = getTask().third
+        }
+    }
+
+    fun update(){
 
     }
 
@@ -95,13 +108,13 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         )
     }
 
-    private fun getTask(): Triple<Int, PersonalTodo? , TeamToDo?> {
+    private fun getTask(): Triple<Int, PersonalTodo?, TeamToDo?> {
         arguments?.let {
             flag = it.getInt(FLAG)
-            if(flag == 1){
+            if (flag == 1) {
                 personalTodo = it.getParcelable<PersonalTodo>(PERSONAL_TASK)
                 teamTodo = null
-            }else{
+            } else {
                 personalTodo = null
                 teamTodo = it.getParcelable<TeamToDo>(TEAM_TASK)
 
@@ -131,6 +144,5 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
                     putParcelable(PERSONAL_TASK, personalToDo)
                 }
             }
-
     }
 }
