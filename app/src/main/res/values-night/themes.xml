@@ -141,4 +141,8 @@
     <item name="android:layout_marginTop">2dp</item>
     <item name="startIconTint">@color/primary_400</item>
 </style>
+
+    <style name="alertDialogCustomStyle">
+        <item name="android:background">@color/white_100</item>
+    </style>
 </resources>

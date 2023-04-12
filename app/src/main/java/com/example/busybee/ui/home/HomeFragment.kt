@@ -22,6 +22,7 @@ import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.view.inprogress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoFragment
 import com.example.busybee.ui.setting.SettingFragment
+import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -99,6 +100,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         getAllTeamTasks()
         initTabLayout()
         addCallBacks()
+        onClickBackFromNavigation()
     }
 
     private fun addCallBacks() {

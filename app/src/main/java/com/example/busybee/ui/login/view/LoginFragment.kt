@@ -5,10 +5,12 @@ import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.LoginResponse
 import com.example.busybee.databinding.FragmentLoginBinding
+import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.login.presenter.LoginPresenterInterface
 import com.example.busybee.utils.LoginValidation
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.replaceFragment
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
 
@@ -19,8 +21,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     override val TAG: String = this::class.simpleName.toString()
     private var username = ""
     private var password = ""
-    private var token = ""
-    private var expirationDate = ""
+
     override fun getViewBinding(): FragmentLoginBinding =
         FragmentLoginBinding.inflate(layoutInflater)
 
@@ -54,11 +55,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
 
     override fun onSuccessResponse(response: LoginResponse) {
         activity?.runOnUiThread {
-            token = response.value.token
-            expirationDate = response.value.expireAt
-//             here we will move to home fragment
+            saveTokenInShared(response.value.token)
+            saveExpirationDateInShared(response.value.expireAt)
             if (response.isSuccess) {
-
+                replaceFragment(HomeFragment())
                 Toast.makeText(
                     requireContext(),
                     "Loged in successfully", Toast.LENGTH_SHORT
@@ -87,6 +87,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     override fun saveExpirationDateInShared(expirationDate: String) {
         presenter.saveExpirationDateInShared(expirationDate)
     }
+
 
 }
 
