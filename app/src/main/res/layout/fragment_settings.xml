@@ -7,6 +7,15 @@
     android:background="@color/white_300"
     android:orientation="vertical">
 
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_arrow_back"
+        android:layout_margin="@dimen/spacing_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/view_chart_shape"
         android:layout_width="match_parent"
@@ -16,7 +25,7 @@
         android:background="@drawable/shape_settings_chart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/button_back" />
 
     <org.eazegraph.lib.charts.PieChart
         android:id="@+id/piechart"

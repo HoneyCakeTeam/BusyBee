@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.databinding.FragmentSettingsBinding
+import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.view.LoginFragment
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
@@ -54,6 +55,14 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
 
     private fun addCallBacks() {
         onClickLogout()
+        onClickBackButton()
+    }
+
+    private fun onClickBackButton() {
+        binding.buttonBack.setOnClickListener {
+            val homeFragment = HomeFragment()
+            replaceFragment(homeFragment)
+        }
     }
 
     private fun onClickLogout() {
