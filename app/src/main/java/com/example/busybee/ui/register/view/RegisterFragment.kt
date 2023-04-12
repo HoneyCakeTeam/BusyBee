@@ -13,14 +13,13 @@ import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewInterface {
-
     private val presenter: RegisterPresenterInterface by lazy {
         RegisterPresenter(Repository(requireContext()))
     }
     private val registerValidation: LoginAndRegisterValidation by lazy {
         LoginAndRegisterValidation(requireContext())
     }
-//    private val loginFragment by lazy { LoginFragment() }
+    private val loginFragment by lazy { LoginFragment() }
     private var username = ""
     private var password = ""
     private var confirmPassword = ""
@@ -37,12 +36,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
     private fun addCallBacks() {
         binding.buttonSignUp.setOnClickListener {
             getUserInputs()
-            if (validateUserInputs()){
+            if (validateUserInputs()) {
                 signUp(username, password)
             }
         }
         binding.textLogin.setOnClickListener {
-            replaceFragment(LoginFragment())
+            replaceFragment(loginFragment)
         }
     }
 
@@ -76,7 +75,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
 
     override fun onSuccessResponse(response: SignUpResponse) {
         activity?.runOnUiThread {
-            replaceFragment(LoginFragment())
+            replaceFragment(loginFragment)
             Snackbar.make(
                 binding.root,
                 getString(R.string.accountCreatedSuccessfully),

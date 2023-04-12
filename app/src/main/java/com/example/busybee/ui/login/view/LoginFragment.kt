@@ -18,10 +18,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     private val presenter: LoginPresenterInterface by lazy {
         LoginPresenter(Repository(requireContext()))
     }
-    private val loginAndRegisterValidation:LoginAndRegisterValidation by lazy {
+    private val loginAndRegisterValidation: LoginAndRegisterValidation by lazy {
         LoginAndRegisterValidation(requireContext())
     }
-//    private val registerFragment by lazy { RegisterFragment() }
+    private val homeFragment by lazy { HomeFragment() }
+    private val registerFragment by lazy { RegisterFragment() }
     override val TAG: String = this::class.simpleName.toString()
     private var username = ""
     private var password = ""
@@ -42,13 +43,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         }
 
         binding.textSignUp.setOnClickListener {
-            replaceFragment(RegisterFragment())
+            replaceFragment(registerFragment)
         }
     }
 
     private fun validateUserInputs(): Boolean =
         loginAndRegisterValidation.checkCredentialForUserName(username, binding.editTextUsername)
-                && loginAndRegisterValidation.checkCredentialForPassword(password, binding.editTextPassword)
+                && loginAndRegisterValidation.checkCredentialForPassword(
+            password,
+            binding.editTextPassword
+        )
 
     private fun getUserInputs() {
         username = binding.editTextUsername.editText?.text.toString().trim()
@@ -70,16 +74,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
                 SharedPreferencesUtils.initPreferencesUtil(requireContext())
                 saveTokenInShared(response.value.token)
                 saveExpirationDateInShared(response.value.expireAt)
-                replaceFragment(HomeFragment())
+                replaceFragment(homeFragment)
                 Snackbar.make(
                     binding.root,
                     getString(R.string.success_message),
                     Snackbar.LENGTH_SHORT
                 ).show()
             } else {
-                Snackbar.make(binding.root,
+                Snackbar.make(
+                    binding.root,
                     getString(R.string.unRegisterd),
-                    Snackbar.LENGTH_SHORT)
+                    Snackbar.LENGTH_SHORT
+                )
                     .show()
             }
 
@@ -91,7 +97,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
             Snackbar.make(
                 binding.root,
                 getString(R.string.failure_Message),
-                Snackbar.LENGTH_SHORT)
+                Snackbar.LENGTH_SHORT
+            )
                 .show()
         }
     }
