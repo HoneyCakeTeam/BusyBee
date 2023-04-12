@@ -88,7 +88,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         PersonalTodos(personalResponse.asDomainModel().values.filter { it.status == 2 })
     }
 
-    private val settingsFragment = SettingFragment()
 
     override val TAG = this::class.java.simpleName.toString()
 
@@ -104,7 +103,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     }
 
     private fun addCallBacks() {
+        onClickSettings()
+    }
+
+    private fun onClickSettings() {
         binding.settings.setOnClickListener {
+            val personalTodos = personalToDos.values.size
+            val personalInProgressTodos = personalInProgressToDos.values.size
+            val personalDoneTodos = personalDoneToDos.values.size
+            val settingsFragment = SettingFragment.newInstance(
+                personalTodos,
+                personalInProgressTodos,
+                personalDoneTodos
+            )
             replaceFragment(settingsFragment)
         }
     }
