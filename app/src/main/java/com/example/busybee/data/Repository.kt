@@ -65,19 +65,18 @@ class Repository(private val context: Context) : RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val signUpClient =
-        OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
+            OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
 
-        val formBody =  FormBody.Builder()
+        val formBody = FormBody.Builder()
             .add("username", userName)
             .add("password", password)
-            .add("teamId",BuildConfig.API_KEY)
+            .add("teamId", BuildConfig.API_KEY)
             .build()
 
         val request = Request.Builder()
             .url(Constant.REGISTER_URL)
             .post(formBody)
             .build()
-
 
 
         val responseType = object : TypeToken<SignUpResponse>() {}.type
@@ -223,11 +222,11 @@ class Repository(private val context: Context) : RepositoryInterface {
 
     }
 
-    override fun saveTokenInShared (token : String) {
-        SharedPreferencesUtils.initPreferencesUtil(context)
+    override fun saveTokenInShared(token: String) {
         SharedPreferencesUtils.token = token
     }
-    override fun saveExpirationDateInShared (expirationDate : String) {
+
+    override fun saveExpirationDateInShared(expirationDate: String) {
         SharedPreferencesUtils.initPreferencesUtil(context)
         SharedPreferencesUtils.expirationDate = expirationDate
     }

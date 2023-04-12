@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Busy Bee</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="create_task">create task</string>
     <string name="assignee">Assignee</string>
     <string name="content">Content</string>
@@ -34,5 +33,10 @@
     <string name="exit">exit</string>
     <string name="stay">stay</string>
     <string name="canceled">canceled</string>
+    <string name="success_message">Welcome to BusyBee</string>
+    <string name="unRegisterd">Your internet may be disconnected</string>
+    <string name="failure_Message">account not registered</string>
+    <string name="validateUsernameMessage">username must be four characters at least</string>
+    <string name="validatePasswordMessage">password should contains 8 characters at least</string>
 
 </resources>

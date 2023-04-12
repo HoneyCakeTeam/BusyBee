@@ -1,12 +1,14 @@
 package com.example.busybee.utils
 
+import android.content.Context
+import com.example.busybee.R
 import com.google.android.material.textfield.TextInputLayout
 
-class LoginValidation {
+class LoginValidation(val context: Context) {
 
     fun checkCredentialForUserName(userName: String, textInputLayout: TextInputLayout): Boolean {
         return if (userName.length < 4) {
-            showError(textInputLayout, "username must be four characters at least")
+            showError(textInputLayout, context.getString(R.string.validateUsernameMessage))
             false
         } else {
             hideError(textInputLayout)
@@ -19,9 +21,8 @@ class LoginValidation {
         return if (password.length >= 8 && password.any { it != ' ' }) {
             hideError(textInputLayout)
             true
-        }
-        else {
-            showError(textInputLayout, "password must be egiht characters at least")
+        } else {
+            showError(textInputLayout, context.getString(R.string.validatePasswordMessage))
             return false
         }
     }
