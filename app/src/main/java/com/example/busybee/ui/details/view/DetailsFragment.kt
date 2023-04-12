@@ -47,19 +47,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
 
     }
 
-    fun checkFlagBasedOnFlag(){
-        flag = getTask().first
-        if (flag == 1) {
-        }
-        if (flag == 0) {
-            teamTodo = getTask().third
-        }
-    }
-
-    fun update(){
-
-    }
-
     override fun updateTasksPersonalStatus(idTask: String, status: Int) {
         presenter.updateTasksPersonalStatus<PersonalUpdateStatusResponse>(idTask,
             status,
