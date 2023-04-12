@@ -10,7 +10,6 @@ import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.login.presenter.LoginPresenterInterface
 import com.example.busybee.ui.register.view.RegisterFragment
 import com.example.busybee.utils.LoginAndRegisterValidation
-import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
@@ -71,7 +70,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     override fun onSuccessResponse(response: LoginResponse) {
         activity?.runOnUiThread {
             if (response.isSuccess) {
-                SharedPreferencesUtils.initPreferencesUtil(requireContext())
                 saveTokenInShared(response.value.token)
                 saveExpirationDateInShared(response.value.expireAt)
                 replaceFragment(homeFragment)

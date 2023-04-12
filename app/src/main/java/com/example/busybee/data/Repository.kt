@@ -16,7 +16,7 @@ import okhttp3.Request
 
 class Repository(private val context: Context) : RepositoryInterface {
 
-            private val client = OkHttpClient.Builder().apply {
+    private val client = OkHttpClient.Builder().apply {
         addInterceptor(ConnectionBuilder.logInterceptor)
         addInterceptor(AuthorizationInterceptor(context))
     }.build()
@@ -213,6 +213,7 @@ class Repository(private val context: Context) : RepositoryInterface {
     }
 
     override fun saveTokenInShared(token: String) {
+        SharedPreferencesUtils.initPreferencesUtil(context)
         SharedPreferencesUtils.token = token
     }
 
@@ -221,5 +222,14 @@ class Repository(private val context: Context) : RepositoryInterface {
         SharedPreferencesUtils.expirationDate = expirationDate
     }
 
+    override fun getTokenFromShared(): String? {
+        SharedPreferencesUtils.initPreferencesUtil(context)
+        return SharedPreferencesUtils.token
+    }
+
+    override fun getExpirationDateFromShared(): String? {
+        SharedPreferencesUtils.initPreferencesUtil(context)
+        return SharedPreferencesUtils.expirationDate
+    }
 
 }
