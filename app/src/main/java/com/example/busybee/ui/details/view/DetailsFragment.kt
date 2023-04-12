@@ -52,10 +52,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
 
             when (personalTodo?.status) {
                 0 -> {
-                    binding.btnMove.text = "Move to in progress"
+                    binding.btnMove.text = getString(R.string.move_to_in_progress)
                 }
                 1 -> {
-                    binding.btnMove.text = "Move to done"
+                    binding.btnMove.text = getString(R.string.move_to_done)
                 }
                 2 -> {
                     binding.btnMove.visibility = View.GONE
