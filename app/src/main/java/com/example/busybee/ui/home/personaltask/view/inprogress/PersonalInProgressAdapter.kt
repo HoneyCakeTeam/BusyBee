@@ -8,8 +8,9 @@ import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.ItemTaskBinding
 import com.example.busybee.utils.DateTimeUtils
 
-class PersonalInProgressAdapter(private var personalToDoList: List<PersonalTodo>,
-                                private val listener: PersonalInProgressFragment
+class PersonalInProgressAdapter(
+    private var personalToDoList: List<PersonalTodo>,
+    private val listener: PersonalInProgressTaskInteractionListener
 ) :
     BaseAdapter<PersonalTodo, ItemTaskBinding>(personalToDoList) {
 
@@ -31,12 +32,13 @@ class PersonalInProgressAdapter(private var personalToDoList: List<PersonalTodo>
             textTaskDate.text = formattedDate
             textUserName.visibility = View.GONE
             taskCard.setOnClickListener {
-                listener.onTasKClicked(1,currentItem)
+                listener.onTasKClicked(1, currentItem)
             }
         }
 
     }
-    interface TaskInteractionListener{
-        fun onTasKClicked(flag :Int, personalToDo: PersonalTodo)
+
+    interface PersonalInProgressTaskInteractionListener {
+        fun onTasKClicked(flag: Int, personalToDo: PersonalTodo)
     }
 }

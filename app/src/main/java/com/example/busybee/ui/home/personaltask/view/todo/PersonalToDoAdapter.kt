@@ -10,7 +10,7 @@ import com.example.busybee.utils.DateTimeUtils
 
 class PersonalToDoAdapter(
     personalToDoList: List<PersonalTodo>,
-    private val listener: TaskInteractionListener
+    private val listener: PersonalToDoTaskInteractionListener
 ) :
     BaseAdapter<PersonalTodo, ItemTaskBinding>(personalToDoList) {
 
@@ -37,7 +37,7 @@ class PersonalToDoAdapter(
         }
     }
 
-    interface TaskInteractionListener {
+    interface PersonalToDoTaskInteractionListener {
         fun onTasKClicked(flag: Int, personalToDo: PersonalTodo)
     }
 }

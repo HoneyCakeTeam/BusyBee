@@ -16,8 +16,9 @@ import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInter
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),PersonalToDoViewInterface,
-    PersonalToDoAdapter.TaskInteractionListener {
+class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
+    PersonalToDoViewInterface,
+    PersonalToDoAdapter.PersonalToDoTaskInteractionListener {
     private lateinit var adapter: PersonalToDoAdapter
     private lateinit var done: PersonalTodos
 
@@ -25,6 +26,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
     private val presenter: PersonalPresenterInterface by lazy {
         PersonalPresenter(Repository(requireContext()))
     }
+
     override fun getViewBinding(): FragmentPersonalToDoBinding {
         return FragmentPersonalToDoBinding.inflate(layoutInflater)
     }
@@ -32,10 +34,10 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
     override fun setUp() {
         getDons()
         addCallBacks()
-        adapter = PersonalToDoAdapter(done.values,this)
+        adapter = PersonalToDoAdapter(done.values, this)
         binding.recyclerToDo.adapter = adapter
-        binding.headerToDo.textTodoStatus.text="ToDo"
-        binding.headerToDo.taskCount.text="${done.values.size} Tasks"
+        binding.headerToDo.textTodoStatus.text = "ToDo"
+        binding.headerToDo.taskCount.text = "${done.values.size} Tasks"
     }
 
     private fun addCallBacks() {
@@ -45,7 +47,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
     }
 
     private fun showBottomSheet() {
-         val binding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
+        val binding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
         binding.inputLayoutAssignee.visibility = View.GONE
         val bottomSheet = BottomSheetDialog(
             requireContext(),
@@ -79,7 +81,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
 
     override fun onSuccessResponse(response: PersonalCreateToDoResponse) {
         activity?.runOnUiThread {
-           // _binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+            // _binding.lottieCreatedSuccessfully.visibility = View.VISIBLE
         }
     }
 
@@ -104,7 +106,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),Perso
     }
 
     override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
-        val detailsFragment = DetailsFragment.newInstance(flag, null , personalToDo)
+        val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
         replaceFragment(detailsFragment)
     }
 }

@@ -6,11 +6,10 @@ import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
 import com.example.busybee.domain.models.PersonalTodos
 import com.example.busybee.ui.details.view.DetailsFragment
-import com.example.busybee.ui.home.personaltask.view.todo.PersonalToDoAdapter
 import com.example.busybee.utils.replaceFragment
 
 class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBinding>(),
-    PersonalToDoAdapter.TaskInteractionListener {
+    PersonalInProgressAdapter.PersonalInProgressTaskInteractionListener {
     private lateinit var adapter: PersonalInProgressAdapter
     private lateinit var done: PersonalTodos
     override val TAG = this::class.java.simpleName.toString()
@@ -21,10 +20,10 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
 
     override fun setUp() {
         getDons()
-        adapter = PersonalInProgressAdapter(done.values,this)
+        adapter = PersonalInProgressAdapter(done.values, this)
         binding.recyclerInProgress.adapter = adapter
-        binding.headerInProgress.textTodoStatus.text="InProgress"
-        binding.headerInProgress.taskCount.text="${done.values.size} Tasks"
+        binding.headerInProgress.textTodoStatus.text = "InProgress"
+        binding.headerInProgress.taskCount.text = "${done.values.size} Tasks"
 
     }
 
@@ -45,7 +44,7 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
     }
 
     override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
-        val detailsFragment = DetailsFragment.newInstance(flag, null , personalToDo)
+        val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
         replaceFragment(detailsFragment)
     }
 
