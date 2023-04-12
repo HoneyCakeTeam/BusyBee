@@ -99,6 +99,15 @@
         <item name="android:fontFamily">@font/notosans_semibold</item>
     </style>
 
+    <style name="TextMemberTaskStyle">
+        <item name="android:textColor">@color/black_87</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="TextMemberTaskStyle.TextNameTaskStyle">
+        <item name="android:textSize">@dimen/text_giant</item>
+    </style>
 
     <style name="TextStyle">
         <item name="android:textColor">@color/black_38</item>
@@ -119,7 +128,7 @@
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:gravity">center</item>
     </style>
-    
+
     <style name="SettingsPrecentageTextStyle">
         <item name="android:textColor">@color/black_87</item>
         <item name="android:fontFamily">@font/notosans_semibold</item>
