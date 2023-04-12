@@ -1,6 +1,7 @@
 package com.example.busybee.ui.details.view
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -43,6 +44,13 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             teamTodo = getTask().third
             binding.textTaskName.text = teamTodo?.title
             updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!! + 1)
+            if (teamTodo?.status == 0)
+                binding.btnMove.text = "Move to in progress"
+
+            if (teamTodo?.status == 1)
+                binding.btnMove.text = "Move to done"
+
+            else binding.btnMove.visibility = View.GONE
         }
 
     }
