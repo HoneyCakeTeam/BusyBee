@@ -29,20 +29,20 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     override fun setUp() {
+       checkFlagFromHome()
+    }
+
+    private fun checkFlagFromHome(){
         flag = getTask().first
         if(flag == 1){
             personalTodo = getTask().second
             binding.textTaskName.text = personalTodo?.title
-            Toast.makeText(
-                requireContext(), "personal", Toast.LENGTH_SHORT
-            ).show()
+           updateTasksPersonalStatus(personalTodo?.id!!, personalTodo?.status!!)
         }
         if(flag == 0){
             teamTodo = getTask().third
             binding.textTaskName.text = teamTodo?.title
-            Toast.makeText(
-                requireContext(), "team", Toast.LENGTH_SHORT
-            ).show()
+           updateTasksTeamStatus(teamTodo?.id!!, teamTodo?.status!!)
         }
 
     }
