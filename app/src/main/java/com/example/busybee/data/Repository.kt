@@ -11,7 +11,6 @@ import com.example.busybee.utils.Constant
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.google.gson.reflect.TypeToken
 import okhttp3.FormBody
-import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -174,23 +173,21 @@ class Repository(private val context: Context) : RepositoryInterface {
 
     }
 
-
     override fun <T> updateTasksPersonalStatus(
         idTask: String,
         status: Int,
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     ) {
-        val httpUrl = HttpUrl.Builder()
-            .scheme("https")
-            .host("team-todo-62dmq.ondigitalocean.app")
-            .addPathSegment(Constant.PERSONAL_TODO_URL)
-            .addQueryParameter("id", idTask)
-            .addQueryParameter("status", status.toString())
+
+        val formBody = FormBody.Builder()
+            .add("id", idTask)
+            .add("status", status.toString())
             .build()
 
         val request = Request.Builder()
-            .url(httpUrl)
+            .url(Constant.PERSONAL_TODO_URL)
+            .put(formBody)
             .build()
 
         val responseType = object : TypeToken<PersonalUpdateStatusResponse>() {}.type
@@ -212,16 +209,15 @@ class Repository(private val context: Context) : RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     ) {
 
-        val httpUrl = HttpUrl.Builder()
-            .scheme("https")
-            .host("team-todo-62dmq.ondigitalocean.app")
-            .addPathSegment(Constant.TEAM_TODO_URL)
-            .addQueryParameter("id", idTask)
-            .addQueryParameter("status", status.toString())
+
+        val formBody = FormBody.Builder()
+            .add("id", idTask)
+            .add("status", status.toString())
             .build()
 
         val request = Request.Builder()
-            .url(httpUrl)
+            .url(Constant.TEAM_TODO_URL)
+            .put(formBody)
             .build()
 
         val responseType = object : TypeToken<TeamUpdateStatusResponse>() {}.type

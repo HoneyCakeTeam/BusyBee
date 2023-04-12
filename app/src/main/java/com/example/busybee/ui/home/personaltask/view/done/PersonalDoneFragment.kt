@@ -2,11 +2,15 @@ package com.example.busybee.ui.home.personaltask.view.done
 
 import android.os.Bundle
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.FragmentDonePersonalBinding
 import com.example.busybee.domain.models.PersonalTodos
+import com.example.busybee.ui.details.view.DetailsFragment
+import com.example.busybee.utils.replaceFragment
 
-class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>() {
-    private lateinit var adapter: DoneAdapter
+class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>(),
+    PersonalDoneAdapter.PersonalDoneTaskInteractionListener {
+    private lateinit var adapter: PersonalDoneAdapter
     private lateinit var done: PersonalTodos
 
     override val TAG = this::class.java.simpleName.toString()
@@ -17,10 +21,10 @@ class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>() {
 
     override fun setUp() {
         getDons()
-        adapter = DoneAdapter(done.values)
+        adapter = PersonalDoneAdapter(done.values, this)
         binding.recyclerDone.adapter = adapter
-        binding.headerDone.textTodoStatus.text="Done"
-        binding.headerDone.taskCount.text="${done.values.size} Tasks"
+        binding.headerDone.textTodoStatus.text = "Done"
+        binding.headerDone.taskCount.text = "${done.values.size} Tasks"
 
     }
 
@@ -38,6 +42,11 @@ class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>() {
                     putParcelable(PERSONAL_DONE_LIST, tasks)
                 }
             }
+    }
+
+    override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
+        val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
+        replaceFragment(detailsFragment)
     }
 
 }

@@ -77,6 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_tiny"
+        android:layout_marginBottom="@dimen/spacing_large"
         android:hint="@string/content"
         app:layout_constraintBottom_toTopOf="@id/button_createTask"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,12 +100,12 @@
         style="@style/ButtonSignUpStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_giant"
+        android:layout_marginVertical="@dimen/spacing_giant"
         android:hint="@string/create_task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_layout_content" />
+        />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_created_successfully"
@@ -113,22 +114,22 @@
         android:layout_gravity="center"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/text_created_successfully"
+        app:layout_constraintTop_toBottomOf="@id/button_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_createTask"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/create_successfuliy" />
 
     <TextView
         android:id="@+id/text_created_successfully"
-        style="@style/BottomSheetHeader"
+        style="@style/HeaderTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="@dimen/spacing_large"
         android:text="@string/task_created_successfully"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_createTask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lottie_created_successfully" />
