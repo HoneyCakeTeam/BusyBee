@@ -28,6 +28,8 @@
     <string name="hello_honey">Hello Honey</string>
     <string name="tasks">%d Tasks</string>
     <string name="total_tasks">Total tasks</string>
+    <string name="todos_percentage">%d%%</string>
+    <string name="settings">Settings</string>
     <string name="dialog_title">Do you want Exit ?</string>
     <string name="confirm">confirm</string>
     <string name="exit">exit</string>

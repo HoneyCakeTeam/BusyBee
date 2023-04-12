@@ -7,16 +7,38 @@
     android:background="@color/white_300"
     android:orientation="vertical">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ic_left_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/ic_left_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/ic_left_arrow"
+        android:layout_marginStart="@dimen/spacing_medium"
+        app:layout_constraintStart_toEndOf="@id/ic_left_arrow"
+        android:text="@string/settings"
+        style="@style/SettingsTextStyle"
+        />
+
     <View
         android:id="@+id/view_chart_shape"
         android:layout_width="match_parent"
         android:layout_height="186dp"
         android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_giant"
         android:background="@drawable/shape_settings_chart"
+        app:layout_constraintTop_toBottomOf="@id/ic_left_arrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+         app:layout_constraintBottom_toTopOf="@id/view_theme_settings"/>
 
     <org.eazegraph.lib.charts.PieChart
         android:id="@+id/piechart"
