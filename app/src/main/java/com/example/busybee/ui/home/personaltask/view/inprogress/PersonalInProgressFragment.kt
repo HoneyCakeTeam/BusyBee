@@ -1,6 +1,7 @@
 package com.example.busybee.ui.home.personaltask.view.inprogress
 
 import android.os.Bundle
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
@@ -11,7 +12,7 @@ import com.example.busybee.utils.replaceFragment
 class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBinding>(),
     PersonalInProgressAdapter.PersonalInProgressTaskInteractionListener {
     private lateinit var adapter: PersonalInProgressAdapter
-    private lateinit var done: PersonalTodos
+    private lateinit var inProgress: PersonalTodos
     override val TAG = this::class.java.simpleName.toString()
 
     override fun getViewBinding(): FragmentPersonalInProgressBinding {
@@ -20,16 +21,16 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
 
     override fun setUp() {
         getDons()
-        adapter = PersonalInProgressAdapter(done.values, this)
+        adapter = PersonalInProgressAdapter(inProgress.values, this)
         binding.recyclerInProgress.adapter = adapter
-        binding.headerInProgress.textTodoStatus.text = "InProgress"
-        binding.headerInProgress.taskCount.text = "${done.values.size} Tasks"
-
+        binding.headerInProgress.textTodoStatus.text = getString(R.string.in_progress)
+        binding.headerInProgress.taskCount.text = getString( R.string.tasks , inProgress.values.size )
+        binding.headerInProgress.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress)
     }
 
     private fun getDons() {
         arguments?.let {
-            done = it.getParcelable(PERSONAL_IN_PROGRESS_LIST)!!
+            inProgress = it.getParcelable(PERSONAL_IN_PROGRESS_LIST)!!
         }
     }
 

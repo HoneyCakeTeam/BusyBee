@@ -1,31 +1,32 @@
 package com.example.busybee.ui.home.personaltask.view.done
 
 import android.os.Bundle
+import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.PersonalTodo
-import com.example.busybee.databinding.FragmentDonePersonalBinding
+import com.example.busybee.databinding.FragmentPersonalDoneBinding
 import com.example.busybee.domain.models.PersonalTodos
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.utils.replaceFragment
 
-class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>(),
+class PersonalDoneFragment : BaseFragment<FragmentPersonalDoneBinding>(),
     PersonalDoneAdapter.PersonalDoneTaskInteractionListener {
     private lateinit var adapter: PersonalDoneAdapter
     private lateinit var done: PersonalTodos
 
     override val TAG = this::class.java.simpleName.toString()
 
-    override fun getViewBinding(): FragmentDonePersonalBinding {
-        return FragmentDonePersonalBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentPersonalDoneBinding {
+        return FragmentPersonalDoneBinding.inflate(layoutInflater)
     }
 
     override fun setUp() {
         getDons()
         adapter = PersonalDoneAdapter(done.values, this)
         binding.recyclerDone.adapter = adapter
-        binding.headerDone.textTodoStatus.text = "Done"
-        binding.headerDone.taskCount.text = "${done.values.size} Tasks"
-
+        binding.headerDone.textTodoStatus.text = getString(R.string.done)
+        binding.headerDone.taskCount.text = getString( R.string.tasks , done.values.size )
+        binding.headerDone.textTodoStatus.setBackgroundResource(R.drawable.shape_done)
     }
 
     private fun getDons() {

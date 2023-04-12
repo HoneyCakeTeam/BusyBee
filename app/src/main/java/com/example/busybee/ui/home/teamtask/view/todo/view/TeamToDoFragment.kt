@@ -39,8 +39,9 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         adapter = TeamToDoAdapter(todos.values, this)
 
         binding.recyclerToDo.adapter = adapter
-        binding.taskHeader.textTodoStatus.text = "ToDo"
-        binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
+        binding.taskHeader.textTodoStatus.text = getString(R.string.to_do)
+        binding.taskHeader.taskCount.text = getString( R.string.tasks , todos.values.size )
+        binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
     }
 
     private fun addCallBacks() {
