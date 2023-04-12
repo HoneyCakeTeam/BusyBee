@@ -41,5 +41,9 @@
     <string name="accountCreatedSuccessfully">account created successfully</string>
     <string name="registerFailureMessage">Opps something went wrong</string>
     <string name="passwordIsNotTheSame">password is not the same as above</string>
+    <string name="move_to_inprogress">Move to in progress</string>
+    <string name="move_to_done">Move to done</string>
+    <string name="ok">OK</string>
+
 
 </resources>

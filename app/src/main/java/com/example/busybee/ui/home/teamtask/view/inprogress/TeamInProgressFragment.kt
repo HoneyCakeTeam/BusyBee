@@ -2,10 +2,15 @@ package com.example.busybee.ui.home.teamtask.view.inprogress
 
 import android.os.Bundle
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.FragmentTeamInProgressBinding
 import com.example.busybee.domain.models.TeamTodos
+import com.example.busybee.ui.details.view.DetailsFragment
+import com.example.busybee.utils.replaceFragment
 
-class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>() {
+class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
+    TeamInProgressAdapter.TeamInProgressTaskInteractionListener
+{
     private lateinit var adapter: TeamInProgressAdapter
     override val TAG = this::class.java.simpleName.toString()
     private lateinit var inProgress: TeamTodos
@@ -16,7 +21,7 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>() {
 
     override fun setUp() {
         getInProgress()
-        adapter = TeamInProgressAdapter(inProgress.values)
+        adapter = TeamInProgressAdapter(inProgress.values,this)
         binding.recyclerInProgress.adapter = adapter
         binding.taskHeader.textTodoStatus.text="InProgress"
         binding.taskHeader.taskCount.text="${inProgress.values.size} Tasks"
@@ -35,5 +40,10 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>() {
                     putParcelable(TEAM_IN_PROGRESS_LIST, tasks)
                 }
             }
+    }
+
+    override fun onTasKClicked(flag: Int, teamTodo: TeamToDo) {
+        val detailsFragment = DetailsFragment.newInstance(flag, teamTodo , null)
+        replaceFragment(detailsFragment)
     }
 }

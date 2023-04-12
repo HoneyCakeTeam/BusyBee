@@ -56,4 +56,7 @@ interface RepositoryInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
+
+    fun getTokenFromShared(): String?
+    fun getExpirationDateFromShared():String?
 }
