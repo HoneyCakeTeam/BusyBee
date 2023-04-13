@@ -15,6 +15,12 @@ data class PersonalCreateToDoResponse(
     val isSuccess: Boolean = true
 )
 
+data class BasePersonalResponse<T>(
+    val value: T,
+    val message: String? = null,
+    val isSuccess: Boolean = true,
+)
+
 data class PersonalToDoListResponse(
     val value: List<PersonalTodo>,
     val message: String? = null,
