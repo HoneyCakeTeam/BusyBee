@@ -5,20 +5,20 @@ import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.PersonalTodo
-import com.example.busybee.databinding.FragmentDonePersonalBinding
+import com.example.busybee.databinding.FragmentPersonalDoneBinding
 import com.example.busybee.domain.models.PersonalTodos
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.utils.replaceFragment
 
-class PersonalDoneFragment : BaseFragment<FragmentDonePersonalBinding>(),
+class PersonalDoneFragment : BaseFragment<FragmentPersonalDoneBinding>(),
     PersonalDoneAdapter.PersonalDoneTaskInteractionListener {
     private lateinit var adapter: PersonalDoneAdapter
     private lateinit var done: PersonalTodos
 
     override val TAG = this::class.java.simpleName.toString()
 
-    override fun getViewBinding(): FragmentDonePersonalBinding {
-        return FragmentDonePersonalBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentPersonalDoneBinding {
+        return FragmentPersonalDoneBinding.inflate(layoutInflater)
     }
 
     override fun setUp() {
