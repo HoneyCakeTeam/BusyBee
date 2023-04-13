@@ -2,7 +2,6 @@ package com.example.busybee.ui.home.teamtask.view.todo.view
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -17,6 +16,7 @@ import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresente
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
+
 
 class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewInterface,
     TeamToDoAdapter.TeamToDoTaskInteractionListener {
@@ -39,11 +39,9 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         adapter = TeamToDoAdapter(todos.values, this)
 
         binding.recyclerToDo.adapter = adapter
-        binding.taskHeader.textTodoStatus.apply {
-            text = "ToDo"
-            background= ContextCompat.getDrawable(requireContext(), R.drawable.shape_done)
-        }
-        binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
+        binding.taskHeader.textTodoStatus.text = getString(R.string.to_do)
+        binding.taskHeader.taskCount.text = getString( R.string.tasks , todos.values.size )
+        binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
     }
 
     private fun addCallBacks() {
@@ -55,7 +53,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
     private fun showBottomSheet() {
         bottomSheet = BottomSheetDialog(
             requireContext(),
-           com.google.android.material.R.style.Theme_Design_BottomSheetDialog
+            com.google.android.material.R.style.Theme_Design_BottomSheetDialog
         )
         sheetCreateTaskBinding = BottomSheetCreateTaskBinding.inflate(layoutInflater)
 
