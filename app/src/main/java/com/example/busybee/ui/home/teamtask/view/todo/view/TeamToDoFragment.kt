@@ -18,7 +18,6 @@ import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 
-
 class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewInterface,
     TeamToDoAdapter.TeamToDoTaskInteractionListener {
     private lateinit var adapter: TeamToDoAdapter
