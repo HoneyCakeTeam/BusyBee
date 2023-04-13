@@ -38,8 +38,8 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         addCallBacks()
         adapter = PersonalToDoAdapter(todos.values, this)
         binding.recyclerToDo.adapter = adapter
-        binding.headerToDo.textTodoStatus.text="ToDo"
-        binding.headerToDo.taskCount.text="${todos.values.size} Tasks"
+        binding.headerToDo.textTodoStatus.text = getString(R.string.to_do)
+        binding.headerToDo.taskCount.text = getString(todos.values.size, R.string.tasks)
     }
 
     private fun addCallBacks() {
@@ -79,7 +79,8 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
 
 
     override fun personalCreateToDo(title: String, description: String) {
-        presenter.personalCreateToDo(title, description,
+        presenter.personalCreateToDo(
+            title, description,
             ::onSuccessResponse, ::onFailureResponse
         )
     }
@@ -96,7 +97,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         val newTask = response.value
         todos.values = todos.values.toMutableList().apply { add(newTask!!) }
         adapter.setItems(todos.values)
-        binding.headerToDo.taskCount.text = getString( R.string.tasks , todos.values.size )
+        binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.values.size)
         binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
     }
 
