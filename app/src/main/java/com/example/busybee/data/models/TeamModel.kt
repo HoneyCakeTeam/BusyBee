@@ -21,6 +21,11 @@ data class TeamToDoListResponse(
     val message: String?,
     val isSuccess: Boolean
 )
+data class BaseTeamResponse<T>(
+    val value: T ,
+    val message: String?,
+    val isSuccess: Boolean,
+)
 
 @Parcelize
 data class TeamToDo(
