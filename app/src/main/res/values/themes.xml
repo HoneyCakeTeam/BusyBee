@@ -253,6 +253,24 @@
         <item name="android:background">@drawable/shape_task_count</item>
         <item name="android:textColor">@color/black_60</item>
     </style>
+    <style name="BackgroundCustomShapeSetting">
+        <item name="android:background">@drawable/shape_settings_chart</item>
+    </style>
+    <style name="BackgroundCustomShapePieChart">
+        <item name="egInnerPaddingColor">@color/white_100</item>
+        <item name="egInnerPadding">87</item>
+        <item name="egHighlightStrength">1</item>
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+    </style>
+    <style name="BackgroundCustomShapeViewSetting">
+        <item name="android:background">@drawable/shape_settings_theme</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+        <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
+    </style>
+    <style name="BackgroundCustomShapeViewSettingLogout">
+        <item name="android:background">@drawable/shape_settings_logout</item>
+        <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
+    </style>
     <style name="TextDateTaskStyle"></style>
 
 </resources>

@@ -231,14 +231,15 @@
     </style>
 
     <style name="SettingsPrecentageTextStyle">
-        <item name="android:textColor">@color/black_87</item>
+        <item name="android:textColor">@color/white_300</item>
         <item name="android:fontFamily">@font/notosans_semibold</item>
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:drawablePadding">@dimen/spacing_tiny</item>
     </style>
 
+
     <style name="SettingsStatusTextStyle">
-        <item name="android:textColor">@color/black_87</item>
+        <item name="android:textColor">@color/white_500</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textSize">@dimen/text_small</item>
     </style>
@@ -259,7 +260,7 @@
     </style>
 
     <style name="SettingsTextStyle">
-        <item name="android:textColor">@color/black_87</item>
+        <item name="android:textColor">@color/white_300</item>
         <item name="android:fontFamily">@font/notosans_semibold</item>
         <item name="android:textSize">@dimen/text_medium</item>
     </style>
@@ -283,6 +284,25 @@
         <item name="android:background">@drawable/dark_shape_task_count</item>
         <item name="android:textColor">@color/white_500</item>
     </style>
+    <style name="BackgroundCustomShapeSetting">
+        <item name="android:background">@drawable/dark_shape_settings_chart</item>
+    </style>
+    <style name="BackgroundCustomShapePieChart">
+        <item name="egInnerPaddingColor">@color/black_100</item>
+        <item name="egInnerPadding">87</item>
+        <item name="egHighlightStrength">1</item>
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+    </style>
+    <style name="BackgroundCustomShapeViewSetting">
+        <item name="android:background">@drawable/dark_shape_settings_theme</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+        <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
+    </style>
+    <style name="BackgroundCustomShapeViewSettingLogout">
+        <item name="android:background">@drawable/dark_shape_settings_logout</item>
+        <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
+    </style>
+
     <style name="TextDateTaskStyle"></style>
 
 </resources>
