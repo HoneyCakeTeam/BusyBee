@@ -5,7 +5,7 @@ import com.example.busybee.domain.models.TeamTodos
 import kotlinx.parcelize.Parcelize
 
 data class BaseTeamResponse<T>(
-    val value: T ,
+    val value: T,
     val message: String?,
     val isSuccess: Boolean,
 )
@@ -24,6 +24,7 @@ data class TeamUpdateStatusRequest(
     val id: String,
     val status: Int,
 )
+
 fun BaseTeamResponse<List<TeamToDo>>.asDomainModel(): TeamTodos {
     return TeamTodos(
         values = this.value.map {
