@@ -150,7 +150,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
-        android:background="@drawable/ic_theme"
+        android:src="@drawable/ic_theme"
         app:layout_constraintBottom_toBottomOf="@+id/view_theme_settings"
         app:layout_constraintStart_toStartOf="@id/view_theme_settings"
         app:layout_constraintTop_toTopOf="@id/view_theme_settings" />
@@ -193,7 +193,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
-        android:background="@drawable/ic_logout"
+        android:src="@drawable/ic_logout"
         app:layout_constraintBottom_toBottomOf="@id/view_logout_settings"
         app:layout_constraintStart_toStartOf="@id/view_logout_settings"
         app:layout_constraintTop_toTopOf="@id/view_logout_settings" />

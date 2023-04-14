@@ -61,6 +61,7 @@
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textAllCaps">false</item>
         <item name="backgroundTint">@color/primary_500</item>
+        <item name="android:textColor">@color/white_100</item>
         <item name="android:background">@drawable/background_signup_button</item>
         <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
         <item name="android:layout_marginStart">@dimen/spacing_medium</item>
@@ -79,7 +80,7 @@
     <style name="TextViewHelloStyle">
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textColor">@color/black_87</item>
-        <item name="android:textSize">@dimen/text_giant</item>
+        <item name="android:textSize">@dimen/text_giant24</item>
         <item name="android:layout_marginTop">@dimen/spacing_medium</item>
     </style>
 
@@ -198,7 +199,7 @@
     </style>
 
     <style name="HeaderTextStyle">
-        <item name="android:textColor">@color/black_87</item>
+        <item name="android:textColor">@color/black_78</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:gravity">center</item>
