@@ -43,7 +43,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         adapter = PersonalToDoAdapter(todos.values, this)
         binding.recyclerToDo.adapter = adapter
         binding.headerToDo.textTodoStatus.text = getString(R.string.to_do)
-        binding.headerToDo.taskCount.text = getString(todos.values.size, R.string.tasks)
+        binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.values.size)
     }
 
     private fun addCallBacks() {
