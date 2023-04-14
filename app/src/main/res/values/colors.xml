@@ -82,6 +82,7 @@
     <color name="theme_dark_inverseSurface">#E6E1E5</color>
     <color name="theme_dark_inverseOnSurface">#313033</color>
     <color name="theme_dark_outlineVariant">#49454F</color>
+    <color name="theme_dark_shape">#333333</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/primary_200
     </color>
