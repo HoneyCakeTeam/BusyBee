@@ -69,6 +69,7 @@
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:gravity">center</item>
     </style>
+
     <style name="BottomSheet_Button">
         <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
         <item name="android:layout_marginTop">@dimen/spacing_small</item>
@@ -103,6 +104,7 @@
         <item name="android:padding">@dimen/spacing_simi_medium</item>
         <item name="android:background">@drawable/dark_shape_user</item>
     </style>
+
     <style name="TextDetailsTaskStyle">
         <item name="android:textColor">@color/white_300</item>
         <item name="android:fontFamily">@font/notosans_regular</item>
@@ -113,6 +115,7 @@
         <item name="android:padding">@dimen/spacing_medium</item>
         <item name="android:background">@drawable/dark_shape_user</item>
     </style>
+
     <style name="ButtomDetailsTaskStyle">
         <item name="android:textColor">@color/white_100</item>
         <item name="android:fontFamily">@font/notosans_semibold</item>
@@ -126,6 +129,57 @@
         <item name="iconTint">@color/white_300</item>
         <item name="backgroundTint">@null</item>
     </style>
+
+    <style name="TextTaskNameStyle">
+        <item name="android:textColor">@color/white_300</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextTaskUserNameStyle">
+        <item name="android:textColor">@color/white_500</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:drawablePadding">@dimen/spacing_tiny</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="drawableStartCompat">@drawable/ic_todo_assignee</item>
+        <item name="drawableTint">@color/primary_300</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="TextTimeTaskStyle">
+        <item name="android:textColor">@color/white_500</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textSize">@dimen/text_tiny</item>
+        <item name="android:drawablePadding">@dimen/spacing_tiny</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="drawableStartCompat">@drawable/ic_todo_time</item>
+        <item name="drawableTint">@color/primary_300</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextDateTaskStyle.TextTimeTaskStyle">
+        <item name="android:textColor">@color/white_500</item>
+        <item name="drawableTint">@color/primary_300</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+        <item name="drawableStartCompat">@drawable/ic_todo_date</item>
+    </style>
+
+    <style name="TextDescriptionTaskStyle">
+        <item name="android:textColor">@color/white_300</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_large</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
     <style name="TabLayoutStyle">
         <item name="tabIndicatorColor">@null</item>
         <item name="tabTextColor">@color/white_300</item>
@@ -141,6 +195,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">@font/notosans_semibold</item>
     </style>
+
     <style name="ButtonSignUpStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -168,6 +223,7 @@
         <item name="android:textSize">@dimen/text_giant</item>
         <item name="android:layout_marginTop">@dimen/spacing_medium</item>
     </style>
+
     <style name="DarkTextStyle">
         <item name="android:textColor">@color/white_300</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
@@ -207,13 +263,26 @@
         <item name="android:fontFamily">@font/notosans_semibold</item>
         <item name="android:textSize">@dimen/text_medium</item>
     </style>
+
     <style name="BackgroundCustomSheet">
         <item name="android:background">@drawable/dark_shape_bottomsheet</item>
     </style>
+
     <style name="BackgroundCustomShapeDetails">
         <item name="android:background">@drawable/dark_shape_user</item>
     </style>
+
     <style name="BackgroundCustomShapeHome">
         <item name="android:background">@drawable/dark_background_tap</item>
     </style>
+
+    <style name="BackgroundCustomShapeRecycler">
+        <item name="android:background">@color/theme_dark_shape</item>
+    </style>
+    <style name="BackgroundCustomShapeTaskCount">
+        <item name="android:background">@drawable/dark_shape_task_count</item>
+        <item name="android:textColor">@color/white_500</item>
+    </style>
+    <style name="TextDateTaskStyle"></style>
+
 </resources>

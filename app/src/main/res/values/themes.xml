@@ -112,6 +112,7 @@
         <item name="android:padding">@dimen/spacing_simi_medium</item>
         <item name="android:background">@drawable/shape_user</item>
     </style>
+
     <style name="TextDetailsTaskStyle">
         <item name="android:textColor">@color/black_78</item>
         <item name="android:fontFamily">@font/notosans_regular</item>
@@ -122,6 +123,7 @@
         <item name="android:padding">@dimen/spacing_medium</item>
         <item name="android:background">@drawable/shape_user</item>
     </style>
+
     <style name="ButtomDetailsTaskStyle">
         <item name="android:textColor">@color/white_100</item>
         <item name="android:fontFamily">@font/notosans_semibold</item>
@@ -133,6 +135,56 @@
         <item name="android:padding">@dimen/spacing_small</item>
         <item name="iconTint">@color/white_100</item>
         <item name="android:background">@drawable/shape_button</item>
+    </style>
+
+    <style name="TextTaskNameStyle">
+        <item name="android:textColor">@color/black_60</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextTaskUserNameStyle">
+        <item name="android:textColor">@color/black_60</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:drawablePadding">@dimen/spacing_tiny</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="drawableStartCompat">@drawable/ic_todo_assignee</item>
+        <item name="drawableTint">@color/black_60</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="TextTimeTaskStyle">
+        <item name="android:textColor">@color/black_38</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textSize">@dimen/text_tiny</item>
+        <item name="android:drawablePadding">@dimen/spacing_tiny</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="drawableStartCompat">@drawable/ic_todo_time</item>
+        <item name="drawableTint">@color/black_60</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextDateTaskStyle.TextTimeTaskStyle">
+        <item name="android:textColor">@color/black_38</item>
+        <item name="drawableTint">@color/black_60</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+        <item name="drawableStartCompat">@drawable/ic_todo_date</item>
+    </style>
+
+    <style name="TextDescriptionTaskStyle">
+        <item name="android:textColor">@color/black_60</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_large</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="TextMemberTaskStyle.TextNameTaskStyle">
@@ -181,13 +233,26 @@
     <style name="alertDialogCustomStyle">
         <item name="android:background">@color/white_100</item>
     </style>
+
     <style name="BackgroundCustomSheet">
         <item name="android:background">@drawable/shape_bottomsheet</item>
     </style>
+
     <style name="BackgroundCustomShapeDetails">
         <item name="android:background">@drawable/shape_user</item>
     </style>
+
     <style name="BackgroundCustomShapeHome">
         <item name="android:background">@drawable/background_tap</item>
     </style>
+
+    <style name="BackgroundCustomShapeRecycler">
+        <item name="android:background">@color/white_100</item>
+    </style>
+    <style name="BackgroundCustomShapeTaskCount">
+        <item name="android:background">@drawable/shape_task_count</item>
+        <item name="android:textColor">@color/black_60</item>
+    </style>
+    <style name="TextDateTaskStyle"></style>
+
 </resources>

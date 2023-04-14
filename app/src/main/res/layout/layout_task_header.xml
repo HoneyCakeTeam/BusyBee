@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/spacing_tiny"
-    android:paddingBottom="@dimen/spacing_tiny"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:paddingBottom="@dimen/spacing_tiny">
 
     <TextView
         android:id="@+id/text_todo_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape_todo"
+        android:fontFamily="@font/notosans_medium"
         android:paddingHorizontal="@dimen/spacing_simi_medium"
         android:paddingVertical="@dimen/spacing_tiny"
-        android:background="@drawable/shape_todo"
-        tools:text="@string/to_do"
-        android:fontFamily="@font/notosans_medium"
         android:textColor="@color/white_200"
         android:textSize="@dimen/text_small"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/to_do" />
 
     <TextView
         android:id="@+id/task_count"
+        style="@style/BackgroundCustomShapeTaskCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosans_medium"
         android:paddingHorizontal="@dimen/spacing_simi_medium"
         android:paddingVertical="@dimen/spacing_tiny"
-        android:background="@drawable/shape_task_count"
-        tools:text="@string/_6_tasks"
-        android:textColor="@color/black_60"
-        android:fontFamily="@font/notosans_medium"
         android:textSize="@dimen/text_small"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/_6_tasks" />
 </androidx.constraintlayout.widget.ConstraintLayout>
