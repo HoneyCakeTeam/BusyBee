@@ -5,7 +5,7 @@ import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
-import com.example.busybee.data.models.PersonalCreateToDoResponse
+import com.example.busybee.data.models.BasePersonalResponse
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
@@ -85,7 +85,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         )
     }
 
-    override fun onSuccessResponse(response: PersonalCreateToDoResponse) {
+    override fun onSuccessResponse(response: BasePersonalResponse<PersonalTodo>) {
         activity?.runOnUiThread {
             setListAndUpdateUi(response)
             hideFieldsAndShowDone()
@@ -93,7 +93,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         }
     }
 
-    private fun setListAndUpdateUi(response: PersonalCreateToDoResponse) {
+    private fun setListAndUpdateUi(response: BasePersonalResponse<PersonalTodo>) {
         val newTask = response.value
         todos.values = todos.values.toMutableList().apply { add(newTask!!) }
         adapter.setItems(todos.values)
