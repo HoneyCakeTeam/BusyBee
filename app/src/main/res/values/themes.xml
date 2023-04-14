@@ -187,4 +187,7 @@
     <style name="BackgroundCustomShapeDetails">
         <item name="android:background">@drawable/shape_user</item>
     </style>
+    <style name="BackgroundCustomShapeHome">
+        <item name="android:background">@drawable/background_tap</item>
+    </style>
 </resources>
