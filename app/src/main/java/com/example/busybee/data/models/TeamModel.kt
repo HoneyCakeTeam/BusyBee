@@ -4,23 +4,6 @@ import android.os.Parcelable
 import com.example.busybee.domain.models.TeamTodos
 import kotlinx.parcelize.Parcelize
 
-data class TeamCreateToDoRequest(
-    val title: TeamToDo,
-    val description: String?,
-    val assignee: String
-)
-
-data class TeamCreateToDoResponse(
-    val value: TeamToDo,
-    val message: String?,
-    val isSuccess: Boolean
-)
-
-data class TeamToDoListResponse(
-    val value: List<TeamToDo>,
-    val message: String?,
-    val isSuccess: Boolean
-)
 data class BaseTeamResponse<T>(
     val value: T ,
     val message: String?,
@@ -39,16 +22,15 @@ data class TeamToDo(
 
 data class TeamUpdateStatusRequest(
     val id: String,
-    val status: Int
+    val status: Int,
 )
 
 data class TeamUpdateStatusResponse(
     val value: String,
     val message: String?,
-    val isSuccess: Boolean
+    val isSuccess: Boolean,
 )
-
-fun TeamToDoListResponse.asDomainModel(): TeamTodos {
+fun BaseTeamResponse<List<TeamToDo>>.asDomainModel(): TeamTodos {
     return TeamTodos(
         values = this.value.map {
             TeamToDo(

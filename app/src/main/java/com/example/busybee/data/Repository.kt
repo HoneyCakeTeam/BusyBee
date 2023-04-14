@@ -90,7 +90,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             .url(Constant.TEAM_TODO_URL)
             .build()
 
-        val responseType = object : TypeToken<TeamToDoListResponse>() {}.type
+        val responseType = object : TypeToken<BaseTeamResponse<List<TeamToDo>>>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -118,7 +118,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             .post(formBody)
             .build()
 
-        val responseType = object : TypeToken<TeamCreateToDoResponse>() {}.type
+        val responseType = object : TypeToken<BaseTeamResponse<TeamToDo>>() {}.type
 
         client.executeWithCallbacks(
             request,

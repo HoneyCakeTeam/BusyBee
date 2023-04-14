@@ -5,7 +5,7 @@ import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
-import com.example.busybee.data.models.TeamCreateToDoResponse
+import com.example.busybee.data.models.BaseTeamResponse
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
@@ -82,7 +82,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         )
     }
 
-    override fun onSuccessResponse(response: TeamCreateToDoResponse) {
+    override fun onSuccessResponse(response: BaseTeamResponse<TeamToDo>) {
         activity?.runOnUiThread {
 
             setListAndUpdateUi(response)
@@ -104,10 +104,10 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
                 bottomSheet.dismiss()
             }
         }
-        sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+       // sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
     }
 
-    private fun setListAndUpdateUi(response: TeamCreateToDoResponse) {
+    private fun setListAndUpdateUi(response: BaseTeamResponse<TeamToDo>) {
         val newTask = response.value
         todos.values = todos.values.toMutableList().apply { add(newTask) }
         adapter.setItems(todos.values)
