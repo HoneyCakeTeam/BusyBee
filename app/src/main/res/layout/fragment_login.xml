@@ -11,15 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:background="@drawable/squre"
-        android:backgroundTint="@color/primary_500"
+        style="@style/BackgroundCustomShapeViewLogin"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="200dp"
+        style="@style/BackgroundCustomShapeViewLogin"
         android:background="@drawable/squre"
-        android:backgroundTint="@color/primary_500" />
+         />
 
     <View
         android:layout_width="300dp"
@@ -27,6 +28,7 @@
         android:layout_marginHorizontal="90dp"
         android:layout_marginTop="-16dp"
         android:background="@drawable/circle"
+        style="@style/BackgroundCustomShapeViewLogin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_sign_in" />
 
@@ -69,6 +71,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="24dp"
+            style="@style/BackgroundCustomShapeCardLogin"
             android:paddingBottom="48dp">
 
             <com.google.android.material.textfield.TextInputLayout

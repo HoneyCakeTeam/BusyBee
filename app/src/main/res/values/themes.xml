@@ -271,6 +271,12 @@
         <item name="android:background">@drawable/shape_settings_logout</item>
         <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
     </style>
+    <style name="BackgroundCustomShapeViewLogin">
+        <item name="android:backgroundTint">@color/primary_500</item>
+    </style>
+    <style name="BackgroundCustomShapeCardLogin">
+        <item name="android:background">@color/white_100</item>
+    </style>
     <style name="TextDateTaskStyle"></style>
 
 </resources>
