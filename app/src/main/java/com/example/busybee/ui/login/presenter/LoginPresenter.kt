@@ -1,27 +1,34 @@
 package com.example.busybee.ui.login.presenter
 
 import com.example.busybee.data.RepositoryInterface
-import com.example.busybee.data.source.RemoteDataSourceInterface
+import com.example.busybee.data.models.BaseResponse
+import com.example.busybee.data.models.LoginResponseValue
+import com.example.busybee.ui.login.view.LoginViewInterface
 
 class LoginPresenter(
-    private val repository: RepositoryInterface
-) :
-    LoginPresenterInterface {
-    override fun <T> logIn(
-        userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit
-    ) {
+    private val repository: RepositoryInterface, private val loginViewInterface: LoginViewInterface
+) {
+    fun <T> logIn(userName: String, password: String) {
 
-        repository.logIn(userName, password, onSuccessCallback, onFailureCallback)
+        repository.logIn(userName, password,::onLoginSuccess,::onLoginFailed)
 
     }
 
-    override fun saveTokenInShared (token : String){
+    private fun onLoginSuccess(response: BaseResponse<LoginResponseValue>) {
+        loginViewInterface.onLoginSuccess(response)
+    }
+
+    private fun onLoginFailed(error: Throwable) {
+        loginViewInterface.onLoginFailed(error)
+    }
+
+    fun saveTokenInShared(token: String) {
         repository.saveTokenInShared(token)
-        repository
     }
-    override fun saveExpirationDateInShared (expirationDate : String){
+
+    fun saveExpirationDateInShared(expirationDate: String) {
         repository.saveExpirationDateInShared(expirationDate)
     }
+
 
 }

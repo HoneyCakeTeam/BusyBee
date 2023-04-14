@@ -4,12 +4,11 @@ import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
-import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.models.LoginResponseValue
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentLoginBinding
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.presenter.LoginPresenter
-import com.example.busybee.ui.login.presenter.LoginPresenterInterface
 import com.example.busybee.ui.register.view.RegisterFragment
 import com.example.busybee.utils.LoginAndRegisterValidation
 import com.example.busybee.utils.SharedPreferencesUtils
@@ -18,10 +17,13 @@ import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
-    private val presenter: LoginPresenterInterface by lazy {
+    private val presenter by lazy {
         LoginPresenter(
-            Repository(RemoteDataSource(requireContext()),
-            SharedPreferencesUtils,requireContext()))
+            Repository(
+                RemoteDataSource(requireContext()),
+                SharedPreferencesUtils, requireContext()
+            ), this
+        )
     }
     private val loginAndRegisterValidation: LoginAndRegisterValidation by lazy {
         LoginAndRegisterValidation(requireContext())
@@ -29,7 +31,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     private val homeFragment by lazy { HomeFragment() }
     private val registerFragment by lazy { RegisterFragment() }
     override val TAG: String = this::class.simpleName.toString()
-    private var username = ""
+    private var userName = ""
     private var password = ""
 
     override fun getViewBinding(): FragmentLoginBinding =
@@ -44,7 +46,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         binding.buttonLogin.setOnClickListener {
             getUserInputs()
             if (validateUserInputs()) {
-                logIn(username, password)
+
+                login(userName, password)
             }
         }
 
@@ -53,28 +56,27 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         }
     }
 
+
     private fun validateUserInputs(): Boolean =
-        loginAndRegisterValidation.checkCredentialForUserName(username, binding.editTextUsername)
+        loginAndRegisterValidation.checkCredentialForUserName(userName, binding.editTextUsername)
                 && loginAndRegisterValidation.checkCredentialForPassword(
             password,
             binding.editTextPassword
         )
 
     private fun getUserInputs() {
-        username = binding.editTextUsername.editText?.text.toString().trim()
+        userName = binding.editTextUsername.editText?.text.toString().trim()
         password = binding.editTextPassword.editText?.text.toString()
     }
 
-    override fun logIn(userName: String, password: String) {
-        presenter.logIn(
+    private fun login(userName: String, password: String) {
+        presenter.logIn<BaseResponse<LoginResponseValue>>(
             userName,
-            password,
-            ::onSuccessResponse,
-            ::onFailureResponse
+            password
         )
     }
 
-    override fun onSuccessResponse(response: BaseResponse<LoginResponseValue>) {
+    override fun onLoginSuccess(response: BaseResponse<LoginResponseValue>) {
         activity?.runOnUiThread {
             if (response.isSuccess) {
                 saveTokenInShared(response.value.token)
@@ -97,7 +99,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         }
     }
 
-    override fun onFailureResponse(error: Throwable) {
+    override fun onLoginFailed(error: Throwable) {
         activity?.runOnUiThread {
             Snackbar.make(
                 binding.root,
@@ -108,11 +110,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         }
     }
 
-    override fun saveTokenInShared(token: String) {
+    private fun saveTokenInShared(token: String) {
         presenter.saveTokenInShared(token)
     }
 
-    override fun saveExpirationDateInShared(expirationDate: String) {
+    private fun saveExpirationDateInShared(expirationDate: String) {
         presenter.saveExpirationDateInShared(expirationDate)
     }
 
