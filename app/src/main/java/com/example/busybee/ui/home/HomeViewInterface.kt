@@ -8,7 +8,6 @@ interface HomeViewInterface {
     fun getAllTeamTasks()
     fun onTeamSuccessResponse(response: BaseTeamResponse<List<TeamToDo>>)
     fun onTeamFailureResponse(error: Throwable)
-
     fun getAllPersonalTasks()
     fun onPersonalSuccessResponse(response: PersonalToDoListResponse)
     fun onPersonalFailureResponse(error: Throwable)

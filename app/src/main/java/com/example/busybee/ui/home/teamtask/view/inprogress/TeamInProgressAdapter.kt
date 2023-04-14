@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import com.example.busybee.base.BaseAdapter
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.ItemTaskBinding
-import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoAdapter
 import com.example.busybee.utils.DateTimeUtils
 
-class TeamInProgressAdapter(private var teamInProgressList: List<TeamToDo>,
+class TeamInProgressAdapter(
+    teamInProgressList: List<TeamToDo>,
     private val listener: TeamInProgressTaskInteractionListener
                             ) :
     BaseAdapter<TeamToDo, ItemTaskBinding>(teamInProgressList) {
@@ -22,7 +22,7 @@ class TeamInProgressAdapter(private var teamInProgressList: List<TeamToDo>,
     ) {
         with(holder.binding) {
             val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(
-                currentItem.creationTime ?: ""
+                currentItem.creationTime
             )
             textTaskName.text = currentItem.title
             textTaskDescription.text = currentItem.description

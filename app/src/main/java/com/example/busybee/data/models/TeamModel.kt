@@ -24,12 +24,6 @@ data class TeamUpdateStatusRequest(
     val id: String,
     val status: Int,
 )
-
-data class TeamUpdateStatusResponse(
-    val value: String,
-    val message: String?,
-    val isSuccess: Boolean,
-)
 fun BaseTeamResponse<List<TeamToDo>>.asDomainModel(): TeamTodos {
     return TeamTodos(
         values = this.value.map {
