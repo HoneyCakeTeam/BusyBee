@@ -1,18 +1,27 @@
 package com.example.busybee.ui.register.presenter
 
 import com.example.busybee.data.RepositoryInterface
-import com.example.busybee.data.source.RemoteDataSourceInterface
+import com.example.busybee.data.models.BaseResponse
+import com.example.busybee.data.models.LoginResponseValue
+import com.example.busybee.ui.register.view.RegisterViewInterface
 
 
 class RegisterPresenter(
-    private val repository: RepositoryInterface
-) :
-    RegisterPresenterInterface {
-    override fun <T> signUp(
-        userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit
+    private val repository: RepositoryInterface,
+    private val registerViewInterface: RegisterViewInterface
+) {
+    fun <T> signUp(
+        userName: String, password: String
     ) {
-        repository.signUp(userName, password, onSuccessCallback, onFailureCallback)
+        repository.signUp(userName, password, ::onRegisterSuccess, ::onRegisterFailed)
+    }
+
+    private fun onRegisterSuccess(response: BaseResponse<LoginResponseValue>) {
+        registerViewInterface.onRegisterSuccess(response)
+    }
+
+    private fun onRegisterFailed(error: Throwable) {
+        registerViewInterface.onRegisterFailed(error)
     }
 
 }

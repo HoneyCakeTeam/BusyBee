@@ -4,22 +4,24 @@ import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
+import com.example.busybee.data.models.LoginResponseValue
 import com.example.busybee.data.models.SignUpResponseValue
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentRegisterBinding
 import com.example.busybee.ui.login.view.LoginFragment
 import com.example.busybee.ui.register.presenter.RegisterPresenter
-import com.example.busybee.ui.register.presenter.RegisterPresenterInterface
 import com.example.busybee.utils.LoginAndRegisterValidation
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewInterface {
-    private val presenter: RegisterPresenterInterface by lazy {
+    private val presenter by lazy {
         RegisterPresenter(
-            Repository(RemoteDataSource(requireContext()),
-            SharedPreferencesUtils,requireContext())
+            Repository(
+                RemoteDataSource(requireContext()),
+                SharedPreferencesUtils, requireContext()
+            ), this
         )
     }
     private val registerValidation: LoginAndRegisterValidation by lazy {
@@ -70,16 +72,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
     }
 
 
-    override fun signUp(userName: String, password: String) {
-        presenter.signUp(
+    fun signUp(userName: String, password: String) {
+        presenter.signUp<BaseResponse<SignUpResponseValue>>(
             userName,
-            password,
-            ::onSuccessResponse,
-            ::onFailureResponse
+            password
         )
     }
 
-    override fun onSuccessResponse(response: BaseResponse<SignUpResponseValue>) {
+
+    override fun onRegisterSuccess(response: BaseResponse<LoginResponseValue>) {
         activity?.runOnUiThread {
             replaceFragment(loginFragment)
             Snackbar.make(
@@ -90,7 +91,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
         }
     }
 
-    override fun onFailureResponse(error: Throwable) {
+    override fun onRegisterFailed(error: Throwable) {
         activity?.runOnUiThread {
             Snackbar.make(
                 binding.root,
