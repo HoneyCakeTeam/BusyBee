@@ -144,7 +144,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             .post(formBody)
             .build()
 
-        val responseType = object : TypeToken<PersonalCreateToDoResponse>() {}.type
+        val responseType = object : TypeToken<BasePersonalResponse<PersonalTodo>>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -162,7 +162,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             .url(Constant.PERSONAL_TODO_URL)
             .build()
 
-        val responseType = object : TypeToken<PersonalToDoListResponse>() {}.type
+        val responseType = object : TypeToken<BasePersonalResponse<List<PersonalTodo>>>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -190,7 +190,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             .put(formBody)
             .build()
 
-        val responseType = object : TypeToken<PersonalUpdateStatusResponse>() {}.type
+        val responseType = object : TypeToken<BasePersonalResponse<String>>() {}.type
 
         client.executeWithCallbacks(
             request,

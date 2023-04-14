@@ -8,25 +8,11 @@ data class PersonalCreateToDoRequest(
     val title: TeamToDo,
     val description: String?,
 )
-
-data class PersonalCreateToDoResponse(
-    val value: PersonalTodo? = null,
-    val message: String? = null,
-    val isSuccess: Boolean = true
-)
-
 data class BasePersonalResponse<T>(
     val value: T,
     val message: String? = null,
     val isSuccess: Boolean = true,
 )
-
-data class PersonalToDoListResponse(
-    val value: List<PersonalTodo>,
-    val message: String? = null,
-    val isSuccess: Boolean = false
-)
-
 @Parcelize
 data class PersonalTodo(
     val id: String? = null,
@@ -40,14 +26,7 @@ data class PersonalUpdateStatusRequest(
     val id: String,
     val status: Int
 )
-
-data class PersonalUpdateStatusResponse(
-    val value: String,
-    val message: String?,
-    val isSuccess: Boolean
-)
-
-fun PersonalToDoListResponse.asDomainModel(): PersonalTodos {
+fun BasePersonalResponse<List<PersonalTodo>>.asDomainModel(): PersonalTodos {
     return PersonalTodos(
         values = this.value.map {
             PersonalTodo(
