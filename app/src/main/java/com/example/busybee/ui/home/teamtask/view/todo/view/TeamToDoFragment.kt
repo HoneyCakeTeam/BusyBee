@@ -104,7 +104,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
                 bottomSheet.dismiss()
             }
         }
-       // sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
+        sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
     }
 
     private fun setListAndUpdateUi(response: BaseTeamResponse<TeamToDo>) {
