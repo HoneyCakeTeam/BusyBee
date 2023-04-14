@@ -74,7 +74,7 @@
     <color name="theme_dark_onSecondary">#332D41</color>
     <color name="theme_dark_secondaryContainer">#4A4458</color>
     <color name="theme_dark_outline">#938F99</color>
-    <color name="theme_dark_background">#333</color>
+    <color name="theme_dark_background">#99121212</color>
     <color name="theme_dark_onBackground">#E6E1E5</color>
     <color name="theme_dark_surface">#1C1B1F</color>
     <color name="theme_dark_surfaceVariant">#49454F</color>
