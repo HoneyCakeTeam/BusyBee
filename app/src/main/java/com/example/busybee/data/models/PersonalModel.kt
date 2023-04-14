@@ -4,10 +4,6 @@ import android.os.Parcelable
 import com.example.busybee.domain.models.PersonalTodos
 import kotlinx.parcelize.Parcelize
 
-data class PersonalCreateToDoRequest(
-    val title: TeamToDo,
-    val description: String?,
-)
 data class BasePersonalResponse<T>(
     val value: T,
     val message: String? = null,
@@ -22,10 +18,6 @@ data class PersonalTodo(
     val creationTime: String? = null,
 ) : Parcelable
 
-data class PersonalUpdateStatusRequest(
-    val id: String,
-    val status: Int
-)
 fun BasePersonalResponse<List<PersonalTodo>>.asDomainModel(): PersonalTodos {
     return PersonalTodos(
         values = this.value.map {

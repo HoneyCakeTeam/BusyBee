@@ -6,10 +6,10 @@ import android.widget.Toast
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
+import com.example.busybee.data.models.BasePersonalResponse
+import com.example.busybee.data.models.BaseTeamResponse
 import com.example.busybee.data.models.PersonalTodo
-import com.example.busybee.data.models.PersonalUpdateStatusResponse
 import com.example.busybee.data.models.TeamToDo
-import com.example.busybee.data.models.TeamUpdateStatusResponse
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.details.presenter.DetailsPresenter
 import com.example.busybee.ui.details.presenter.DetailsPresenterInterface
@@ -96,7 +96,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     override fun updateTasksPersonalStatus(idTask: String, status: Int) {
-        presenter.updateTasksPersonalStatus<PersonalUpdateStatusResponse>(idTask,
+        presenter.updateTasksPersonalStatus<BasePersonalResponse<PersonalTodo>>(idTask,
             status,
             onSuccessCallback = { response ->
                 onSuccessPersonalResponse(response)
@@ -106,7 +106,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             })
     }
 
-    override fun onSuccessPersonalResponse(response: PersonalUpdateStatusResponse) {
+    override fun onSuccessPersonalResponse(response: BasePersonalResponse<PersonalTodo>) {
         activity?.runOnUiThread {
             Toast.makeText(
                 requireContext(), "update success! ${response.isSuccess}", Toast.LENGTH_SHORT
@@ -124,7 +124,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         }
     }
 
-    override fun onSuccessTeamResponse(response: TeamUpdateStatusResponse) {
+    override fun onSuccessTeamResponse(response: BaseTeamResponse<TeamToDo>) {
         activity?.runOnUiThread {
             Toast.makeText(
                 requireContext(), "update success ${response.isSuccess}", Toast.LENGTH_SHORT
@@ -134,7 +134,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     override fun updateTasksTeamStatus(idTask: String, status: Int) {
-        presenter.updateTasksTeamStatus<TeamUpdateStatusResponse>(idTask,
+        presenter.updateTasksTeamStatus<BaseTeamResponse<TeamToDo>>(idTask,
             status,
             onSuccessCallback = { response ->
                 onSuccessTeamResponse(response)
