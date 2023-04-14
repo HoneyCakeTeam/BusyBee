@@ -5,10 +5,7 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
-import com.example.busybee.data.models.BaseTeamResponse
-import com.example.busybee.data.models.PersonalToDoListResponse
-import com.example.busybee.data.models.TeamToDo
-import com.example.busybee.data.models.asDomainModel
+import com.example.busybee.data.models.*
 import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.domain.models.PersonalTodos
 import com.example.busybee.domain.models.TeamTodos
@@ -51,7 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         listOf(personalToDoFragment, personalInProgressFragment, personalDoneFragment)
     }
     private lateinit var teamResponse: BaseTeamResponse<List<TeamToDo>>
-    private lateinit var personalResponse: PersonalToDoListResponse
+    private lateinit var personalResponse: BasePersonalResponse<List<PersonalTodo>>
     private lateinit var homePagerAdapter: HomeViewPagerAdapter
 
     private val teamToDoFragment by lazy { TeamToDoFragment.newInstance(teamToDos) }
@@ -176,7 +173,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         )
     }
 
-    override fun onPersonalSuccessResponse(response: PersonalToDoListResponse) {
+    override fun onPersonalSuccessResponse(response: BasePersonalResponse<List<PersonalTodo>>) {
         this.personalResponse = response
         activity?.runOnUiThread {
             initViewPager(personalFragments)
