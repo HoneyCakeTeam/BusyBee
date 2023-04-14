@@ -6,7 +6,6 @@ import com.example.busybee.BuildConfig
 import com.example.busybee.data.models.*
 import com.example.busybee.utils.AuthorizationInterceptor
 import com.example.busybee.utils.Constant
-import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.executeWithCallbacks
 import com.google.gson.reflect.TypeToken
 import okhttp3.FormBody
@@ -229,24 +228,5 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
 
     }
 
-    override fun saveTokenInShared(token: String) {
-        SharedPreferencesUtils.initPreferencesUtil(context)
-        SharedPreferencesUtils.token = token
-    }
-
-    override fun saveExpirationDateInShared(expirationDate: String) {
-        SharedPreferencesUtils.initPreferencesUtil(context)
-        SharedPreferencesUtils.expirationDate = expirationDate
-    }
-
-    override fun getTokenFromShared(): String? {
-        SharedPreferencesUtils.initPreferencesUtil(context)
-        return SharedPreferencesUtils.token
-    }
-
-    override fun getExpirationDateFromShared(): String? {
-        SharedPreferencesUtils.initPreferencesUtil(context)
-        return SharedPreferencesUtils.expirationDate
-    }
 
 }

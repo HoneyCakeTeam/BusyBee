@@ -1,6 +1,13 @@
-package com.example.busybee.data.source
+package com.example.busybee.data
 
-interface RemoteDataSourceInterface {
+interface RepositoryInterface {
+
+    fun saveTokenInShared(token: String?)
+    fun saveExpirationDateInShared(expirationDate: String)
+
+    fun getTokenFromShared(): String?
+    fun getExpirationDateFromShared(): String?
+
     fun <T> logIn(
         userName: String,
         password: String,
@@ -53,5 +60,6 @@ interface RemoteDataSourceInterface {
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
+
 
 }

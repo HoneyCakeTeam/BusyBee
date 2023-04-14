@@ -1,10 +1,11 @@
 package com.example.busybee.ui.register.presenter
 
+import com.example.busybee.data.RepositoryInterface
 import com.example.busybee.data.source.RemoteDataSourceInterface
 
 
 class RegisterPresenter(
-    private val repository: RemoteDataSourceInterface
+    private val repository: RepositoryInterface
 ) :
     RegisterPresenterInterface {
     override fun <T> signUp(

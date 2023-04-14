@@ -1,9 +1,10 @@
 package com.example.busybee.ui
 
+import com.example.busybee.data.RepositoryInterface
 import com.example.busybee.data.source.RemoteDataSourceInterface
 
 class MainPresenter(
-    private val repository: RemoteDataSourceInterface,
+    private val repository: RepositoryInterface,
     private val mainViewInterface: MainViewInterface
 ) : MainPresenterInterface {
     override fun getTokenFromShared() {

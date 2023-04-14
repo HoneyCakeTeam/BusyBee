@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
@@ -20,6 +21,7 @@ import com.example.busybee.ui.home.teamtask.view.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.view.inprogress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.view.todo.view.TeamToDoFragment
 import com.example.busybee.ui.setting.SettingFragment
+import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.tabs.TabLayout
@@ -29,16 +31,14 @@ import kotlin.math.abs
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeViewInterface {
     private val teamPresenter: TeamPresenterInterface by lazy {
         TeamPresenter(
-            RemoteDataSource(
-                requireContext()
-            )
+            Repository(RemoteDataSource(requireContext()),
+                SharedPreferencesUtils,requireContext())
         )
     }
     private val personalPresenter: PersonalPresenterInterface by lazy {
         PersonalPresenter(
-            RemoteDataSource(
-                requireContext()
-            )
+            Repository(RemoteDataSource(requireContext()),
+                SharedPreferencesUtils,requireContext())
         )
     }
     private val teamFragments: List<Fragment> by lazy {

@@ -2,6 +2,7 @@ package com.example.busybee.ui.login.view
 
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.models.LoginResponseValue
@@ -11,13 +12,16 @@ import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.login.presenter.LoginPresenterInterface
 import com.example.busybee.ui.register.view.RegisterFragment
 import com.example.busybee.utils.LoginAndRegisterValidation
+import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     private val presenter: LoginPresenterInterface by lazy {
-        LoginPresenter(RemoteDataSource(requireContext()))
+        LoginPresenter(
+            Repository(RemoteDataSource(requireContext()),
+            SharedPreferencesUtils,requireContext()))
     }
     private val loginAndRegisterValidation: LoginAndRegisterValidation by lazy {
         LoginAndRegisterValidation(requireContext())

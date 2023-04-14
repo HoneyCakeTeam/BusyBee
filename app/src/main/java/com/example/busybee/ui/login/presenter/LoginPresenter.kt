@@ -1,9 +1,10 @@
 package com.example.busybee.ui.login.presenter
 
+import com.example.busybee.data.RepositoryInterface
 import com.example.busybee.data.source.RemoteDataSourceInterface
 
 class LoginPresenter(
-    private val repository: RemoteDataSourceInterface
+    private val repository: RepositoryInterface
 ) :
     LoginPresenterInterface {
     override fun <T> logIn(
@@ -17,6 +18,7 @@ class LoginPresenter(
 
     override fun saveTokenInShared (token : String){
         repository.saveTokenInShared(token)
+        repository
     }
     override fun saveExpirationDateInShared (expirationDate : String){
         repository.saveExpirationDateInShared(expirationDate)

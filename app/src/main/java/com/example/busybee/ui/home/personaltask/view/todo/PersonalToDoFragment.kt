@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.source.RemoteDataSource
@@ -13,6 +14,7 @@ import com.example.busybee.databinding.FragmentPersonalToDoBinding
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
+import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
@@ -26,7 +28,9 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
     override val TAG = this::class.java.simpleName.toString()
     private val presenter: PersonalPresenterInterface by lazy {
-        PersonalPresenter(RemoteDataSource(requireContext()))
+        PersonalPresenter( Repository(RemoteDataSource(requireContext()),
+            SharedPreferencesUtils,requireContext())
+        )
     }
 
     override fun getViewBinding(): FragmentPersonalToDoBinding {
