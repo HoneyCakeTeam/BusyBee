@@ -2,8 +2,9 @@ package com.example.busybee.ui.login.view
 
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.source.RemoteDataSource
-import com.example.busybee.data.models.LoginResponse
+import com.example.busybee.data.models.LoginResponseValue
 import com.example.busybee.databinding.FragmentLoginBinding
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.presenter.LoginPresenter
@@ -69,7 +70,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         )
     }
 
-    override fun onSuccessResponse(response: LoginResponse) {
+    override fun onSuccessResponse(response: BaseResponse<LoginResponseValue>) {
         activity?.runOnUiThread {
             if (response.isSuccess) {
                 saveTokenInShared(response.value.token)

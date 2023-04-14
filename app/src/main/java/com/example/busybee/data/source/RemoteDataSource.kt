@@ -44,7 +44,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
             )
             .build()
 
-        val responseType = object : TypeToken<LoginResponse>() {}.type
+        val responseType = object : TypeToken<BaseResponse<LoginResponseValue>>() {}.type
 
         logInClient.executeWithCallbacks(
             request,
@@ -76,7 +76,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
             .build()
 
 
-        val responseType = object : TypeToken<SignUpResponse>() {}.type
+        val responseType = object : TypeToken<BaseResponse<SignUpResponseValue>>() {}.type
 
         signUpClient.executeWithCallbacks(
             request,
@@ -94,7 +94,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
             .url(Constant.TEAM_TODO_URL)
             .build()
 
-        val responseType = object : TypeToken<BaseTeamResponse<List<TeamToDo>>>() {}.type
+        val responseType = object : TypeToken<BaseResponse<List<TeamToDo>>>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -122,7 +122,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
             .post(formBody)
             .build()
 
-        val responseType = object : TypeToken<BaseTeamResponse<TeamToDo>>() {}.type
+        val responseType = object : TypeToken<BaseResponse<TeamToDo>>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -148,7 +148,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
             .post(formBody)
             .build()
 
-        val responseType = object : TypeToken<BasePersonalResponse<PersonalTodo>>() {}.type
+        val responseType = object : TypeToken<BaseResponse<PersonalToDo>>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -166,7 +166,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
             .url(Constant.PERSONAL_TODO_URL)
             .build()
 
-        val responseType = object : TypeToken<BasePersonalResponse<List<PersonalTodo>>>() {}.type
+        val responseType = object : TypeToken<BaseResponse<List<PersonalToDo>>>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -194,7 +194,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
             .put(formBody)
             .build()
 
-        val responseType = object : TypeToken<BasePersonalResponse<String>>() {}.type
+        val responseType = object : TypeToken<BaseResponse<String>>() {}.type
 
         client.executeWithCallbacks(
             request,
@@ -224,7 +224,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
             .put(formBody)
             .build()
 
-        val responseType = object : TypeToken<BaseTeamResponse<TeamToDo>>() {}.type
+        val responseType = object : TypeToken<BaseResponse<String>>() {}.type
         client.executeWithCallbacks(request, responseType, onSuccessCallback, onFailureCallback)
 
     }

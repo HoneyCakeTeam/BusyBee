@@ -1,15 +1,15 @@
 package com.example.busybee.ui.home.personaltask.view.todo
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.models.BaseResponse
+import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.source.RemoteDataSource
-import com.example.busybee.data.models.BasePersonalResponse
-import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
-import com.example.busybee.domain.models.PersonalTodos
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenter
 import com.example.busybee.ui.home.personaltask.presenter.PersonalPresenterInterface
@@ -21,7 +21,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     PersonalToDoViewInterface,
     PersonalToDoAdapter.PersonalToDoTaskInteractionListener {
     private lateinit var adapter: PersonalToDoAdapter
-    private lateinit var todos: PersonalTodos
+    private lateinit var todos: List<PersonalToDo>
     private lateinit var bottomSheet: BottomSheetDialog
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
     override val TAG = this::class.java.simpleName.toString()
@@ -36,10 +36,10 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     override fun setUp() {
         getDons()
         addCallBacks()
-        adapter = PersonalToDoAdapter(todos.values, this)
+        adapter = PersonalToDoAdapter(todos, this)
         binding.recyclerToDo.adapter = adapter
         binding.headerToDo.textTodoStatus.text = getString(R.string.to_do)
-        binding.headerToDo.taskCount.text = getString(todos.values.size, R.string.tasks)
+        binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.size)
     }
 
     private fun addCallBacks() {
@@ -73,7 +73,11 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
 
     private fun getDons() {
         arguments?.let {
-            todos = it.getParcelable(PERSONAL_TODO_LIST)!!
+            todos = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.getParcelableArrayList(PERSONAL_TODO_LIST, PersonalToDo::class.java)!!
+            } else {
+                it.getParcelableArrayList(PERSONAL_TODO_LIST)!!
+            }
         }
     }
 
@@ -85,7 +89,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         )
     }
 
-    override fun onSuccessResponse(response: BasePersonalResponse<PersonalTodo>) {
+    override fun onSuccessResponse(response: BaseResponse<PersonalToDo>) {
         activity?.runOnUiThread {
             setListAndUpdateUi(response)
             hideFieldsAndShowDone()
@@ -93,11 +97,11 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         }
     }
 
-    private fun setListAndUpdateUi(response: BasePersonalResponse<PersonalTodo>) {
+    private fun setListAndUpdateUi(response: BaseResponse<PersonalToDo>) {
         val newTask = response.value
-        todos.values = todos.values.toMutableList().apply { add(newTask!!) }
-        adapter.setItems(todos.values)
-        binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.values.size)
+        todos = todos.toMutableList().apply { add(newTask!!) }
+        adapter.setItems(todos)
+        binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.size)
         binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
     }
 
@@ -127,17 +131,17 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         }
     }
 
-    override fun onTasKClicked(flag: Int, personalToDo: PersonalTodo) {
+    override fun onTasKClicked(flag: Int, personalToDo: PersonalToDo) {
         val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
         replaceFragment(detailsFragment)
     }
 
     companion object {
         const val PERSONAL_TODO_LIST = "Personal_Todo_List"
-        fun newInstance(tasks: PersonalTodos) =
+        fun newInstance(tasks: ArrayList<PersonalToDo>) =
             PersonalToDoFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(PERSONAL_TODO_LIST, tasks)
+                    putParcelableArrayList(PERSONAL_TODO_LIST, tasks)
                 }
             }
     }

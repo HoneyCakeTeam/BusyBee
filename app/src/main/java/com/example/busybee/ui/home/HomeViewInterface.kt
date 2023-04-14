@@ -1,15 +1,14 @@
 package com.example.busybee.ui.home
 
-import com.example.busybee.data.models.BasePersonalResponse
-import com.example.busybee.data.models.BaseTeamResponse
-import com.example.busybee.data.models.PersonalTodo
+import com.example.busybee.data.models.BaseResponse
+import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 
 interface HomeViewInterface {
     fun getAllTeamTasks()
-    fun onTeamSuccessResponse(response: BaseTeamResponse<List<TeamToDo>>)
+    fun onTeamSuccessResponse(response: BaseResponse<List<TeamToDo>>)
     fun onTeamFailureResponse(error: Throwable)
     fun getAllPersonalTasks()
-    fun onPersonalSuccessResponse(response: BasePersonalResponse<List<PersonalTodo>>)
+    fun onPersonalSuccessResponse(response: BaseResponse<List<PersonalToDo>>)
     fun onPersonalFailureResponse(error: Throwable)
 }

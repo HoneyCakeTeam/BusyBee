@@ -5,11 +5,10 @@ import android.view.View
 import android.widget.Toast
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
-import com.example.busybee.data.source.RemoteDataSource
-import com.example.busybee.data.models.PersonalTodo
-import com.example.busybee.data.models.PersonalUpdateStatusResponse
+import com.example.busybee.data.models.BaseResponse
+import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
-import com.example.busybee.data.models.TeamUpdateStatusResponse
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.details.presenter.DetailsPresenter
 import com.example.busybee.ui.details.presenter.DetailsPresenterInterface
@@ -21,7 +20,7 @@ import com.example.busybee.utils.replaceFragment
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInterface {
     override val TAG = this::class.java.simpleName.toString()
     private var flag: Int = 0
-    private var personalTodo: PersonalTodo? = null
+    private var personalTodo: PersonalToDo? = null
     private var teamTodo: TeamToDo? = null
     private val presenter: DetailsPresenterInterface by lazy {
         DetailsPresenter(RemoteDataSource(requireContext()))
@@ -96,7 +95,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     override fun updateTasksPersonalStatus(idTask: String, status: Int) {
-        presenter.updateTasksPersonalStatus<PersonalUpdateStatusResponse>(idTask,
+        presenter.updateTasksPersonalStatus<BaseResponse<String>>(idTask,
             status,
             onSuccessCallback = { response ->
                 onSuccessPersonalResponse(response)
@@ -106,7 +105,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             })
     }
 
-    override fun onSuccessPersonalResponse(response: PersonalUpdateStatusResponse) {
+    override fun onSuccessPersonalResponse(response: BaseResponse<String>) {
         activity?.runOnUiThread {
             Toast.makeText(
                 requireContext(), "update success! ${response.isSuccess}", Toast.LENGTH_SHORT
@@ -124,7 +123,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         }
     }
 
-    override fun onSuccessTeamResponse(response: TeamUpdateStatusResponse) {
+    override fun onSuccessTeamResponse(response: BaseResponse<String>) {
         activity?.runOnUiThread {
             Toast.makeText(
                 requireContext(), "update success ${response.isSuccess}", Toast.LENGTH_SHORT
@@ -134,7 +133,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     }
 
     override fun updateTasksTeamStatus(idTask: String, status: Int) {
-        presenter.updateTasksTeamStatus<TeamUpdateStatusResponse>(idTask,
+        presenter.updateTasksTeamStatus<BaseResponse<String>>(idTask,
             status,
             onSuccessCallback = { response ->
                 onSuccessTeamResponse(response)
@@ -145,11 +144,11 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         )
     }
 
-    private fun getTask(): Triple<Int, PersonalTodo?, TeamToDo?> {
+    private fun getTask(): Triple<Int, PersonalToDo?, TeamToDo?> {
         arguments?.let {
             flag = it.getInt(FLAG)
             if (flag == 1) {
-                personalTodo = it.getParcelable<PersonalTodo>(PERSONAL_TASK)
+                personalTodo = it.getParcelable<PersonalToDo>(PERSONAL_TASK)
                 teamTodo = null
             } else {
                 personalTodo = null
@@ -165,7 +164,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         const val PERSONAL_TASK = "personalTask"
         const val TEAM_TASK = "teamTask"
 
-        fun newInstance(flag: Int, teamTodo: TeamToDo?, personalToDo: PersonalTodo?) =
+        fun newInstance(flag: Int, teamTodo: TeamToDo?, personalToDo: PersonalToDo?) =
             DetailsFragment().apply {
                 arguments = Bundle().apply {
                     putInt(FLAG, flag)
@@ -176,7 +175,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
 
     }
 
-    private fun bindingPersonalToDosViews(personalToDo: PersonalTodo?) {
+    private fun bindingPersonalToDosViews(personalToDo: PersonalToDo?) {
         val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(
             personalToDo?.creationTime ?: ""
         )

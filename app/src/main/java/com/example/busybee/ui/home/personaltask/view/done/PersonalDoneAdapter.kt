@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.busybee.base.BaseAdapter
-import com.example.busybee.data.models.PersonalTodo
+import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.databinding.ItemTaskBinding
 import com.example.busybee.utils.DateTimeUtils
 
 class PersonalDoneAdapter(
-    personalToDoList: List<PersonalTodo>,
+    personalToDoList: List<PersonalToDo>,
     private val listener: PersonalDoneTaskInteractionListener
 ) :
-    BaseAdapter<PersonalTodo, ItemTaskBinding>(personalToDoList) {
+    BaseAdapter<PersonalToDo, ItemTaskBinding>(personalToDoList) {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemTaskBinding
         get() = ItemTaskBinding::inflate
@@ -20,7 +20,7 @@ class PersonalDoneAdapter(
     override fun onBindViewHolder(
         holder: BaseViewHolder<ItemTaskBinding>,
         position: Int,
-        currentItem: PersonalTodo
+        currentItem: PersonalToDo
     ) {
         with(holder.binding) {
             val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(
@@ -39,6 +39,6 @@ class PersonalDoneAdapter(
     }
 
     interface PersonalDoneTaskInteractionListener {
-        fun onTasKClicked(flag: Int, personalToDo: PersonalTodo)
+        fun onTasKClicked(flag: Int, personalToDo: PersonalToDo)
     }
 }

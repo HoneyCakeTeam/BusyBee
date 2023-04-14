@@ -1,15 +1,15 @@
 package com.example.busybee.ui.home.teamtask.view.todo.view
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
-import com.example.busybee.data.source.RemoteDataSource
-import com.example.busybee.data.models.BaseTeamResponse
+import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.TeamToDo
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
-import com.example.busybee.domain.models.TeamTodos
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresenter
 import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresenterInterface
@@ -22,7 +22,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
     TeamToDoAdapter.TeamToDoTaskInteractionListener {
     private lateinit var adapter: TeamToDoAdapter
     override val TAG = this::class.java.simpleName.toString()
-    private lateinit var todos: TeamTodos
+    private lateinit var todos: List<TeamToDo>
     private lateinit var bottomSheet: BottomSheetDialog
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
     private val presenter: TeamToDoPresenterInterface by lazy {
@@ -36,11 +36,11 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
     override fun setUp() {
         getTodos()
         addCallBacks()
-        adapter = TeamToDoAdapter(todos.values, this)
+        adapter = TeamToDoAdapter(todos, this)
 
         binding.recyclerToDo.adapter = adapter
         binding.taskHeader.textTodoStatus.text = getString(R.string.to_do)
-        binding.taskHeader.taskCount.text = getString( R.string.tasks , todos.values.size )
+        binding.taskHeader.taskCount.text = getString(R.string.tasks, todos.size)
         binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
     }
 
@@ -71,8 +71,13 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
     }
 
     private fun getTodos() {
+
         arguments?.let {
-            todos = it.getParcelable(TEAM_TODO_LIST)!!
+            todos = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.getParcelableArrayList(TEAM_TODO_LIST, TeamToDo::class.java)!!
+            } else {
+                it.getParcelableArrayList(TEAM_TODO_LIST)!!
+            }
         }
     }
 
@@ -82,7 +87,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         )
     }
 
-    override fun onSuccessResponse(response: BaseTeamResponse<TeamToDo>) {
+    override fun onSuccessResponse(response: BaseResponse<TeamToDo>) {
         activity?.runOnUiThread {
 
             setListAndUpdateUi(response)
@@ -104,14 +109,13 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
                 bottomSheet.dismiss()
             }
         }
-       // sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
     }
 
-    private fun setListAndUpdateUi(response: BaseTeamResponse<TeamToDo>) {
+    private fun setListAndUpdateUi(response: BaseResponse<TeamToDo>) {
         val newTask = response.value
-        todos.values = todos.values.toMutableList().apply { add(newTask) }
-        adapter.setItems(todos.values)
-        binding.taskHeader.taskCount.text = "${todos.values.size} Tasks"
+        todos = todos.toMutableList().apply { add(newTask) }
+        adapter.setItems(todos)
+        binding.taskHeader.taskCount.text = "${todos.size} Tasks"
     }
 
     override fun onFailureResponse(error: Throwable) {
@@ -127,10 +131,10 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
 
     companion object {
         const val TEAM_TODO_LIST = "Team_Todo_List"
-        fun newInstance(tasks: TeamTodos) =
+        fun newInstance(tasks: ArrayList<TeamToDo>) =
             TeamToDoFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(TEAM_TODO_LIST, tasks)
+                    putParcelableArrayList(TEAM_TODO_LIST, tasks)
                 }
             }
     }
