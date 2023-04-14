@@ -220,7 +220,7 @@ class Repository(private val context: Context) : RepositoryInterface {
             .put(formBody)
             .build()
 
-        val responseType = object : TypeToken<TeamUpdateStatusResponse>() {}.type
+        val responseType = object : TypeToken<BaseTeamResponse<TeamToDo>>() {}.type
         client.executeWithCallbacks(request, responseType, onSuccessCallback, onFailureCallback)
 
     }
