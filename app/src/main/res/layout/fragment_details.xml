@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_300"
     android:padding="@dimen/spacing_medium">
 
     <ImageButton
@@ -21,14 +20,6 @@
         style="@style/TextMemberTaskStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start|center"
-        android:layout_marginStart="@dimen/spacing_tiny"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:background="@drawable/shape_user"
-        android:drawablePadding="@dimen/spacing_small"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:padding="@dimen/spacing_simi_medium"
         app:drawableStartCompat="@drawable/ic_user_details"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_back"
