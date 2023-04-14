@@ -9,13 +9,7 @@ import java.lang.reflect.Type
 /**
  * Created by Aziza Helmy on 4/7/2023.
 */
-class ConnectionBuilder {
-    companion object{
-        val logInterceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BASIC
-        }
-    }
-}
+
 fun <T> OkHttpClient.executeWithCallbacks(
     request: Request,
     responseType: Type,

@@ -7,12 +7,14 @@ import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.TeamCreateToDoResponse
 import com.example.busybee.data.models.TeamToDo
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
 import com.example.busybee.domain.models.TeamTodos
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresenter
 import com.example.busybee.ui.home.teamtask.view.todo.presenter.TeamToDoPresenterInterface
+import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
@@ -26,7 +28,9 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
     private lateinit var bottomSheet: BottomSheetDialog
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
     private val presenter: TeamToDoPresenterInterface by lazy {
-        TeamToDoPresenter(Repository(requireContext()))
+        TeamToDoPresenter(Repository(
+            RemoteDataSource(requireContext()),
+            SharedPreferencesUtils,requireContext()))
     }
 
     override fun getViewBinding(): FragmentTeamToDoBinding {

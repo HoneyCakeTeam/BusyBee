@@ -1,10 +1,11 @@
-package com.example.busybee.ui.setting
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentSettingsBinding
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.view.LoginFragment
@@ -20,11 +21,14 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
     private var personalTodos by Delegates.notNull<Float>()
     private var personalInProgressTodos by Delegates.notNull<Float>()
     private var personalDoneTodos by Delegates.notNull<Float>()
+    private lateinit var repository: RepositoryInterface
+
 
     override fun getViewBinding(): FragmentSettingsBinding =
         FragmentSettingsBinding.inflate(layoutInflater)
 
     override fun setUp() {
+        repository = Repository(RemoteDataSource(requireContext()), SharedPreferencesUtils,requireContext())
         getTasksCount()
         setUpPieChart()
         addCallBacks()
@@ -60,8 +64,9 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
 
     private fun onClickLogout() {
         binding.viewLogoutSettings.setOnClickListener {
-            SharedPreferencesUtils.initPreferencesUtil(requireContext())
-            SharedPreferencesUtils.token = null
+            repository.saveTokenInShared(null)
+           // SharedPreferencesUtils.initPreferencesUtil(requireContext())
+           // SharedPreferencesUtils.token = null
             replaceFragment(loginFragment)
         }
     }

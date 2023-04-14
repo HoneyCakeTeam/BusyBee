@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.data.Repository
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.view.LoginFragment
 import com.example.busybee.utils.SharedPreferencesUtils
@@ -18,7 +19,8 @@ import java.util.*
 class MainActivity : AppCompatActivity(), MainViewInterface {
 
     private val presenter: MainPresenterInterface by lazy {
-        MainPresenter(Repository(this), this)
+        MainPresenter(Repository(RemoteDataSource(this), SharedPreferencesUtils,this)
+            , this)
     }
     private val fragmentHome = HomeFragment()
     private val fragmentLogin = LoginFragment()

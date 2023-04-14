@@ -4,17 +4,21 @@ import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.SignUpResponse
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentRegisterBinding
 import com.example.busybee.ui.login.view.LoginFragment
 import com.example.busybee.ui.register.presenter.RegisterPresenter
 import com.example.busybee.ui.register.presenter.RegisterPresenterInterface
 import com.example.busybee.utils.LoginAndRegisterValidation
+import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewInterface {
     private val presenter: RegisterPresenterInterface by lazy {
-        RegisterPresenter(Repository(requireContext()))
+        RegisterPresenter(Repository(
+            RemoteDataSource(requireContext()),
+            SharedPreferencesUtils,requireContext()))
     }
     private val registerValidation: LoginAndRegisterValidation by lazy {
         LoginAndRegisterValidation(requireContext())

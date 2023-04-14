@@ -10,11 +10,13 @@ import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.data.models.PersonalUpdateStatusResponse
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.models.TeamUpdateStatusResponse
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.details.presenter.DetailsPresenter
 import com.example.busybee.ui.details.presenter.DetailsPresenterInterface
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.utils.DateTimeUtils
+import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
 
 
@@ -24,7 +26,9 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     private var personalTodo: PersonalTodo? = null
     private var teamTodo: TeamToDo? = null
     private val presenter: DetailsPresenterInterface by lazy {
-        DetailsPresenter(Repository(requireContext()))
+        DetailsPresenter(Repository(
+            RemoteDataSource(requireContext()),
+            SharedPreferencesUtils,requireContext()))
     }
 
     override fun getViewBinding(): FragmentDetailsBinding {
