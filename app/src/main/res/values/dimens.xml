@@ -17,6 +17,7 @@
     <dimen name="text_medium">16sp</dimen>
     <dimen name="text_large">18sp</dimen>
     <dimen name="text_giant">20sp</dimen>
+    <dimen name="text_giant24">24sp</dimen>
     <dimen name="very_tiny">2sp</dimen>
 
     <!--radius dimens-->
