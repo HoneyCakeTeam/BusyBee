@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.models.*
 import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.domain.models.PersonalTodos
@@ -29,14 +29,14 @@ import kotlin.math.abs
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeViewInterface {
     private val teamPresenter: TeamPresenterInterface by lazy {
         TeamPresenter(
-            Repository(
+            RemoteDataSource(
                 requireContext()
             )
         )
     }
     private val personalPresenter: PersonalPresenterInterface by lazy {
         PersonalPresenter(
-            Repository(
+            RemoteDataSource(
                 requireContext()
             )
         )

@@ -1,23 +1,27 @@
-package com.example.busybee.data
+package com.example.busybee.data.source
 
 import android.content.Context
 import android.util.Base64
 import com.example.busybee.BuildConfig
 import com.example.busybee.data.models.*
-import com.example.busybee.data.source.ConnectionBuilder
-import com.example.busybee.data.source.executeWithCallbacks
 import com.example.busybee.utils.AuthorizationInterceptor
 import com.example.busybee.utils.Constant
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.executeWithCallbacks
 import com.google.gson.reflect.TypeToken
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
 
-class Repository(private val context: Context) : RepositoryInterface {
+class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface {
+
+    private val logInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BASIC
+    }
 
     private val client = OkHttpClient.Builder().apply {
-        addInterceptor(ConnectionBuilder.logInterceptor)
+        addInterceptor(logInterceptor)
         addInterceptor(AuthorizationInterceptor(context))
     }.build()
 
@@ -27,7 +31,7 @@ class Repository(private val context: Context) : RepositoryInterface {
     ) {
 
         val logInClient =
-            OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
+            OkHttpClient.Builder().addInterceptor(logInterceptor).build()
 
         val request = Request.Builder()
             .url(Constant.LOGIN_URL)
@@ -58,7 +62,7 @@ class Repository(private val context: Context) : RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val signUpClient =
-            OkHttpClient.Builder().addInterceptor(ConnectionBuilder.logInterceptor).build()
+            OkHttpClient.Builder().addInterceptor(logInterceptor).build()
 
         val formBody = FormBody.Builder()
             .add("username", userName)

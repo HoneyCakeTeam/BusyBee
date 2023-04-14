@@ -1,11 +1,10 @@
 package com.example.busybee.ui.details.presenter
 
-import com.example.busybee.data.RepositoryInterface
-import com.example.busybee.ui.details.view.DetailsViewInterface
+import com.example.busybee.data.source.RemoteDataSourceInterface
 
 
 class DetailsPresenter(
-    private val repository: RepositoryInterface,
+    private val repository: RemoteDataSourceInterface,
 ) : DetailsPresenterInterface {
     override fun <T> updateTasksPersonalStatus(
         idTask: String,

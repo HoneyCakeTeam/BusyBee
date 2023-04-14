@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.models.PersonalTodo
 import com.example.busybee.data.models.PersonalUpdateStatusResponse
 import com.example.busybee.data.models.TeamToDo
@@ -24,7 +24,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
     private var personalTodo: PersonalTodo? = null
     private var teamTodo: TeamToDo? = null
     private val presenter: DetailsPresenterInterface by lazy {
-        DetailsPresenter(Repository(requireContext()))
+        DetailsPresenter(RemoteDataSource(requireContext()))
     }
 
     override fun getViewBinding(): FragmentDetailsBinding {

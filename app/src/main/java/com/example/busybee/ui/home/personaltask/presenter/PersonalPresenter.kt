@@ -1,8 +1,8 @@
 package com.example.busybee.ui.home.personaltask.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.source.RemoteDataSourceInterface
 
-class PersonalPresenter(private val repository: RepositoryInterface) :
+class PersonalPresenter(private val repository: RemoteDataSourceInterface) :
     PersonalPresenterInterface {
     override fun <T> getPersonalTasks(
         onSuccessCallback: (response: T) -> Unit,

@@ -1,10 +1,9 @@
 package com.example.busybee.ui.login.presenter
 
-import com.example.busybee.data.RepositoryInterface
-import com.example.busybee.ui.login.view.LoginViewInterface
+import com.example.busybee.data.source.RemoteDataSourceInterface
 
 class LoginPresenter(
-    private val repository: RepositoryInterface
+    private val repository: RemoteDataSourceInterface
 ) :
     LoginPresenterInterface {
     override fun <T> logIn(

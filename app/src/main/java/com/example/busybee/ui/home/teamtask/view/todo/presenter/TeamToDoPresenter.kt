@@ -1,9 +1,9 @@
 package com.example.busybee.ui.home.teamtask.view.todo.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.source.RemoteDataSourceInterface
 
 class TeamToDoPresenter(
-    private val repository: RepositoryInterface
+    private val repository: RemoteDataSourceInterface
 ) : TeamToDoPresenterInterface {
     override fun <T> teamCreateToDo(
         title: String,

@@ -1,6 +1,6 @@
-package com.example.busybee.data
+package com.example.busybee.data.source
 
-interface RepositoryInterface {
+interface RemoteDataSourceInterface {
     fun <T> logIn(
         userName: String,
         password: String,
