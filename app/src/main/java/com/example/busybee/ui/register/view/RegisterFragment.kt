@@ -72,13 +72,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
     }
 
 
-    fun signUp(userName: String, password: String) {
+    private fun signUp(userName: String, password: String) {
         presenter.signUp<BaseResponse<SignUpResponseValue>>(
             userName,
             password
         )
     }
-
 
     override fun onRegisterSuccess(response: BaseResponse<LoginResponseValue>) {
         activity?.runOnUiThread {
