@@ -16,7 +16,7 @@ import com.example.busybee.ui.home.personaltask.todo.view.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.done.view.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.inprogress.view.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.todo.view.TeamToDoFragment
-import com.example.busybee.ui.setting.SettingFragment
+import com.example.busybee.ui.setting.view.SettingFragment
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
@@ -53,6 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     }
     private val personalDoneFragment by lazy { PersonalDoneFragment() }
 
+    private val settingsFragment by lazy { SettingFragment() }
 
     private val personalToDos by lazy {
         personalResponse.value.filter { it.status == 0 }
@@ -78,19 +79,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     }
 
     private fun addCallBacks() {
-        onClickSettings()
-    }
-
-    private fun onClickSettings() {
         binding.settings.setOnClickListener {
-            val personalTodos = personalToDos.size
-            val personalInProgressTodos = personalInProgressToDos.size
-            val personalDoneTodos = personalDoneToDos.size
-            val settingsFragment = SettingFragment.newInstance(
-                personalTodos,
-                personalInProgressTodos,
-                personalDoneTodos
-            )
             replaceFragment(settingsFragment)
         }
     }

@@ -7,7 +7,7 @@ class TeamDonePresenter(
     private val repository: RepositoryInterface,
     private val teamDoneViewInterface: TeamDoneViewInterface
 ) {
-    fun getLocalPersonalDones() {
+    fun getLocalTeamDones() {
         teamDoneViewInterface.getLocalTeamDones(
             repository.getTeamTasks().filter { it.status == 2 })
     }

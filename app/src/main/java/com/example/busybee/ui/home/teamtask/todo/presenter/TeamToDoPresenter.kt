@@ -2,7 +2,6 @@ package com.example.busybee.ui.home.teamtask.todo.presenter
 
 import com.example.busybee.data.RepositoryInterface
 import com.example.busybee.data.models.BaseResponse
-import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.ui.home.teamtask.todo.view.TeamToDoViewInterface
 
@@ -14,8 +13,8 @@ class TeamToDoPresenter(
         repository.addTeamToDo(todo)
     }
 
-    fun getLocalTeamTodos():List<TeamToDo> {
-        return repository.getTeamTasks().filter { it.status == 0 }
+    fun getLocalTeamTodos() {
+        teamToDoViewInterface.getLocalTeamTodos(repository.getTeamTasks().filter { it.status == 0 })
     }
 
     fun teamCreateToDo(

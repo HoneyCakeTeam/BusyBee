@@ -32,7 +32,7 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
     }
 
     override fun setUp() {
-        presenter.getLocalPersonalDones()
+        presenter.getLocalTeamDones()
         adapter = TeamDoneAdapter(done , this)
         binding.recyclerDone.adapter = adapter
         binding.taskHeader.textTodoStatus.text = getString(R.string.done)

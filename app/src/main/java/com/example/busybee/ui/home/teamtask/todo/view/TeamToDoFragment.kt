@@ -56,9 +56,11 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
             UiModeManager.MODE_NIGHT_NO -> {
                 binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
             }
+
             UiModeManager.MODE_NIGHT_YES -> {
                 binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo_dark)
             }
+
             else -> {
                 binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
             }
@@ -92,7 +94,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
     }
 
     private fun getToDos() {
-        todos = presenter.getLocalTeamTodos()
+        presenter.getLocalTeamTodos()
     }
 
     override fun teamCreateToDo(title: String, description: String, assignee: String) {
@@ -142,6 +144,10 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
             ).show()
         }
 
+    }
+
+    override fun getLocalTeamTodos(todos: List<TeamToDo>) {
+        this.todos = todos
     }
 
     override fun onTasKClicked(flag: Int, teamTodo: TeamToDo) {

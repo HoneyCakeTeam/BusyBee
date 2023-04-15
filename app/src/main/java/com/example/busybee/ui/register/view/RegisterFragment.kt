@@ -4,7 +4,6 @@ import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
-import com.example.busybee.data.models.LoginResponseValue
 import com.example.busybee.data.models.SignUpResponseValue
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentRegisterBinding
@@ -79,7 +78,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
         )
     }
 
-    override fun onRegisterSuccess(response: BaseResponse<LoginResponseValue>) {
+    override fun onRegisterSuccess(response: BaseResponse<SignUpResponseValue>) {
         activity?.runOnUiThread {
             replaceFragment(loginFragment)
             Snackbar.make(

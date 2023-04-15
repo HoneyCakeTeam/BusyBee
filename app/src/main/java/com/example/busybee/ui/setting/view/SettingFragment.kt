@@ -1,25 +1,36 @@
-package com.example.busybee.ui.setting
+package com.example.busybee.ui.setting.view
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
+import com.example.busybee.data.Repository
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentSettingsBinding
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.view.LoginFragment
+import com.example.busybee.ui.setting.presenter.SettingsPresenter
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
 import org.eazegraph.lib.models.PieModel
 import kotlin.properties.Delegates
 
-class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
+class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInterface {
     override val TAG: String
         get() = this::class.simpleName.toString()
     private val loginFragment = LoginFragment()
     private var personalTodos by Delegates.notNull<Float>()
     private var personalInProgressTodos by Delegates.notNull<Float>()
     private var personalDoneTodos by Delegates.notNull<Float>()
+
+    private val presenter by lazy {
+        SettingsPresenter(
+            Repository(
+                RemoteDataSource(requireContext()),
+                SharedPreferencesUtils, requireContext()
+            ), this
+        )
+    }
 
     override fun getViewBinding(): FragmentSettingsBinding =
         FragmentSettingsBinding.inflate(layoutInflater)
@@ -66,26 +77,10 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
         }
     }
 
-    companion object {
-        const val PERSONAL_TO_DO_COUNT = "Personal_To_Do_Count"
-        const val PERSONAL_IN_PROGRESS_COUNT = "Personal_In_Progress_Count"
-        const val PERSONAL_DONE_COUNT = "Personal_Done_Count"
-        fun newInstance(personalTodos: Int, personalInProgressTodos: Int, personalDoneTodos: Int) =
-            SettingFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(PERSONAL_TO_DO_COUNT, personalTodos)
-                    putInt(PERSONAL_IN_PROGRESS_COUNT, personalInProgressTodos)
-                    putInt(PERSONAL_DONE_COUNT, personalDoneTodos)
-                }
-            }
-    }
-
     private fun getTasksCount() {
-        arguments?.let {
-            personalTodos = it.getInt(PERSONAL_TO_DO_COUNT).toFloat()
-            personalInProgressTodos = it.getInt(PERSONAL_IN_PROGRESS_COUNT).toFloat()
-            personalDoneTodos = it.getInt(PERSONAL_DONE_COUNT).toFloat()
-        }
+        presenter.getLocalPersonalDones()
+        presenter.getLocalPersonalTodos()
+        presenter.getLocalPersonalInProgress()
     }
 
 
@@ -97,7 +92,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
         val donePercentage = calculatePercentage(sumOfPersonalToDos, personalDoneTodos)
 
         binding.textTodoPercentage.text = toDoPercentage.toInt().toString() + " %"
-        binding.textInProgressPercentage.text = inProgressPercentage.toInt().toString()  + " %"
+        binding.textInProgressPercentage.text = inProgressPercentage.toInt().toString() + " %"
         binding.textDonePercentage.text = donePercentage.toInt().toString() + " %"
         binding.textTotalTasksNum.text = sumOfPersonalToDos.toInt().toString()
     }
@@ -116,4 +111,29 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>() {
             replaceFragment(HomeFragment())
         }
     }
+
+    override fun getLocalPersonalDones(dones: Int) {
+        personalDoneTodos = dones.toFloat()
+    }
+
+    override fun getLocalPersonalInProgress(inProgress: Int) {
+        personalInProgressTodos = inProgress.toFloat()
+    }
+
+    override fun getLocalPersonalTodos(todos: Int) {
+        personalTodos = todos.toFloat()
+    }
+
+    override fun getLocalTeamDones(dones: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLocalTeamInProgress(inProgress: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLocalTeamTodos(todos: Int) {
+        TODO("Not yet implemented")
+    }
+
 }

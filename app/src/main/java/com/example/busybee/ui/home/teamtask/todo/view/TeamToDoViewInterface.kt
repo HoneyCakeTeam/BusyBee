@@ -7,4 +7,5 @@ interface TeamToDoViewInterface {
     fun teamCreateToDo(title: String, description: String, assignee: String)
     fun onSuccessResponse(response: BaseResponse<TeamToDo>)
     fun onFailureResponse(error: Throwable)
+    fun getLocalTeamTodos(todos: List<TeamToDo>)
 }
