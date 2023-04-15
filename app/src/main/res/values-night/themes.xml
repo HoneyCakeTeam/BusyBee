@@ -330,7 +330,11 @@
         <item name="android:background">@drawable/dark_shape_task_count</item>
     </style>
 
-    <style name="BottomSheetStyle" parent="Theme.Material3.Dark.BottomSheetDialog">
+    <style name="FabStyle">
+        <item name="backgroundTint">@color/primary_700</item>
+        <item name="android:layout_margin">@dimen/spacing_medium</item>
     </style>
+
+    <style name="BottomSheetStyle" parent="Theme.Material3.Dark.BottomSheetDialog"/>
 
 </resources>
