@@ -1,5 +1,7 @@
 package com.example.busybee.ui.home.teamtask.view.inprogress
 
+import android.app.UiModeManager
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import com.example.busybee.R
@@ -25,7 +27,21 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
         binding.recyclerInProgress.adapter = adapter
         binding.taskHeader.textTodoStatus.text = getString(R.string.in_progress)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, inProgress.size)
-        binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress)
+        setToDoColorBasedOnTheme()
+    }
+    private fun setToDoColorBasedOnTheme(){
+        val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        when (uiManager.nightMode) {
+            UiModeManager.MODE_NIGHT_NO -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress)
+            }
+            UiModeManager.MODE_NIGHT_YES -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress_dark)
+            }
+            else -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress)
+            }
+        }
     }
 
     private fun getInProgress() {

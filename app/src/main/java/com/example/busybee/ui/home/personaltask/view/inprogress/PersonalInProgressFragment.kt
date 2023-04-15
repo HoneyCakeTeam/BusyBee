@@ -1,5 +1,7 @@
 package com.example.busybee.ui.home.personaltask.view.inprogress
 
+import android.app.UiModeManager
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import com.example.busybee.R
@@ -25,7 +27,21 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
         binding.recyclerInProgress.adapter = adapter
         binding.headerInProgress.textTodoStatus.text = getString(R.string.in_progress)
         binding.headerInProgress.taskCount.text = getString(R.string.tasks, inProgress.size)
-        binding.headerInProgress.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress)
+        setToDoColorBasedOnTheme()
+    }
+    private fun setToDoColorBasedOnTheme(){
+        val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        when (uiManager.nightMode) {
+            UiModeManager.MODE_NIGHT_NO -> {
+                binding.headerInProgress.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress)
+            }
+            UiModeManager.MODE_NIGHT_YES -> {
+                binding.headerInProgress.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress_dark)
+            }
+            else -> {
+                binding.headerInProgress.textTodoStatus.setBackgroundResource(R.drawable.shape_inprogress)
+            }
+        }
     }
 
     private fun getDons() {

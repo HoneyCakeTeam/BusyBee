@@ -87,6 +87,7 @@
     <style name="TabLayoutStyle">
         <item name="tabIndicatorColor">@null</item>
         <item name="tabTextColor">@color/black_38</item>
+        <item name="tabSelectedTextColor">@color/primary_500</item>
         <item name="tabMode">fixed</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:paddingBottom">@dimen/spacing_small</item>
@@ -250,10 +251,7 @@
     <style name="BackgroundCustomShapeRecycler">
         <item name="android:background">@color/white_100</item>
     </style>
-    <style name="BackgroundCustomShapeTaskCount">
-        <item name="android:background">@drawable/shape_task_count</item>
-        <item name="android:textColor">@color/black_60</item>
-    </style>
+
     <style name="BackgroundCustomShapeSetting">
         <item name="android:background">@drawable/shape_settings_chart</item>
     </style>
@@ -279,5 +277,30 @@
         <item name="android:background">@color/white_100</item>
     </style>
     <style name="TextDateTaskStyle"></style>
+
+    <style name="LogoStyle">
+        <item name="android:src">@drawable/name_logo</item>
+    </style>
+
+    <style name="HeaderTask">
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/notosans_semibold</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_medium</item>
+        <item name="android:paddingVertical">@dimen/spacing_small</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="TodoStyle" parent="HeaderTask">
+        <item name="android:textColor">@color/white_200</item>
+    </style>
+
+    <style name="TodoCountStyle" parent="HeaderTask">
+        <item name="android:textColor">@color/black_60</item>
+        <item name="android:background">@drawable/shape_task_count</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog">
+    </style>
+
 
 </resources>

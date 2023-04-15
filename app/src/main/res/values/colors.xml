@@ -54,6 +54,7 @@
     <color name="white_300">#F6F6F6</color>
     <color name="white_400">#ECECEC</color>
     <color name="white_500">#E1E1E1</color>
+    <color name="white_dark">#FEFEFE</color>
 
     <!--Black Colors-->
     <color name="black_100">#121212</color>
@@ -74,7 +75,7 @@
     <color name="theme_dark_onSecondary">#332D41</color>
     <color name="theme_dark_secondaryContainer">#4A4458</color>
     <color name="theme_dark_outline">#938F99</color>
-    <color name="theme_dark_background">#99121212</color>
+    <color name="theme_dark_background">#282828</color>
     <color name="theme_dark_onBackground">#E6E1E5</color>
     <color name="theme_dark_surface">#1C1B1F</color>
     <color name="theme_dark_surfaceVariant">#49454F</color>
@@ -87,4 +88,7 @@
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/primary_200
     </color>
     <color name="color_green">#41B976</color>
+    <color name="inprogress_color_dark">#E69D06</color>
+    <color name="inprogress_color">#FEBC33</color>
+    <color name="done_dark">#38813B</color>
 </resources>

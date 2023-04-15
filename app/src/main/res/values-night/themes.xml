@@ -182,7 +182,8 @@
 
     <style name="TabLayoutStyle">
         <item name="tabIndicatorColor">@null</item>
-        <item name="tabTextColor">@color/white_300</item>
+        <item name="tabTextColor">@color/white_500</item>
+        <item name="tabSelectedTextColor">@color/primary_500</item>
         <item name="tabMode">fixed</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:paddingBottom">@dimen/spacing_small</item>
@@ -257,7 +258,7 @@
     </style>
 
     <style name="alertDialogCustomStyle">
-        <item name="android:background">@color/white_100</item>
+        <item name="android:background">@color/black_87</item>
     </style>
 
     <style name="SettingsTextStyle">
@@ -280,10 +281,6 @@
 
     <style name="BackgroundCustomShapeRecycler">
         <item name="android:background">@color/theme_dark_shape</item>
-    </style>
-    <style name="BackgroundCustomShapeTaskCount">
-        <item name="android:background">@drawable/dark_shape_task_count</item>
-        <item name="android:textColor">@color/white_500</item>
     </style>
     <style name="BackgroundCustomShapeSetting">
         <item name="android:background">@drawable/dark_shape_settings_chart</item>
@@ -311,5 +308,29 @@
     </style>
 
     <style name="TextDateTaskStyle"></style>
+
+    <style name="LogoStyle">
+        <item name="android:src">@drawable/logo_dark</item>
+    </style>
+
+    <style name="HeaderTask">
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/notosans_semibold</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_medium</item>
+        <item name="android:paddingVertical">@dimen/spacing_small</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="TodoStyle" parent="HeaderTask">
+        <item name="android:textColor">@color/white_200</item>
+    </style>
+
+    <style name="TodoCountStyle" parent="HeaderTask">
+        <item name="android:textColor">@color/white_500</item>
+        <item name="android:background">@drawable/dark_shape_task_count</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Theme.Material3.Dark.BottomSheetDialog">
+    </style>
 
 </resources>
