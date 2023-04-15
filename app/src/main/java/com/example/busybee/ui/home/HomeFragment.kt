@@ -13,8 +13,8 @@ import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.ui.home.personaltask.done.view.PersonalDoneFragment
 import com.example.busybee.ui.home.personaltask.inprogress.view.PersonalInProgressFragment
 import com.example.busybee.ui.home.personaltask.todo.view.PersonalToDoFragment
-import com.example.busybee.ui.home.teamtask.done.TeamDoneFragment
-import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressFragment
+import com.example.busybee.ui.home.teamtask.done.view.TeamDoneFragment
+import com.example.busybee.ui.home.teamtask.inprogress.view.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.todo.view.TeamToDoFragment
 import com.example.busybee.ui.setting.SettingFragment
 import com.example.busybee.utils.SharedPreferencesUtils
@@ -45,24 +45,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     private lateinit var homePagerAdapter: HomeViewPagerAdapter
 
     private val teamToDoFragment by lazy { TeamToDoFragment() }
-    private val teamInProgressFragment by lazy {
-        TeamInProgressFragment.newInstance(
-            teamInProgressToDos as ArrayList<TeamToDo>
-        )
-    }
-    private val teamDoneFragment by lazy { TeamDoneFragment.newInstance(teamDoneToDos as ArrayList<TeamToDo>) }
+    private val teamInProgressFragment by lazy { TeamInProgressFragment() }
+    private val teamDoneFragment by lazy { TeamDoneFragment() }
     private val personalToDoFragment by lazy { PersonalToDoFragment() }
     private val personalInProgressFragment by lazy {
         PersonalInProgressFragment()
     }
     private val personalDoneFragment by lazy { PersonalDoneFragment() }
 
-    private val teamInProgressToDos by lazy {
-        teamResponse.value.filter { it.status == 1 }
-    }
-    private val teamDoneToDos by lazy {
-        teamResponse.value.filter { it.status == 2 }
-    }
 
     private val personalToDos by lazy {
         personalResponse.value.filter { it.status == 0 }
