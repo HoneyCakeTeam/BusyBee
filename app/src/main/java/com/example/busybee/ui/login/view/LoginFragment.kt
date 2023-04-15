@@ -21,7 +21,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         LoginPresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(requireContext())
             ), this
         )
     }

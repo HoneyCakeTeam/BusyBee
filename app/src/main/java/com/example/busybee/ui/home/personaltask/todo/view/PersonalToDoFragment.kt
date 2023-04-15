@@ -30,7 +30,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         PersonalToDoPresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(requireContext())
             ), this
         )
     }

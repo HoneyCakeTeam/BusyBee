@@ -27,7 +27,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
         SettingsPresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(requireContext())
             ), this
         )
     }
@@ -71,8 +71,8 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     private fun onClickLogout() {
         binding.viewLogoutSettings.setOnClickListener {
-            SharedPreferencesUtils.initPreferencesUtil(requireContext())
-            SharedPreferencesUtils.token = null
+            SharedPreferencesUtils(requireContext())
+            SharedPreferencesUtils(requireContext()).token = null
             replaceFragment(loginFragment)
         }
     }

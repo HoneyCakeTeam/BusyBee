@@ -23,7 +23,7 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
         PersonalInProgressPresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(requireContext())
             ), this
         )
     }

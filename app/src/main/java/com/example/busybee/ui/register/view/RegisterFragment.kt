@@ -19,7 +19,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
         RegisterPresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(
+                    requireContext()
+                )
             ), this
         )
     }

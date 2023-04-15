@@ -22,7 +22,7 @@ class PersonalDoneFragment : BaseFragment<FragmentPersonalDoneBinding>(),
         PersonalDonePresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(requireContext())
             ), this
         )
     }

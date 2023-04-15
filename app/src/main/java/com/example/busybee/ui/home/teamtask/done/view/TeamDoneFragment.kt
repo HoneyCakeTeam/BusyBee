@@ -23,7 +23,7 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
         TeamDonePresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(requireContext())
             ), this
         )
     }

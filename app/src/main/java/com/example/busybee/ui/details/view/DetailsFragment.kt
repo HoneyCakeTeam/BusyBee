@@ -13,11 +13,10 @@ import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.details.presenter.DetailsPresenter
 import com.example.busybee.ui.home.HomeFragment
-import com.example.busybee.ui.home.personaltask.done.view.PersonalDoneFragment
-import com.example.busybee.ui.home.personaltask.inprogress.view.PersonalInProgressFragment
 import com.example.busybee.utils.DateTimeUtils
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.replaceFragment
+
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInterface {
     override val TAG = this::class.java.simpleName.toString()
     private var flag: Int = 0
@@ -27,7 +26,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         DetailsPresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(requireContext())
             ), this
         )
     }
