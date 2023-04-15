@@ -156,6 +156,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun onPersonalFailureResponse(error: Throwable) {
         // Show lottie animation in screen for error
     }
-
-
 }
