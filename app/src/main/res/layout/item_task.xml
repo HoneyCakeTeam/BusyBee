@@ -10,6 +10,7 @@
     android:layout_marginVertical="@dimen/spacing_tiny"
     app:cardCornerRadius="@dimen/radius_semi_large">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/BackgroundCustomShapeRecycler"
         android:layout_width="match_parent"
@@ -17,29 +18,53 @@
         android:paddingHorizontal="@dimen/spacing_medium"
         android:paddingVertical="@dimen/spacing_small">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_task_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65"
+            />
+
         <TextView
-            android:id="@+id/text_task_name"
             style="@style/TextTaskNameStyle"
+            android:id="@+id/text_task_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/text_user_name"
+            android:textDirection="locale"
+            android:layout_marginEnd="@dimen/spacing_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_task_item"
             tools:text="ToDo title" />
 
         <TextView
+            style="@style/TextTaskUserNameStyle"
+            android:id="@+id/text_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart"
+            android:textDirection="locale"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_task_name"
+            app:layout_constraintStart_toEndOf="@+id/guideline_task_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_task_name"
+            tools:text="Hamsa Ali" />
+
+        <TextView
+            style="@style/TextDescriptionTaskStyle"
             android:id="@+id/text_task_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextDescriptionTaskStyle"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textDirection="locale"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_task_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_task_name"
             tools:text="this is toDo description, for that todo, don't ignore it it's just a tool" />
 
         <TextView
-            android:id="@+id/text_task_time"
             style="@style/TextTimeTaskStyle"
+            android:id="@+id/text_task_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -49,25 +74,14 @@
 
 
         <TextView
+            style="@style/TextDateTaskStyle"
             android:id="@+id/text_task_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextDateTaskStyle.TextTimeTaskStyle"
             app:layout_constraintBottom_toBottomOf="@id/text_task_time"
             app:layout_constraintStart_toEndOf="@id/text_task_time"
             app:layout_constraintTop_toTopOf="@+id/text_task_time"
             tools:text="1 July" />
-
-        <TextView
-            android:id="@+id/text_user_name"
-            style="@style/TextTaskUserNameStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/text_task_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_task_name"
-            app:layout_constraintTop_toTopOf="@id/text_task_name"
-            tools:text="Hamsa Ali" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
