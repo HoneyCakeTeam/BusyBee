@@ -10,6 +10,7 @@ object SharedPreferencesUtils {
     private const val SHARED_PREFERENCES_NAME = "MySharedPreferences"
     private const val USER_TOKEN = "keyToken"
     private const val EXPIRATION_DATE_KEY = "expirationDate"
+    private const val NIGHT_MODE = "NightMode"
 
     fun initPreferencesUtil(context: Context) {
         sharedPreferences = context.getSharedPreferences(
@@ -25,7 +26,7 @@ object SharedPreferencesUtils {
             sharedPreferences?.edit()?.putString(USER_TOKEN, value)?.apply()
         }
 
-     var expirationDate: String?
+    var expirationDate: String?
         get() = sharedPreferences?.getString(EXPIRATION_DATE_KEY, null)
         set(value) {
             sharedPreferences?.edit()?.putString(EXPIRATION_DATE_KEY, value)?.apply()
@@ -40,5 +41,15 @@ object SharedPreferencesUtils {
 
         val currentTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).time
         return currentTime.after(expireDate)
+    }
+
+    fun setNightModeState(state: Boolean?) {
+        val editor = sharedPreferences!!.edit()
+        editor.putBoolean(NIGHT_MODE, state!!)
+        editor.apply()
+    }
+
+    fun loadNightModeState(): Boolean {
+        return sharedPreferences!!.getBoolean(NIGHT_MODE, false)
     }
 }
