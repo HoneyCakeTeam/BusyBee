@@ -85,8 +85,8 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
         )
     }
 
-    override fun <T> getAllTeamTasks(
-        onSuccessCallback: (response: T) -> Unit,
+    override fun getAllTeamTasks(
+        onSuccessCallback: (response: BaseResponse<List<TeamToDo>>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val request = Request.Builder()
@@ -103,11 +103,11 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
         )
     }
 
-    override fun <T> createTeamToDo(
+    override fun createTeamToDo(
         title: String,
         description: String,
         assignee: String,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<TeamToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val formBody = FormBody.Builder()
@@ -131,10 +131,10 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
         )
     }
 
-    override fun <T> createPersonalToDo(
+    override fun createPersonalToDo(
         title: String,
         description: String,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<PersonalToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val formBody = FormBody.Builder()
@@ -157,8 +157,8 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
         )
     }
 
-    override fun <T> getPersonalTasks(
-        onSuccessCallback: (response: T) -> Unit,
+    override fun getPersonalTasks(
+        onSuccessCallback: (response: BaseResponse<List<PersonalToDo>>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val request = Request.Builder()
@@ -205,7 +205,7 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
     }
 
 
-    override fun  updateTasksTeamStatus(
+    override fun updateTasksTeamStatus(
         idTask: String,
         status: Int,
         onSuccessCallback: (response: BaseResponse<String>) -> Unit,

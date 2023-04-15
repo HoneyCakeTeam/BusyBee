@@ -32,21 +32,21 @@ class Repository(
         remoteDataSource.signUp<T>(userName, password, onSuccessCallback, onFailureCallback)
     }
 
-    override fun <T> getAllTeamTasks(
-        onSuccessCallback: (response: T) -> Unit,
+    override fun getAllTeamTasks(
+        onSuccessCallback: (response: BaseResponse<List<TeamToDo>>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        remoteDataSource.getAllTeamTasks<T>(onSuccessCallback, onFailureCallback)
+        remoteDataSource.getAllTeamTasks(onSuccessCallback, onFailureCallback)
     }
 
-    override fun <T> createTeamToDo(
+    override fun createTeamToDo(
         title: String,
         description: String,
         assignee: String,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<TeamToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        remoteDataSource.createTeamToDo<T>(
+        remoteDataSource.createTeamToDo(
             title,
             description,
             assignee,
@@ -55,13 +55,13 @@ class Repository(
         )
     }
 
-    override fun <T> createPersonalToDo(
+    override fun createPersonalToDo(
         title: String,
         description: String,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<PersonalToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        remoteDataSource.createPersonalToDo<T>(
+        remoteDataSource.createPersonalToDo(
             title,
             description,
             onSuccessCallback,
@@ -69,15 +69,15 @@ class Repository(
         )
     }
 
-    override fun <T> getPersonalTasks(
-        onSuccessCallback: (response: T) -> Unit,
+    override fun getPersonalTasks(
+        onSuccessCallback: (response: BaseResponse<List<PersonalToDo>>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        remoteDataSource.getPersonalTasks<T>(onSuccessCallback, onFailureCallback)
+        remoteDataSource.getPersonalTasks(onSuccessCallback, onFailureCallback)
 
     }
 
-    override fun  updateTasksPersonalStatus(
+    override fun updateTasksPersonalStatus(
         idTask: String,
         status: Int,
         onSuccessCallback: (response: BaseResponse<String>) -> Unit,
@@ -90,7 +90,7 @@ class Repository(
     }
 
 
-    override fun  updateTasksTeamStatus(
+    override fun updateTasksTeamStatus(
         idTask: String,
         status: Int,
         onSuccessCallback: (response: BaseResponse<String>) -> Unit,
@@ -125,28 +125,36 @@ class Repository(
         return sharedPreferences.expirationDate
     }
 
-    fun getPersonalTasks(): List<PersonalToDo> {
+    override fun getPersonalTasks(): List<PersonalToDo> {
         return LocalDataSource.personalTasks
     }
 
-    fun setPersonalTasks(list: List<PersonalToDo>) {
+    override fun setPersonalTasks(list: List<PersonalToDo>) {
         LocalDataSource.personalTasks = list as MutableList<PersonalToDo>
     }
 
-    fun updatePersonalTaskStatus(id: String, newStatus: Int) {
+    override fun updatePersonalTaskStatus(id: String, newStatus: Int) {
         LocalDataSource.personalTasks.first { it.id == id }.status = newStatus
     }
 
-    fun getTeamTasks(): List<TeamToDo> {
+    override fun getTeamTasks(): List<TeamToDo> {
         return LocalDataSource.teamTasks
     }
 
-    fun setTeamTasks(list: List<TeamToDo>) {
+    override fun setTeamTasks(list: List<TeamToDo>) {
         LocalDataSource.teamTasks = list as MutableList<TeamToDo>
     }
 
-    fun updateTeamTaskStatus(id: String, newStatus: Int) {
+    override fun updateTeamTaskStatus(id: String, newStatus: Int) {
         LocalDataSource.teamTasks.first { it.id == id }.status = newStatus
+    }
+
+    override fun addPersonalToDo(todo: PersonalToDo) {
+        LocalDataSource.personalTasks.add(todo)
+    }
+
+    override fun addTeamToDo(todo: TeamToDo) {
+        LocalDataSource.teamTasks.add(todo)
     }
 }
 

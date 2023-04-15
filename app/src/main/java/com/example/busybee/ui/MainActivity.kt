@@ -18,9 +18,13 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), MainViewInterface {
 
-    private val presenter: MainPresenterInterface by lazy {
-        MainPresenter (Repository( RemoteDataSource(this),
-            SharedPreferencesUtils,this), this)
+    private val presenter by lazy {
+        MainPresenter(
+            Repository(
+                RemoteDataSource(this),
+                SharedPreferencesUtils, this
+            ), this
+        )
     }
     private val fragmentHome = HomeFragment()
     private val fragmentLogin = LoginFragment()
@@ -30,6 +34,7 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         statusBarTheme()
         presenter.getTokenFromShared()
     }
+
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
@@ -64,7 +69,7 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
     override fun getTokenFromShared(token: String?) {
         if (!token.isNullOrEmpty()) {
             presenter.getExpirationDateFromShared()
-        }else{
+        } else {
             replaceFragment(fragmentLogin)
         }
     }
@@ -72,7 +77,7 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
     override fun getExpirationDateFromShared(expirationDate: String?) {
         if (isTokenExpired(expirationDate)) {
             replaceFragment(fragmentLogin)
-        }else{
+        } else {
             replaceFragment(fragmentHome)
         }
     }

@@ -1,6 +1,8 @@
 package com.example.busybee.data
 
 import com.example.busybee.data.models.BaseResponse
+import com.example.busybee.data.models.PersonalToDo
+import com.example.busybee.data.models.TeamToDo
 
 interface RepositoryInterface {
 
@@ -17,21 +19,21 @@ interface RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit
     )
 
-    fun <T> getPersonalTasks(
-        onSuccessCallback: (response: T) -> Unit,
+    fun getPersonalTasks(
+        onSuccessCallback: (response: BaseResponse<List<PersonalToDo>>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
-    fun <T> getAllTeamTasks(
-        onSuccessCallback: (response: T) -> Unit,
+    fun getAllTeamTasks(
+        onSuccessCallback: (response: BaseResponse<List<TeamToDo>>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
-    fun <T> createTeamToDo(
+    fun createTeamToDo(
         title: String,
         description: String,
         assignee: String,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<TeamToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
@@ -43,7 +45,7 @@ interface RepositoryInterface {
     )
 
 
-    fun  updateTasksTeamStatus(
+    fun updateTasksTeamStatus(
         idTask: String,
         status: Int,
         onSuccessCallback: (response: BaseResponse<String>) -> Unit,
@@ -56,12 +58,26 @@ interface RepositoryInterface {
         onFailureCallback: (error: Throwable) -> Unit,
     )
 
-    fun <T> createPersonalToDo(
+    fun createPersonalToDo(
         title: String,
         description: String,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<PersonalToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
+    fun getPersonalTasks(): List<PersonalToDo>
 
+    fun setPersonalTasks(list: List<PersonalToDo>)
+
+    fun updatePersonalTaskStatus(id: String, newStatus: Int)
+
+    fun getTeamTasks(): List<TeamToDo>
+
+    fun setTeamTasks(list: List<TeamToDo>)
+
+    fun updateTeamTaskStatus(id: String, newStatus: Int)
+
+    fun addPersonalToDo(todo: PersonalToDo)
+
+    fun addTeamToDo(todo: TeamToDo)
 }
