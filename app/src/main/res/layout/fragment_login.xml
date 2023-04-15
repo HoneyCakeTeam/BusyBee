@@ -8,20 +8,21 @@
 
     <View
         android:id="@+id/top_squre"
+        style="@style/BackgroundCustomShapeViewLogin"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:background="@drawable/squre"
-        android:backgroundTint="@color/primary_500"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        style="@style/BackgroundCustomShapeViewLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="200dp"
-        android:background="@drawable/squre"
-        android:backgroundTint="@color/primary_500" />
+        android:background="@drawable/squre" />
 
     <View
+        style="@style/BackgroundCustomShapeViewLogin"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginHorizontal="90dp"
@@ -65,6 +66,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            style="@style/BackgroundCustomShapeCardLogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"

@@ -4,6 +4,6 @@
     <corners
         android:topLeftRadius="@dimen/spacing_giant"
         android:topRightRadius="@dimen/spacing_giant" />
-    <solid android:color="@color/white_300" />
+    <solid android:color="@color/theme_dark_shape" />
 
 </shape>

@@ -1,8 +1,11 @@
 package com.example.busybee.ui.home.personaltask.view.todo
 
+import android.app.UiModeManager
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat.getSystemService
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -44,6 +47,8 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         binding.recyclerToDo.adapter = adapter
         binding.headerToDo.textTodoStatus.text = getString(R.string.to_do)
         binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.size)
+//        binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
+        setToDoColorBasedOnTheme()
     }
 
     private fun addCallBacks() {
@@ -58,7 +63,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
 
         bottomSheet = BottomSheetDialog(
             requireContext(),
-            com.google.android.material.R.style.Theme_Design_BottomSheetDialog
+            R.style.BottomSheetStyle
         )
 
         sheetCreateTaskBinding.buttonCreateTask.setOnClickListener {
@@ -103,10 +108,24 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
 
     private fun setListAndUpdateUi(response: BaseResponse<PersonalToDo>) {
         val newTask = response.value
-        todos = todos.toMutableList().apply { add(newTask!!) }
+        todos = todos.toMutableList().apply { add(newTask) }
         adapter.setItems(todos)
         binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.size)
-        binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
+        setToDoColorBasedOnTheme()
+    }
+    private fun setToDoColorBasedOnTheme(){
+        val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        when (uiManager.nightMode) {
+            UiModeManager.MODE_NIGHT_NO -> {
+                binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
+            }
+            UiModeManager.MODE_NIGHT_YES -> {
+                binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo_dark)
+            }
+            else -> {
+                binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
+            }
+        }
     }
 
     private fun hideFieldsAndShowDone() {

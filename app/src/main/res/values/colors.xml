@@ -54,12 +54,14 @@
     <color name="white_300">#F6F6F6</color>
     <color name="white_400">#ECECEC</color>
     <color name="white_500">#E1E1E1</color>
+    <color name="white_dark">#FEFEFE</color>
 
     <!--Black Colors-->
     <color name="black_100">#121212</color>
     <color name="black_87">#DE121212</color>
     <color name="black_78">#C7121212</color>
     <color name="black_60">#99121212</color>
+    <color name="black_50">#80121212</color>
     <color name="black_38">#61121212</color>
     <color name="black_8">#14121212</color>
 
@@ -74,7 +76,7 @@
     <color name="theme_dark_onSecondary">#332D41</color>
     <color name="theme_dark_secondaryContainer">#4A4458</color>
     <color name="theme_dark_outline">#938F99</color>
-    <color name="theme_dark_background">#333</color>
+    <color name="theme_dark_background">#282828</color>
     <color name="theme_dark_onBackground">#E6E1E5</color>
     <color name="theme_dark_surface">#1C1B1F</color>
     <color name="theme_dark_surfaceVariant">#49454F</color>
@@ -82,8 +84,15 @@
     <color name="theme_dark_inverseSurface">#E6E1E5</color>
     <color name="theme_dark_inverseOnSurface">#313033</color>
     <color name="theme_dark_outlineVariant">#49454F</color>
+    <color name="theme_dark_shape">#333333</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/primary_200
     </color>
-    <color name="color_green">#41B976</color>
+    <color name="color_green">#54C586</color>
+    <color name="inprogress_color_dark">#C68705</color>
+    <color name="inprogress_color">#FEBC33</color>
+    <color name="done_dark">#38813B</color>
+    <color name="dark_color_title">#DEFEFEFE</color>
+    <color name="dark_color_description">#99FEFEFE</color>
+    <color name="dark_color_icons">#99FFBF3B</color>
 </resources>

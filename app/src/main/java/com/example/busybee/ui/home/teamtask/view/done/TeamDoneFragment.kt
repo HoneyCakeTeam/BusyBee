@@ -1,5 +1,7 @@
 package com.example.busybee.ui.home.teamtask.view.done
 
+import android.app.UiModeManager
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +29,21 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
         binding.recyclerDone.adapter = adapter
         binding.taskHeader.textTodoStatus.text = getString(R.string.done)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, done.size)
-        binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_done)
+        setToDoColorBasedOnTheme()
+    }
+    private fun setToDoColorBasedOnTheme(){
+        val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        when (uiManager.nightMode) {
+            UiModeManager.MODE_NIGHT_NO -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_done)
+            }
+            UiModeManager.MODE_NIGHT_YES -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_done_dark)
+            }
+            else -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_done)
+            }
+        }
     }
 
     private fun getDons() {

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_300"
     android:orientation="vertical">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -18,35 +17,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        style="@style/SettingsTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/ic_left_arrow"
-        app:layout_constraintBottom_toBottomOf="@id/ic_left_arrow"
         android:layout_marginStart="@dimen/spacing_medium"
-        app:layout_constraintStart_toEndOf="@id/ic_left_arrow"
         android:text="@string/settings"
-        style="@style/SettingsTextStyle"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/ic_left_arrow"
+        app:layout_constraintStart_toEndOf="@id/ic_left_arrow"
+        app:layout_constraintTop_toTopOf="@id/ic_left_arrow" />
 
     <View
         android:id="@+id/view_chart_shape"
+        style="@style/BackgroundCustomShapeSetting"
         android:layout_width="match_parent"
         android:layout_height="186dp"
         android:layout_marginHorizontal="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_giant"
-        android:background="@drawable/shape_settings_chart"
-        app:layout_constraintTop_toBottomOf="@id/ic_left_arrow"
+        app:layout_constraintBottom_toTopOf="@id/view_theme_settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintBottom_toTopOf="@id/view_theme_settings"/>
+        app:layout_constraintTop_toBottomOf="@id/ic_left_arrow" />
 
     <org.eazegraph.lib.charts.PieChart
         android:id="@+id/piechart"
+        style="@style/BackgroundCustomShapePieChart"
         android:layout_width="152dp"
         android:layout_height="152dp"
-        android:layout_marginStart="@dimen/spacing_medium"
-        app:egHighlightStrength="1"
-        app:egInnerPadding="87"
         app:layout_constraintBottom_toBottomOf="@id/view_chart_shape"
         app:layout_constraintStart_toStartOf="@id/view_chart_shape"
         app:layout_constraintTop_toTopOf="@id/view_chart_shape" />
@@ -144,9 +140,7 @@
         android:id="@+id/view_theme_settings"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_item_settings_height"
-        android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:background="@drawable/shape_settings_theme"
+        style="@style/BackgroundCustomShapeViewSetting"
         app:layout_constraintEnd_toEndOf="@id/view_chart_shape"
         app:layout_constraintStart_toStartOf="@id/view_chart_shape"
         app:layout_constraintTop_toBottomOf="@id/view_chart_shape" />
@@ -156,7 +150,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
-        android:background="@drawable/ic_theme"
+        android:src="@drawable/ic_theme"
         app:layout_constraintBottom_toBottomOf="@+id/view_theme_settings"
         app:layout_constraintStart_toStartOf="@id/view_theme_settings"
         app:layout_constraintTop_toTopOf="@id/view_theme_settings" />
@@ -189,8 +183,7 @@
         android:id="@+id/view_logout_settings"
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_item_settings_height"
-        android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:background="@drawable/shape_settings_logout"
+        style="@style/BackgroundCustomShapeViewSettingLogout"
         app:layout_constraintEnd_toEndOf="@id/view_theme_settings"
         app:layout_constraintStart_toStartOf="@id/view_theme_settings"
         app:layout_constraintTop_toBottomOf="@id/view_theme_settings" />
@@ -200,7 +193,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
-        android:background="@drawable/ic_logout"
+        android:src="@drawable/ic_logout"
         app:layout_constraintBottom_toBottomOf="@id/view_logout_settings"
         app:layout_constraintStart_toStartOf="@id/view_logout_settings"
         app:layout_constraintTop_toTopOf="@id/view_logout_settings" />

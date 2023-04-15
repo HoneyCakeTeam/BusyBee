@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_300"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.personaltask.view.todo.PersonalToDoFragment">
 
@@ -28,13 +27,12 @@
         app:layout_constraintTop_toBottomOf="@+id/header_ToDo" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        style="@style/FabStyle"
         android:id="@+id/button_add_new_personal_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/primary_500"
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/spacing_medium"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

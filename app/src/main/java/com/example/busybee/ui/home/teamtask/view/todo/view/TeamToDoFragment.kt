@@ -1,5 +1,7 @@
 package com.example.busybee.ui.home.teamtask.view.todo.view
 
+import android.app.UiModeManager
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -41,9 +43,22 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         binding.recyclerToDo.adapter = adapter
         binding.taskHeader.textTodoStatus.text = getString(R.string.to_do)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, todos.size)
-        binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
+        setToDoColorBasedOnTheme()
     }
-
+    private fun setToDoColorBasedOnTheme(){
+        val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        when (uiManager.nightMode) {
+            UiModeManager.MODE_NIGHT_NO -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
+            }
+            UiModeManager.MODE_NIGHT_YES -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo_dark)
+            }
+            else -> {
+                binding.taskHeader.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
+            }
+        }
+    }
     private fun addCallBacks() {
         binding.buttonAddNewTeamTask.setOnClickListener {
             showBottomSheet()
@@ -115,7 +130,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         val newTask = response.value
         todos = todos.toMutableList().apply { add(newTask) }
         adapter.setItems(todos)
-        binding.taskHeader.taskCount.text = "${todos.size} Tasks"
+        binding.taskHeader.taskCount.text = getString(R.string.tasks, todos.size)
     }
 
     override fun onFailureResponse(error: Throwable) {

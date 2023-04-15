@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_300"
     android:padding="@dimen/spacing_medium">
 
     <ImageButton
@@ -21,14 +20,6 @@
         style="@style/TextMemberTaskStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start|center"
-        android:layout_marginStart="@dimen/spacing_tiny"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:background="@drawable/shape_user"
-        android:drawablePadding="@dimen/spacing_small"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:padding="@dimen/spacing_simi_medium"
         app:drawableStartCompat="@drawable/ic_user_details"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_back"
@@ -50,7 +41,7 @@
             android:id="@+id/card_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_user"
+            style="@style/BackgroundCustomShapeDetails"
             android:padding="@dimen/spacing_simi_medium">
 
             <TextView
@@ -96,12 +87,7 @@
         android:id="@+id/text_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:background="@drawable/shape_user"
-        android:fontFamily="@font/notosans_regular"
-        android:justificationMode="inter_word"
-        android:padding="@dimen/spacing_medium"
-        android:textSize="@dimen/text_medium"
+        style="@style/TextDetailsTaskStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/task_card"
@@ -115,14 +101,10 @@ sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class apten
         android:id="@+id/btn_move"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/shape_button"
-        android:drawablePadding="@dimen/spacing_tiny"
-        android:padding="@dimen/spacing_small"
+        style="@style/ButtomDetailsTaskStyle"
         android:text="@string/move_to_in_progress"
-        android:textColor="@color/white_100"
         app:icon="@drawable/ic_move_arrow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_description" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

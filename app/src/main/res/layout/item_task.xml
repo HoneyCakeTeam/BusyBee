@@ -10,99 +10,78 @@
     android:layout_marginVertical="@dimen/spacing_tiny"
     app:cardCornerRadius="@dimen/radius_semi_large">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/white_100"
+        style="@style/BackgroundCustomShapeRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="@dimen/spacing_small"
         android:paddingHorizontal="@dimen/spacing_medium"
-        >
+        android:paddingVertical="@dimen/spacing_small">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_task_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65"
+            />
 
         <TextView
+            style="@style/TextTaskNameStyle"
             android:id="@+id/text_task_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="ToDo title"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:layout_marginEnd="@dimen/spacing_small"
-            android:fontFamily="@font/notosans_medium"
-            android:textColor="@color/black_60"
-            android:textSize="@dimen/text_large"
-            app:layout_constraintEnd_toStartOf="@+id/text_user_name"
+            android:textDirection="locale"
+            android:layout_marginEnd="@dimen/spacing_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintEnd_toStartOf="@+id/guideline_task_item"
+            tools:text="ToDo title" />
 
         <TextView
+            style="@style/TextTaskUserNameStyle"
+            android:id="@+id/text_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart"
+            android:textDirection="locale"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_task_name"
+            app:layout_constraintStart_toEndOf="@+id/guideline_task_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_task_name"
+            tools:text="Hamsa Ali" />
+
+        <TextView
+            style="@style/TextDescriptionTaskStyle"
             android:id="@+id/text_task_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_regular"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:layout_marginEnd="@dimen/spacing_large"
-            tools:text="this is toDo description, for that todo, don't ignore it it's just a tool"
-            android:textColor="@color/black_60"
-            android:textSize="@dimen/text_small"
+            android:textDirection="locale"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_task_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_task_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            tools:text="this is toDo description, for that todo, don't ignore it it's just a tool" />
 
         <TextView
+            style="@style/TextTimeTaskStyle"
             android:id="@+id/text_task_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/spacing_tiny"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/spacing_small"
-            tools:text="10:30 AM"
-            android:fontFamily="@font/notosans_regular"
-            android:textColor="@color/black_38"
-            android:textSize="@dimen/text_tiny"
-            app:drawableStartCompat="@drawable/ic_todo_time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_task_description"
-            />
+            tools:text="10:30 AM" />
 
 
         <TextView
+            style="@style/TextDateTaskStyle"
             android:id="@+id/text_task_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/spacing_tiny"
-            android:gravity="center"
-            android:layout_marginStart="@dimen/spacing_small"
-            tools:text="1 July"
-            android:fontFamily="@font/notosans_regular"
-            android:textColor="@color/black_38"
-            android:textSize="@dimen/text_tiny"
-            app:drawableStartCompat="@drawable/ic_todo_date"
             app:layout_constraintBottom_toBottomOf="@id/text_task_time"
             app:layout_constraintStart_toEndOf="@id/text_task_time"
             app:layout_constraintTop_toTopOf="@+id/text_task_time"
-            />
-
-        <TextView
-            android:id="@+id/text_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/spacing_tiny"
-            android:gravity="end"
-            tools:text="Hamsa Ali"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:fontFamily="@font/notosans_regular"
-            android:textSize="@dimen/text_small"
-            app:drawableStartCompat="@drawable/ic_todo_assignee"
-            app:layout_constraintStart_toEndOf="@+id/text_task_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_task_name"
-            app:layout_constraintBottom_toBottomOf="@+id/text_task_name"
-            />
+            tools:text="1 July" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
