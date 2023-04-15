@@ -5,18 +5,11 @@ import android.content.SharedPreferences
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SharedPreferencesUtils {
+class SharedPreferencesUtils(context: Context) {
     private var sharedPreferences: SharedPreferences? = null
     private val SHARED_PREFERENCES_NAME = "MySharedPreferences"
     private val USER_TOKEN = "keyToken"
     private val EXPIRATION_DATE_KEY = "expirationDate"
-
-
-    constructor(context: Context){
-        sharedPreferences = context.getSharedPreferences(
-            SHARED_PREFERENCES_NAME,
-            Context.MODE_PRIVATE )
-    }
 
     var token: String?
         get() = sharedPreferences?.getString(USER_TOKEN, null)
@@ -40,5 +33,10 @@ class SharedPreferencesUtils {
 
         val currentTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).time
         return currentTime.after(expireDate)
+    }
+    init {
+        sharedPreferences = context.getSharedPreferences(
+            SHARED_PREFERENCES_NAME,
+            Context.MODE_PRIVATE )
     }
 }
