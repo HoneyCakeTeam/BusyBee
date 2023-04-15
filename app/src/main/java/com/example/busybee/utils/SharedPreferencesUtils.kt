@@ -11,6 +11,7 @@ object SharedPreferencesUtils {
     private const val USER_TOKEN = "keyToken"
     private const val EXPIRATION_DATE_KEY = "expirationDate"
 
+
     fun initPreferencesUtil(context: Context) {
         sharedPreferences = context.getSharedPreferences(
             SHARED_PREFERENCES_NAME,
