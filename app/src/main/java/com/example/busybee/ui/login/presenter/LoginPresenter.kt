@@ -23,11 +23,11 @@ class LoginPresenter(
     }
 
     fun saveTokenInShared(token: String) {
-        repository.saveTokenInShared(token)
+        repository.saveToken(token)
     }
 
     fun saveExpirationDateInShared(expirationDate: String) {
-        repository.saveExpirationDateInShared(expirationDate)
+        repository.saveExpirationDate(expirationDate)
     }
 
 

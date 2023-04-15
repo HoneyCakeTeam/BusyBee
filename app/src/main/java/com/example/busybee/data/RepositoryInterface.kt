@@ -2,11 +2,11 @@ package com.example.busybee.data
 
 interface RepositoryInterface {
 
-    fun saveTokenInShared(token: String?)
-    fun saveExpirationDateInShared(expirationDate: String)
+    fun saveToken(token: String?)
+    fun saveExpirationDate(expirationDate: String)
 
-    fun getTokenFromShared(): String?
-    fun getExpirationDateFromShared(): String?
+    fun getToken(): String?
+    fun getExpirationDate(): String?
 
     fun <T> logIn(
         userName: String,

@@ -1,6 +1,8 @@
 package com.example.busybee.data
 
 import android.content.Context
+import com.example.busybee.data.models.PersonalToDo
+import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSourceInterface
 import com.example.busybee.utils.SharedPreferencesUtils
 
@@ -102,23 +104,52 @@ class Repository(
         )
     }
 
-    override fun saveTokenInShared(token: String?) {
+    override fun saveToken(token: String?) {
         sharedPreferences.initPreferencesUtil(context)
         sharedPreferences.token = token
     }
 
-    override fun saveExpirationDateInShared(expirationDate: String) {
+    override fun saveExpirationDate(expirationDate: String) {
         sharedPreferences.initPreferencesUtil(context)
         sharedPreferences.expirationDate = expirationDate
     }
 
-    override fun getTokenFromShared(): String? {
+    override fun getToken(): String? {
         sharedPreferences.initPreferencesUtil(context)
         return sharedPreferences.token
     }
 
-    override fun getExpirationDateFromShared(): String? {
+    override fun getExpirationDate(): String? {
         sharedPreferences.initPreferencesUtil(context)
         return sharedPreferences.expirationDate
     }
+
+    fun getPersonalTasks(): List<PersonalToDo> {
+        return LocalDataSource.personalTasks
+    }
+
+    fun setPersonalTasks(list: List<PersonalToDo>) {
+        LocalDataSource.personalTasks = list as MutableList<PersonalToDo>
+    }
+
+    fun updatePersonalTaskStatus(id: String, newStatus: Int) {
+        LocalDataSource.personalTasks.first { it.id == id }.status = newStatus
+    }
+
+    fun getTeamTasks(): List<TeamToDo> {
+        return LocalDataSource.teamTasks
+    }
+
+    fun setTeamTasks(list: List<TeamToDo>) {
+        LocalDataSource.teamTasks = list as MutableList<TeamToDo>
+    }
+
+    fun updateTeamTaskStatus(id: String, newStatus: Int) {
+        LocalDataSource.teamTasks.first { it.id == id }.status = newStatus
+    }
+}
+
+private object LocalDataSource {
+    var personalTasks = mutableListOf<PersonalToDo>()
+    var teamTasks = mutableListOf<TeamToDo>()
 }

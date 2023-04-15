@@ -1,17 +1,16 @@
 package com.example.busybee.ui
 
 import com.example.busybee.data.RepositoryInterface
-import com.example.busybee.data.source.RemoteDataSourceInterface
 
 class MainPresenter(
     private val repository: RepositoryInterface,
     private val mainViewInterface: MainViewInterface
 ) : MainPresenterInterface {
     override fun getTokenFromShared() {
-        mainViewInterface.getTokenFromShared(repository.getTokenFromShared())
+        mainViewInterface.getTokenFromShared(repository.getToken())
     }
 
     override fun getExpirationDateFromShared() {
-        mainViewInterface.getExpirationDateFromShared(repository.getExpirationDateFromShared())
+        mainViewInterface.getExpirationDateFromShared(repository.getExpirationDate())
     }
 }

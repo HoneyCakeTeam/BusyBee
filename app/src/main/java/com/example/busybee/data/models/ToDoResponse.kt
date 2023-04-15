@@ -13,7 +13,7 @@ data class PersonalToDo(
     val id: String? = null,
     val title: String? = null,
     val description: String? = null,
-    val status: Int? = null,
+    var status: Int? = null,
     val creationTime: String? = null,
 ) : Parcelable
 
@@ -23,7 +23,7 @@ data class TeamToDo(
     val title: String,
     val description: String,
     val assignee: String,
-    val status: Int,
+    var status: Int,
     val creationTime: String
 ) : Parcelable
 
