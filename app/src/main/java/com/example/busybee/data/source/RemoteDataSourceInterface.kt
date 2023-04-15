@@ -1,5 +1,7 @@
 package com.example.busybee.data.source
 
+import com.example.busybee.data.models.BaseResponse
+
 interface RemoteDataSourceInterface {
     fun <T> logIn(
         userName: String,
@@ -34,16 +36,16 @@ interface RemoteDataSourceInterface {
     )
 
 
-    fun <T> updateTasksTeamStatus(
+    fun  updateTasksTeamStatus(
         idTask: String,
         status: Int,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
-    fun <T> updateTasksPersonalStatus(
+    fun  updateTasksPersonalStatus(
         idTask: String, status: Int,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     )
 

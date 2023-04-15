@@ -100,31 +100,49 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         }
     }
 
-    override fun updateTasksPersonalStatus(idTask: String, status: Int) {
+    private fun updateTasksPersonalStatus(idTask: String, status: Int) {
         presenter.updateTasksPersonalStatus<BaseResponse<String>>(idTask, status)
     }
 
-
-    override fun onFailureResponse(error: Throwable) {
+    override fun onUpdatePersonalStatusSuccess(response: BaseResponse<String>) {
         activity?.runOnUiThread {
             Toast.makeText(
-                requireContext(), "update fail ! ${error.message} ", Toast.LENGTH_SHORT
+                requireContext(),
+                "Personal update success ${response.isSuccess}",
+                Toast.LENGTH_SHORT
+            ).show()
+            replaceFragment(HomeFragment())
+
+        }
+    }
+
+    override fun onUpdatePersonalStatusFailed(error: Throwable) {
+        activity?.runOnUiThread {
+            Toast.makeText(
+                requireContext(), "Personal update fail ! ${error.message} ", Toast.LENGTH_SHORT
             ).show()
         }
     }
 
+    private fun updateTasksTeamStatus(idTask: String, status: Int) {
+        presenter.updateTasksTeamStatus<BaseResponse<String>>(idTask, status)
+    }
 
-    override fun onSuccessResponse(response: BaseResponse<String>) {
+    override fun onUpdateTeamStatusSuccess(response: BaseResponse<String>) {
         activity?.runOnUiThread {
             Toast.makeText(
-                requireContext(), "update success ${response.isSuccess}", Toast.LENGTH_SHORT
+                requireContext(), "Team update success ${response.isSuccess}", Toast.LENGTH_SHORT
             ).show()
             replaceFragment(HomeFragment())
         }
     }
 
-    override fun updateTasksTeamStatus(idTask: String, status: Int) {
-        presenter.updateTasksTeamStatus<BaseResponse<String>>(idTask, status)
+    override fun onUpdateTeamStatusFailed(error: Throwable) {
+        activity?.runOnUiThread {
+            Toast.makeText(
+                requireContext(), "Team update fail ! ${error.message} ", Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun getTask(): Triple<Int, PersonalToDo?, TeamToDo?> {
@@ -142,21 +160,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         return Triple(flag, personalTodo, teamTodo)
     }
 
-    companion object {
-        const val FLAG = "flag"
-        const val PERSONAL_TASK = "personalTask"
-        const val TEAM_TASK = "teamTask"
 
-        fun newInstance(flag: Int, teamTodo: TeamToDo?, personalToDo: PersonalToDo?) =
-            DetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(FLAG, flag)
-                    putParcelable(TEAM_TASK, teamTodo)
-                    putParcelable(PERSONAL_TASK, personalToDo)
-                }
-            }
-
-    }
 
     private fun bindingPersonalToDosViews(personalToDo: PersonalToDo?) {
         val (formattedTime, formattedDate) = DateTimeUtils.formatDateTime(
@@ -182,5 +186,19 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
             textTaskTime.text = formattedTime
             textTaskMemberAssign.text = teamToDo?.assignee
         }
+    }
+    companion object {
+        const val FLAG = "flag"
+        const val PERSONAL_TASK = "personalTask"
+        const val TEAM_TASK = "teamTask"
+
+        fun newInstance(flag: Int, teamTodo: TeamToDo?, personalToDo: PersonalToDo?) =
+            DetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(FLAG, flag)
+                    putParcelable(TEAM_TASK, teamTodo)
+                    putParcelable(PERSONAL_TASK, personalToDo)
+                }
+            }
     }
 }

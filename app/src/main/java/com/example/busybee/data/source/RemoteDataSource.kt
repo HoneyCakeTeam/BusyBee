@@ -176,10 +176,10 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
 
     }
 
-    override fun <T> updateTasksPersonalStatus(
+    override fun updateTasksPersonalStatus(
         idTask: String,
         status: Int,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     ) {
 
@@ -205,10 +205,10 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
     }
 
 
-    override fun <T> updateTasksTeamStatus(
+    override fun  updateTasksTeamStatus(
         idTask: String,
         status: Int,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
 

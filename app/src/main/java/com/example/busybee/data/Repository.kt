@@ -1,6 +1,7 @@
 package com.example.busybee.data
 
 import android.content.Context
+import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSourceInterface
@@ -76,27 +77,27 @@ class Repository(
 
     }
 
-    override fun <T> updateTasksPersonalStatus(
+    override fun  updateTasksPersonalStatus(
         idTask: String,
         status: Int,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     ) {
-        remoteDataSource.updateTasksPersonalStatus<T>(
+        remoteDataSource.updateTasksPersonalStatus(
             idTask, status,
             onSuccessCallback, onFailureCallback
         )
     }
 
 
-    override fun <T> updateTasksTeamStatus(
+    override fun  updateTasksTeamStatus(
         idTask: String,
         status: Int,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
 
-        remoteDataSource.updateTasksTeamStatus<T>(
+        remoteDataSource.updateTasksTeamStatus(
             idTask,
             status,
             onSuccessCallback,

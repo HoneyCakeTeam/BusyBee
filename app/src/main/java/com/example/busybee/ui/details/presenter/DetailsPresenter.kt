@@ -2,8 +2,6 @@ package com.example.busybee.ui.details.presenter
 
 import com.example.busybee.data.RepositoryInterface
 import com.example.busybee.data.models.BaseResponse
-import com.example.busybee.data.models.LoginResponseValue
-import com.example.busybee.data.source.RemoteDataSourceInterface
 import com.example.busybee.ui.details.view.DetailsViewInterface
 
 
@@ -12,18 +10,25 @@ class DetailsPresenter(
     private val detailsViewInterface: DetailsViewInterface
 ) {
     fun <T> updateTasksPersonalStatus(idTask: String, status: Int) {
-        repository.updateTasksPersonalStatus(idTask, status, ::onSuccess, ::onFailure)
+        repository.updateTasksPersonalStatus(idTask, status, ::onUpdatePersonalStatusSuccess, ::onUpdatePersonalStatusFailed)
+    }
+    private fun onUpdatePersonalStatusSuccess(response: BaseResponse<String>) {
+        detailsViewInterface.onUpdatePersonalStatusSuccess(response)
+    }
+    private fun onUpdatePersonalStatusFailed(error: Throwable) {
+        detailsViewInterface.onUpdatePersonalStatusFailed(error)
     }
 
     fun <T> updateTasksTeamStatus(idTask: String, status: Int) {
-        repository.updateTasksTeamStatus(idTask, status, ::onSuccess, ::onFailure)
+        repository.updateTasksTeamStatus(idTask, status, ::onUpdateTeamStatusSuccess, ::onUpdateTeamStatusFailed)
     }
 
-    private fun onSuccess(response: BaseResponse<String>) {
-        detailsViewInterface.onSuccessResponse(response)
+    private fun onUpdateTeamStatusSuccess(response: BaseResponse<String>) {
+        detailsViewInterface.onUpdateTeamStatusSuccess(response)
     }
 
-    private fun onFailure(error: Throwable) {
-        detailsViewInterface.onFailureResponse(error)
+    private fun onUpdateTeamStatusFailed(error: Throwable) {
+        detailsViewInterface.onUpdateTeamStatusFailed(error)
     }
+
 }

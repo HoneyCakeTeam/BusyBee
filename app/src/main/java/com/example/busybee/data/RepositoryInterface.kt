@@ -1,5 +1,7 @@
 package com.example.busybee.data
 
+import com.example.busybee.data.models.BaseResponse
+
 interface RepositoryInterface {
 
     fun saveToken(token: String?)
@@ -41,16 +43,16 @@ interface RepositoryInterface {
     )
 
 
-    fun <T> updateTasksTeamStatus(
+    fun  updateTasksTeamStatus(
         idTask: String,
         status: Int,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
-    fun <T> updateTasksPersonalStatus(
+    fun updateTasksPersonalStatus(
         idTask: String, status: Int,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit,
     )
 
