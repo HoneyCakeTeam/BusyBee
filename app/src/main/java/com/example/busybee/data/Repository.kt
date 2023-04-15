@@ -10,7 +10,6 @@ import com.example.busybee.utils.SharedPreferencesUtils
 class Repository(
     private val remoteDataSource: RemoteDataSourceInterface,
     private val sharedPreferences: SharedPreferencesUtils,
-    private val context: Context
 ) : RepositoryInterface {
 
 
@@ -106,22 +105,22 @@ class Repository(
     }
 
     override fun saveToken(token: String?) {
-        sharedPreferences.initPreferencesUtil(context)
+        sharedPreferences
         sharedPreferences.token = token
     }
 
     override fun saveExpirationDate(expirationDate: String) {
-        sharedPreferences.initPreferencesUtil(context)
+        sharedPreferences
         sharedPreferences.expirationDate = expirationDate
     }
 
     override fun getToken(): String? {
-        sharedPreferences.initPreferencesUtil(context)
+        sharedPreferences
         return sharedPreferences.token
     }
 
     override fun getExpirationDate(): String? {
-        sharedPreferences.initPreferencesUtil(context)
+        sharedPreferences
         return sharedPreferences.expirationDate
     }
 
