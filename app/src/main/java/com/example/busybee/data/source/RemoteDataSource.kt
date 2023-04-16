@@ -24,8 +24,10 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
         addInterceptor(AuthorizationInterceptor(context))
     }.build()
 
-    override fun <T> logIn(
-        userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
+    override fun logIn(
+        userName: String,
+        password: String,
+        onSuccessCallback: (response: BaseResponse<LoginResponseValue>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
 
@@ -54,10 +56,10 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
 
     }
 
-    override fun <T> signUp(
+    override fun signUp(
         userName: String,
         password: String,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<SignUpResponseValue>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         val signUpClient =
@@ -203,7 +205,6 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
         )
 
     }
-
 
     override fun updateTasksTeamStatus(
         idTask: String,

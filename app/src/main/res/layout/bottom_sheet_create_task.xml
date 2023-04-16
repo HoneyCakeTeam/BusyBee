@@ -46,7 +46,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_task_name"
-            style="@style/TextInputEditText"
+            android:gravity="top"
+            android:lines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/spacing_medium" />
@@ -67,6 +68,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_assignee"
+            android:gravity="top"
+            android:lines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/spacing_medium" />

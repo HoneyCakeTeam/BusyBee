@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
-import com.example.busybee.base.BaseFragment
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo

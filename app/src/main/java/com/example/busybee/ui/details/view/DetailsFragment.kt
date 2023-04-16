@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import com.example.busybee.R
-import com.example.busybee.base.BaseFragment
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
@@ -60,7 +60,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         binding.buttonBack.setOnClickListener {
             navigateToHomeScreen(flag)
         }
-        onClickBack()
+        onBackButtonClicked()
     }
 
     private fun handlePersonalTodo() {
@@ -215,7 +215,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsViewInter
         replaceFragment(homeFragment)
     }
 
-    fun onClickBack() {
+    private fun onBackButtonClicked() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 navigateToHomeScreen(type = flag)

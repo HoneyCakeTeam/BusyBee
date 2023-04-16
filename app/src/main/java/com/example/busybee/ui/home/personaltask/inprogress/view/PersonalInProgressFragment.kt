@@ -4,7 +4,7 @@ import android.app.UiModeManager
 import android.content.Context
 import android.view.View
 import com.example.busybee.R
-import com.example.busybee.base.BaseFragment
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.source.RemoteDataSource

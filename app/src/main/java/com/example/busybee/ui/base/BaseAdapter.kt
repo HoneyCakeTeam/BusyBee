@@ -1,4 +1,4 @@
-package com.example.busybee.base
+package com.example.busybee.ui.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

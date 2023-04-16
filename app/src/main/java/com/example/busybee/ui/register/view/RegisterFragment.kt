@@ -1,7 +1,7 @@
 package com.example.busybee.ui.register.view
 
 import com.example.busybee.R
-import com.example.busybee.base.BaseFragment
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.SignUpResponseValue
@@ -88,7 +88,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
     }
 
     private fun signUp(userName: String, password: String) {
-        presenter.signUp<BaseResponse<SignUpResponseValue>>(
+        presenter.signUp(
             userName,
             password
         )

@@ -8,7 +8,7 @@ import com.example.busybee.ui.login.view.LoginViewInterface
 class LoginPresenter(
     private val repository: RepositoryInterface, private val loginViewInterface: LoginViewInterface
 ) {
-    fun <T> logIn(userName: String, password: String) {
+    fun logIn(userName: String, password: String) {
 
         repository.logIn(userName, password,::onLoginSuccess,::onLoginFailed)
 

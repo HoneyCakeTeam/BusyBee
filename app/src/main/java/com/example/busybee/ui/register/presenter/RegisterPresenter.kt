@@ -9,7 +9,7 @@ class RegisterPresenter(
     private val repository: RepositoryInterface,
     private val registerViewInterface: RegisterViewInterface
 ) {
-    fun <T> signUp(userName: String, password: String) {
+    fun signUp(userName: String, password: String) {
         repository.signUp(userName, password, ::onRegisterSuccess, ::onRegisterFailed)
     }
 

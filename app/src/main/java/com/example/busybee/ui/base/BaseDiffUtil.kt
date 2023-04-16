@@ -1,4 +1,4 @@
-package com.example.busybee.base
+package com.example.busybee.ui.base
 
 import androidx.recyclerview.widget.DiffUtil
 

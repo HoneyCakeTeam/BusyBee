@@ -1,13 +1,12 @@
 package com.example.busybee.ui.login.view
 
-import androidx.core.view.isEmpty
 import com.example.busybee.R
-import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.LoginResponseValue
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentLoginBinding
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.register.view.RegisterFragment
@@ -79,7 +78,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     }
 
     private fun login(userName: String, password: String) {
-        presenter.logIn<BaseResponse<LoginResponseValue>>(
+        presenter.logIn(
             userName,
             password
         )

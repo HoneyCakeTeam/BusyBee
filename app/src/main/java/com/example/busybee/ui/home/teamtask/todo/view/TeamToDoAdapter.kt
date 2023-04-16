@@ -2,7 +2,7 @@ package com.example.busybee.ui.home.teamtask.todo.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.busybee.base.BaseAdapter
+import com.example.busybee.ui.base.BaseAdapter
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.ItemTaskBinding
 import com.example.busybee.utils.DateTimeUtils

@@ -2,7 +2,7 @@ package com.example.busybee.ui.setting.view
 
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
-import com.example.busybee.base.BaseFragment
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentSettingsBinding

@@ -1,18 +1,23 @@
 package com.example.busybee.data
 
-import com.example.busybee.data.models.BaseResponse
-import com.example.busybee.data.models.PersonalToDo
-import com.example.busybee.data.models.TeamToDo
+import com.example.busybee.data.models.*
 
 interface RepositoryInterface {
 
     fun saveToken(token: String?)
     fun getToken(): String?
 
-    fun <T> logIn(
+    fun logIn(
         userName: String,
         password: String,
-        onSuccessCallback: (response: T) -> Unit,
+        onSuccessCallback: (response: BaseResponse<LoginResponseValue>) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    )
+
+    fun signUp(
+        userName: String,
+        password: String,
+        onSuccessCallback: (response: BaseResponse<SignUpResponseValue>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
 
@@ -33,14 +38,6 @@ interface RepositoryInterface {
         onSuccessCallback: (response: BaseResponse<TeamToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     )
-
-    fun <T> signUp(
-        userName: String,
-        password: String,
-        onSuccessCallback: (response: T) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit
-    )
-
 
     fun updateTasksTeamStatus(
         idTask: String,
