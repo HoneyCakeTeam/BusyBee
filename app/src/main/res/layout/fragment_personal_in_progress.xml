@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_inProgress"
-        app:srcCompat="@drawable/image_todo" />
+        app:srcCompat="@drawable/image_inprogess" />
 
     <TextView
         android:id="@+id/text_no_tasks_personal_inProgress"
