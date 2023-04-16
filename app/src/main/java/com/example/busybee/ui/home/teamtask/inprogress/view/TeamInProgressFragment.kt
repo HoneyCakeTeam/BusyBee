@@ -24,7 +24,7 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
         TeamInProgressPresenter(
             Repository(
                 RemoteDataSource(requireContext()),
-                SharedPreferencesUtils, requireContext()
+                SharedPreferencesUtils(requireContext())
             ), this
         )
     }

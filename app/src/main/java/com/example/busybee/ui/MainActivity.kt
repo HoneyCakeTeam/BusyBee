@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.data.Repository
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         MainPresenter(
             Repository(
                 RemoteDataSource(this),
-                SharedPreferencesUtils, this
+                SharedPreferencesUtils(this)
             ), this
         )
     }
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
     }
 
     private fun isTokenExpired(expirationDateString: String?): Boolean {
-        SharedPreferencesUtils.expirationDate ?: return false
+        SharedPreferencesUtils(this).expirationDate ?: return false
         val dateFormat = SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US)
         val expireDate = dateFormat.parse(expirationDateString!!) ?: return true
 
