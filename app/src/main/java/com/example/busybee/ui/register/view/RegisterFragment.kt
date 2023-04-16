@@ -11,6 +11,7 @@ import com.example.busybee.ui.login.view.LoginFragment
 import com.example.busybee.ui.register.presenter.RegisterPresenter
 import com.example.busybee.utils.LoginAndRegisterValidation
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.isOnline
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
@@ -88,10 +89,20 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
     }
 
     private fun signUp(userName: String, password: String) {
-        presenter.signUp(
-            userName,
-            password
-        )
+        if (isOnline(requireContext())) {
+            presenter.signUp(
+                userName,
+                password
+            )
+        }else{
+            Snackbar.make(
+                binding.root,
+                getString(R.string.no_internt),
+                Snackbar.LENGTH_SHORT
+            )
+                .show()
+        }
+
     }
 
     override fun onRegisterSuccess(response: BaseResponse<SignUpResponseValue>) {

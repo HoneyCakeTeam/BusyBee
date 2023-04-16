@@ -1,16 +1,17 @@
 package com.example.busybee.ui.home
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
-import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentHomeBinding
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.personaltask.done.view.PersonalDoneFragment
 import com.example.busybee.ui.home.personaltask.inprogress.view.PersonalInProgressFragment
 import com.example.busybee.ui.home.personaltask.todo.view.PersonalToDoFragment
@@ -18,10 +19,7 @@ import com.example.busybee.ui.home.teamtask.done.view.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.inprogress.view.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.todo.view.TeamToDoFragment
 import com.example.busybee.ui.setting.view.SettingFragment
-import com.example.busybee.utils.SharedPreferencesUtils
-import com.example.busybee.utils.TaskType
-import com.example.busybee.utils.onClickBackFromNavigation
-import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlin.math.abs
@@ -137,7 +135,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     override fun onTabReselected(tab: TabLayout.Tab?) {}
     private fun getAllTeamTasks() {
-        homePresenter.getAllTeamTasks()
+        if (isOnline(requireContext())) {
+            homePresenter.getAllTeamTasks()
+            showViewsAndHideAnimation()
+        } else {
+            hideViewsAndShowAnimation()
+        }
     }
 
     override fun onTeamSuccessResponse(response: BaseResponse<List<TeamToDo>>) {
@@ -150,8 +153,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     }
 
     private fun getAllPersonalTasks() {
-        homePresenter.getPersonalTasks()
+        if (isOnline(requireContext())) {
+            homePresenter.getPersonalTasks()
+            showViewsAndHideAnimation()
+        } else {
+            hideViewsAndShowAnimation()
+        }
     }
+
+    private fun showViewsAndHideAnimation() {
+        with(binding) {
+            homeViewPager.visibility = View.VISIBLE
+            lottieNoInternet.visibility = View.GONE
+        }
+    }
+
+    private fun hideViewsAndShowAnimation() {
+        with(binding) {
+            homeViewPager.visibility = View.GONE
+            lottieNoInternet.visibility = View.VISIBLE
+        }
+    }
+
 
     override fun onPersonalSuccessResponse(response: BaseResponse<List<PersonalToDo>>) {
         personalResponse = response

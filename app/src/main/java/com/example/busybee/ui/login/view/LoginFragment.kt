@@ -10,10 +10,7 @@ import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.presenter.LoginPresenter
 import com.example.busybee.ui.register.view.RegisterFragment
-import com.example.busybee.utils.LoginAndRegisterValidation
-import com.example.busybee.utils.SharedPreferencesUtils
-import com.example.busybee.utils.onClickBackFromNavigation
-import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.*
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
@@ -78,10 +75,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     }
 
     private fun login(userName: String, password: String) {
-        presenter.logIn(
-            userName,
-            password
-        )
+        if (isOnline(requireContext())) {
+            presenter.logIn(
+                userName,
+                password
+            )
+        }else{
+            Snackbar.make(
+                binding.root,
+               getString(R.string.no_internt),
+                Snackbar.LENGTH_SHORT
+            )
+                .show()
+        }
+
     }
 
     override fun onLoginSuccess(response: BaseResponse<LoginResponseValue>) {

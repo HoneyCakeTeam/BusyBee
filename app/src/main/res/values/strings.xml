@@ -49,6 +49,7 @@
     <string name="you_have_not_tasks">What are you doing here? There are currently no unfinished tasks, so enjoy your time.</string>
     <string name="personal">Personal</string>
     <string name="team">Team</string>
+    <string name="no_internt">No Internet Connection, Check Your Connectivity First !!!</string>
 
 
 </resources>
