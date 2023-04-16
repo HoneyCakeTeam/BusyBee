@@ -40,7 +40,17 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     override fun setUp() {
         getTasksCount()
+        addDefaultStateForPieChart()
+        addDefaultStateForData()
         addCallBacks()
+    }
+
+    private fun addDefaultStateForData() {
+        showToDosPercentage(personalTodos, personalInProgressTodos, personalDoneTodos)
+    }
+
+    private fun addDefaultStateForPieChart() {
+        setUpPieChart(personalTodos, personalInProgressTodos, personalDoneTodos)
     }
 
     private fun setUpPieChart(todos: Float, inProgress: Float, dones: Float) {
@@ -96,10 +106,12 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
         val toDoPercentage = calculatePercentage(sumOfToDos, todos)
         val inProgressPercentage = calculatePercentage(sumOfToDos, inProgress)
         val donePercentage = calculatePercentage(sumOfToDos, dones)
-        binding.textTodoPercentage.text = getString(R.string.todos_percentage, toDoPercentage.toInt())
+        binding.textTodoPercentage.text =
+            getString(R.string.todos_percentage, toDoPercentage.toInt())
         binding.textInProgressPercentage.text =
             getString(R.string.todos_percentage, inProgressPercentage.toInt())
-        binding.textDonePercentage.text = getString(R.string.todos_percentage, donePercentage.toInt())
+        binding.textDonePercentage.text =
+            getString(R.string.todos_percentage, donePercentage.toInt())
         binding.textTotalTasksNum.text = sumOfToDos.toInt().toString()
     }
 
@@ -145,7 +157,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     fun onClickPersonalButton() {
         binding.buttonPersonalTodos.setOnClickListener {
-            binding.piechart.clearChart()
+            clearChart()
             setUpPieChart(personalTodos, personalInProgressTodos, personalDoneTodos)
             showToDosPercentage(personalTodos, personalInProgressTodos, personalDoneTodos)
         }
@@ -153,10 +165,14 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     private fun onClickTeamButton() {
         binding.buttonTeamTodos.setOnClickListener {
-            binding.piechart.clearChart()
+            clearChart()
             setUpPieChart(teamTodos, teamInProgressTodos, teamDoneTodos)
             showToDosPercentage(teamTodos, teamInProgressTodos, teamDoneTodos)
         }
+    }
+
+    private fun clearChart() {
+        binding.piechart.clearChart()
     }
 
 }

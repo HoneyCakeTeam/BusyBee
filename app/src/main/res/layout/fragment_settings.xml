@@ -34,6 +34,7 @@
         android:layout_marginHorizontal="@dimen/spacing_medium"
         app:selectionRequired="true"
         app:singleSelection="true"
+        app:checkedButton="@id/button_personal_todos"
         app:layout_constraintTop_toBottomOf="@id/ic_left_arrow">
 
         <Button
@@ -41,14 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            style="@style/ThemeOverlay.Material3.Button.TonalButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:text="@string/personal"/>
         <Button
             android:id="@+id/button_team_todos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            style="@style/ThemeOverlay.Material3.Button.TonalButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:text="@string/team"/>
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
