@@ -40,9 +40,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     override fun setUp() {
         getTasksCount()
-        //setUpPieChart()
         addCallBacks()
-        //showToDosPercentage()
     }
 
     private fun setUpPieChart(todos: Float, inProgress: Float, dones: Float) {
@@ -70,6 +68,8 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
     private fun addCallBacks() {
         onClickLogout()
         onClickButtonBack()
+        onClickPersonalButton()
+        onClickTeamButton()
     }
 
     private fun onClickLogout() {
@@ -96,10 +96,10 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
         val toDoPercentage = calculatePercentage(sumOfToDos, todos)
         val inProgressPercentage = calculatePercentage(sumOfToDos, inProgress)
         val donePercentage = calculatePercentage(sumOfToDos, dones)
-        binding.textTodoPercentage.text = getString(R.string.todos_percentage, toDoPercentage)
+        binding.textTodoPercentage.text = getString(R.string.todos_percentage, toDoPercentage.toInt())
         binding.textInProgressPercentage.text =
-            getString(R.string.todos_percentage, inProgressPercentage)
-        binding.textDonePercentage.text = getString(R.string.todos_percentage, donePercentage)
+            getString(R.string.todos_percentage, inProgressPercentage.toInt())
+        binding.textDonePercentage.text = getString(R.string.todos_percentage, donePercentage.toInt())
         binding.textTotalTasksNum.text = sumOfToDos.toInt().toString()
     }
 
@@ -141,6 +141,20 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     override fun getLocalTeamTodos(todos: Int) {
         teamTodos = todos.toFloat()
+    }
+
+    fun onClickPersonalButton() {
+        binding.buttonPersonalTodos.setOnClickListener {
+            setUpPieChart(personalTodos, personalInProgressTodos, personalDoneTodos)
+            showToDosPercentage(personalTodos, personalInProgressTodos, personalDoneTodos)
+        }
+    }
+
+    private fun onClickTeamButton() {
+        binding.buttonTeamTodos.setOnClickListener {
+            setUpPieChart(teamTodos, teamInProgressTodos, teamDoneTodos)
+            showToDosPercentage(teamTodos, teamInProgressTodos, teamDoneTodos)
+        }
     }
 
 }

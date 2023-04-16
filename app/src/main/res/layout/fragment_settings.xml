@@ -26,17 +26,42 @@
         app:layout_constraintStart_toEndOf="@id/ic_left_arrow"
         app:layout_constraintTop_toTopOf="@id/ic_left_arrow" />
 
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/button_toggle_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_medium"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        app:selectionRequired="true"
+        app:singleSelection="true"
+        app:layout_constraintTop_toBottomOf="@id/ic_left_arrow">
+
+        <Button
+            android:id="@+id/button_personal_todos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            style="@style/ThemeOverlay.Material3.Button.TonalButton"
+            android:text="@string/personal"/>
+        <Button
+            android:id="@+id/button_team_todos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            style="@style/ThemeOverlay.Material3.Button.TonalButton"
+            android:text="@string/team"/>
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
     <View
         android:id="@+id/view_chart_shape"
         style="@style/BackgroundCustomShapeSetting"
         android:layout_width="match_parent"
         android:layout_height="186dp"
+        android:layout_marginTop="@dimen/spacing_medium"
         android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_giant"
         app:layout_constraintBottom_toTopOf="@id/view_theme_settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ic_left_arrow" />
+        app:layout_constraintTop_toBottomOf="@id/button_toggle_group"/>
 
     <org.eazegraph.lib.charts.PieChart
         android:id="@+id/piechart"
