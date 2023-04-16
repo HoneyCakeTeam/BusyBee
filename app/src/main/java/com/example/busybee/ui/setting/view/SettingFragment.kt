@@ -1,6 +1,5 @@
 package com.example.busybee.ui.setting.view
 
-import android.annotation.SuppressLint
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
@@ -22,6 +21,10 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
     private var personalTodos by Delegates.notNull<Float>()
     private var personalInProgressTodos by Delegates.notNull<Float>()
     private var personalDoneTodos by Delegates.notNull<Float>()
+    private var teamTodos by Delegates.notNull<Float>()
+    private var teamInProgressTodos by Delegates.notNull<Float>()
+    private var teamDoneTodos by Delegates.notNull<Float>()
+
 
     private val presenter by lazy {
         SettingsPresenter(
@@ -37,27 +40,35 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     override fun setUp() {
         getTasksCount()
-        setUpPieChart()
+        addDefaultStateForPieChart()
+        addDefaultStateForData()
         addCallBacks()
-        showToDosPercentage()
     }
 
-    private fun setUpPieChart() {
+    private fun addDefaultStateForData() {
+        showToDosPercentage(personalTodos, personalInProgressTodos, personalDoneTodos)
+    }
+
+    private fun addDefaultStateForPieChart() {
+        setUpPieChart(personalTodos, personalInProgressTodos, personalDoneTodos)
+    }
+
+    private fun setUpPieChart(todos: Float, inProgress: Float, dones: Float) {
         binding.piechart.addPieSlice(
             PieModel(
-                personalTodos,
+                todos,
                 ContextCompat.getColor(requireContext(), R.color.secondary_500)
             )
         )
         binding.piechart.addPieSlice(
             PieModel(
-                personalInProgressTodos,
+                inProgress,
                 ContextCompat.getColor(requireContext(), R.color.primary_500)
             )
         )
         binding.piechart.addPieSlice(
             PieModel(
-                personalDoneTodos,
+                dones,
                 ContextCompat.getColor(requireContext(), R.color.color_green)
             )
         )
@@ -67,6 +78,8 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
     private fun addCallBacks() {
         onClickLogout()
         onClickButtonBack()
+        onClickPersonalButton()
+        onClickTeamButton()
     }
 
     private fun onClickLogout() {
@@ -81,21 +94,27 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
         presenter.getLocalPersonalDones()
         presenter.getLocalPersonalTodos()
         presenter.getLocalPersonalInProgress()
+        presenter.getLocalTeamDones()
+        presenter.getLocalTeamInProgress()
+        presenter.getLocalTeamTodos()
+
     }
 
 
-    @SuppressLint("SetTextI18n")
-    private fun showToDosPercentage() {
-        val sumOfPersonalToDos = sum(personalTodos, personalInProgressTodos, personalDoneTodos)
-        val toDoPercentage = calculatePercentage(sumOfPersonalToDos, personalTodos)
-        val inProgressPercentage = calculatePercentage(sumOfPersonalToDos, personalInProgressTodos)
-        val donePercentage = calculatePercentage(sumOfPersonalToDos, personalDoneTodos)
-
-        binding.textTodoPercentage.text = toDoPercentage.toInt().toString() + " %"
-        binding.textInProgressPercentage.text = inProgressPercentage.toInt().toString() + " %"
-        binding.textDonePercentage.text = donePercentage.toInt().toString() + " %"
-        binding.textTotalTasksNum.text = sumOfPersonalToDos.toInt().toString()
+    private fun showToDosPercentage(todos: Float, inProgress: Float, dones: Float) {
+        val sumOfToDos = sum(todos, inProgress, dones)
+        val toDoPercentage = calculatePercentage(sumOfToDos, todos)
+        val inProgressPercentage = calculatePercentage(sumOfToDos, inProgress)
+        val donePercentage = calculatePercentage(sumOfToDos, dones)
+        binding.textTodoPercentage.text =
+            getString(R.string.todos_percentage, toDoPercentage.toInt())
+        binding.textInProgressPercentage.text =
+            getString(R.string.todos_percentage, inProgressPercentage.toInt())
+        binding.textDonePercentage.text =
+            getString(R.string.todos_percentage, donePercentage.toInt())
+        binding.textTotalTasksNum.text = sumOfToDos.toInt().toString()
     }
+
 
     private fun calculatePercentage(sumOfToDos: Float, variableOfInterest: Float): Float {
         return (variableOfInterest / sumOfToDos) * 100
@@ -125,15 +144,35 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
     }
 
     override fun getLocalTeamDones(dones: Int) {
-        TODO("Not yet implemented")
+        teamDoneTodos = dones.toFloat()
     }
 
     override fun getLocalTeamInProgress(inProgress: Int) {
-        TODO("Not yet implemented")
+        teamInProgressTodos = inProgress.toFloat()
     }
 
     override fun getLocalTeamTodos(todos: Int) {
-        TODO("Not yet implemented")
+        teamTodos = todos.toFloat()
+    }
+
+    fun onClickPersonalButton() {
+        binding.buttonPersonalTodos.setOnClickListener {
+            clearChart()
+            setUpPieChart(personalTodos, personalInProgressTodos, personalDoneTodos)
+            showToDosPercentage(personalTodos, personalInProgressTodos, personalDoneTodos)
+        }
+    }
+
+    private fun onClickTeamButton() {
+        binding.buttonTeamTodos.setOnClickListener {
+            clearChart()
+            setUpPieChart(teamTodos, teamInProgressTodos, teamDoneTodos)
+            showToDosPercentage(teamTodos, teamInProgressTodos, teamDoneTodos)
+        }
+    }
+
+    private fun clearChart() {
+        binding.piechart.clearChart()
     }
 
 }
