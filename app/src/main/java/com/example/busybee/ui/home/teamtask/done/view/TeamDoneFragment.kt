@@ -75,6 +75,8 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
     }
 
     override fun onTasKClicked(flag: TaskType, teamTodo: TeamToDo) {
+        val detailsFragment = DetailsFragment.newInstance(flag, teamTodo, null)
+        replaceFragment(detailsFragment)
     }
 
     override fun getLocalTeamDones(dones: List<TeamToDo>) {
