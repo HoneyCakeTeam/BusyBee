@@ -48,7 +48,6 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         binding.recyclerToDo.adapter = adapter
         binding.headerToDo.textTodoStatus.text = getString(R.string.to_do)
         binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.size)
-//        binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
         setToDoColorBasedOnTheme()
         showPlaceHolder(todos)
     }
@@ -109,6 +108,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         activity?.runOnUiThread {
             setListAndUpdateUi(response)
             hideFieldsAndShowDone()
+            showPlaceHolder(todos)
         }
     }
 

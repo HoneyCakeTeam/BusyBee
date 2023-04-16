@@ -2,8 +2,7 @@ package com.example.busybee.ui.home.teamtask.inprogress.view
 
 import android.app.UiModeManager
 import android.content.Context
-import android.os.Build
-import android.os.Bundle
+import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository

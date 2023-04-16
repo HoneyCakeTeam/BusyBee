@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -18,7 +19,7 @@ import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 
 class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
-    TeamDoneAdapter.TeamDoneTaskInteractionListener,TeamDoneViewInterface {
+    TeamDoneAdapter.TeamDoneTaskInteractionListener, TeamDoneViewInterface {
     private lateinit var adapter: TeamDoneAdapter
     override val TAG = this::class.java.simpleName.toString()
     private lateinit var done: List<TeamToDo>
@@ -31,13 +32,14 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
             ), this
         )
     }
+
     override fun getViewBinding(): FragmentTeamDoneBinding {
         return FragmentTeamDoneBinding.inflate(layoutInflater)
     }
 
     override fun setUp() {
         presenter.getLocalTeamDones()
-        adapter = TeamDoneAdapter(done , this)
+        adapter = TeamDoneAdapter(done, this)
         binding.recyclerDone.adapter = adapter
         binding.taskHeader.textTodoStatus.text = getString(R.string.done)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, done.size)
@@ -73,9 +75,10 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
     }
 
     override fun onTasKClicked(flag: TaskType, teamTodo: TeamToDo) {
-
+    }
 
     override fun getLocalTeamDones(dones: List<TeamToDo>) {
         this.done = dones
     }
+
 }

@@ -19,7 +19,6 @@ import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 
-
 class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewInterface,
     TeamToDoAdapter.TeamToDoTaskInteractionListener {
     private lateinit var adapter: TeamToDoAdapter
@@ -44,7 +43,6 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         getToDos()
         addCallBacks()
         adapter = TeamToDoAdapter(todos, this)
-
         binding.recyclerToDo.adapter = adapter
         binding.taskHeader.textTodoStatus.text = getString(R.string.to_do)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, todos.size)
@@ -119,11 +117,9 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
 
     override fun onSuccessResponse(response: BaseResponse<TeamToDo>) {
         activity?.runOnUiThread {
-
             setListAndUpdateUi(response)
-
             hideFieldsAndShowDone()
-
+            showPlaceHolder(todos)
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.busybee.data
 
+import android.util.Log
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
@@ -146,6 +147,7 @@ class Repository(
 
     override fun addPersonalToDo(todo: PersonalToDo) {
         LocalDataSource.personalTasks.add(todo)
+        Log.e("Added toDo" , "$todo")
     }
 
     override fun addTeamToDo(todo: TeamToDo) {
