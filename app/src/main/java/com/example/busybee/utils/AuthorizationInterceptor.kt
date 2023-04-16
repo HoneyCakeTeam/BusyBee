@@ -14,7 +14,7 @@ import okhttp3.Response
 class AuthorizationInterceptor(private val context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         SharedPreferencesUtils(context)
-        val tokenExpired =
+        val tokenTestExpired =
             "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwczovL3RoZS1jaGFuY2Uub3JnLyIsInN1YiI6IjNlYWRkOGM5LTFkMWUtNGM1Ni04MTE2LWM3ZDk0YmQ1ZTQ5ZSIsInRlYW1JZCI6ImVkMDFlODZmLWRlYWQtNGJhMC04NzhiLTY4YWVjOGE1MTU2NCIsImlzcyI6Imh0dHBzOi8vdGhlLWNoYW5jZS5vcmcvIiwiZXhwIjoxNjgxNDIzMTEwfQ.zhSBne1c2SOM7tvkd2hB4ZUqpkWrvjhA9Cv7CloidaQ"
         val bearerToken = "Bearer ${SharedPreferencesUtils(context).token}"
         val request = chain.request().newBuilder()

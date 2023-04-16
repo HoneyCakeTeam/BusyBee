@@ -15,21 +15,17 @@ class SharedPreferencesUtils(context: Context) {
             sharedPreferences?.edit()?.putString(USER_TOKEN, value)?.apply()
         }
 
-     var expirationDate: String?
-        get() = sharedPreferences?.getString(EXPIRATION_DATE_KEY, null)
-        set(value) {
-            sharedPreferences?.edit()?.putString(EXPIRATION_DATE_KEY, value)?.apply()
-        }
-
     private fun clearToken() = sharedPreferences?.edit()?.remove(USER_TOKEN)?.apply()
+
     init {
         sharedPreferences = context.getSharedPreferences(
             SHARED_PREFERENCES_NAME,
-            Context.MODE_PRIVATE )
+            Context.MODE_PRIVATE
+        )
     }
-    companion object{
+
+    companion object {
         private const val SHARED_PREFERENCES_NAME = "MySharedPreferences"
         private const val USER_TOKEN = "keyToken"
-        private const val EXPIRATION_DATE_KEY = "expirationDate"
     }
 }

@@ -102,23 +102,12 @@ class Repository(
     }
 
     override fun saveToken(token: String?) {
-        sharedPreferences
         sharedPreferences.token = token
     }
 
-    override fun saveExpirationDate(expirationDate: String) {
-        sharedPreferences
-        sharedPreferences.expirationDate = expirationDate
-    }
 
     override fun getToken(): String? {
-        sharedPreferences
         return sharedPreferences.token
-    }
-
-    override fun getExpirationDate(): String? {
-        sharedPreferences
-        return sharedPreferences.expirationDate
     }
 
     override fun getPersonalTasks(): List<PersonalToDo> {

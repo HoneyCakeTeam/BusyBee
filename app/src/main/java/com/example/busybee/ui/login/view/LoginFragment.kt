@@ -89,7 +89,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         activity?.runOnUiThread {
             if (response.isSuccess) {
                 saveTokenInShared(response.value.token)
-                saveExpirationDateInShared(response.value.expireAt)
                 replaceFragment(homeFragment)
                 Snackbar.make(
                     binding.root,
@@ -121,10 +120,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
 
     private fun saveTokenInShared(token: String) {
         presenter.saveTokenInShared(token)
-    }
-
-    private fun saveExpirationDateInShared(expirationDate: String) {
-        presenter.saveExpirationDateInShared(expirationDate)
     }
 
 }

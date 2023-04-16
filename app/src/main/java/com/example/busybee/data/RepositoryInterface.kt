@@ -7,10 +7,7 @@ import com.example.busybee.data.models.TeamToDo
 interface RepositoryInterface {
 
     fun saveToken(token: String?)
-    fun saveExpirationDate(expirationDate: String)
-
     fun getToken(): String?
-    fun getExpirationDate(): String?
 
     fun <T> logIn(
         userName: String,
