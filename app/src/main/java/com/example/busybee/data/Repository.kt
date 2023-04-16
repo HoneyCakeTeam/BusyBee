@@ -1,6 +1,5 @@
 package com.example.busybee.data
 
-import android.content.Context
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
@@ -12,15 +11,13 @@ class Repository(
     private val sharedPreferences: SharedPreferencesUtils,
 ) : RepositoryInterface {
 
-
     override fun <T> logIn(
         userName: String, password: String, onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        remoteDataSource.logIn<T>(userName, password, onSuccessCallback, onFailureCallback)
+        remoteDataSource.logIn(userName, password, onSuccessCallback, onFailureCallback)
 
     }
-
 
     override fun <T> signUp(
         userName: String,
@@ -28,7 +25,7 @@ class Repository(
         onSuccessCallback: (response: T) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-        remoteDataSource.signUp<T>(userName, password, onSuccessCallback, onFailureCallback)
+        remoteDataSource.signUp(userName, password, onSuccessCallback, onFailureCallback)
     }
 
     override fun getAllTeamTasks(
@@ -73,7 +70,6 @@ class Repository(
         onFailureCallback: (error: Throwable) -> Unit
     ) {
         remoteDataSource.getPersonalTasks(onSuccessCallback, onFailureCallback)
-
     }
 
     override fun updateTasksPersonalStatus(
@@ -83,11 +79,12 @@ class Repository(
         onFailureCallback: (error: Throwable) -> Unit,
     ) {
         remoteDataSource.updateTasksPersonalStatus(
-            idTask, status,
-            onSuccessCallback, onFailureCallback
+            idTask,
+            status,
+            onSuccessCallback,
+            onFailureCallback
         )
     }
-
 
     override fun updateTasksTeamStatus(
         idTask: String,

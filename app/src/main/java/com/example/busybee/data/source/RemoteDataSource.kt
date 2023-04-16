@@ -228,5 +228,4 @@ class RemoteDataSource(private val context: Context) : RemoteDataSourceInterface
 
     }
 
-
 }
