@@ -94,7 +94,6 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         activity?.runOnUiThread {
             setListAndUpdateUi(response)
             hideFieldsAndShowDone()
-
         }
     }
 

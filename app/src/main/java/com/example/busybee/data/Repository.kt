@@ -92,7 +92,6 @@ class Repository(
         onSuccessCallback: (response: BaseResponse<String>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
     ) {
-
         remoteDataSource.updateTasksTeamStatus(
             idTask,
             status,

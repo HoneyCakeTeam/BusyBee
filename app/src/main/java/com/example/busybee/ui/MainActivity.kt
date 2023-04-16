@@ -32,8 +32,16 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val bundle = intent.getBundleExtra("bundle")
+        val fragmentTag = bundle?.getString("fragment")
+
+        if (fragmentTag != null) {
+            replaceFragment(fragmentLogin)
+        }else{
+            presenter.getTokenFromShared()
+        }
         statusBarTheme()
-        presenter.getTokenFromShared()
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -87,7 +95,6 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         SharedPreferencesUtils(this).expirationDate ?: return false
         val dateFormat = SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US)
         val expireDate = dateFormat.parse(expirationDateString!!) ?: return true
-
         val currentTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).time
         return currentTime.after(expireDate)
     }
