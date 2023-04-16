@@ -85,7 +85,7 @@
 
     <style name="TextViewPlaceHolderDarkStyle">
         <item name="android:fontFamily">@font/notosans_regular</item>
-        <item name="android:textColor">@color/black_38</item>
+        <item name="android:textColor">@color/white_100</item>
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:textAlignment">center</item>
     </style>
