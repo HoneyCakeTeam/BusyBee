@@ -1,51 +1,48 @@
 package com.example.busybee.utils
 
-import android.content.Context
-import com.example.busybee.R
-import com.google.android.material.textfield.TextInputLayout
+class LoginAndRegisterValidation {
 
-class LoginAndRegisterValidation(val context: Context) {
-
-    fun checkCredentialForUserName(userName: String, textInputLayout: TextInputLayout): Boolean {
-        return if (userName.length < 4) {
-            showError(textInputLayout, context.getString(R.string.validateUsernameMessage))
-            false
+    fun checkCredential(userName: String, password: String): Pair<Boolean, Pair<String?, String?>> {
+        val usernameValid = validateUserName(userName).isEmpty()
+        val passwordValid = validatePassword(password).isEmpty()
+        return if (usernameValid && passwordValid) {
+            Pair(true, Pair(null, null))
         } else {
-            hideError(textInputLayout)
-            true
+            Pair(
+                false, Pair(
+                    if (usernameValid) null else validateUserName(userName),
+                    if (passwordValid) null else validatePassword(password)
+                )
+            )
         }
     }
 
-    fun checkCredentialForPassword(password: String, textInputLayout: TextInputLayout): Boolean {
-        return if (password.length >= 8 && password.any { it != ' ' }) {
-            hideError(textInputLayout)
-            true
-        } else {
-            showError(textInputLayout, context.getString(R.string.validatePasswordMessage))
-            return false
+    private fun validateUserName(userName: String): String {
+        return when {
+            userName.isEmpty() -> "Username cannot be empty."
+            userName.length < 4 -> "Username must be at least 4."
+            else -> ""
         }
     }
 
-    fun checkCredentialForConfirmPasswordPassword(
-        password: String,
-        confirmPassword: String,
-        textInputLayout: TextInputLayout
-    ): Boolean {
-        return if (confirmPassword == password) {
-            hideError(textInputLayout)
-            true
-        } else {
-            showError(textInputLayout, context.getString(R.string.passwordIsNotTheSame))
-            return false
+    private fun validatePassword(password: String): String {
+        return when {
+            password.isEmpty() -> "Password cannot be empty."
+            password.length < 8 -> "Password must be at least 8."
+            else -> ""
         }
     }
 
-    private fun showError(textInputLayout: TextInputLayout, error: String) {
-        textInputLayout.error = error
-    }
+    fun validateConfirmPassword(password: String, confirmPassword: String): Pair<Boolean, String?> {
+        return when {
+            password.isEmpty() -> Pair(false, "Confirm password cannot be empty.")
+            confirmPassword != null && password != confirmPassword -> Pair(
+                false,
+                "Passwords do not match."
+            )
 
-    private fun hideError(textInputLayout: TextInputLayout) {
-        textInputLayout.isErrorEnabled = false
+            else -> Pair(true, null)
+        }
     }
 
 }

@@ -25,9 +25,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
             ), this
         )
     }
-    private val registerValidation: LoginAndRegisterValidation by lazy {
-        LoginAndRegisterValidation(requireContext())
-    }
     private val loginFragment by lazy { LoginFragment() }
     private var username = ""
     private var password = ""
@@ -45,26 +42,27 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
     private fun addCallBacks() {
         binding.buttonSignUp.setOnClickListener {
             getUserInputs()
-            if (validateUserInputs()) {
-                signUp(username, password)
-            }
+            validSignUp(username, password)
         }
         binding.textLogin.setOnClickListener {
             replaceFragment(loginFragment)
         }
     }
 
-    private fun validateUserInputs(): Boolean =
-        registerValidation.checkCredentialForUserName(username, binding.textFieldName)
-                && registerValidation.checkCredentialForPassword(
+    private fun validSignUp(userName: String, password: String) {
+        val validation = LoginAndRegisterValidation()
+        val (isValid, errorMessage) = validation.checkCredential(userName, password)
+        val (isConfirmValid, confirmPasswordErrorMessage) = validation.validateConfirmPassword(
             password,
-            binding.textFieldPassword
+            confirmPassword
         )
-                && registerValidation.checkCredentialForConfirmPasswordPassword(
-            password,
-            confirmPassword,
-            binding.textFieldConfirmPassword
-        )
+        if (isValid && isConfirmValid) {
+            hideError()
+            signUp(userName, password)
+        } else {
+            showError(errorMessage.first, errorMessage.second, confirmPasswordErrorMessage)
+        }
+    }
 
     private fun getUserInputs() {
         username = binding.textFieldName.editText?.text.toString()
@@ -72,6 +70,22 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewIn
         confirmPassword = binding.textFieldConfirmPassword.editText?.text.toString()
     }
 
+    private fun showError(
+        usernameErrorMessage: String?,
+        passwordErrorMessage: String?,
+        confirmPasswordErrorMessage: String?
+    ) {
+        binding.textFieldName.error = usernameErrorMessage
+        binding.textFieldPassword.error = passwordErrorMessage
+        binding.textFieldConfirmPassword.error = confirmPasswordErrorMessage
+    }
+
+
+    private fun hideError() {
+        binding.textFieldName.isErrorEnabled = false
+        binding.textFieldPassword.isErrorEnabled = false
+        binding.textFieldConfirmPassword.isErrorEnabled = false
+    }
 
     private fun signUp(userName: String, password: String) {
         presenter.signUp<BaseResponse<SignUpResponseValue>>(

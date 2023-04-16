@@ -1,5 +1,6 @@
 package com.example.busybee.ui.login.view
 
+import androidx.core.view.isEmpty
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -25,9 +26,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
             ), this
         )
     }
-    private val loginAndRegisterValidation: LoginAndRegisterValidation by lazy {
-        LoginAndRegisterValidation(requireContext())
-    }
     private val homeFragment by lazy { HomeFragment() }
     private val registerFragment by lazy { RegisterFragment() }
     override val TAG: String = this::class.simpleName.toString()
@@ -45,10 +43,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     private fun addCallBacks() {
         binding.buttonLogin.setOnClickListener {
             getUserInputs()
-            if (validateUserInputs()) {
-
-                login(userName, password)
-            }
+            validLogin(userName,password)
         }
 
         binding.textSignUp.setOnClickListener {
@@ -57,13 +52,27 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     }
 
 
-    private fun validateUserInputs(): Boolean =
-        loginAndRegisterValidation.checkCredentialForUserName(userName, binding.editTextUsername)
-                && loginAndRegisterValidation.checkCredentialForPassword(
-            password,
-            binding.editTextPassword
-        )
+    private fun validLogin(userName: String,password: String){
+        val validation = LoginAndRegisterValidation()
+        val (isValid, errorMessage) = validation.checkCredential(userName, password)
+        if (isValid){
+            hideError()
+            login(userName, password)
+        }
+        else{
+            showError(errorMessage.first, errorMessage.second)
+        }
+    }
+    private fun showError(usernameErrorMessage: String?, passwordErrorMessage: String?) {
+        binding.editTextUsername.error = usernameErrorMessage
+        binding.editTextPassword.error = passwordErrorMessage
+    }
 
+
+    private fun hideError() {
+            binding.editTextPassword.isErrorEnabled = false
+            binding.editTextUsername.isErrorEnabled = false
+    }
     private fun getUserInputs() {
         userName = binding.editTextUsername.editText?.text.toString().trim()
         password = binding.editTextPassword.editText?.text.toString()
