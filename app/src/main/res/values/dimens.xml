@@ -10,6 +10,8 @@
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_giant">32dp</dimen>
     <dimen name="spacing_negative">-48dp</dimen>
+    <dimen name="spacing_XXLarge">128dp</dimen>
+
 
     <!--text dimens-->
     <dimen name="text_tiny">12sp</dimen>
