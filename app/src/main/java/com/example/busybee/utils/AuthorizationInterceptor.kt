@@ -24,12 +24,11 @@ class AuthorizationInterceptor(private val context: Context) : Interceptor {
         val response = chain.proceed(request)
 
         if (response.code == 401) {
-            Log.e("Token Error ", "Token Expired")
             val intent = Intent(context, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             val bundle = Bundle()
-            bundle.putString("fragment", "myFragmentTag")
-            intent.putExtra("bundle", bundle)
+            bundle.putString(Constant.FRAGMENT_KEY, "myFragmentTag")
+            intent.putExtra(Constant.BUNDLE_TASK, bundle)
             context.startActivity(intent)
             response.close()
         }

@@ -12,6 +12,7 @@ import com.example.busybee.data.Repository
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.view.LoginFragment
+import com.example.busybee.utils.Constant
 import com.example.busybee.utils.SharedPreferencesUtils
 import java.util.*
 
@@ -31,8 +32,8 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bundle = intent.getBundleExtra("bundle")
-        val fragmentTag = bundle?.getString("fragment")
+        val bundle = intent.getBundleExtra(Constant.BUNDLE_TASK)
+        val fragmentTag = bundle?.getString(Constant.FRAGMENT_KEY)
 
         if (fragmentTag != null) {
             replaceFragment(fragmentLogin)

@@ -9,4 +9,6 @@ object Constant {
      const val REGISTER_URL = "$BASE_URL/signup"
      const val TEAM_TODO_URL = "$BASE_URL/todo/team"
      const val PERSONAL_TODO_URL = "$BASE_URL/todo/personal"
+     const val FRAGMENT_KEY= "myFragmentTag"
+     const val BUNDLE_TASK = "bundle"
 }

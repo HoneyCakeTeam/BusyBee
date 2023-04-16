@@ -10,7 +10,4 @@ class MainPresenter(
         mainViewInterface.getTokenFromShared(repository.getToken())
     }
 
-//    fun getExpirationDateFromShared() {
-//        mainViewInterface.getExpirationDateFromShared(repository.getExpirationDate())
-//    }
 }
