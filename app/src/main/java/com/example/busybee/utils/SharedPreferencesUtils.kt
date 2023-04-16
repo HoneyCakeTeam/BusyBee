@@ -7,9 +7,6 @@ import java.util.*
 
 class SharedPreferencesUtils(context: Context) {
     private var sharedPreferences: SharedPreferences? = null
-    private val SHARED_PREFERENCES_NAME = "MySharedPreferences"
-    private val USER_TOKEN = "keyToken"
-    private val EXPIRATION_DATE_KEY = "expirationDate"
 
     var token: String?
         get() = sharedPreferences?.getString(USER_TOKEN, null)
@@ -25,18 +22,14 @@ class SharedPreferencesUtils(context: Context) {
         }
 
     private fun clearToken() = sharedPreferences?.edit()?.remove(USER_TOKEN)?.apply()
-
-    fun isTokenExpired(): Boolean {
-        val expirationDateString = expirationDate ?: return false
-        val dateFormat = SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US)
-        val expireDate = dateFormat.parse(expirationDateString) ?: return true
-
-        val currentTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).time
-        return currentTime.after(expireDate)
-    }
     init {
         sharedPreferences = context.getSharedPreferences(
             SHARED_PREFERENCES_NAME,
             Context.MODE_PRIVATE )
+    }
+    companion object{
+        private const val SHARED_PREFERENCES_NAME = "MySharedPreferences"
+        private const val USER_TOKEN = "keyToken"
+        private const val EXPIRATION_DATE_KEY = "expirationDate"
     }
 }
