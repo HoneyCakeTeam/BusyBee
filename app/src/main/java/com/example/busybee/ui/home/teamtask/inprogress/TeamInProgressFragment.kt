@@ -4,6 +4,7 @@ import android.app.UiModeManager
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.TeamToDo
@@ -28,8 +29,22 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
         binding.taskHeader.textTodoStatus.text = getString(R.string.in_progress)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, inProgress.size)
         setToDoColorBasedOnTheme()
+        showPlaceHolder(inProgress)
     }
-    private fun setToDoColorBasedOnTheme(){
+
+    private fun showPlaceHolder(inProgress: List<TeamToDo>) {
+        if (inProgress.isEmpty()) {
+            binding.textNoTasksTeamInProgress.visibility = View.VISIBLE
+            binding.recyclerInProgress.visibility = View.GONE
+            binding.imagePlaceholderTeamInProgress.visibility = View.VISIBLE
+        } else {
+            binding.textNoTasksTeamInProgress.visibility = View.GONE
+            binding.recyclerInProgress.visibility = View.VISIBLE
+            binding.imagePlaceholderTeamInProgress.visibility = View.GONE
+        }
+    }
+
+    private fun setToDoColorBasedOnTheme() {
         val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         when (uiManager.nightMode) {
             UiModeManager.MODE_NIGHT_NO -> {

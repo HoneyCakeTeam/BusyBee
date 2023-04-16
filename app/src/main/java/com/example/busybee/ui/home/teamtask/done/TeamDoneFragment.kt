@@ -1,10 +1,12 @@
 package com.example.busybee.ui.home.teamtask.done
 
+import TeamDoneAdapter
 import android.app.UiModeManager
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.models.TeamToDo
@@ -24,14 +26,28 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
 
     override fun setUp() {
         getDons()
-        adapter = TeamDoneAdapter(done , this)
+        adapter = TeamDoneAdapter(done, this)
         Log.e(TAG, "setUp: ${done}")
         binding.recyclerDone.adapter = adapter
         binding.taskHeader.textTodoStatus.text = getString(R.string.done)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, done.size)
         setToDoColorBasedOnTheme()
+        showPlaceHolder(done)
     }
-    private fun setToDoColorBasedOnTheme(){
+
+    private fun showPlaceHolder(done: List<TeamToDo>) {
+        if (done.isEmpty()) {
+            binding.textNoTasksTeamDone.visibility = View.VISIBLE
+            binding.recyclerDone.visibility = View.GONE
+            binding.imagePlaceholderTeamDone.visibility = View.VISIBLE
+        } else {
+            binding.textNoTasksTeamDone.visibility = View.GONE
+            binding.recyclerDone.visibility = View.VISIBLE
+            binding.imagePlaceholderTeamDone.visibility = View.GONE
+        }
+    }
+
+    private fun setToDoColorBasedOnTheme() {
         val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         when (uiManager.nightMode) {
             UiModeManager.MODE_NIGHT_NO -> {
@@ -49,8 +65,8 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
     private fun getDons() {
         arguments?.let {
             done = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.getParcelableArrayList(TEAM_DONE_LIST,TeamToDo::class.java)!!
-            }else{
+                it.getParcelableArrayList(TEAM_DONE_LIST, TeamToDo::class.java)!!
+            } else {
                 it.getParcelableArrayList(TEAM_DONE_LIST)!!
             }
         }

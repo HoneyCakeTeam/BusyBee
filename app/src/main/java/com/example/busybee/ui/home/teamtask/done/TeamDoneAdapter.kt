@@ -1,5 +1,3 @@
-package com.example.busybee.ui.home.teamtask.done
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.busybee.base.BaseAdapter
@@ -10,9 +8,8 @@ import com.example.busybee.utils.DateTimeUtils
 class TeamDoneAdapter(
     private var teamDoneList: List<TeamToDo>,
     private val listener: TeamDoneTaskInteractionListener
+) : BaseAdapter<TeamToDo, ItemTaskBinding>(teamDoneList) {
 
-) :
-    BaseAdapter<TeamToDo, ItemTaskBinding>(teamDoneList) {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemTaskBinding
         get() = ItemTaskBinding::inflate
 
@@ -39,5 +36,4 @@ class TeamDoneAdapter(
     interface TeamDoneTaskInteractionListener {
         fun onTasKClicked(flag: Int, teamTodo: TeamToDo)
     }
-
 }
