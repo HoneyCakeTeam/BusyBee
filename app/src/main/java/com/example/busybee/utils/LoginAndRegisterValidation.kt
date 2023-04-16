@@ -35,8 +35,8 @@ class LoginAndRegisterValidation {
 
     fun validateConfirmPassword(password: String, confirmPassword: String): Pair<Boolean, String?> {
         return when {
-            password.isEmpty() -> Pair(false, "Confirm password cannot be empty.")
-            confirmPassword != null && password != confirmPassword -> Pair(
+            confirmPassword.isEmpty() -> Pair(false, "Confirm password cannot be empty.")
+            password != confirmPassword -> Pair(
                 false,
                 "Passwords do not match."
             )

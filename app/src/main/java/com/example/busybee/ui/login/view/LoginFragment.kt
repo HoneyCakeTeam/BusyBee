@@ -75,6 +75,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     }
 
     private fun login(userName: String, password: String) {
+
         if (isOnline(requireContext())) {
             presenter.logIn(
                 userName,

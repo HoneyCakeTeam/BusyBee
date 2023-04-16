@@ -105,7 +105,6 @@ class Repository(
         sharedPreferences.token = token
     }
 
-
     override fun getToken(): String? {
         return sharedPreferences.token
     }
@@ -136,7 +135,6 @@ class Repository(
 
     override fun addPersonalToDo(todo: PersonalToDo) {
         LocalDataSource.personalTasks.add(todo)
-        Log.e("Added toDo" , "$todo")
     }
 
     override fun addTeamToDo(todo: TeamToDo) {
