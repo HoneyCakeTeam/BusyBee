@@ -37,8 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginBottom="200dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recycler_to_do"
-        app:layout_constraintEnd_toEndOf="@+id/recycler_to_do"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_header"
         app:srcCompat="@drawable/image_todo" />
@@ -49,12 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="240dp"
         android:text="@string/you_have_not_tasks"
-        android:textSize="@dimen/text_medium"
-        android:textColor="@color/black_38"
-        android:textAlignment="center"
+        style="@style/TextViewPlaceHolderStyle"
         android:layout_marginHorizontal="@dimen/spacing_giant"
-        app:layout_constraintBottom_toBottomOf="@+id/recycler_to_do"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/recycler_to_do"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_placeholder_team_toDo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
