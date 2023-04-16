@@ -145,6 +145,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     fun onClickPersonalButton() {
         binding.buttonPersonalTodos.setOnClickListener {
+            binding.piechart.clearChart()
             setUpPieChart(personalTodos, personalInProgressTodos, personalDoneTodos)
             showToDosPercentage(personalTodos, personalInProgressTodos, personalDoneTodos)
         }
@@ -152,6 +153,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     private fun onClickTeamButton() {
         binding.buttonTeamTodos.setOnClickListener {
+            binding.piechart.clearChart()
             setUpPieChart(teamTodos, teamInProgressTodos, teamDoneTodos)
             showToDosPercentage(teamTodos, teamInProgressTodos, teamDoneTodos)
         }
