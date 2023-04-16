@@ -14,6 +14,7 @@ import com.example.busybee.databinding.FragmentPersonalToDoBinding
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.ui.home.personaltask.todo.presenter.PersonalToDoPresenter
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
@@ -146,7 +147,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         }
     }
 
-    override fun onTasKClicked(flag: Int, personalToDo: PersonalToDo) {
+    override fun onTasKClicked(flag: TaskType, personalToDo: PersonalToDo) {
         val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
         replaceFragment(detailsFragment)
     }

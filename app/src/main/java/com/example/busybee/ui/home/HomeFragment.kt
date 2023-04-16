@@ -1,5 +1,6 @@
 package com.example.busybee.ui.home
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
@@ -18,11 +19,13 @@ import com.example.busybee.ui.home.teamtask.inprogress.view.TeamInProgressFragme
 import com.example.busybee.ui.home.teamtask.todo.view.TeamToDoFragment
 import com.example.busybee.ui.setting.view.SettingFragment
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlin.math.abs
+
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeViewInterface {
     private val homePresenter by lazy {
@@ -55,27 +58,43 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     private val settingsFragment by lazy { SettingFragment() }
 
-    private val personalToDos by lazy {
-        personalResponse.value.filter { it.status == 0 }
-    }
-    private val personalInProgressToDos by lazy {
-        personalResponse.value.filter { it.status == 1 }
-    }
-    private val personalDoneToDos by lazy {
-        personalResponse.value.filter { it.status == 2 }
-    }
-
     override val TAG = this::class.java.simpleName.toString()
 
+    private lateinit var taskType: TaskType
 
     override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun setUp() {
-        getAllPersonalTasks()
-        getAllTeamTasks()
+        getTaskType()
+        checkTaskType()
         initTabLayout()
         addCallBacks()
         onClickBackFromNavigation()
+    }
+
+    private fun checkTaskType() {
+        if (::taskType.isInitialized) {
+            when (taskType) {
+                TaskType.PERSONAL -> {
+                    initViewPager(personalFragments)
+                    selectTab(0)
+                }
+
+                TaskType.TEAM -> {
+                    initViewPager(teamFragments)
+                    selectTab(1)
+                }
+            }
+        } else {
+            getAllPersonalTasks()
+            getAllTeamTasks()
+        }
+    }
+
+    private fun getTaskType() {
+        arguments?.let {
+            taskType = it.getParcelable(FLAG)!!
+        }
     }
 
     private fun addCallBacks() {
@@ -142,7 +161,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         }
     }
 
+    private fun selectTab(index: Int) {
+        val tabLayout = binding.tabLayout
+        val tab = tabLayout.getTabAt(index)
+        tab!!.select()
+    }
+
     override fun onPersonalFailureResponse(error: Throwable) {
         // Show lottie animation in screen for error
+    }
+
+    companion object {
+        const val FLAG = "flag"
+
+        fun newInstance(taskType: TaskType) =
+            HomeFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(FLAG, taskType)
+                }
+            }
     }
 }

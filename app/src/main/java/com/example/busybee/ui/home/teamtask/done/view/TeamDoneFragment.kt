@@ -11,6 +11,7 @@ import com.example.busybee.databinding.FragmentTeamDoneBinding
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.ui.home.teamtask.done.presenter.TeamDonePresenter
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 
 class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
@@ -54,7 +55,7 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
         }
     }
 
-    override fun onTasKClicked(flag: Int, teamTodo: TeamToDo) {
+    override fun onTasKClicked(flag: TaskType, teamTodo: TeamToDo) {
         val detailsFragment = DetailsFragment.newInstance(flag, teamTodo, null)
         replaceFragment(detailsFragment)
     }

@@ -2,19 +2,16 @@ package com.example.busybee.ui.home.teamtask.inprogress.view
 
 import android.app.UiModeManager
 import android.content.Context
-import android.os.Build
-import android.os.Bundle
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
-import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentTeamInProgressBinding
 import com.example.busybee.ui.details.view.DetailsFragment
-import com.example.busybee.ui.home.personaltask.inprogress.presenter.PersonalInProgressPresenter
 import com.example.busybee.ui.home.teamtask.inprogress.presenter.TeamInProgressPresenter
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 
 class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
@@ -60,7 +57,7 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
         }
     }
 
-    override fun onTasKClicked(flag: Int, teamTodo: TeamToDo) {
+    override fun onTasKClicked(flag: TaskType, teamTodo: TeamToDo) {
         val detailsFragment = DetailsFragment.newInstance(flag, teamTodo, null)
         replaceFragment(detailsFragment)
     }

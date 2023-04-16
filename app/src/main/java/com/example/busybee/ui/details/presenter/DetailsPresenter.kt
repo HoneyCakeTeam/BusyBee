@@ -9,18 +9,39 @@ class DetailsPresenter(
     private val repository: RepositoryInterface,
     private val detailsViewInterface: DetailsViewInterface
 ) {
-    fun <T> updateTasksPersonalStatus(idTask: String, status: Int) {
-        repository.updateTasksPersonalStatus(idTask, status, ::onUpdatePersonalStatusSuccess, ::onUpdatePersonalStatusFailed)
+
+    fun updateLocalTasksPersonalStatus(idTask: String, status: Int) {
+        repository.updatePersonalTaskStatus(idTask, status)
     }
+
+    fun updateLocalTasksTeamStatus(idTask: String, status: Int) {
+        repository.updateTeamTaskStatus(idTask, status)
+    }
+
+    fun updateTasksPersonalStatus(idTask: String, status: Int) {
+        repository.updateTasksPersonalStatus(
+            idTask,
+            status,
+            ::onUpdatePersonalStatusSuccess,
+            ::onUpdatePersonalStatusFailed
+        )
+    }
+
     private fun onUpdatePersonalStatusSuccess(response: BaseResponse<String>) {
         detailsViewInterface.onUpdatePersonalStatusSuccess(response)
     }
+
     private fun onUpdatePersonalStatusFailed(error: Throwable) {
         detailsViewInterface.onUpdatePersonalStatusFailed(error)
     }
 
-    fun <T> updateTasksTeamStatus(idTask: String, status: Int) {
-        repository.updateTasksTeamStatus(idTask, status, ::onUpdateTeamStatusSuccess, ::onUpdateTeamStatusFailed)
+    fun updateTasksTeamStatus(idTask: String, status: Int) {
+        repository.updateTasksTeamStatus(
+            idTask,
+            status,
+            ::onUpdateTeamStatusSuccess,
+            ::onUpdateTeamStatusFailed
+        )
     }
 
     private fun onUpdateTeamStatusSuccess(response: BaseResponse<String>) {

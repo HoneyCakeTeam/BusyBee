@@ -11,6 +11,7 @@ import com.example.busybee.databinding.FragmentPersonalInProgressBinding
 import com.example.busybee.ui.details.view.DetailsFragment
 import com.example.busybee.ui.home.personaltask.inprogress.presenter.PersonalInProgressPresenter
 import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 
 class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBinding>(),
@@ -58,7 +59,7 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
         }
     }
 
-    override fun onTasKClicked(flag: Int, personalToDo: PersonalToDo) {
+    override fun onTasKClicked(flag: TaskType, personalToDo: PersonalToDo) {
         val detailsFragment = DetailsFragment.newInstance(flag, null, personalToDo)
         replaceFragment(detailsFragment)
     }

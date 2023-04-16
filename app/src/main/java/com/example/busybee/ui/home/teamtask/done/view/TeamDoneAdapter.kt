@@ -6,6 +6,7 @@ import com.example.busybee.base.BaseAdapter
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.databinding.ItemTaskBinding
 import com.example.busybee.utils.DateTimeUtils
+import com.example.busybee.utils.TaskType
 
 class TeamDoneAdapter(
     private var teamDoneList: List<TeamToDo>,
@@ -31,13 +32,13 @@ class TeamDoneAdapter(
             textTaskTime.text = formattedTime
             textTaskDate.text = formattedDate
             taskCard.setOnClickListener {
-                listener.onTasKClicked(0, currentItem)
+                listener.onTasKClicked(TaskType.TEAM, currentItem)
             }
         }
     }
 
     interface TeamDoneTaskInteractionListener {
-        fun onTasKClicked(flag: Int, teamTodo: TeamToDo)
+        fun onTasKClicked(flag: TaskType, teamTodo: TeamToDo)
     }
 
 }
