@@ -2,6 +2,7 @@ package com.example.busybee.ui.home.personaltask.done.view
 
 import android.app.UiModeManager
 import android.content.Context
+import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -40,6 +41,19 @@ class PersonalDoneFragment : BaseFragment<FragmentPersonalDoneBinding>(),
         binding.headerDone.textTodoStatus.text = getString(R.string.done)
         binding.headerDone.taskCount.text = getString(R.string.tasks, dones.size)
         setToDoColorBasedOnTheme()
+        showPlaceHolder(dones)
+    }
+
+    private fun showPlaceHolder(todo: List<PersonalToDo>) {
+        if (todo.isEmpty()) {
+            binding.textNoTasksPersonalDone.visibility = View.VISIBLE
+            binding.recyclerDone.visibility = View.GONE
+            binding.imagePlaceholderPersonalDone.visibility = View.VISIBLE
+        } else {
+            binding.textNoTasksPersonalDone.visibility = View.GONE
+            binding.recyclerDone.visibility = View.VISIBLE
+            binding.imagePlaceholderPersonalDone.visibility = View.GONE
+        }
     }
 
     private fun setToDoColorBasedOnTheme() {
