@@ -82,7 +82,6 @@
         <item name="android:textColor">@color/black_38</item>
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:textAlignment">center</item>
-
     </style>
 
     <style name="TextViewHelloStyle">
@@ -173,6 +172,7 @@
         <item name="android:drawablePadding">@dimen/spacing_tiny</item>
         <item name="android:gravity">center</item>
     </style>
+
     <style name="TextTimeTaskStyle" parent="TextCommonDateAndTime">
         <item name="android:layout_marginTop">@dimen/spacing_small</item>
         <item name="drawableStartCompat">@drawable/ic_todo_time</item>
@@ -261,27 +261,33 @@
     <style name="BackgroundCustomShapeSetting">
         <item name="android:background">@drawable/shape_settings_chart</item>
     </style>
+
     <style name="BackgroundCustomShapePieChart">
         <item name="egInnerPaddingColor">@color/white_100</item>
         <item name="egInnerPadding">87</item>
         <item name="egHighlightStrength">1</item>
         <item name="android:layout_marginStart">@dimen/spacing_medium</item>
     </style>
+
     <style name="BackgroundCustomShapeViewSetting">
         <item name="android:background">@drawable/shape_settings_theme</item>
         <item name="android:layout_marginTop">@dimen/spacing_medium</item>
         <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
     </style>
+
     <style name="BackgroundCustomShapeViewSettingLogout">
         <item name="android:background">@drawable/shape_settings_logout</item>
         <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
     </style>
+
     <style name="BackgroundCustomShapeViewLogin">
         <item name="android:backgroundTint">@color/primary_500</item>
     </style>
+
     <style name="BackgroundCustomShapeCardLogin">
         <item name="android:background">@color/white_100</item>
     </style>
+
     <style name="LogoStyle">
         <item name="android:src">@drawable/name_logo</item>
     </style>
@@ -308,6 +314,6 @@
         <item name="android:layout_margin">@dimen/spacing_medium</item>
     </style>
 
-    <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog"/>
+    <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog" />
 
 </resources>
