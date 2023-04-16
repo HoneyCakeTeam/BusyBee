@@ -2,6 +2,9 @@ package com.example.busybee.ui.home.teamtask.done.view
 
 import android.app.UiModeManager
 import android.content.Context
+import android.os.Build
+import android.os.Bundle
+import android.util.Log
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -39,8 +42,22 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
         binding.taskHeader.textTodoStatus.text = getString(R.string.done)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, done.size)
         setToDoColorBasedOnTheme()
+        showPlaceHolder(done)
     }
-    private fun setToDoColorBasedOnTheme(){
+
+    private fun showPlaceHolder(done: List<TeamToDo>) {
+        if (done.isEmpty()) {
+            binding.textNoTasksTeamDone.visibility = View.VISIBLE
+            binding.recyclerDone.visibility = View.GONE
+            binding.imagePlaceholderTeamDone.visibility = View.VISIBLE
+        } else {
+            binding.textNoTasksTeamDone.visibility = View.GONE
+            binding.recyclerDone.visibility = View.VISIBLE
+            binding.imagePlaceholderTeamDone.visibility = View.GONE
+        }
+    }
+
+    private fun setToDoColorBasedOnTheme() {
         val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         when (uiManager.nightMode) {
             UiModeManager.MODE_NIGHT_NO -> {
@@ -56,9 +73,7 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
     }
 
     override fun onTasKClicked(flag: TaskType, teamTodo: TeamToDo) {
-        val detailsFragment = DetailsFragment.newInstance(flag, teamTodo, null)
-        replaceFragment(detailsFragment)
-    }
+
 
     override fun getLocalTeamDones(dones: List<TeamToDo>) {
         this.done = dones

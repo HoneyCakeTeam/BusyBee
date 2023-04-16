@@ -2,6 +2,7 @@ package com.example.busybee.ui.home.personaltask.inprogress.view
 
 import android.app.UiModeManager
 import android.content.Context
+import android.view.View
 import com.example.busybee.R
 import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
@@ -42,6 +43,19 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
         binding.headerInProgress.textTodoStatus.text = getString(R.string.in_progress)
         binding.headerInProgress.taskCount.text = getString(R.string.tasks, inProgress.size)
         setToDoColorBasedOnTheme()
+        showPlaceHolder(inProgress)
+    }
+
+    private fun showPlaceHolder(todo: List<PersonalToDo>) {
+        if (todo.isEmpty()) {
+            binding.textNoTasksPersonalInProgress.visibility = View.VISIBLE
+            binding.recyclerInProgress.visibility = View.GONE
+            binding.imagePlaceholderPersonalInProgress.visibility = View.VISIBLE
+        } else {
+            binding.textNoTasksPersonalInProgress.visibility = View.GONE
+            binding.recyclerInProgress.visibility = View.VISIBLE
+            binding.imagePlaceholderPersonalInProgress.visibility = View.GONE
+        }
     }
 
     private fun setToDoColorBasedOnTheme() {

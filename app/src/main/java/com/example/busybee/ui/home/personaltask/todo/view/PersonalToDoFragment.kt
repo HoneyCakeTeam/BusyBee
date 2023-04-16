@@ -8,6 +8,7 @@ import com.example.busybee.base.BaseFragment
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
+import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
@@ -49,6 +50,19 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         binding.headerToDo.taskCount.text = getString(R.string.tasks, todos.size)
 //        binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
         setToDoColorBasedOnTheme()
+        showPlaceHolder(todos)
+    }
+
+    private fun showPlaceHolder(todo: List<PersonalToDo>) {
+        if (todo.isEmpty()) {
+            binding.textNoTasksPersonalToDo.visibility = View.VISIBLE
+            binding.recyclerToDo.visibility = View.GONE
+            binding.imagePlaceholderPersonalToDo.visibility = View.VISIBLE
+        } else {
+            binding.textNoTasksPersonalToDo.visibility = View.GONE
+            binding.recyclerToDo.visibility = View.VISIBLE
+            binding.imagePlaceholderPersonalToDo.visibility = View.GONE
+        }
     }
 
     private fun addCallBacks() {
@@ -79,6 +93,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
         bottomSheet.setContentView(sheetCreateTaskBinding.root)
         bottomSheet.show()
     }
+
     override fun getLocalPersonalTodos(todos: List<PersonalToDo>) {
         this.todos = todos
     }

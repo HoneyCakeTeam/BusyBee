@@ -24,4 +24,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_done" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_placeholder_personal_done"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_done"
+        app:srcCompat="@drawable/image_done" />
+
+    <TextView
+        android:id="@+id/text_no_tasks_personal_done"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_giant"
+        android:layout_marginBottom="240dp"
+        android:text="@string/you_have_not_tasks"
+        style="@style/TextViewPlaceHolderStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_placeholder_personal_done" />
 </androidx.constraintlayout.widget.ConstraintLayout>
