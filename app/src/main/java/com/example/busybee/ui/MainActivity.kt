@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.data.Repository
@@ -14,7 +13,6 @@ import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.view.LoginFragment
 import com.example.busybee.utils.SharedPreferencesUtils
-import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity(), MainViewInterface {
@@ -38,11 +36,12 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
 
         if (fragmentTag != null) {
             replaceFragment(fragmentLogin)
-        }else{
+        } else {
             presenter.getTokenFromShared()
         }
         statusBarTheme()
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
@@ -76,26 +75,10 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
     }
 
     override fun getTokenFromShared(token: String?) {
-        if (!token.isNullOrEmpty()) {
-            presenter.getExpirationDateFromShared()
-        } else {
-            replaceFragment(fragmentLogin)
-        }
-    }
-
-    override fun getExpirationDateFromShared(expirationDate: String?) {
-        if (isTokenExpired(expirationDate)) {
+        if (token.isNullOrEmpty()) {
             replaceFragment(fragmentLogin)
         } else {
             replaceFragment(fragmentHome)
         }
-    }
-
-    private fun isTokenExpired(expirationDateString: String?): Boolean {
-        SharedPreferencesUtils(this).expirationDate ?: return false
-        val dateFormat = SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy", Locale.US)
-        val expireDate = dateFormat.parse(expirationDateString!!) ?: return true
-        val currentTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).time
-        return currentTime.after(expireDate)
     }
 }
