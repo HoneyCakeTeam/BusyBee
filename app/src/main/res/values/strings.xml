@@ -46,7 +46,7 @@
     <string name="move_to_inprogress">Move to in progress</string>
     <string name="move_to_done">Move to done</string>
     <string name="ok">OK</string>
-    <string name="you_have_not_tasks">you have not tasks</string>
+    <string name="you_have_not_tasks">What are you doing here? There are currently no unfinished tasks, so enjoy your time.</string>
 
 
 </resources>

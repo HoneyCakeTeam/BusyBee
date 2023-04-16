@@ -48,6 +48,19 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoViewIn
         binding.taskHeader.textTodoStatus.text = getString(R.string.to_do)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, todos.size)
         setToDoColorBasedOnTheme()
+        showPlaceHolder(todos)
+    }
+
+    private fun showPlaceHolder(toDo: List<TeamToDo>) {
+        if (toDo.isEmpty()) {
+            binding.textNoTasksTeamToDo.visibility = View.VISIBLE
+            binding.recyclerToDo.visibility = View.GONE
+            binding.imagePlaceholderTeamToDo.visibility = View.VISIBLE
+        } else {
+            binding.textNoTasksTeamToDo.visibility = View.GONE
+            binding.recyclerToDo.visibility = View.VISIBLE
+            binding.imagePlaceholderTeamToDo.visibility = View.GONE
+        }
     }
 
     private fun setToDoColorBasedOnTheme() {
