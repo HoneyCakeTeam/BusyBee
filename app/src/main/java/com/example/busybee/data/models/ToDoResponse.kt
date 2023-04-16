@@ -1,40 +1,42 @@
 package com.example.busybee.data.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 data class BaseResponse<T>(
-    val value: T,
-    val message: String? = null,
-    val isSuccess: Boolean = true,
+    @SerializedName("value") val value: T,
+    @SerializedName("message") val message: String,
+    @SerializedName("isSuccess") val isSuccess: Boolean = true,
 )
+
 @Parcelize
 data class PersonalToDo(
-    val id: String? = null,
-    val title: String? = null,
-    val description: String? = null,
-    var status: Int? = null,
-    val creationTime: String? = null,
+    @SerializedName("id") val id: String?,
+    @SerializedName("title") val title: String?,
+    @SerializedName("description") val description: String?,
+    @SerializedName("status") val status: Int?,
+    @SerializedName("creationTime") val creationTime: String? ,
 ) : Parcelable
 
 @Parcelize
 data class TeamToDo(
-    val id: String,
-    val title: String,
-    val description: String,
-    val assignee: String,
-    var status: Int,
-    val creationTime: String
+    @SerializedName("id") val id: String,
+    @SerializedName("title") val title: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("assignee") val assignee: String,
+    @SerializedName("status") val status: Int,
+    @SerializedName("creationTime") val creationTime: String
 ) : Parcelable
 
 data class LoginResponseValue(
-    val token: String,
-    val expireAt: String
+    @SerializedName("token") val token: String,
+    @SerializedName("expireAt") val expireAt: String
 )
 
 data class SignUpResponseValue(
-    val userId: String,
-    val userName: String
+    @SerializedName("userId") val userId: String,
+    @SerializedName("userName") val userName: String
 )
 
 
