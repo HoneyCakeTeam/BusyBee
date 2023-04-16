@@ -43,5 +43,9 @@ class SettingsPresenter(
             repository.getTeamTasks().filter { it.status == 0 }.size
         )
     }
+    fun setToken(token:String?) {
+       repository.saveToken(token)
+
+    }
 
 }

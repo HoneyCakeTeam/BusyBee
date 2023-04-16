@@ -84,8 +84,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     private fun onClickLogout() {
         binding.viewLogoutSettings.setOnClickListener {
-            SharedPreferencesUtils(requireContext())
-            SharedPreferencesUtils(requireContext()).token = null
+            presenter.setToken(null)
             replaceFragment(loginFragment)
         }
     }
@@ -155,7 +154,8 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
         teamTodos = todos.toFloat()
     }
 
-    fun onClickPersonalButton() {
+
+    private fun onClickPersonalButton() {
         binding.buttonPersonalTodos.setOnClickListener {
             clearChart()
             setUpPieChart(personalTodos, personalInProgressTodos, personalDoneTodos)

@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
         return currentNightMode == Configuration.UI_MODE_NIGHT_YES
     }
 
-    override fun getTokenFromShared(token: String?) {
+    override fun getToken(token: String?) {
         if (token.isNullOrEmpty()) {
             replaceFragment(fragmentLogin)
         } else {

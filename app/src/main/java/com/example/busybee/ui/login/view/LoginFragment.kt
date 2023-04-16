@@ -94,7 +94,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     override fun onLoginSuccess(response: BaseResponse<LoginResponseValue>) {
         activity?.runOnUiThread {
             if (response.isSuccess) {
-                saveTokenInShared(response.value.token)
+                setToken(response.value.token)
                 replaceFragment(homeFragment)
                 Snackbar.make(
                     binding.root,
@@ -124,7 +124,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
         }
     }
 
-    private fun saveTokenInShared(token: String) {
+    private fun setToken(token: String) {
         presenter.saveTokenInShared(token)
     }
 

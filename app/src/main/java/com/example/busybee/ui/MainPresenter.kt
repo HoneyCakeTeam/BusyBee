@@ -7,7 +7,7 @@ class MainPresenter(
     private val mainViewInterface: MainViewInterface
 ) {
     fun getTokenFromShared() {
-        mainViewInterface.getTokenFromShared(repository.getToken())
+        mainViewInterface.getToken(repository.getToken())
     }
 
 }

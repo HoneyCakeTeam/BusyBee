@@ -1,5 +1,5 @@
 package com.example.busybee.ui
 
 interface MainViewInterface {
-    fun getTokenFromShared(token: String?)
+    fun getToken(token: String?)
 }
