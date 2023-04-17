@@ -1,10 +1,10 @@
 package com.example.busybee.ui.home.personaltask.inprogress.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.Repository
 import com.example.busybee.ui.home.personaltask.inprogress.view.PersonalInProgressViewInterface
 
 class PersonalInProgressPresenter(
-    private val repository: RepositoryInterface,
+    private val repository: Repository,
     private val personalInProgressViewInterface: PersonalInProgressViewInterface
 ) {
     fun getLocalPersonalInProgress() {

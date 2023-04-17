@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.View
 import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentPersonalDoneBinding
@@ -22,7 +22,7 @@ class PersonalDoneFragment : BaseFragment<FragmentPersonalDoneBinding>(),
 
     private val presenter by lazy {
         PersonalDonePresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(requireContext()),
                 SharedPreferencesUtils(requireContext())
             ), this

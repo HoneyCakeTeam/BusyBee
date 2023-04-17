@@ -3,7 +3,7 @@ package com.example.busybee.ui.setting.view
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentSettingsBinding
 import com.example.busybee.ui.home.HomeFragment
@@ -28,7 +28,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsViewInt
 
     private val presenter by lazy {
         SettingsPresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(requireContext()),
                 SharedPreferencesUtils(requireContext())
             ), this

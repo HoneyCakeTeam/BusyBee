@@ -1,12 +1,12 @@
 package com.example.busybee.ui.home.personaltask.todo.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.ui.home.personaltask.todo.view.PersonalToDoViewInterface
 
 class PersonalToDoPresenter(
-    private val repository: RepositoryInterface,
+    private val repository: Repository,
     private val personalTodoViewInterface: PersonalToDoViewInterface
 ) {
 

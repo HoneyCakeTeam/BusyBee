@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.View
 import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
@@ -23,7 +23,7 @@ class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBindin
 
     private val presenter by lazy {
         PersonalInProgressPresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(requireContext()),
                 SharedPreferencesUtils(requireContext())
             ), this

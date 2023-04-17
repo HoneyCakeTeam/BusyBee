@@ -1,12 +1,12 @@
 package com.example.busybee.ui.details.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.ui.details.view.DetailsViewInterface
 
 
 class DetailsPresenter(
-    private val repository: RepositoryInterface,
+    private val repository: Repository,
     private val detailsViewInterface: DetailsViewInterface
 ) {
 

@@ -1,9 +1,9 @@
 package com.example.busybee.ui
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.Repository
 
 class MainPresenter(
-    private val repository: RepositoryInterface,
+    private val repository: Repository,
     private val mainViewInterface: MainViewInterface
 ) {
     fun getTokenFromShared() {

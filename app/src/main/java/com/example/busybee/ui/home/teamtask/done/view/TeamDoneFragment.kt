@@ -2,13 +2,10 @@ package com.example.busybee.ui.home.teamtask.done.view
 
 import android.app.UiModeManager
 import android.content.Context
-import android.os.Build
-import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentTeamDoneBinding
@@ -26,7 +23,7 @@ class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
 
     private val presenter by lazy {
         TeamDonePresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(requireContext()),
                 SharedPreferencesUtils(requireContext())
             ), this

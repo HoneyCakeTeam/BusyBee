@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.View
 import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.FragmentTeamInProgressBinding
@@ -23,7 +23,7 @@ class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
 
     private val presenter by lazy {
         TeamInProgressPresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(requireContext()),
                 SharedPreferencesUtils(requireContext())
             ), this

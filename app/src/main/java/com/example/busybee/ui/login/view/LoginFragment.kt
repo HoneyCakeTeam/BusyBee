@@ -1,7 +1,7 @@
 package com.example.busybee.ui.login.view
 
 import com.example.busybee.R
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.LoginResponseValue
 import com.example.busybee.data.source.RemoteDataSource
@@ -16,7 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginViewInterface {
     private val presenter by lazy {
         LoginPresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(requireContext()),
                 SharedPreferencesUtils(requireContext())
             ), this

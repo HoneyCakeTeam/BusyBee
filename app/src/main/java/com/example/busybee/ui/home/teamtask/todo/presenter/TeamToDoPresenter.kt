@@ -1,12 +1,12 @@
 package com.example.busybee.ui.home.teamtask.todo.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.ui.home.teamtask.todo.view.TeamToDoViewInterface
 
 class TeamToDoPresenter(
-    private val repository: RepositoryInterface,
+    private val repository: Repository,
     private val teamToDoViewInterface: TeamToDoViewInterface
 ) {
     fun addTeamToDo(todo: TeamToDo) {

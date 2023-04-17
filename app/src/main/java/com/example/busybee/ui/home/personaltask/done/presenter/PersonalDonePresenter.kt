@@ -1,10 +1,10 @@
 package com.example.busybee.ui.home.personaltask.done.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.Repository
 import com.example.busybee.ui.home.personaltask.done.view.PersonalDoneViewInterface
 
 class PersonalDonePresenter(
-    private val repository: RepositoryInterface,
+    private val repository: Repository,
     private val personalDoneViewInterface: PersonalDoneViewInterface
 ) {
     fun getLocalPersonalDones() {

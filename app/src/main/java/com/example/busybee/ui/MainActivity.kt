@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.view.LoginFragment
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), MainViewInterface {
 
     private val presenter by lazy {
         MainPresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(this),
                 SharedPreferencesUtils(this)
             ), this

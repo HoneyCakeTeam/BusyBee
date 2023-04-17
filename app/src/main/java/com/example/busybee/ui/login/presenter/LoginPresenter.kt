@@ -1,12 +1,12 @@
 package com.example.busybee.ui.login.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.LoginResponseValue
 import com.example.busybee.ui.login.view.LoginViewInterface
 
 class LoginPresenter(
-    private val repository: RepositoryInterface, private val loginViewInterface: LoginViewInterface
+    private val repository: Repository, private val loginViewInterface: LoginViewInterface
 ) {
     fun logIn(userName: String, password: String) {
 

@@ -1,148 +1,77 @@
 package com.example.busybee.data
 
-import android.util.Log
 import com.example.busybee.data.models.*
-import com.example.busybee.data.source.RemoteDataSourceInterface
-import com.example.busybee.utils.SharedPreferencesUtils
 
-class Repository(
-    private val remoteDataSource: RemoteDataSourceInterface,
-    private val sharedPreferences: SharedPreferencesUtils,
-) : RepositoryInterface {
+interface Repository {
 
-    override fun logIn(
+    fun saveToken(token: String?)
+    fun getToken(): String?
+
+    fun logIn(
         userName: String,
         password: String,
         onSuccessCallback: (response: BaseResponse<LoginResponseValue>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
-    ) {
-        remoteDataSource.logIn(userName, password, onSuccessCallback, onFailureCallback)
+    )
 
-    }
-
-    override fun signUp(
+    fun signUp(
         userName: String,
         password: String,
         onSuccessCallback: (response: BaseResponse<SignUpResponseValue>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
-    ) {
-        remoteDataSource.signUp(userName, password, onSuccessCallback, onFailureCallback)
-    }
+    )
 
-    override fun getAllTeamTasks(
+    fun getPersonalTasks(
+        onSuccessCallback: (response: BaseResponse<List<PersonalToDo>>) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    )
+
+    fun getAllTeamTasks(
         onSuccessCallback: (response: BaseResponse<List<TeamToDo>>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
-    ) {
-        remoteDataSource.getAllTeamTasks(onSuccessCallback, onFailureCallback)
-    }
+    )
 
-    override fun createTeamToDo(
+    fun createTeamToDo(
         title: String,
         description: String,
         assignee: String,
         onSuccessCallback: (response: BaseResponse<TeamToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
-    ) {
-        remoteDataSource.createTeamToDo(
-            title,
-            description,
-            assignee,
-            onSuccessCallback,
-            onFailureCallback
-        )
-    }
+    )
 
-    override fun createPersonalToDo(
+    fun updateTasksTeamStatus(
+        idTask: String,
+        status: Int,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit
+    )
+
+    fun updateTasksPersonalStatus(
+        idTask: String, status: Int,
+        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
+        onFailureCallback: (error: Throwable) -> Unit,
+    )
+
+    fun createPersonalToDo(
         title: String,
         description: String,
         onSuccessCallback: (response: BaseResponse<PersonalToDo>) -> Unit,
         onFailureCallback: (error: Throwable) -> Unit
-    ) {
-        remoteDataSource.createPersonalToDo(
-            title,
-            description,
-            onSuccessCallback,
-            onFailureCallback
-        )
-    }
+    )
 
-    override fun getPersonalTasks(
-        onSuccessCallback: (response: BaseResponse<List<PersonalToDo>>) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit
-    ) {
-        remoteDataSource.getPersonalTasks(onSuccessCallback, onFailureCallback)
-    }
+    fun getPersonalTasks(): List<PersonalToDo>
 
-    override fun updateTasksPersonalStatus(
-        idTask: String,
-        status: Int,
-        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit,
-    ) {
-        remoteDataSource.updateTasksPersonalStatus(
-            idTask,
-            status,
-            onSuccessCallback,
-            onFailureCallback
-        )
-    }
+    fun setPersonalTasks(list: List<PersonalToDo>)
 
-    override fun updateTasksTeamStatus(
-        idTask: String,
-        status: Int,
-        onSuccessCallback: (response: BaseResponse<String>) -> Unit,
-        onFailureCallback: (error: Throwable) -> Unit
-    ) {
-        remoteDataSource.updateTasksTeamStatus(
-            idTask,
-            status,
-            onSuccessCallback,
-            onFailureCallback
-        )
-    }
+    fun updatePersonalTaskStatus(id: String, newStatus: Int)
 
-    override fun saveToken(token: String?) {
-        sharedPreferences.token = token
-    }
+    fun getTeamTasks(): List<TeamToDo>
 
-    override fun getToken(): String? {
-        return sharedPreferences.token
-    }
+    fun setTeamTasks(list: List<TeamToDo>)
 
-    override fun getPersonalTasks(): List<PersonalToDo> {
-        return LocalDataSource.personalTasks
-    }
+    fun updateTeamTaskStatus(id: String, newStatus: Int)
 
-    override fun setPersonalTasks(list: List<PersonalToDo>) {
-        LocalDataSource.personalTasks = list as MutableList<PersonalToDo>
-    }
+    fun addPersonalToDo(todo: PersonalToDo)
 
-    override fun updatePersonalTaskStatus(id: String, newStatus: Int) {
-        LocalDataSource.personalTasks.first { it.id == id }.status = newStatus
-    }
-
-    override fun getTeamTasks(): List<TeamToDo> {
-        return LocalDataSource.teamTasks
-    }
-
-    override fun setTeamTasks(list: List<TeamToDo>) {
-        LocalDataSource.teamTasks = list as MutableList<TeamToDo>
-    }
-
-    override fun updateTeamTaskStatus(id: String, newStatus: Int) {
-        LocalDataSource.teamTasks.first { it.id == id }.status = newStatus
-    }
-
-    override fun addPersonalToDo(todo: PersonalToDo) {
-        LocalDataSource.personalTasks.add(todo)
-    }
-
-    override fun addTeamToDo(todo: TeamToDo) {
-        LocalDataSource.teamTasks.add(todo)
-    }
-}
-
-private object LocalDataSource {
-    var personalTasks = mutableListOf<PersonalToDo>()
-    var teamTasks = mutableListOf<TeamToDo>()
+    fun addTeamToDo(todo: TeamToDo)
 }

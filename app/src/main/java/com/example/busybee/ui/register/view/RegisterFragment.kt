@@ -2,7 +2,7 @@ package com.example.busybee.ui.register.view
 
 import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.SignUpResponseValue
 import com.example.busybee.data.source.RemoteDataSource
@@ -18,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterViewInterface {
     private val presenter by lazy {
         RegisterPresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(requireContext()),
                 SharedPreferencesUtils(
                     requireContext()

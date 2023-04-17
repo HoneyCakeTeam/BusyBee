@@ -5,10 +5,9 @@ import android.content.Context
 import android.view.View
 import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
-import com.example.busybee.data.Repository
+import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
-import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
@@ -30,7 +29,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     override val TAG = this::class.java.simpleName.toString()
     private val presenter by lazy {
         PersonalToDoPresenter(
-            Repository(
+            RepositoryImp(
                 RemoteDataSource(requireContext()),
                 SharedPreferencesUtils(requireContext())
             ), this

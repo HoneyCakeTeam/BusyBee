@@ -1,10 +1,10 @@
 package com.example.busybee.ui.setting.presenter
 
-import com.example.busybee.data.RepositoryInterface
+import com.example.busybee.data.Repository
 import com.example.busybee.ui.setting.view.SettingsViewInterface
 
 class SettingsPresenter(
-    private val repository: RepositoryInterface,
+    private val repository: Repository,
     private val settingsViewInterface: SettingsViewInterface
 ) {
 
