@@ -9,27 +9,28 @@ import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
-import com.example.busybee.data.source.RemoteDataSource
+import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.ui.base.BaseFragment
-import com.example.busybee.ui.home.personaltask.done.view.PersonalDoneFragment
-import com.example.busybee.ui.home.personaltask.inprogress.view.PersonalInProgressFragment
-import com.example.busybee.ui.home.personaltask.todo.view.PersonalToDoFragment
-import com.example.busybee.ui.home.teamtask.done.view.TeamDoneFragment
-import com.example.busybee.ui.home.teamtask.inprogress.view.TeamInProgressFragment
-import com.example.busybee.ui.home.teamtask.todo.view.TeamToDoFragment
-import com.example.busybee.ui.setting.view.SettingFragment
+import com.example.busybee.ui.home.personaltask.done.PersonalDoneFragment
+import com.example.busybee.ui.home.personaltask.inprogress.PersonalInProgressFragment
+import com.example.busybee.ui.home.personaltask.todo.PersonalToDoFragment
+import com.example.busybee.ui.home.teamtask.done.TeamDoneFragment
+import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressFragment
+import com.example.busybee.ui.home.teamtask.todo.TeamToDoFragment
+import com.example.busybee.ui.setting.SettingFragment
 import com.example.busybee.utils.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlin.math.abs
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeViewInterface {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
+    com.example.busybee.ui.home.HomeView {
     private val homePresenter by lazy {
         HomePresenter(
             RepositoryImp(
-                RemoteDataSource(requireContext()),
+                RemoteDataSourceImp(requireContext()),
                 SharedPreferencesUtils(requireContext())
             ), this
         )

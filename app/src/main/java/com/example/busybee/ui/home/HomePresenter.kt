@@ -7,7 +7,7 @@ import com.example.busybee.data.models.TeamToDo
 
 class HomePresenter(
     private val repository: Repository,
-    private val homeViewInterface: HomeViewInterface
+    private val homeViewInterface: HomeView
 ) {
 
     fun getAllTeamTasks() {

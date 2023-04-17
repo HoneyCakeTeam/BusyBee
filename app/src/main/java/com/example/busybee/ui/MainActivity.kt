@@ -9,19 +9,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
-import com.example.busybee.data.source.RemoteDataSource
+import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.ui.home.HomeFragment
-import com.example.busybee.ui.login.view.LoginFragment
+import com.example.busybee.ui.login.LoginFragment
 import com.example.busybee.utils.Constant
 import com.example.busybee.utils.SharedPreferencesUtils
 import java.util.*
 
-class MainActivity : AppCompatActivity(), MainViewInterface {
+class MainActivity : AppCompatActivity(), MainView {
 
     private val presenter by lazy {
         MainPresenter(
             RepositoryImp(
-                RemoteDataSource(this),
+                RemoteDataSourceImp(this),
                 SharedPreferencesUtils(this)
             ), this
         )

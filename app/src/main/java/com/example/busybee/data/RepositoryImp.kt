@@ -5,11 +5,11 @@ import com.example.busybee.data.models.LoginResponseValue
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.SignUpResponseValue
 import com.example.busybee.data.models.TeamToDo
-import com.example.busybee.data.source.RemoteDataSourceInterface
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.utils.SharedPreferencesUtils
 
 class RepositoryImp(
-    private val remoteDataSource: RemoteDataSourceInterface,
+    private val remoteDataSource: RemoteDataSource,
     private val sharedPreferences: SharedPreferencesUtils,
 ) : Repository {
 
