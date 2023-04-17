@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_giant"
         android:layout_marginBottom="240dp"
-        android:text="@string/you_have_not_tasks"
+        android:text="@string/text_no_task_done_personal"
         style="@style/TextViewPlaceHolderStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
