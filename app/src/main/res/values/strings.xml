@@ -46,7 +46,12 @@
     <string name="move_to_inprogress">Move to in progress</string>
     <string name="move_to_done">Move to done</string>
     <string name="ok">OK</string>
-    <string name="you_have_not_tasks">What are you doing here? There are currently no unfinished tasks, so enjoy your time.</string>
+    <string name="you_have_not_tasks_todo">What are you doing here? There are currently no unfinished tasks, so enjoy your time.</string>
+    <string name="text_no_task_in_progress">You\'re making progress! Keep it up! There are currently no tasks in progress, but you can start by adding a new one.</string>
+    <string name="text_no_task_done">Congratulations! You\'re on a roll! There are currently no completed tasks, but keep up the good work and check back here soon.</string>
+    <string name="text_no_task_in_progress_team">Great teamwork! There are currently no tasks in progress, but you can start by assigning a new one to your team.</string>
+    <string name="text_no_task_todo_team">Ready to tackle your team\'s to-do list? There are currently no unfinished team tasks, so enjoy your time until the next one comes in.</string>
+    <string name="text_no_task_done_team">You and your team are crushing it! There are currently no completed team tasks, but keep up the good work and check back here soon</string>
 
 
 </resources>

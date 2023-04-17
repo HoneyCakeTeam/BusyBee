@@ -41,7 +41,7 @@
         android:id="@+id/text_no_tasks_personal_inProgress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/you_have_not_tasks"
+        android:text="@string/text_no_task_in_progress"
         android:layout_marginBottom="240dp"
         android:layout_marginHorizontal="32dp"
         style="@style/TextViewPlaceHolderStyle"

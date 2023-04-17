@@ -51,7 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="240dp"
-        android:text="@string/you_have_not_tasks"
+        android:text="@string/you_have_not_tasks_todo"
         android:layout_marginHorizontal="32dp"
         style="@style/TextViewPlaceHolderStyle"
         app:layout_constraintBottom_toBottomOf="parent"
