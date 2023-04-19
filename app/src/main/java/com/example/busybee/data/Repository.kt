@@ -74,8 +74,4 @@ interface Repository {
     fun addPersonalToDo(todo: PersonalToDo)
 
     fun addTeamToDo(todo: TeamToDo)
-
-    fun saveTheme(theme:Int)
-
-    fun getTheme():Int
 }

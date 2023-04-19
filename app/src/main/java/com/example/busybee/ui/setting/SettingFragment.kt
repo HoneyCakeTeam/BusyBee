@@ -2,10 +2,10 @@ package com.example.busybee.ui.setting
 
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
-import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentSettingsBinding
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.LoginFragment
 import com.example.busybee.utils.SharedPreferencesUtils
@@ -23,7 +23,6 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsView {
     private var teamTodos by Delegates.notNull<Float>()
     private var teamInProgressTodos by Delegates.notNull<Float>()
     private var teamDoneTodos by Delegates.notNull<Float>()
-
 
     private val presenter by lazy {
         SettingsPresenter(

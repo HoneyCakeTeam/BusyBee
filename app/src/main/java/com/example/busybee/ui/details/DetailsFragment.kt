@@ -18,8 +18,7 @@ import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 
-class DetailsFragment : BaseFragment<FragmentDetailsBinding>(),
-    com.example.busybee.ui.details.DetailsView {
+class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
     override val TAG = this::class.java.simpleName.toString()
     private var flag: TaskType = TaskType.PERSONAL
     private var personalTodo: PersonalToDo? = null

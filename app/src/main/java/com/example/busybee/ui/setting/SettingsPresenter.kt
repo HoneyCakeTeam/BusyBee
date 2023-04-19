@@ -46,5 +46,4 @@ class SettingsPresenter(
        repository.saveToken(token)
 
     }
-
 }

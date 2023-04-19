@@ -13,5 +13,4 @@ interface SettingsView {
     fun getLocalTeamInProgress(inProgress: Int)
 
     fun getLocalTeamTodos(todos: Int)
-
 }
