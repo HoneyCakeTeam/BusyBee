@@ -8,7 +8,7 @@ import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentSettingsBinding
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.LoginFragment
-import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 import com.example.busybee.utils.replaceFragment
 import org.eazegraph.lib.models.PieModel
 import kotlin.properties.Delegates
