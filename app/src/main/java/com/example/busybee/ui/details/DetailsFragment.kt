@@ -73,7 +73,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
 
         when (personalTodo?.status) {
             TYPE_PERSONAL_TODO -> initiatePersonalTodo()
-            TYP_PERSONAL_INPROGRESS -> initiatePersonalDone()
+            TYP_PERSONAL_INPROGRESS -> initiatePersonalInProgress()
             TYPE_PERSONAL_DONE -> initiatePersonalDone()
         }
     }

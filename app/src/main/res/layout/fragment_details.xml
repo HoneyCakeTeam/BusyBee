@@ -109,7 +109,7 @@
             <View
                 android:id="@+id/line_separator"
                 android:layout_width="wrap_content"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:background="@color/black_38"
                 app:layout_constraintTop_toBottomOf="@+id/text_description"
                 app:layout_constraintStart_toStartOf="parent"
