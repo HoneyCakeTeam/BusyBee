@@ -143,6 +143,14 @@ class RepositoryImp(
     override fun addTeamToDo(todo: TeamToDo) {
         LocalDataSource.teamTasks.add(todo)
     }
+
+    override fun saveTheme(theme: Int) {
+        sharedPreferences.setTheme(theme)
+    }
+
+    override fun getTheme(): Int {
+        return sharedPreferences.getTheme()
+    }
 }
 
 private object LocalDataSource {
