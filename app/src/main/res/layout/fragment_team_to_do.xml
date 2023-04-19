@@ -48,7 +48,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="240dp"
-        android:text="@string/you_have_not_tasks"
+        android:text="@string/text_no_task_todo_team"
         style="@style/TextViewPlaceHolderStyle"
         android:layout_marginHorizontal="@dimen/spacing_giant"
         app:layout_constraintBottom_toBottomOf="parent"
