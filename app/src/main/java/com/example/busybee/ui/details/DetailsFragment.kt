@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.PersonalToDo
@@ -71,17 +72,9 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
         }
 
         when (personalTodo?.status) {
-            0 -> {
-                binding.btnMove.text = getString(R.string.move_to_in_progress)
-            }
-
-            1 -> {
-                binding.btnMove.text = getString(R.string.move_to_done)
-            }
-
-            2 -> {
-                binding.btnMove.visibility = View.GONE
-            }
+            TYPE_PERSONAL_TODO -> initiatePersonalTodo()
+            TYP_PERSONAL_INPROGRESS -> initiatePersonalDone()
+            TYPE_PERSONAL_DONE -> initiatePersonalDone()
         }
     }
 
@@ -95,17 +88,75 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
         }
 
         when (teamTodo?.status) {
-            0 -> {
-                binding.btnMove.text = getString(R.string.move_to_in_progress)
-            }
+            TYPE_TEAM_TODO -> initiateTeamTodo()
+            TYPE_TEAM_INPROGRESS -> initiateTeamInProgress()
+            TYPE_TEAM_DONE -> initiateTeamDone()
+        }
+    }
 
-            1 -> {
-                binding.btnMove.text = getString(R.string.move_to_done)
-            }
+    private fun initiatePersonalTodo() {
+        with(binding) {
+            btnMove.text = getString(R.string.move_to_in_progress)
+            btnMove.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.secondary_500
+                )
+            )
+            textTaskStatus.text = getString(R.string.to_do)
+        }
+    }
 
-            2 -> {
-                binding.btnMove.visibility = View.GONE
-            }
+    private fun initiatePersonalInProgress() {
+        with(binding) {
+            btnMove.text = getString(R.string.move_to_done)
+            btnMove.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.primary_500
+                )
+            )
+            textTaskStatus.text = getString(R.string.in_progress)
+        }
+    }
+
+    private fun initiatePersonalDone() {
+        with(binding) {
+            btnMove.visibility = View.GONE
+            textTaskStatus.text = getString(R.string.done)
+        }
+    }
+
+    private fun initiateTeamTodo() {
+        with(binding) {
+            btnMove.text = getString(R.string.move_to_in_progress)
+            btnMove.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.secondary_500
+                )
+            )
+            textTaskStatus.text = getString(R.string.to_do)
+        }
+    }
+
+    private fun initiateTeamInProgress() {
+        with(binding) {
+            btnMove.text = getString(R.string.move_to_done)
+            btnMove.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.primary_500
+                )
+            )
+            textTaskStatus.text = getString(R.string.in_progress)
+        }
+    }
+
+    private fun initiateTeamDone() {
+        with(binding) {
+            btnMove.visibility = View.GONE
+            textTaskStatus.text = getString(R.string.done)
         }
     }
 
@@ -219,6 +270,12 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
         const val FLAG = "flag"
         const val PERSONAL_TASK = "personalTask"
         const val TEAM_TASK = "teamTask"
+        private const val TYPE_PERSONAL_TODO = 0
+        private const val TYP_PERSONAL_INPROGRESS = 1
+        private const val TYPE_PERSONAL_DONE = 2
+        private const val TYPE_TEAM_TODO = 0
+        private const val TYPE_TEAM_INPROGRESS = 1
+        private const val TYPE_TEAM_DONE = 2
 
         fun newInstance(taskType: TaskType, teamTodo: TeamToDo?, personalToDo: PersonalToDo?) =
             DetailsFragment().apply {
