@@ -13,7 +13,7 @@ import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.utils.DateTimeUtils
-import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 

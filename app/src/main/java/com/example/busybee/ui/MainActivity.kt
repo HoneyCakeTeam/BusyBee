@@ -13,7 +13,7 @@ import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.LoginFragment
 import com.example.busybee.utils.Constant
-import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import java.util.*
 
 class MainActivity : AppCompatActivity(), MainView {
