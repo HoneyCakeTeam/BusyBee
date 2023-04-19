@@ -6,7 +6,7 @@ import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentRegisterBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
-import com.example.busybee.utils.LoginAndRegisterValidation
+import com.example.busybee.utils.Validator
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.isOnline
 import com.example.busybee.utils.replaceFragment
@@ -24,6 +24,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
         )
     }
     private val homeFragment by lazy { HomeFragment() }
+    private val validator by lazy { Validator(requireContext()) }
     private var username = ""
     private var password = ""
     private var confirmPassword = ""
@@ -48,9 +49,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
     }
 
     private fun validSignUp(userName: String, password: String) {
-        val validation = LoginAndRegisterValidation()
-        val (isValid, errorMessage) = validation.checkCredential(userName, password)
-        val (isConfirmValid, confirmPasswordErrorMessage) = validation.validateConfirmPassword(
+        val (isValid, errorMessage) = validator.checkCredential(userName, password)
+        val (isConfirmValid, confirmPasswordErrorMessage) = validator.validateConfirmPassword(
             password,
             confirmPassword
         )
@@ -91,7 +91,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
                 userName,
                 password
             )
-        }else{
+        } else {
             Snackbar.make(
                 binding.root,
                 getString(R.string.no_internt),
