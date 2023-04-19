@@ -4,10 +4,10 @@ import com.example.busybee.data.Repository
 
 class PersonalDonePresenter(
     private val repository: Repository,
-    private val personalDoneViewInterface: PersonalDoneView
+    private val view: PersonalDoneView
 ) {
     fun getLocalPersonalDones() {
-        personalDoneViewInterface.getLocalPersonalDones(
+        view.getLocalPersonalDones(
             repository.getPersonalTasks().filter { it.status == 2 })
     }
 }

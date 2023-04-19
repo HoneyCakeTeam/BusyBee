@@ -4,10 +4,10 @@ import com.example.busybee.data.Repository
 
 class TeamDonePresenter(
     private val repository: Repository,
-    private val teamDoneViewInterface: TeamDoneView
+    private val view: TeamDoneView
 ) {
     fun getLocalTeamDones() {
-        teamDoneViewInterface.getLocalTeamDones(
+        view.getLocalTeamDones(
             repository.getTeamTasks().filter { it.status == 2 })
     }
 }

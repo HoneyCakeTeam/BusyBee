@@ -1,13 +1,11 @@
 package com.example.busybee.ui.details
 
-import com.example.busybee.data.models.BaseResponse
-
 interface DetailsView {
-    fun onUpdatePersonalStatusSuccess(response: BaseResponse<String>)
+    fun goToPersonalToDo()
 
-    fun onUpdatePersonalStatusFailed(error: Throwable)
+    fun showPersonalErrorMsg(error: Throwable)
 
-    fun onUpdateTeamStatusSuccess(response: BaseResponse<String>)
+    fun goToTeamToDo()
 
-    fun onUpdateTeamStatusFailed(error: Throwable)
+    fun showTeamErrorMsg(error: Throwable)
 }

@@ -1,13 +1,11 @@
 package com.example.busybee.ui.register
 
 import com.example.busybee.R
-import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.RepositoryImp
-import com.example.busybee.data.models.BaseResponse
-import com.example.busybee.data.models.SignUpResponseValue
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentRegisterBinding
-import com.example.busybee.ui.login.LoginFragment
+import com.example.busybee.ui.base.BaseFragment
+import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.utils.LoginAndRegisterValidation
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.isOnline
@@ -25,7 +23,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
             ), this
         )
     }
-    private val loginFragment by lazy { LoginFragment() }
+    private val homeFragment by lazy { HomeFragment() }
     private var username = ""
     private var password = ""
     private var confirmPassword = ""
@@ -45,7 +43,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
             validSignUp(username, password)
         }
         binding.textLogin.setOnClickListener {
-            replaceFragment(loginFragment)
+            replaceFragment(homeFragment)
         }
     }
 
@@ -104,9 +102,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
 
     }
 
-    override fun onRegisterSuccess(response: BaseResponse<SignUpResponseValue>) {
+    override fun goToHome() {
         activity?.runOnUiThread {
-            replaceFragment(loginFragment)
+            replaceFragment(homeFragment)
             Snackbar.make(
                 binding.root,
                 getString(R.string.accountCreatedSuccessfully),
@@ -115,7 +113,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
         }
     }
 
-    override fun onRegisterFailed(error: Throwable) {
+    override fun login() {
+        presenter.logIn(username, password)
+    }
+
+    override fun showErrorMsg(error: Throwable) {
         activity?.runOnUiThread {
             Snackbar.make(
                 binding.root,

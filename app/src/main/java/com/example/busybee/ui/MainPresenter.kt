@@ -4,10 +4,10 @@ import com.example.busybee.data.Repository
 
 class MainPresenter(
     private val repository: Repository,
-    private val mainViewInterface: MainView
+    private val view: MainView
 ) {
     fun getTokenFromShared() {
-        mainViewInterface.getToken(repository.getToken())
+        view.getToken(repository.getToken())
     }
 
 }

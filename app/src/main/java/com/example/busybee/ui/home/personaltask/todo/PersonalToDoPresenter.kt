@@ -6,7 +6,7 @@ import com.example.busybee.data.models.PersonalToDo
 
 class PersonalToDoPresenter(
     private val repository: Repository,
-    private val personalTodoViewInterface: PersonalToDoView
+    private val view: PersonalToDoView
 ) {
 
     fun addPersonalToDo(todo: PersonalToDo) {
@@ -14,7 +14,7 @@ class PersonalToDoPresenter(
     }
 
     fun getLocalPersonalTodos() {
-        personalTodoViewInterface.getLocalPersonalTodos(
+        view.getLocalPersonalTodos(
             repository.getPersonalTasks().filter { it.status == 0 })
     }
 
@@ -31,10 +31,10 @@ class PersonalToDoPresenter(
     }
 
     private fun onCreatePersonalTodoSuccess(response: BaseResponse<PersonalToDo>) {
-        personalTodoViewInterface.onSuccessResponse(response)
+        view.onSuccessResponse(response)
     }
 
     private fun onCreatePersonalTodoFailure(error: Throwable) {
-        personalTodoViewInterface.onFailureResponse(error)
+        view.onFailureResponse(error)
     }
 }

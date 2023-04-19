@@ -4,13 +4,12 @@ import android.app.UiModeManager
 import android.content.Context
 import android.view.View
 import com.example.busybee.R
-import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.RepositoryImp
-import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.details.DetailsFragment
 import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
@@ -98,7 +97,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
             val title = sheetCreateTaskBinding.textTaskName.text.toString()
             val description = sheetCreateTaskBinding.textContent.text.toString()
             val assign = sheetCreateTaskBinding.textAssignee.text.toString()
-            teamCreateToDo(title, description, assign)
+            createTeamToDo(title, description, assign)
         }
         bottomSheet.setContentView(sheetCreateTaskBinding.root)
         bottomSheet.show()
@@ -108,13 +107,13 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
         presenter.getLocalTeamTodos()
     }
 
-    override fun teamCreateToDo(title: String, description: String, assignee: String) {
+    override fun createTeamToDo(title: String, description: String, assignee: String) {
         presenter.teamCreateToDo(
             title, description, assignee
         )
     }
 
-    override fun onSuccessResponse(response: BaseResponse<TeamToDo>) {
+    override fun addNewToDo(response: TeamToDo) {
         activity?.runOnUiThread {
             setListAndUpdateUi(response)
             hideFieldsAndShowDone()
@@ -137,14 +136,14 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
         sheetCreateTaskBinding.lottieCreatedSuccessfully.visibility = View.VISIBLE
     }
 
-    private fun setListAndUpdateUi(response: BaseResponse<TeamToDo>) {
-        presenter.addTeamToDo(response.value)
+    private fun setListAndUpdateUi(response: TeamToDo) {
+        presenter.addTeamToDo(response)
         getToDos()
         adapter.setItems(todos)
         binding.taskHeader.taskCount.text = getString(R.string.tasks, todos.size)
     }
 
-    override fun onFailureResponse(error: Throwable) {
+    override fun showErrorMsg(error: Throwable) {
         activity?.runOnUiThread {
             Snackbar.make(
                 binding.root,

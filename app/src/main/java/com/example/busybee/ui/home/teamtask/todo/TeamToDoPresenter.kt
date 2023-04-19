@@ -6,14 +6,14 @@ import com.example.busybee.data.models.TeamToDo
 
 class TeamToDoPresenter(
     private val repository: Repository,
-    private val teamToDoViewInterface: TeamToDoView
+    private val view: TeamToDoView
 ) {
     fun addTeamToDo(todo: TeamToDo) {
         repository.addTeamToDo(todo)
     }
 
     fun getLocalTeamTodos() {
-        teamToDoViewInterface.getLocalTeamTodos(repository.getTeamTasks().filter { it.status == 0 })
+        view.getLocalTeamTodos(repository.getTeamTasks().filter { it.status == 0 })
     }
 
     fun teamCreateToDo(
@@ -31,10 +31,10 @@ class TeamToDoPresenter(
     }
 
     private fun onCreateTeamTodoSuccess(response: BaseResponse<TeamToDo>) {
-        teamToDoViewInterface.onSuccessResponse(response)
+        view.addNewToDo(response.value)
     }
 
     private fun onCreateTeamTodoFailure(error: Throwable) {
-        teamToDoViewInterface.onFailureResponse(error)
+        view.showErrorMsg(error)
     }
 }

@@ -15,7 +15,7 @@ import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 
 class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
-    TeamInProgressAdapter.TeamInProgressTaskInteractionListener, TeamInprogressView {
+    TeamInProgressAdapter.TeamInProgressTaskInteractionListener, TeamInProgressView {
     private lateinit var adapter: TeamInProgressAdapter
     override val TAG = this::class.java.simpleName.toString()
     private lateinit var inProgress: List<TeamToDo>

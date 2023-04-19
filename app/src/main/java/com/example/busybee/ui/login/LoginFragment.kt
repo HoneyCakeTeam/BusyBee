@@ -2,14 +2,15 @@ package com.example.busybee.ui.login
 
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
-import com.example.busybee.data.models.BaseResponse
-import com.example.busybee.data.models.LoginResponseValue
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentLoginBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.register.RegisterFragment
-import com.example.busybee.utils.*
+import com.example.busybee.utils.LoginAndRegisterValidation
+import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.onClickBackFromNavigation
+import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
@@ -75,45 +76,34 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
 
     private fun login(userName: String, password: String) {
 
-        if (isOnline(requireContext())) {
-            presenter.logIn(
-                userName,
-                password
-            )
-        }else{
+        // if (isOnline(requireContext())) {
+        presenter.logIn(
+            userName,
+            password
+        )
+//        }else{
+//            Snackbar.make(
+//                binding.root,
+//               getString(R.string.no_internt),
+//                Snackbar.LENGTH_SHORT
+//            )
+//                .show()
+//        }
+
+    }
+
+    override fun goToHome() {
+        activity?.runOnUiThread {
+            replaceFragment(homeFragment)
             Snackbar.make(
                 binding.root,
-               getString(R.string.no_internt),
+                getString(R.string.success_message),
                 Snackbar.LENGTH_SHORT
-            )
-                .show()
-        }
-
-    }
-
-    override fun onLoginSuccess(response: BaseResponse<LoginResponseValue>) {
-        activity?.runOnUiThread {
-            if (response.isSuccess) {
-                setToken(response.value.token)
-                replaceFragment(homeFragment)
-                Snackbar.make(
-                    binding.root,
-                    getString(R.string.success_message),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-            } else {
-                Snackbar.make(
-                    binding.root,
-                    getString(R.string.unRegisterd),
-                    Snackbar.LENGTH_SHORT
-                )
-                    .show()
-            }
-
+            ).show()
         }
     }
 
-    override fun onLoginFailed(error: Throwable) {
+    override fun showErrorMsg(error: Throwable) {
         activity?.runOnUiThread {
             Snackbar.make(
                 binding.root,
@@ -124,9 +114,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
         }
     }
 
-    private fun setToken(token: String) {
-        presenter.saveTokenInShared(token)
-    }
 
 }
 

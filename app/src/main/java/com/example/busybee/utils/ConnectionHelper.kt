@@ -18,8 +18,8 @@ import java.lang.reflect.Type
 fun <T> OkHttpClient.executeWithCallbacks(
     request: Request,
     responseType: Type,
-    onSuccessCallback: (response: T) -> Unit,
-    onFailureCallback: (error: Throwable) -> Unit): Call {
+    onSuccess: (response: T) -> Unit,
+    onFailure: (error: Throwable) -> Unit): Call {
     val call = newCall(request)
     val callback = object : Callback {
         override fun onResponse(call: Call, response: Response) {
@@ -27,14 +27,14 @@ fun <T> OkHttpClient.executeWithCallbacks(
                 val responseBody = response.body?.string()
                 val gson = Gson()
                 val result = gson.fromJson<T>(responseBody, responseType)
-                onSuccessCallback(result)
+                onSuccess(result)
             } else {
-                onFailureCallback(Throwable("$response"))
+                onFailure(Throwable("$response"))
             }
         }
 
         override fun onFailure(call: Call, e: IOException) {
-            onFailureCallback(e)
+            onFailure(e)
         }
     }
     call.enqueue(callback)
@@ -42,10 +42,13 @@ fun <T> OkHttpClient.executeWithCallbacks(
 }
 
 fun Fragment.isOnline(context: Context): Boolean {
+
     val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
     val capabilities =
         connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+
     if (capabilities != null) {
         if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
             Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")

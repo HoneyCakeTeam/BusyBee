@@ -4,11 +4,11 @@ import com.example.busybee.data.Repository
 
 class TeamInProgressPresenter(
     private val repository: Repository,
-    private val teamInProgressInterface: TeamInprogressView
+    private val view: TeamInProgressView
 ) {
 
     fun getLocalTeamInProgress() {
-        teamInProgressInterface.getLocalTeamInProgress(
+        view.getLocalTeamInProgress(
             repository.getTeamTasks().filter { it.status == 1 })
     }
 }

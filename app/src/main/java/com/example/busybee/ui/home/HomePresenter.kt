@@ -7,7 +7,7 @@ import com.example.busybee.data.models.TeamToDo
 
 class HomePresenter(
     private val repository: Repository,
-    private val homeViewInterface: HomeView
+    private val view: HomeView
 ) {
 
     fun getAllTeamTasks() {
@@ -23,11 +23,11 @@ class HomePresenter(
     }
 
     private fun onGetTeamTasksSuccess(response: BaseResponse<List<TeamToDo>>) {
-        homeViewInterface.onTeamSuccessResponse(response)
+        view.goToTeamScreen(response.value)
     }
 
     private fun onGetTeamTasksFailure(error: Throwable) {
-        homeViewInterface.onTeamFailureResponse(error)
+        view.showErrorMsgOnTeamScreen(error)
     }
 
     fun getPersonalTasks() {
@@ -35,11 +35,11 @@ class HomePresenter(
     }
 
     private fun onGetPersonalTasksSuccess(response: BaseResponse<List<PersonalToDo>>) {
-        homeViewInterface.onPersonalSuccessResponse(response)
+        view.goToPersonalScreen(response.value)
     }
 
     private fun onGetPersonalTasksFailure(error: Throwable) {
-        homeViewInterface.onPersonalFailureResponse(error)
+        view.showErrorMsgOnPersonalScreen(error)
     }
 
 }

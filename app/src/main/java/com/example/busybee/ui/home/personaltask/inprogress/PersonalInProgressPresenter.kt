@@ -4,10 +4,10 @@ import com.example.busybee.data.Repository
 
 class PersonalInProgressPresenter(
     private val repository: Repository,
-    private val personalInProgressViewInterface: PersonalInProgressView
+    private val view: PersonalInProgressView
 ) {
     fun getLocalPersonalInProgress() {
-        personalInProgressViewInterface.getLocalPersonalInProgress(
+        view.getLocalPersonalInProgress(
             repository.getPersonalTasks().filter { it.status == 1 })
     }
 }

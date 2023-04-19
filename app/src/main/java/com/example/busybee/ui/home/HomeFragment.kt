@@ -144,12 +144,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         }
     }
 
-    override fun onTeamSuccessResponse(response: BaseResponse<List<TeamToDo>>) {
-        homePresenter.setLocalTeamTasks(response.value)
+    override fun goToTeamScreen(response: List<TeamToDo>) {
+        homePresenter.setLocalTeamTasks(response)
         teamResponse = response
     }
 
-    override fun onTeamFailureResponse(error: Throwable) {
+    override fun showErrorMsgOnTeamScreen(error: Throwable) {
         // Show lottie animation in screen for error
     }
 
@@ -177,7 +177,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     }
 
 
-    override fun onPersonalSuccessResponse(response: BaseResponse<List<PersonalToDo>>) {
+    override fun goToPersonalScreen(response: List<PersonalToDo>) {
         personalResponse = response
         homePresenter.setLocalPersonalTasks(response.value)
         activity?.runOnUiThread {
@@ -191,7 +191,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         tab!!.select()
     }
 
-    override fun onPersonalFailureResponse(error: Throwable) {
+    override fun showErrorMsgOnPersonalScreen(error: Throwable) {
         // Show lottie animation in screen for error
     }
 

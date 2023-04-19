@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
-import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSourceImp
@@ -18,8 +17,7 @@ import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 
-class DetailsFragment : BaseFragment<FragmentDetailsBinding>(),
-    com.example.busybee.ui.details.DetailsView {
+class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
     override val TAG = this::class.java.simpleName.toString()
     private var flag: TaskType = TaskType.PERSONAL
     private var personalTodo: PersonalToDo? = null
@@ -115,22 +113,18 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(),
         presenter.updateTasksPersonalStatus(idTask, status)
     }
 
-    override fun onUpdatePersonalStatusSuccess(response: BaseResponse<String>) {
+    override fun goToPersonalToDo() {
         presenter.updateLocalTasksPersonalStatus(
             personalTodo?.id!!,
             personalTodo?.status!! + 1
         )
         activity?.runOnUiThread {
-            Toast.makeText(
-                requireContext(),
-                "Personal update success ${response.isSuccess}",
-                Toast.LENGTH_SHORT
-            ).show()
+
             navigateToHomeScreen(flag)
         }
     }
 
-    override fun onUpdatePersonalStatusFailed(error: Throwable) {
+    override fun showPersonalErrorMsg(error: Throwable) {
         activity?.runOnUiThread {
             Toast.makeText(
                 requireContext(), "Personal update fail ! ${error.message} ", Toast.LENGTH_SHORT
@@ -142,22 +136,18 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(),
         presenter.updateTasksTeamStatus(idTask, status)
     }
 
-    override fun onUpdateTeamStatusSuccess(response: BaseResponse<String>) {
+    override fun goToTeamToDo() {
         presenter.updateLocalTasksTeamStatus(
             teamTodo?.id!!,
             teamTodo?.status!! + 1
         )
         activity?.runOnUiThread {
-            Toast.makeText(
-                requireContext(),
-                "Team update success ${response.isSuccess}",
-                Toast.LENGTH_SHORT
-            ).show()
+
             navigateToHomeScreen(flag)
         }
     }
 
-    override fun onUpdateTeamStatusFailed(error: Throwable) {
+    override fun showTeamErrorMsg(error: Throwable) {
         activity?.runOnUiThread {
             Toast.makeText(
                 requireContext(), "Team update fail ! ${error.message} ", Toast.LENGTH_SHORT

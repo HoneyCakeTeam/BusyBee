@@ -6,7 +6,7 @@ import com.example.busybee.data.models.BaseResponse
 
 class DetailsPresenter(
     private val repository: Repository,
-    private val detailsViewInterface: DetailsView
+    private val view: DetailsView
 ) {
 
     fun updateLocalTasksPersonalStatus(idTask: String, status: Int) {
@@ -27,11 +27,11 @@ class DetailsPresenter(
     }
 
     private fun onUpdatePersonalStatusSuccess(response: BaseResponse<String>) {
-        detailsViewInterface.onUpdatePersonalStatusSuccess(response)
+        view.goToPersonalToDo()
     }
 
     private fun onUpdatePersonalStatusFailed(error: Throwable) {
-        detailsViewInterface.onUpdatePersonalStatusFailed(error)
+        view.showPersonalErrorMsg(error)
     }
 
     fun updateTasksTeamStatus(idTask: String, status: Int) {
@@ -44,11 +44,11 @@ class DetailsPresenter(
     }
 
     private fun onUpdateTeamStatusSuccess(response: BaseResponse<String>) {
-        detailsViewInterface.onUpdateTeamStatusSuccess(response)
+        view.goToTeamToDo()
     }
 
     private fun onUpdateTeamStatusFailed(error: Throwable) {
-        detailsViewInterface.onUpdateTeamStatusFailed(error)
+        view.showTeamErrorMsg(error)
     }
 
 }
