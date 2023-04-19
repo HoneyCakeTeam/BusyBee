@@ -3,108 +3,174 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/spacing_medium">
+    android:layout_height="match_parent">
 
     <ImageButton
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_medium"
         android:background="@drawable/ic_arrow_back"
-        android:padding="@dimen/spacing_small"
+        android:padding="@dimen/spacing_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_task_member_assign"
-        style="@style/TextMemberTaskStyle"
-        android:layout_width="match_parent"
+        android:id="@+id/text_page_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:drawableStartCompat="@drawable/ic_user_details"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_back"
-        tools:text="Hamsa Aliiiiiiiiiiiiiiiiiiiiii" />
-
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:fontFamily="@font/notosans_medium"
+        android:text="@string/details"
+        android:textColor="@color/black_60"
+        android:textSize="@dimen/text_giant"
+        app:layout_constraintBottom_toBottomOf="@+id/button_back"
+        app:layout_constraintStart_toEndOf="@+id/button_back"
+        app:layout_constraintTop_toTopOf="@+id/button_back" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/task_card"
+        android:id="@+id/card_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_medium"
-        app:cardCornerRadius="@dimen/radius_semi_large"
+        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_giant"
+        app:cardCornerRadius="@dimen/radius_medium"
+        app:cardElevation="@dimen/elevation_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_task_member_assign"
+        app:layout_constraintTop_toBottomOf="@id/button_back"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/card_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/BackgroundCustomShapeDetails"
-            android:padding="@dimen/spacing_simi_medium">
+            android:paddingHorizontal="@dimen/spacing_medium"
+            android:paddingVertical="@dimen/spacing_small">
 
             <TextView
                 android:id="@+id/text_task_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/generate_model"
-                style="@style/TextMemberTaskStyle.TextNameTaskStyle"
+                android:ellipsize="end"
+                android:fontFamily="@font/notosans_medium"
+                android:maxLines="2"
+                android:textColor="@color/black_87"
+                android:textDirection="locale"
+                android:textSize="@dimen/text_giant"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Task Title" />
 
             <TextView
                 android:id="@+id/text_task_date"
-                style="@style/TextStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_small"
                 android:drawablePadding="@dimen/spacing_tiny"
-                android:gravity="center"
-                app:drawableStartCompat="@drawable/ic_date"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_task_name"
-                tools:text="1 july" />
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/text_small"
+                app:drawableStartCompat="@drawable/ic_date_in"
+                app:layout_constraintBottom_toBottomOf="@+id/text_task_time"
+                app:layout_constraintEnd_toStartOf="@+id/text_task_time"
+                app:layout_constraintTop_toTopOf="@+id/text_task_time"
+                tools:text="4 April" />
 
             <TextView
                 android:id="@+id/text_task_time"
-                style="@style/TextStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_marginStart="@dimen/spacing_small"
-                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/spacing_tiny"
-                android:gravity="center"
-                app:drawableStartCompat="@drawable/ic_time"
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/text_small"
+                app:drawableStartCompat="@drawable/ic_time_in"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_task_status"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_task_name"
                 tools:text="10:30 AM" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:ellipsize="end"
+                android:fontFamily="@font/notosans_regular"
+                android:maxLines="20"
+                android:textColor="@color/black_60"
+                android:textDirection="locale"
+                android:textSize="@dimen/text_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_task_name"
+                tools:text="Description is the pattern of narrative development that aims to make vivid a place, object, character," />
 
-    <TextView
-        android:id="@+id/text_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@style/TextDetailsTaskStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/task_card"
-        tools:targetApi="o"
-        tools:text="Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit
-sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora
-Corem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit
-sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora " />
+            <View
+                android:id="@+id/line_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/black_38"
+                app:layout_constraintTop_toBottomOf="@+id/text_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="@dimen/spacing_medium"
+                />
+
+            <TextView
+                android:id="@+id/text_task_member_assign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/text_small"
+                app:drawableStartCompat="@drawable/ic_user"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line_separator"
+                tools:text="Ahmed Nasser" />
+
+            <TextView
+                android:id="@+id/text_task_status_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="@font/notosans_regular"
+                android:text="@string/status"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/text_small"
+                app:drawableStartCompat="@drawable/ic_status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_task_member_assign" />
+
+            <TextView
+                android:id="@+id/text_task_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/text_small"
+                app:layout_constraintBottom_toBottomOf="@+id/text_task_status_hint"
+                app:layout_constraintStart_toEndOf="@+id/text_task_status_hint"
+                app:layout_constraintTop_toTopOf="@+id/text_task_status_hint"
+                tools:text="InProgress" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_move"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/ButtomDetailsTaskStyle"
-        android:text="@string/move_to_in_progress"
+        android:layout_margin="@dimen/spacing_medium"
+        android:backgroundTint="@color/secondary_500"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/radius_medium"
         app:icon="@drawable/ic_move_arrow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_container"
+        tools:text="Move to Done" />
 </androidx.constraintlayout.widget.ConstraintLayout>
