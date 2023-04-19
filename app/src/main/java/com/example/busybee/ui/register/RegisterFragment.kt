@@ -7,7 +7,7 @@ import com.example.busybee.databinding.FragmentRegisterBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.utils.LoginAndRegisterValidation
-import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.isOnline
 import com.example.busybee.utils.replaceFragment
 import com.google.android.material.snackbar.Snackbar

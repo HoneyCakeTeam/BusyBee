@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
-import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSourceImp
@@ -20,6 +19,7 @@ import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressFragment
 import com.example.busybee.ui.home.teamtask.todo.TeamToDoFragment
 import com.example.busybee.ui.setting.SettingFragment
 import com.example.busybee.utils.*
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlin.math.abs
