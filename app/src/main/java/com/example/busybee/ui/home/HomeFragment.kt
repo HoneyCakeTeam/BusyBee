@@ -42,8 +42,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     private val personalFragments: List<Fragment> by lazy {
         listOf(personalToDoFragment, personalInProgressFragment, personalDoneFragment)
     }
-    private lateinit var teamResponse: BaseResponse<List<TeamToDo>>
-    private lateinit var personalResponse: BaseResponse<List<PersonalToDo>>
+    private lateinit var teamResponse: List<TeamToDo>
+    private lateinit var personalResponse: List<PersonalToDo>
     private lateinit var homePagerAdapter: HomeViewPagerAdapter
 
     private val teamToDoFragment by lazy { TeamToDoFragment() }
@@ -179,7 +179,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     override fun goToPersonalScreen(response: List<PersonalToDo>) {
         personalResponse = response
-        homePresenter.setLocalPersonalTasks(response.value)
+        homePresenter.setLocalPersonalTasks(response)
         activity?.runOnUiThread {
             initViewPager(personalFragments)
         }
