@@ -201,6 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_small"
+        android:visibility="gone"
         android:checked="true"
         android:padding="@dimen/spacing_tiny"
         android:thumb="@drawable/switch_thumb_selector"
