@@ -29,6 +29,9 @@
         <item name="colorPrimaryInverse">@color/primary_100</item>
         <item name="android:fitsSystemWindows">true</item>
     </style>
+    <style name="ThemeStatusBarBackground" parent="Theme.BusyBee">
+        <item name="android:statusBarColor">@color/white_100</item>
+    </style>
 
     <style name="TextInputLayout" parent="ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense">
         <item name="boxCornerRadiusBottomEnd">16dp</item>
@@ -315,5 +318,4 @@
     </style>
 
     <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog" />
-
 </resources>

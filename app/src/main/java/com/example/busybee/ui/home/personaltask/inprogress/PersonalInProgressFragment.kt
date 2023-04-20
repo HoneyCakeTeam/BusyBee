@@ -7,24 +7,34 @@ import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.PersonalToDo
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentPersonalInProgressBinding
 import com.example.busybee.ui.details.DetailsFragment
-import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 
 class PersonalInProgressFragment : BaseFragment<FragmentPersonalInProgressBinding>(),
     PersonalInProgressAdapter.PersonalInProgressTaskInteractionListener,
     PersonalInProgressView {
     private lateinit var adapter: PersonalInProgressAdapter
     private lateinit var inProgress: List<PersonalToDo>
-
+    private val sharedPreferences: SharedPreferencesInterface by lazy {
+        SharedPreferencesUtils(
+            requireContext()
+        )
+    }
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSourceImp(requireContext())
+    }
     private val presenter by lazy {
         PersonalInProgressPresenter(
             RepositoryImp(
-                RemoteDataSourceImp(requireContext()),
-                SharedPreferencesUtils(requireContext())
+                remoteDataSource,
+                sharedPreferences
             ), this
         )
     }

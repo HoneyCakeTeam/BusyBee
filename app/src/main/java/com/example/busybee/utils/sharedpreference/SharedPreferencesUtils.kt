@@ -1,21 +1,17 @@
-package com.example.busybee.utils
+package com.example.busybee.utils.sharedpreference
 
 import android.content.Context
 import android.content.SharedPreferences
-import java.text.SimpleDateFormat
-import java.util.*
 
-class SharedPreferencesUtils(context: Context) {
+class SharedPreferencesUtils(context: Context) : SharedPreferencesInterface {
     private var sharedPreferences: SharedPreferences? = null
 
-    var token: String?
+    override var token: String?
         get() = sharedPreferences?.getString(USER_TOKEN, null)
         set(value) {
             token ?: clearToken()
             sharedPreferences?.edit()?.putString(USER_TOKEN, value)?.apply()
         }
-
-    private fun clearToken() = sharedPreferences?.edit()?.remove(USER_TOKEN)?.apply()
 
     init {
         sharedPreferences = context.getSharedPreferences(
@@ -23,6 +19,8 @@ class SharedPreferencesUtils(context: Context) {
             Context.MODE_PRIVATE
         )
     }
+
+    override fun clearToken() = sharedPreferences?.edit()?.remove(USER_TOKEN)?.apply()
 
     companion object {
         private const val SHARED_PREFERENCES_NAME = "MySharedPreferences"

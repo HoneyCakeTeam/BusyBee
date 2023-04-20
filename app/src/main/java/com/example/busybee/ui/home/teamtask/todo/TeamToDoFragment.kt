@@ -6,14 +6,17 @@ import android.view.View
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.TeamToDo
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.details.DetailsFragment
-import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 
@@ -24,11 +27,19 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
     private lateinit var todos: List<TeamToDo>
     private lateinit var bottomSheet: BottomSheetDialog
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
+    private val sharedPreferences: SharedPreferencesInterface by lazy {
+        SharedPreferencesUtils(
+            requireContext()
+        )
+    }
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSourceImp(requireContext())
+    }
     private val presenter by lazy {
         TeamToDoPresenter(
             RepositoryImp(
-                RemoteDataSourceImp(requireContext()),
-                SharedPreferencesUtils(requireContext())
+                remoteDataSource,
+                sharedPreferences
             ), this
         )
     }

@@ -9,7 +9,7 @@ import com.example.busybee.utils.DateTimeUtils
 import com.example.busybee.utils.TaskType
 
 class TeamDoneAdapter(
-    private var teamDoneList: List<TeamToDo>,
+    teamDoneList: List<TeamToDo>,
     private val listener: TeamDoneTaskInteractionListener
 
 ) :

@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
-import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentHomeBinding
 import com.example.busybee.ui.base.BaseFragment
@@ -17,21 +17,31 @@ import com.example.busybee.ui.home.personaltask.inprogress.PersonalInProgressFra
 import com.example.busybee.ui.home.personaltask.todo.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressFragment
+import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
 import com.example.busybee.ui.home.teamtask.todo.TeamToDoFragment
 import com.example.busybee.ui.setting.SettingFragment
 import com.example.busybee.utils.*
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlin.math.abs
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
-    com.example.busybee.ui.home.HomeView {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeView {
+    private val sharedPreferences: SharedPreferencesInterface by lazy {
+        SharedPreferencesUtils(
+            requireContext()
+        )
+    }
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSourceImp(requireContext())
+    }
     private val homePresenter by lazy {
         HomePresenter(
             RepositoryImp(
-                RemoteDataSourceImp(requireContext()),
-                SharedPreferencesUtils(requireContext())
+                remoteDataSource,
+                sharedPreferences
             ), this
         )
     }
@@ -64,6 +74,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun setUp() {
+        setStatusBarBackgroundColor(resources.getColor(R.color.white_100))
         getTaskType()
         checkTaskType()
         initTabLayout()

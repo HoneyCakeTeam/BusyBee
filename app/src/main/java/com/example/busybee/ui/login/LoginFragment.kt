@@ -11,14 +11,23 @@ import com.example.busybee.utils.SharedPreferencesUtils
 import com.example.busybee.utils.Validator
 import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
+    private val sharedPreferences: SharedPreferencesInterface by lazy {
+        SharedPreferencesUtils(
+            requireContext()
+        )
+    }
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSourceImp(requireContext())
+    }
     private val presenter by lazy {
         LoginPresenter(
             RepositoryImp(
-                RemoteDataSourceImp(requireContext()),
-                SharedPreferencesUtils(requireContext())
+                remoteDataSource,
+                sharedPreferences
             ), this
         )
     }
@@ -40,7 +49,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
     private fun addCallBacks() {
         binding.buttonLogin.setOnClickListener {
             getUserInputs()
-            validLogin(userName, password)
+            validLogin(userName,password)
         }
 
         binding.textSignUp.setOnClickListener {
@@ -58,7 +67,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
             showError(errorMessage.first, errorMessage.second)
         }
     }
-
     private fun showError(usernameErrorMessage: String?, passwordErrorMessage: String?) {
         binding.editTextUsername.error = usernameErrorMessage
         binding.editTextPassword.error = passwordErrorMessage
@@ -66,10 +74,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
 
 
     private fun hideError() {
-        binding.editTextPassword.isErrorEnabled = false
-        binding.editTextUsername.isErrorEnabled = false
+            binding.editTextPassword.isErrorEnabled = false
+            binding.editTextUsername.isErrorEnabled = false
     }
-
     private fun getUserInputs() {
         userName = binding.editTextUsername.editText?.text.toString().trim()
         password = binding.editTextPassword.editText?.text.toString()

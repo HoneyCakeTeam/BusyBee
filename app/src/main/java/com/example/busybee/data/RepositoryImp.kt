@@ -1,16 +1,12 @@
 package com.example.busybee.data
 
-import com.example.busybee.data.models.BaseResponse
-import com.example.busybee.data.models.LoginResponseValue
-import com.example.busybee.data.models.PersonalToDo
-import com.example.busybee.data.models.SignUpResponseValue
-import com.example.busybee.data.models.TeamToDo
+import com.example.busybee.data.models.*
 import com.example.busybee.data.source.RemoteDataSource
-import com.example.busybee.utils.SharedPreferencesUtils
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 
 class RepositoryImp(
     private val remoteDataSource: RemoteDataSource,
-    private val sharedPreferences: SharedPreferencesUtils,
+    private val sharedPreferences: SharedPreferencesInterface,
 ) : Repository {
 
     override fun logIn(
