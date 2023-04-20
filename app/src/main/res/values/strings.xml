@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Busy Bee</string>
-    <string name="create_task">create task</string>
+    <string name="create_task">Create Task</string>
     <string name="assignee">Assignee</string>
     <string name="content">Content</string>
     <string name="task_created_successfully">Task is created successfully</string>

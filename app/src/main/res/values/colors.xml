@@ -86,7 +86,7 @@
     <color name="theme_dark_outlineVariant">#49454F</color>
     <color name="theme_dark_shape">#333333</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/primary_200
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/primary_500
     </color>
     <color name="color_green">#54C586</color>
     <color name="inprogress_color_dark">#C68705</color>

@@ -73,10 +73,10 @@
     <style name="BottomSheet_Button">
         <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
         <item name="android:layout_marginTop">@dimen/spacing_small</item>
-        <item name="android:background">@drawable/shape_inprogress</item>
-        <item name="android:backgroundTint">@color/primary_400</item>
+        <item name="android:background">@drawable/background_signup_button</item>
+        <item name="backgroundTint">@color/primary_500</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
-        <item name="android:textColorHint">@color/white_300</item>
+        <item name="android:textColor">@color/white_300</item>
     </style>
 
     <style name="TextMemberTaskStyle.TextNameTaskStyle">
@@ -339,7 +339,7 @@
     </style>
 
     <style name="FabStyle">
-        <item name="backgroundTint">@color/primary_700</item>
+        <item name="backgroundTint">@color/primary_500</item>
         <item name="android:layout_margin">@dimen/spacing_medium</item>
     </style>
 

@@ -208,7 +208,7 @@
     <style name="HeaderTextStyle">
         <item name="android:textColor">@color/black_78</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
-        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textSize">@dimen/text_giant24</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -312,6 +312,14 @@
     <style name="FabStyle">
         <item name="backgroundTint">@color/primary_500</item>
         <item name="android:layout_margin">@dimen/spacing_medium</item>
+    </style>
+
+    <style name="BottomSheet_Button">
+        <item name="android:layout_marginHorizontal">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:background">@drawable/sign_up_button</item>
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textColor">@color/white_300</item>
     </style>
 
     <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog" />

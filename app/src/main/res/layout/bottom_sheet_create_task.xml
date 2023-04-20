@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     style="@style/BackgroundCustomSheet"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageButton
         android:id="@+id/button_cancel"
@@ -24,12 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_large"
-        android:gravity="center"
         android:text="@string/create_task"
-        android:textSize="@dimen/text_giant"
         app:layout_constraintBottom_toTopOf="@id/input_layout_task_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_cancel" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -46,10 +40,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_task_name"
-            android:gravity="top"
-            android:lines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="top"
+            android:lines="1"
             android:paddingVertical="@dimen/spacing_medium" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,10 +62,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_assignee"
-            android:gravity="top"
-            android:lines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="top"
+            android:lines="1"
             android:paddingVertical="@dimen/spacing_medium" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,15 +95,13 @@
 
     <Button
         android:id="@+id/button_createTask"
-        style="@style/ButtonSignUpStyle"
+        style="@style/BottomSheet_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/spacing_giant"
         android:text="@string/create_task"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        android:backgroundTint="@color/primary_500"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_created_successfully"
@@ -118,9 +110,9 @@
         android:layout_gravity="center"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/text_created_successfully"
-        app:layout_constraintTop_toBottomOf="@id/button_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_cancel"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/create_successfuliy" />
