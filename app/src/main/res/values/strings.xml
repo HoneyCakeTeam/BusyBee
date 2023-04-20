@@ -69,6 +69,10 @@
     <string name="description_must_be_at_least_12_characters">Content must be at least 12 characters</string>
     <string name="assignee_should_not_be_empty">Assignee should not be empty</string>
     <string name="assignee_must_be_at_least_3_characters">Assignee must be at least 3 characters</string>
+    <string name="text_login_desc">Enjoy with your tasks!</string>
+    <string name="good_to_see_you">Good to see you</string>
+    <string name="join_us">Join us</string>
+    <string name="control_your_task">control your task</string>
 
 
 </resources>
