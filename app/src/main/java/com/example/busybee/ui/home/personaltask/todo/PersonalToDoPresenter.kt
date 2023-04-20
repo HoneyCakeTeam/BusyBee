@@ -24,15 +24,18 @@ class PersonalToDoPresenter(
         title: String,
         description: String,
     ) {
+        repository.createPersonalToDo(
+            title,
+            description,
+            ::onCreatePersonalTodoSuccess,
+            ::onCreatePersonalTodoFailure
+        )
+    }
+
+    fun validatePersonalTodo(title: String, description: String) {
         val (isValid, errorMessage) = validator.validatePersonalTodo(title, description)
         if (isValid) {
-            view.hideValidationError()
-            repository.createPersonalToDo(
-                title,
-                description,
-                ::onCreatePersonalTodoSuccess,
-                ::onCreatePersonalTodoFailure
-            )
+            view.hideValidationErrorThenCreatePersonalTodo(title,description)
         } else {
             view.showValidationError(
                 errorMessage.first, errorMessage.second

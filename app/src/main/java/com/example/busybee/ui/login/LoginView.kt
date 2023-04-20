@@ -4,7 +4,7 @@ interface LoginView {
     fun goToHome()
     fun showErrorMsg(error: Throwable)
     fun showValidationError(usernameErrorMessage: String?, passwordErrorMessage: String?)
-    fun hideValidationError()
+    fun hideValidationErrorThenLogin(username: String, password: String)
 
 }
 
