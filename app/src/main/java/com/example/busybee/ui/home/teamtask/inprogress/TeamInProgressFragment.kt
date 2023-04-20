@@ -7,28 +7,37 @@ import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.TeamToDo
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentTeamInProgressBinding
 import com.example.busybee.ui.details.DetailsFragment
 import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 
 class TeamInProgressFragment : BaseFragment<FragmentTeamInProgressBinding>(),
     TeamInProgressAdapter.TeamInProgressTaskInteractionListener, TeamInProgressView {
     private lateinit var adapter: TeamInProgressAdapter
-    override val TAG = this::class.java.simpleName.toString()
     private lateinit var inProgress: List<TeamToDo>
-
+    private val sharedPreferences: SharedPreferencesInterface by lazy {
+        SharedPreferencesUtils(
+            requireContext()
+        )
+    }
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSourceImp(requireContext())
+    }
     private val presenter by lazy {
         TeamInProgressPresenter(
             RepositoryImp(
-                RemoteDataSourceImp(requireContext()),
-                SharedPreferencesUtils(requireContext())
+                remoteDataSource,
+                sharedPreferences
             ), this
         )
     }
 
+    override val TAG = this::class.java.simpleName.toString()
     override fun getViewBinding(): FragmentTeamInProgressBinding {
         return FragmentTeamInProgressBinding.inflate(layoutInflater)
     }

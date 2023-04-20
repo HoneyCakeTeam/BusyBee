@@ -2,23 +2,34 @@ package com.example.busybee.ui.login
 
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentLoginBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
+import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
 import com.example.busybee.ui.register.RegisterFragment
 import com.example.busybee.utils.LoginAndRegisterValidation
 import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
+    private val sharedPreferences: SharedPreferencesInterface by lazy {
+        SharedPreferencesUtils(
+            requireContext()
+        )
+    }
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSourceImp(requireContext())
+    }
     private val presenter by lazy {
         LoginPresenter(
             RepositoryImp(
-                RemoteDataSourceImp(requireContext()),
-                SharedPreferencesUtils(requireContext())
+                remoteDataSource,
+                sharedPreferences
             ), this
         )
     }

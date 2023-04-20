@@ -7,28 +7,38 @@ import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.TeamToDo
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentTeamDoneBinding
 import com.example.busybee.ui.details.DetailsFragment
+import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
 import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 
 class TeamDoneFragment : BaseFragment<FragmentTeamDoneBinding>(),
     TeamDoneAdapter.TeamDoneTaskInteractionListener, TeamDoneView {
     private lateinit var adapter: TeamDoneAdapter
-    override val TAG = this::class.java.simpleName.toString()
     private lateinit var done: List<TeamToDo>
-
+    private val sharedPreferences: SharedPreferencesInterface by lazy {
+        SharedPreferencesUtils(
+            requireContext()
+        )
+    }
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSourceImp(requireContext())
+    }
     private val presenter by lazy {
         TeamDonePresenter(
             RepositoryImp(
-                RemoteDataSourceImp(requireContext()),
-                SharedPreferencesUtils(requireContext())
+                remoteDataSource,
+                sharedPreferences
             ), this
         )
     }
 
+    override val TAG = this::class.java.simpleName.toString()
     override fun getViewBinding(): FragmentTeamDoneBinding {
         return FragmentTeamDoneBinding.inflate(layoutInflater)
     }

@@ -8,13 +8,16 @@ import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
+import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
 import com.example.busybee.ui.details.DetailsFragment
+import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
 import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 
@@ -25,15 +28,23 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
     private lateinit var todos: List<PersonalToDo>
     private lateinit var bottomSheet: BottomSheetDialog
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
-    override val TAG = this::class.java.simpleName.toString()
+    private val sharedPreferences: SharedPreferencesInterface by lazy {
+        SharedPreferencesUtils(
+            requireContext()
+        )
+    }
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSourceImp(requireContext())
+    }
     private val presenter by lazy {
         PersonalToDoPresenter(
             RepositoryImp(
-                RemoteDataSourceImp(requireContext()),
-                SharedPreferencesUtils(requireContext())
+                remoteDataSource,
+                sharedPreferences
             ), this
         )
     }
+    override val TAG = this::class.java.simpleName.toString()
 
     override fun getViewBinding(): FragmentPersonalToDoBinding {
         return FragmentPersonalToDoBinding.inflate(layoutInflater)
