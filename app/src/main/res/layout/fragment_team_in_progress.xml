@@ -19,28 +19,31 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/task_header"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_task" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_placeholder_team_inProgress"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/text_no_tasks_team_inProgress"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/task_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@drawable/image_inprogess" />
 
     <TextView
         android:id="@+id/text_no_tasks_team_inProgress"
+        style="@style/TextViewPlaceHolderStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:text="@string/text_no_task_inprogress_team"
-        android:layout_marginBottom="240dp"
-        style="@style/TextViewPlaceHolderStyle"
-        android:layout_marginHorizontal="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
