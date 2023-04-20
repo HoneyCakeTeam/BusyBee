@@ -51,7 +51,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
     private fun addCallBacks() {
         binding.buttonSignUp.setOnClickListener {
             getUserInputs()
-            presenter.signUp(username, password, confirmPassword)
+            presenter.validateRegisterData(username, password, confirmPassword)
         }
         binding.textLogin.setOnClickListener {
             replaceFragment(LoginFragment())
@@ -81,12 +81,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
         binding.textFieldConfirmPassword.isErrorEnabled = false
     }
 
-    private fun signUp(userName: String, password: String, confirmPassword: String) {
+    private fun signUp(userName: String, password: String) {
         if (isOnline(requireContext())) {
             presenter.signUp(
                 userName,
-                password,
-                confirmPassword
+                password
             )
         } else {
             Snackbar.make(
@@ -132,8 +131,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
         showError(usernameErrorMessage, passwordErrorMessage, confirmPasswordErrorMessage)
     }
 
-    override fun hideValidationError() {
+    override fun hideValidationErrorThenRegister(
+        userName: String,
+        password: String
+    ) {
         hideError()
+        signUp(userName, password)
     }
 
 }

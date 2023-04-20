@@ -10,6 +10,6 @@ interface RegisterView {
         confirmPasswordErrorMessage: String?
     )
 
-    fun hideValidationError()
+    fun hideValidationErrorThenRegister(userName: String, password: String)
 
 }
