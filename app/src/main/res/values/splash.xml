@@ -3,7 +3,7 @@
 
     <style name="Theme.MyApp.MySplash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/primary_400</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logodark</item>
         <item name="postSplashScreenTheme">@style/Theme.BusyBee</item>
 
     </style>

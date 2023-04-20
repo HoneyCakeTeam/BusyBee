@@ -19,10 +19,13 @@ import com.example.busybee.ui.home.personaltask.inprogress.PersonalInProgressFra
 import com.example.busybee.ui.home.personaltask.todo.PersonalToDoFragment
 import com.example.busybee.ui.home.teamtask.done.TeamDoneFragment
 import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressFragment
-import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
 import com.example.busybee.ui.home.teamtask.todo.TeamToDoFragment
 import com.example.busybee.ui.setting.SettingFragment
-import com.example.busybee.utils.*
+import com.example.busybee.utils.TaskType
+import com.example.busybee.utils.isOnline
+import com.example.busybee.utils.onClickBackFromNavigation
+import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.setStatusBarBackgroundColor
 import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.google.android.material.tabs.TabLayout
