@@ -31,11 +31,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
         android:layout_marginEnd="@dimen/spacing_medium"
+        android:layout_marginTop="64dp"
         app:cardCornerRadius="@dimen/radius_giant"
         app:cardElevation="@dimen/elevation_semi_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_vector">
+        app:layout_constraintTop_toBottomOf="@id/view_gradient">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/card_sign_up"
