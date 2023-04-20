@@ -59,7 +59,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
     private fun addCallBacks() {
         binding.buttonLogin.setOnClickListener {
             getUserInputs()
-            login(userName, password)
+            presenter.validateLoginData(userName, password)
         }
 
         binding.textSignUp.setOnClickListener {
@@ -130,11 +130,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
         showError(usernameErrorMessage, passwordErrorMessage)
     }
 
-    override fun hideValidationError() {
+    override fun hideValidationErrorThenLogin(username: String, password: String) {
         hideError()
+        login(username, password)
     }
-
-
 }
 
 

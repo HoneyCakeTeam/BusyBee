@@ -13,5 +13,9 @@ interface TeamToDoView {
         assigneeErrorMessage: String?
     )
 
-    fun hideValidationError()
+    fun hideValidationErrorThenCreateTeamTodo(
+        title: String,
+        description: String,
+        assignee: String
+    )
 }

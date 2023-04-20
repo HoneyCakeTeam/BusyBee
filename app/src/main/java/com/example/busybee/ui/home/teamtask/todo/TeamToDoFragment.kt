@@ -110,7 +110,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
             val title = sheetCreateTaskBinding.textTaskName.text.toString()
             val description = sheetCreateTaskBinding.textContent.text.toString()
             val assign = sheetCreateTaskBinding.textAssignee.text.toString()
-            createTeamToDo(title, description, assign)
+            presenter.validateTeamTodo(title, description, assign)
         }
         bottomSheet.setContentView(sheetCreateTaskBinding.root)
         bottomSheet.show()
@@ -183,7 +183,16 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
         }
     }
 
-    override fun hideValidationError() {
+    override fun hideValidationErrorThenCreateTeamTodo(
+        title: String,
+        description: String,
+        assignee: String
+    ) {
+        hideError()
+        createTeamToDo(title, description, assignee)
+    }
+
+    private fun hideError() {
         with(sheetCreateTaskBinding) {
             inputLayoutTaskName.isErrorEnabled = false
             inputLayoutContent.isErrorEnabled = false

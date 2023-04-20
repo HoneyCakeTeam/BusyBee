@@ -23,12 +23,15 @@ class TeamToDoPresenter(
         description: String,
         assignee: String,
     ) {
+        repository.createTeamToDo(
+            title, description, assignee, ::onCreateTeamTodoSuccess, ::onCreateTeamTodoFailure
+        )
+    }
+
+    fun validateTeamTodo(title: String, description: String, assignee: String) {
         val (isValid, errorMessage) = validator.validateTeamTodo(title, description, assignee)
         if (isValid) {
-            view.hideValidationError()
-            repository.createTeamToDo(
-                title, description, assignee, ::onCreateTeamTodoSuccess, ::onCreateTeamTodoFailure
-            )
+            view.hideValidationErrorThenCreateTeamTodo(title, description, assignee)
         } else {
             view.showValidationError(
                 errorMessage.first, errorMessage.second, errorMessage.third

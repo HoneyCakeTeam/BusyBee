@@ -94,7 +94,7 @@ class PersonalToDoFragment : BaseFragment<FragmentPersonalToDoBinding>(),
             val title = sheetCreateTaskBinding.textTaskName.text.toString()
             val description = sheetCreateTaskBinding.textContent.text.toString()
 
-            personalCreateToDo(title, description)
+            presenter.validatePersonalTodo(title, description)
         }
 
         sheetCreateTaskBinding.buttonCancel.setOnClickListener {
@@ -181,7 +181,12 @@ class PersonalToDoFragment : BaseFragment<FragmentPersonalToDoBinding>(),
         }
     }
 
-    override fun hideValidationError() {
+    override fun hideValidationErrorThenCreatePersonalTodo(title: String, description: String) {
+        hideError()
+        personalCreateToDo(title, description)
+    }
+
+    private fun hideError() {
         with(sheetCreateTaskBinding) {
             inputLayoutTaskName.isErrorEnabled = false
             inputLayoutContent.isErrorEnabled = false

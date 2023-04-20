@@ -11,15 +11,18 @@ class RegisterPresenter(
     private val view: RegisterView,
     private val validator: Validator
 ) {
-    fun signUp(userName: String, password: String, confirmPassword: String) {
+    fun signUp(userName: String, password: String) {
+        repository.signUp(userName, password, ::onRegisterSuccess, ::onRegisterFailed)
+    }
+
+    fun validateRegisterData(userName: String, password: String, confirmPassword: String) {
         val (isValid, errorMessage) = validator.checkCredential(userName, password)
         val (isConfirmValid, confirmPasswordErrorMessage) = validator.validateConfirmPassword(
             password,
             confirmPassword
         )
         if (isValid && isConfirmValid) {
-            view.hideValidationError()
-            repository.signUp(userName, password, ::onRegisterSuccess, ::onRegisterFailed)
+            view.hideValidationErrorThenRegister(userName, password)
         } else {
             view.showValidationError(
                 errorMessage.first,
