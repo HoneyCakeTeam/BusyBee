@@ -121,6 +121,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
     }
 
     override fun createTeamToDo(title: String, description: String, assignee: String) {
+        showLoading()
         presenter.teamCreateToDo(
             title, description, assignee
         )
@@ -128,6 +129,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
 
     override fun addNewToDo(response: TeamToDo) {
         activity?.runOnUiThread {
+            hideLoading()
             setListAndUpdateUi(response)
             hideFieldsAndShowDone()
             showPlaceHolder(todos)
@@ -165,6 +167,14 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
             ).show()
         }
 
+    }
+    private fun hideLoading() {
+        binding.lottieLoading.visibility = View.GONE
+        binding.recyclerToDo.visibility = View.VISIBLE
+    }
+    private fun showLoading() {
+        binding.lottieLoading.visibility = View.VISIBLE
+        binding.recyclerToDo.visibility = View.GONE
     }
 
     override fun getLocalTeamTodos(todos: List<TeamToDo>) {

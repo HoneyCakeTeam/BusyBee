@@ -177,6 +177,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
     }
 
     private fun updateTasksPersonalStatus(idTask: String, status: Int) {
+        showLoading()
         presenter.updateTasksPersonalStatus(idTask, status)
     }
 
@@ -186,7 +187,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
             personalTodo?.status!! + 1
         )
         activity?.runOnUiThread {
-
+            hideLoading()
             navigateToHomeScreen(flag)
         }
     }
@@ -200,6 +201,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
     }
 
     private fun updateTasksTeamStatus(idTask: String, status: Int) {
+        showLoading()
         presenter.updateTasksTeamStatus(idTask, status)
     }
 
@@ -209,7 +211,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
             teamTodo?.status!! + 1
         )
         activity?.runOnUiThread {
-
+            hideLoading()
             navigateToHomeScreen(flag)
         }
     }
@@ -280,6 +282,15 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         callback.isEnabled = true
+    }
+
+    private fun hideLoading() {
+        binding.lottieLoading.visibility = View.GONE
+        binding.scrollView.visibility = View.VISIBLE
+    }
+    private fun showLoading() {
+        binding.lottieLoading.visibility = View.VISIBLE
+        binding.scrollView.visibility = View.GONE
     }
 
     companion object {

@@ -10,6 +10,7 @@ import com.example.busybee.databinding.FragmentLoginBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.register.RegisterFragment
+import com.example.busybee.utils.isOnline
 import com.example.busybee.utils.onClickBackFromNavigation
 import com.example.busybee.utils.replaceFragment
 import com.example.busybee.utils.setStatusBarBackgroundColor
@@ -82,28 +83,31 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
     }
 
     private fun login(userName: String, password: String) {
+        showLoading()
+        if (isOnline(requireContext())) {
+            presenter.logIn(
+                userName,
+                password
+            )
+        } else {
+            Snackbar.make(
+                binding.root,
+                getString(R.string.no_internt),
+                Snackbar.LENGTH_SHORT
+            )
+                .show()
+        }
+
+    }
+
+    private fun showLoading() {
         binding.lottieLoading.visibility = View.VISIBLE
         binding.scrollView.visibility = View.GONE
-        // if (isOnline(requireContext())) {
-        presenter.logIn(
-            userName,
-            password
-        )
-//        }else{
-//            Snackbar.make(
-//                binding.root,
-//               getString(R.string.no_internt),
-//                Snackbar.LENGTH_SHORT
-//            )
-//                .show()
-//        }
-
     }
 
     override fun goToHome() {
         activity?.runOnUiThread {
-            binding.lottieLoading.visibility = View.VISIBLE
-            binding.scrollView.visibility = View.GONE
+            hideLoading()
             replaceFragment(homeFragment)
             Snackbar.make(
                 binding.root,
@@ -111,6 +115,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
                 Snackbar.LENGTH_SHORT
             ).show()
         }
+    }
+
+    private fun hideLoading() {
+        binding.lottieLoading.visibility = View.GONE
+        binding.scrollView.visibility = View.VISIBLE
     }
 
     override fun showErrorMsg(error: Throwable) {

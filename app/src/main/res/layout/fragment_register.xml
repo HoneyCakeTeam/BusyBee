@@ -6,10 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.register.RegisterFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_loading"
+        android:layout_width="300dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:backgroundTint="@color/white_300"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading_dot" />
+
     <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:background="@drawable/gradient_shape"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_shape">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,13 +49,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_medium"
                 android:layout_marginEnd="@dimen/spacing_medium"
-                app:cardBackgroundColor="@color/white_200"
                 android:layout_marginBottom="@dimen/spacing_medium"
+                app:cardBackgroundColor="@color/white_200"
                 app:cardCornerRadius="@dimen/radius_giant"
                 app:cardElevation="@dimen/elevation_semi_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_vector">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

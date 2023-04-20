@@ -110,6 +110,7 @@ class PersonalToDoFragment : BaseFragment<FragmentPersonalToDoBinding>(),
 
 
     private fun personalCreateToDo(title: String, description: String) {
+        showLoading()
         presenter.personalCreateToDo(
             title, description
         )
@@ -117,6 +118,7 @@ class PersonalToDoFragment : BaseFragment<FragmentPersonalToDoBinding>(),
 
     override fun onSuccessResponse(response: BaseResponse<PersonalToDo>) {
         activity?.runOnUiThread {
+            hideLoading()
             setListAndUpdateUi(response)
             hideFieldsAndShowDone()
             showPlaceHolder(todos)
@@ -146,6 +148,15 @@ class PersonalToDoFragment : BaseFragment<FragmentPersonalToDoBinding>(),
                 binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
             }
         }
+    }
+
+    private fun hideLoading() {
+        binding.lottieLoading.visibility = View.GONE
+        binding.recyclerToDo.visibility = View.VISIBLE
+    }
+    private fun showLoading() {
+        binding.lottieLoading.visibility = View.VISIBLE
+        binding.recyclerToDo.visibility = View.GONE
     }
 
     private fun hideFieldsAndShowDone() {

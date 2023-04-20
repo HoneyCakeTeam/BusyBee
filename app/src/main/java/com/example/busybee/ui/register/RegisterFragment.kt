@@ -1,5 +1,6 @@
 package com.example.busybee.ui.register
 
+import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
@@ -77,6 +78,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
         binding.textFieldConfirmPassword.error = confirmPasswordErrorMessage
     }
 
+    private fun hideLoading() {
+        binding.lottieLoading.visibility = View.GONE
+        binding.scrollView.visibility = View.VISIBLE
+    }
+    private fun showLoading() {
+        binding.lottieLoading.visibility = View.VISIBLE
+        binding.scrollView.visibility = View.GONE
+    }
+
 
     private fun hideError() {
         binding.textFieldName.isErrorEnabled = false
@@ -86,6 +96,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
 
     private fun signUp(userName: String, password: String) {
         if (isOnline(requireContext())) {
+            showLoading()
             presenter.signUp(
                 userName,
                 password
@@ -103,6 +114,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
 
     override fun goToHome() {
         activity?.runOnUiThread {
+            hideLoading()
             replaceFragment(homeFragment)
             Snackbar.make(
                 binding.root,
