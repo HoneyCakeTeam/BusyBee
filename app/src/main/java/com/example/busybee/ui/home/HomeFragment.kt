@@ -82,8 +82,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         setupStatusBarColor()
 
 
-        binding.lottieLoading.visibility = View.VISIBLE
-        binding.homeViewPager.visibility = View.GONE
+        showLoading()
 
         getTaskType()
         checkTaskType()
@@ -92,7 +91,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         onClickBackFromNavigation()
     }
 
-    private fun setupStatusBarColor(){
+    private fun setupStatusBarColor() {
         val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
         when (uiManager.nightMode) {
             UiModeManager.MODE_NIGHT_NO -> {
@@ -113,11 +112,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
         if (::taskType.isInitialized) {
             when (taskType) {
                 TaskType.PERSONAL -> {
+                    hideLoading()
                     initViewPager(personalFragments)
                     selectTab(0)
                 }
 
                 TaskType.TEAM -> {
+                    hideLoading()
                     initViewPager(teamFragments)
                     selectTab(1)
                 }
@@ -203,24 +204,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     }
 
     private fun showViewsAndHideAnimation() {
+        showLoading()
+    }
+
+    private fun showLoading() {
+        binding.lottieLoading.visibility = View.VISIBLE
+        binding.homeViewPager.visibility = View.GONE
+    }
+
+    private fun hideViewsAndShowAnimation() {
+        hideLoading()
+    }
+
+    private fun hideLoading() {
         with(binding) {
             homeViewPager.visibility = View.VISIBLE
             lottieNoInternet.visibility = View.GONE
         }
     }
 
-    private fun hideViewsAndShowAnimation() {
-        with(binding) {
-            homeViewPager.visibility = View.GONE
-            lottieNoInternet.visibility = View.VISIBLE
-        }
-    }
-
 
     override fun showDataOnPersonalScreen(response: List<PersonalToDo>) {
         requireActivity().runOnUiThread {
-            binding.lottieLoading.visibility = View.GONE
-            binding.homeViewPager.visibility = View.VISIBLE
+            hideLoading()
         }
         personalResponse = response
         homePresenter.setLocalPersonalTasks(response)
