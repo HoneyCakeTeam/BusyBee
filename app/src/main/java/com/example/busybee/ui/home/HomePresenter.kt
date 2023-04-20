@@ -23,7 +23,7 @@ class HomePresenter(
     }
 
     private fun onGetTeamTasksSuccess(response: BaseResponse<List<TeamToDo>>) {
-        view.goToTeamScreen(response.value)
+        view.showDataOnTeamScreen(response.value)
     }
 
     private fun onGetTeamTasksFailure(error: Throwable) {
@@ -35,7 +35,7 @@ class HomePresenter(
     }
 
     private fun onGetPersonalTasksSuccess(response: BaseResponse<List<PersonalToDo>>) {
-        view.goToPersonalScreen(response.value)
+        view.showDataOnPersonalScreen(response.value)
     }
 
     private fun onGetPersonalTasksFailure(error: Throwable) {

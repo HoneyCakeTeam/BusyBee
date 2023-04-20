@@ -4,8 +4,8 @@ import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 
 interface HomeView {
-    fun goToTeamScreen(response: List<TeamToDo>)
+    fun showDataOnTeamScreen(response: List<TeamToDo>)
     fun showErrorMsgOnTeamScreen(error: Throwable)
-    fun goToPersonalScreen(response: List<PersonalToDo>)
+    fun showDataOnPersonalScreen(response: List<PersonalToDo>)
     fun showErrorMsgOnPersonalScreen(error: Throwable)
 }
