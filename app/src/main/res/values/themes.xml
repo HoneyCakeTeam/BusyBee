@@ -63,7 +63,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textAllCaps">false</item>
-        <item name="backgroundTint">@color/primary_500</item>
+        <item name="backgroundTint">@color/primary_400</item>
         <item name="android:textColor">@color/white_100</item>
         <item name="android:background">@drawable/background_signup_button</item>
         <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
