@@ -12,6 +12,8 @@ interface PersonalToDoView {
         titleErrorMessage: String?,
         descriptionErrorMessage: String?
     )
-
-    fun hideValidationError()
+    fun hideValidationErrorThenCreatePersonalTodo(
+        title: String,
+        description: String
+    )
 }
