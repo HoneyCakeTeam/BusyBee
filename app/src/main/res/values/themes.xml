@@ -28,6 +28,13 @@
         <item name="colorOnSurfaceInverse">@color/theme_light_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/primary_100</item>
         <item name="android:fitsSystemWindows">true</item>
+        <!--Splash Screen-->
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">
+            @drawable/logodark
+        </item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/primary_400
+        </item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">5000</item>
     </style>
     <style name="ThemeStatusBarBackground" parent="Theme.BusyBee">
         <item name="android:statusBarColor">@color/white_100</item>
@@ -63,7 +70,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textAllCaps">false</item>
-        <item name="backgroundTint">@color/primary_500</item>
+        <item name="backgroundTint">@color/primary_400</item>
         <item name="android:textColor">@color/white_100</item>
         <item name="android:background">@drawable/background_signup_button</item>
         <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
@@ -90,7 +97,7 @@
     <style name="TextViewHelloStyle">
         <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textColor">@color/black_87</item>
-        <item name="android:textSize">@dimen/text_giant24</item>
+        <item name="android:textSize">@dimen/text_xgiant</item>
         <item name="android:layout_marginTop">@dimen/spacing_medium</item>
     </style>
 
