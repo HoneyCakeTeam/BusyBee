@@ -12,23 +12,25 @@ class LoginPresenter(
     private val validator: Validator
 ) {
     fun logIn(userName: String, password: String) {
-
-        val (isValid, errorMessage) = validator.checkCredential(userName, password)
-        if (isValid) {
-            view.hideValidationError()
-            try {
-                repository.logIn(userName, password, ::onLoginSuccess, ::onLoginFailed)
-            } catch (error: Throwable) {
-                Log.e("TAG", "No Internet logIn: ")
-            }
-        } else {
-            view.showValidationError(errorMessage.first, errorMessage.second)
+        try {
+            repository.logIn(userName, password, ::onLoginSuccess, ::onLoginFailed)
+        } catch (error: Throwable) {
+            Log.e("TAG", "No Internet logIn: ")
         }
     }
 
     private fun onLoginSuccess(response: BaseResponse<LoginResponseValue>) {
         saveToken(response.value.token)
         view.goToHome()
+    }
+
+    fun validateLoginData(userName: String, password: String) {
+        val (isValid, errorMessage) = validator.checkCredential(userName, password)
+        if (isValid) {
+            view.hideValidationErrorThenLogin(userName, password)
+        } else {
+            view.showValidationError(errorMessage.first, errorMessage.second)
+        }
     }
 
     private fun onLoginFailed(error: Throwable) {
