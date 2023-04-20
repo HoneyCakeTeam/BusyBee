@@ -50,9 +50,9 @@
                 android:layout_marginStart="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:fontFamily="@font/notosans_medium"
-                android:text="@string/log_in"
+                android:text="@string/good_to_see_you"
                 android:textColor="@color/black_78"
-                android:textSize="@dimen/text_Xgiant"
+                android:textSize="@dimen/text_xgiant"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,6 +129,8 @@
                 <TextView
                     android:id="@+id/text_have_an_account"
                     style="@style/TextViewSginUpStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="@string/Do_not_have_an_account" />
 
                 <TextView
