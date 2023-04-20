@@ -163,7 +163,7 @@
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
-        <item name="drawableStartCompat">@drawable/ic_todo_assignee</item>
+        <item name="drawableStartCompat">@drawable/ic_user</item>
         <item name="drawableTint">@color/black_50</item>
         <item name="android:drawablePadding">@dimen/spacing_tiny</item>
     </style>
@@ -177,14 +177,12 @@
     </style>
 
     <style name="TextTimeTaskStyle" parent="TextCommonDateAndTime">
-        <item name="android:layout_marginTop">@dimen/spacing_small</item>
         <item name="drawableStartCompat">@drawable/ic_todo_time</item>
         <item name="drawableTint">@color/black_38</item>
     </style>
 
     <style name="TextDateTaskStyle" parent="TextCommonDateAndTime">
         <item name="drawableTint">@color/black_38</item>
-        <item name="android:layout_marginStart">@dimen/spacing_small</item>
         <item name="drawableStartCompat">@drawable/ic_todo_date</item>
     </style>
 

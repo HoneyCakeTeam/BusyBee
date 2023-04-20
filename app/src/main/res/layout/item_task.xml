@@ -1,87 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/task_card"
-    app:strokeWidth="0dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/spacing_tiny"
     android:layout_marginVertical="@dimen/spacing_tiny"
     app:cardCornerRadius="@dimen/radius_semi_large">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/BackgroundCustomShapeRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/spacing_medium"
-        android:paddingVertical="@dimen/spacing_small">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_task_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.65"
-            />
+        android:paddingVertical="@dimen/spacing_simi_medium">
 
         <TextView
-            style="@style/TextTaskNameStyle"
             android:id="@+id/text_task_name"
+            style="@style/TextTaskNameStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textDirection="locale"
             android:layout_marginEnd="@dimen/spacing_medium"
+            android:textDirection="locale"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_task_item"
             tools:text="ToDo title" />
 
         <TextView
-            style="@style/TextTaskUserNameStyle"
-            android:id="@+id/text_user_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="textStart"
-            android:textDirection="locale"
-            app:layout_constraintBaseline_toBaselineOf="@+id/text_task_name"
-            app:layout_constraintStart_toEndOf="@+id/guideline_task_item"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_task_name"
-            tools:text="Hamsa Ali" />
-
-        <TextView
-            style="@style/TextDescriptionTaskStyle"
             android:id="@+id/text_task_description"
+            style="@style/TextDescriptionTaskStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textDirection="locale"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_task_item"
+            android:layout_marginTop="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_task_name"
             tools:text="this is toDo description, for that todo, don't ignore it it's just a tool" />
 
         <TextView
+            android:id="@+id/text_user_name"
+            style="@style/TextTaskUserNameStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:textAlignment="textStart"
+            android:textDirection="locale"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_task_description"
+            tools:text="Hamsa Ali" />
+        <TextView
             style="@style/TextTimeTaskStyle"
             android:id="@+id/text_task_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_task_description"
-            tools:text="10:30 AM" />
-
+            tools:text="10:30 AM"
+            android:layout_marginEnd="@dimen/spacing_small"
+            app:layout_constraintTop_toTopOf="@+id/text_task_date"
+            app:layout_constraintBottom_toBottomOf="@+id/text_task_date"
+            app:layout_constraintEnd_toStartOf="@+id/text_task_date"
+            />
 
         <TextView
-            style="@style/TextDateTaskStyle"
             android:id="@+id/text_task_date"
+            style="@style/TextDateTaskStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/text_task_time"
-            app:layout_constraintStart_toEndOf="@id/text_task_time"
-            app:layout_constraintTop_toTopOf="@+id/text_task_time"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_task_description"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="1 July" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

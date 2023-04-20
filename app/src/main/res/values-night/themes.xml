@@ -165,7 +165,6 @@
     </style>
 
     <style name="TextTimeTaskStyle" parent="TextCommonDateAndTime">
-        <item name="android:layout_marginTop">@dimen/spacing_small</item>
         <item name="drawableStartCompat">@drawable/ic_todo_time</item>
     </style>
 
