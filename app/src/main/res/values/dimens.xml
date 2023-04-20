@@ -2,6 +2,7 @@
 <resources>
 
     <!--spacing dimens-->
+    <dimen name="spacing_zero">0dp</dimen>
     <dimen name="spacing_tiny">4dp</dimen>
     <dimen name="spacing_tiny_negative">-4dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
@@ -9,6 +10,7 @@
     <dimen name="spacing_simi_medium">12dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_giant">32dp</dimen>
+    <dimen name="spacing_Xgiant">36dp</dimen>
     <dimen name="spacing_negative">-48dp</dimen>
     <dimen name="spacing_XXLarge">128dp</dimen>
 
@@ -20,6 +22,7 @@
     <dimen name="text_large">18sp</dimen>
     <dimen name="text_giant">20sp</dimen>
     <dimen name="text_giant24">24sp</dimen>
+    <dimen name="text_Xgiant">32sp</dimen>
     <dimen name="very_tiny">2sp</dimen>
 
     <!--radius dimens-->
@@ -43,6 +46,8 @@
 
     <!--items dimens-->
     <dimen name="view_item_settings_height">64dp</dimen>
+    <dimen name="view_gradient">200dp</dimen>
+    <dimen name="view_vector">270dp</dimen>
 
 
 </resources>
