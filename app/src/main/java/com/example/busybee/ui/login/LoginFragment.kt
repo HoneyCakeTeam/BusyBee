@@ -1,6 +1,5 @@
 package com.example.busybee.ui.login
 
-import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
@@ -16,7 +15,6 @@ import com.example.busybee.utils.replaceFragment
 import com.example.busybee.utils.setStatusBarBackgroundColor
 import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
-import com.example.busybee.utils.showAlertDialogForLoading
 import com.example.busybee.utils.validator.Validator
 import com.example.busybee.utils.validator.ValidatorImpl
 import com.google.android.material.snackbar.Snackbar
