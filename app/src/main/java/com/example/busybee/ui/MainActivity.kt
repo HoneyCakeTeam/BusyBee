@@ -2,7 +2,6 @@ package com.example.busybee.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity(), MainView {
     private val fragmentLogin = LoginFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         setContentView(R.layout.activity_main)
 
         val bundle = intent.getBundleExtra(Constant.BUNDLE_TASK)
