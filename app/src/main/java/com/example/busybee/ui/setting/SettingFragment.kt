@@ -1,6 +1,5 @@
 package com.example.busybee.ui.setting
 
-import android.graphics.Color
 import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.ui.base.BaseFragment
@@ -9,8 +8,7 @@ import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentSettingsBinding
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.login.LoginFragment
-import com.example.busybee.utils.SharedPreferencesUtils
-import com.example.busybee.utils.setStatusBarBackgroundColor
+import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
 import com.example.busybee.utils.replaceFragment
 import org.eazegraph.lib.models.PieModel
 import kotlin.properties.Delegates
@@ -40,7 +38,6 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(), SettingsView {
         FragmentSettingsBinding.inflate(layoutInflater)
 
     override fun setUp() {
-        setStatusBarBackgroundColor(Color.TRANSPARENT)
         getTasksCount()
         addDefaultStateForPieChart()
         addDefaultStateForData()

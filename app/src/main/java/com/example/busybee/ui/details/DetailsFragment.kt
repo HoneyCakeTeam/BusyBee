@@ -1,11 +1,9 @@
 package com.example.busybee.ui.details
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.PersonalToDo
@@ -14,7 +12,10 @@ import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
-import com.example.busybee.utils.*
+import com.example.busybee.utils.DateTimeUtils
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
+import com.example.busybee.utils.TaskType
+import com.example.busybee.utils.replaceFragment
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
     override val TAG = this::class.java.simpleName.toString()
@@ -35,7 +36,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
     }
 
     override fun setUp() {
-        setStatusBarBackgroundColor(Color.TRANSPARENT)
         checkFlagFromHome()
         addCallBacks()
     }
@@ -71,9 +71,17 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
         }
 
         when (personalTodo?.status) {
-            TYPE_PERSONAL_TODO -> initiatePersonalTodo()
-            TYP_PERSONAL_INPROGRESS -> initiatePersonalInProgress()
-            TYPE_PERSONAL_DONE -> initiatePersonalDone()
+            0 -> {
+                binding.btnMove.text = getString(R.string.move_to_in_progress)
+            }
+
+            1 -> {
+                binding.btnMove.text = getString(R.string.move_to_done)
+            }
+
+            2 -> {
+                binding.btnMove.visibility = View.GONE
+            }
         }
     }
 
@@ -87,77 +95,17 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
         }
 
         when (teamTodo?.status) {
-            TYPE_TEAM_TODO -> initiateTeamTodo()
-            TYPE_TEAM_INPROGRESS -> initiateTeamInProgress()
-            TYPE_TEAM_DONE -> initiateTeamDone()
-        }
-    }
+            0 -> {
+                binding.btnMove.text = getString(R.string.move_to_in_progress)
+            }
 
-    private fun initiatePersonalTodo() {
-        with(binding) {
-            btnMove.text = getString(R.string.move_to_in_progress)
-            btnMove.setBackgroundColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.primary_500
-                )
-            )
-            shapeStatus.setBackgroundResource(R.drawable.shape_circle_todo)
-        }
-    }
+            1 -> {
+                binding.btnMove.text = getString(R.string.move_to_done)
+            }
 
-    private fun initiatePersonalInProgress() {
-        with(binding) {
-            btnMove.text = getString(R.string.move_to_done)
-            btnMove.setBackgroundColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.color_green
-                )
-            )
-            shapeStatus.setBackgroundResource(R.drawable.shape_circle_inprogress)
-            btnMove.icon = ContextCompat.getDrawable(requireContext() , R.drawable.ic_done)
-        }
-    }
-
-    private fun initiatePersonalDone() {
-        with(binding) {
-            btnMove.visibility = View.GONE
-            shapeStatus.setBackgroundResource(R.drawable.shape_circle_done)
-        }
-    }
-
-    private fun initiateTeamTodo() {
-        with(binding) {
-            btnMove.text = getString(R.string.move_to_in_progress)
-            btnMove.setBackgroundColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.primary_500
-                )
-            )
-            shapeStatus.setBackgroundResource(R.drawable.shape_circle_todo)
-        }
-    }
-
-    private fun initiateTeamInProgress() {
-        with(binding) {
-            btnMove.text = getString(R.string.move_to_done)
-            btnMove.setBackgroundColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.color_green
-                )
-            )
-            shapeStatus.setBackgroundResource(R.drawable.shape_circle_inprogress)
-            btnMove.icon = ContextCompat.getDrawable(requireContext() , R.drawable.ic_done)
-        }
-    }
-
-    private fun initiateTeamDone() {
-        with(binding) {
-            btnMove.visibility = View.GONE
-            shapeStatus.setBackgroundResource(R.drawable.shape_circle_done)
+            2 -> {
+                binding.btnMove.visibility = View.GONE
+            }
         }
     }
 
@@ -271,12 +219,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
         const val FLAG = "flag"
         const val PERSONAL_TASK = "personalTask"
         const val TEAM_TASK = "teamTask"
-        private const val TYPE_PERSONAL_TODO = 0
-        private const val TYP_PERSONAL_INPROGRESS = 1
-        private const val TYPE_PERSONAL_DONE = 2
-        private const val TYPE_TEAM_TODO = 0
-        private const val TYPE_TEAM_INPROGRESS = 1
-        private const val TYPE_TEAM_DONE = 2
 
         fun newInstance(taskType: TaskType, teamTodo: TeamToDo?, personalToDo: PersonalToDo?) =
             DetailsFragment().apply {
