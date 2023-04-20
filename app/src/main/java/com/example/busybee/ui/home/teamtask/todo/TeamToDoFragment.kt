@@ -12,11 +12,12 @@ import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentTeamToDoBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.details.DetailsFragment
-import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
-import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
+import com.example.busybee.utils.validator.Validator
+import com.example.busybee.utils.validator.ValidatorImpl
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 
@@ -27,6 +28,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
     private lateinit var todos: List<TeamToDo>
     private lateinit var bottomSheet: BottomSheetDialog
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
+    private val validator: Validator by lazy { ValidatorImpl(requireContext()) }
     private val sharedPreferences: SharedPreferencesInterface by lazy {
         SharedPreferencesUtils(
             requireContext()
@@ -40,7 +42,7 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
             RepositoryImp(
                 remoteDataSource,
                 sharedPreferences
-            ), this
+            ), this, validator
         )
     }
 
@@ -167,6 +169,26 @@ class TeamToDoFragment : BaseFragment<FragmentTeamToDoBinding>(), TeamToDoView,
 
     override fun getLocalTeamTodos(todos: List<TeamToDo>) {
         this.todos = todos
+    }
+
+    override fun showValidationError(
+        titleErrorMessage: String?,
+        descriptionErrorMessage: String?,
+        assigneeErrorMessage: String?
+    ) {
+        with(sheetCreateTaskBinding) {
+            inputLayoutTaskName.error = titleErrorMessage
+            inputLayoutContent.error = descriptionErrorMessage
+            inputLayoutAssignee.error = assigneeErrorMessage
+        }
+    }
+
+    override fun hideValidationError() {
+        with(sheetCreateTaskBinding) {
+            inputLayoutTaskName.isErrorEnabled = false
+            inputLayoutContent.isErrorEnabled = false
+            inputLayoutAssignee.isErrorEnabled = false
+        }
     }
 
     override fun onTasKClicked(flag: TaskType, teamTodo: TeamToDo) {

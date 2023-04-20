@@ -4,18 +4,26 @@ import android.util.Log
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.LoginResponseValue
+import com.example.busybee.utils.validator.Validator
 
 class LoginPresenter(
-    private val repository: Repository, private val view: LoginView
+    private val repository: Repository,
+    private val view: LoginView,
+    private val validator: Validator
 ) {
     fun logIn(userName: String, password: String) {
-        try {
-            repository.logIn(userName, password, ::onLoginSuccess, ::onLoginFailed)
 
-        } catch (error: Throwable) {
-            Log.e("TAG", "No Internet logIn: ")
+        val (isValid, errorMessage) = validator.checkCredential(userName, password)
+        if (isValid) {
+            view.hideValidationError()
+            try {
+                repository.logIn(userName, password, ::onLoginSuccess, ::onLoginFailed)
+            } catch (error: Throwable) {
+                Log.e("TAG", "No Internet logIn: ")
+            }
+        } else {
+            view.showValidationError(errorMessage.first, errorMessage.second)
         }
-
     }
 
     private fun onLoginSuccess(response: BaseResponse<LoginResponseValue>) {

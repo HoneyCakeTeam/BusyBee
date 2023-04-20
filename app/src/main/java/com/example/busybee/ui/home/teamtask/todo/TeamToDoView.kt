@@ -7,4 +7,11 @@ interface TeamToDoView {
     fun addNewToDo(response: TeamToDo)
     fun showErrorMsg(error: Throwable)
     fun getLocalTeamTodos(todos: List<TeamToDo>)
+    fun showValidationError(
+        titleErrorMessage: String?,
+        descriptionErrorMessage: String?,
+        assigneeErrorMessage: String?
+    )
+
+    fun hideValidationError()
 }
