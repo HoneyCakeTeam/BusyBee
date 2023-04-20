@@ -8,4 +8,10 @@ interface PersonalToDoView {
     fun getLocalPersonalTodos(todos: List<PersonalToDo>)
     fun onSuccessResponse(response: BaseResponse<PersonalToDo>)
     fun onFailureResponse(error: Throwable)
+    fun showValidationError(
+        titleErrorMessage: String?,
+        descriptionErrorMessage: String?
+    )
+
+    fun hideValidationError()
 }

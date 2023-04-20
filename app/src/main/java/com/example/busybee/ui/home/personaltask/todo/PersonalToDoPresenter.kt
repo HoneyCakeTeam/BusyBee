@@ -3,10 +3,12 @@ package com.example.busybee.ui.home.personaltask.todo
 import com.example.busybee.data.Repository
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
+import com.example.busybee.utils.validator.Validator
 
 class PersonalToDoPresenter(
     private val repository: Repository,
-    private val view: PersonalToDoView
+    private val view: PersonalToDoView,
+    private val validator: Validator
 ) {
 
     fun addPersonalToDo(todo: PersonalToDo) {
@@ -22,12 +24,20 @@ class PersonalToDoPresenter(
         title: String,
         description: String,
     ) {
-        repository.createPersonalToDo(
-            title,
-            description,
-            ::onCreatePersonalTodoSuccess,
-            ::onCreatePersonalTodoFailure
-        )
+        val (isValid, errorMessage) = validator.validatePersonalTodo(title, description)
+        if (isValid) {
+            view.hideValidationError()
+            repository.createPersonalToDo(
+                title,
+                description,
+                ::onCreatePersonalTodoSuccess,
+                ::onCreatePersonalTodoFailure
+            )
+        } else {
+            view.showValidationError(
+                errorMessage.first, errorMessage.second
+            )
+        }
     }
 
     private fun onCreatePersonalTodoSuccess(response: BaseResponse<PersonalToDo>) {

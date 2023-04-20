@@ -63,6 +63,12 @@
     <string name="passwords_do_not_match">Passwords do not match.</string>
     <string name="status">Status:</string>
     <string name="details">Details</string>
+    <string name="title_must_be_at_least_3_characters">Name must be at least 3 characters</string>
+    <string name="title_should_not_be_empty">Name should not be empty</string>
+    <string name="description_should_not_be_empty">Content should not be empty</string>
+    <string name="description_must_be_at_least_12_characters">Content must be at least 12 characters</string>
+    <string name="assignee_should_not_be_empty">Assignee should not be empty</string>
+    <string name="assignee_must_be_at_least_3_characters">Assignee must be at least 3 characters</string>
 
 
 </resources>

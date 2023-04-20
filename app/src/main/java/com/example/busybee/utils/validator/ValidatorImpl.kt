@@ -5,7 +5,10 @@ import com.example.busybee.R
 
 class ValidatorImpl(val context: Context) : Validator {
 
-    override fun checkCredential(userName: String, password: String): Pair<Boolean, Pair<String?, String?>> {
+    override fun checkCredential(
+        userName: String,
+        password: String
+    ): Pair<Boolean, Pair<String?, String?>> {
         val usernameValid = validateUserName(userName).isEmpty()
         val passwordValid = validatePassword(password).isEmpty()
         return if (usernameValid && passwordValid) {
@@ -50,6 +53,81 @@ class ValidatorImpl(val context: Context) : Validator {
             )
 
             else -> Pair(true, null)
+        }
+    }
+
+    override fun validatePersonalTodo(
+        title: String,
+        description: String
+    ): Pair<Boolean, Pair<String?, String?>> {
+        val isTitleValid = validateTodoTitle(title).isEmpty()
+        val isDescriptionValid = validateTodoDescription(description).isEmpty()
+        return if (isTitleValid && isDescriptionValid) {
+            Pair(true, Pair(null, null))
+        } else {
+            Pair(
+                false, Pair(
+                    if (isTitleValid) null else validateTodoTitle(title),
+                    if (isDescriptionValid) null else validateTodoDescription(description)
+                )
+            )
+        }
+    }
+
+    override fun validateTeamTodo(
+        title: String,
+        description: String,
+        assignee: String
+    ): Pair<Boolean, Triple<String?, String?, String?>> {
+        val isTitleValid = validateTodoTitle(title).isEmpty()
+        val isDescriptionValid = validateTodoDescription(description).isEmpty()
+        val isAssigneeValid = validateTodoAssignee(assignee).isEmpty()
+        return if (isTitleValid && isDescriptionValid) {
+            Pair(true, Triple(null, null, null))
+        } else {
+            Pair(
+                false, Triple(
+                    if (isTitleValid) null else validateTodoTitle(title),
+                    if (isDescriptionValid) null else validateTodoDescription(description),
+                    if (isAssigneeValid) null else validateTodoAssignee(assignee)
+                )
+            )
+        }
+    }
+
+    private fun validateTodoTitle(title: String): String {
+        return when {
+            title.isEmpty() ->
+                context.getString(R.string.title_should_not_be_empty)
+
+            title.length < 3 ->
+                context.getString(R.string.title_must_be_at_least_3_characters)
+
+            else -> ""
+        }
+    }
+
+    private fun validateTodoDescription(description: String): String {
+        return when {
+            description.isEmpty() -> context
+                .getString(R.string.description_should_not_be_empty)
+
+            description.length < 12 -> context
+                .getString(R.string.description_must_be_at_least_12_characters)
+
+            else -> ""
+        }
+    }
+
+    private fun validateTodoAssignee(assignee: String): String {
+        return when {
+            assignee.isEmpty() -> context
+                .getString(R.string.assignee_should_not_be_empty)
+
+            assignee.length < 3 -> context
+                .getString(R.string.assignee_must_be_at_least_3_characters)
+
+            else -> ""
         }
     }
 

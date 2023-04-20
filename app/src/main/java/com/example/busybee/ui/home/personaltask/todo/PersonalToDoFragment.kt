@@ -4,7 +4,6 @@ import android.app.UiModeManager
 import android.content.Context
 import android.view.View
 import com.example.busybee.R
-import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
@@ -12,22 +11,25 @@ import com.example.busybee.data.source.RemoteDataSource
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.BottomSheetCreateTaskBinding
 import com.example.busybee.databinding.FragmentPersonalToDoBinding
+import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.details.DetailsFragment
-import com.example.busybee.ui.home.teamtask.inprogress.TeamInProgressPresenter
-import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
 import com.example.busybee.utils.TaskType
 import com.example.busybee.utils.replaceFragment
 import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
+import com.example.busybee.utils.validator.Validator
+import com.example.busybee.utils.validator.ValidatorImpl
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 
-class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
+class PersonalToDoFragment : BaseFragment<FragmentPersonalToDoBinding>(),
     PersonalToDoView,
     PersonalToDoAdapter.PersonalToDoTaskInteractionListener {
     private lateinit var adapter: PersonalToDoAdapter
     private lateinit var todos: List<PersonalToDo>
     private lateinit var bottomSheet: BottomSheetDialog
     private lateinit var sheetCreateTaskBinding: BottomSheetCreateTaskBinding
+    private val validator: Validator by lazy { ValidatorImpl(requireContext()) }
     private val sharedPreferences: SharedPreferencesInterface by lazy {
         SharedPreferencesUtils(
             requireContext()
@@ -41,7 +43,7 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
             RepositoryImp(
                 remoteDataSource,
                 sharedPreferences
-            ), this
+            ), this, validator
         )
     }
     override val TAG = this::class.java.simpleName.toString()
@@ -135,9 +137,11 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
             UiModeManager.MODE_NIGHT_NO -> {
                 binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
             }
+
             UiModeManager.MODE_NIGHT_YES -> {
                 binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo_dark)
             }
+
             else -> {
                 binding.headerToDo.textTodoStatus.setBackgroundResource(R.drawable.shape_todo)
             }
@@ -167,6 +171,20 @@ class PersonalToDoFragment() : BaseFragment<FragmentPersonalToDoBinding>(),
                 "Try Again! ${error.message} ",
                 Snackbar.LENGTH_SHORT
             ).show()
+        }
+    }
+
+    override fun showValidationError(titleErrorMessage: String?, descriptionErrorMessage: String?) {
+        with(sheetCreateTaskBinding) {
+            inputLayoutTaskName.error = titleErrorMessage
+            inputLayoutContent.error = descriptionErrorMessage
+        }
+    }
+
+    override fun hideValidationError() {
+        with(sheetCreateTaskBinding) {
+            inputLayoutTaskName.isErrorEnabled = false
+            inputLayoutContent.isErrorEnabled = false
         }
     }
 
