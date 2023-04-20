@@ -30,11 +30,11 @@
         <item name="android:fitsSystemWindows">true</item>
         <!--Splash Screen-->
         <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">
-            @mipmap/ic_launcher
+            @drawable/logodark
         </item>
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/primary_400
         </item>
-        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">1000</item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">5000</item>
     </style>
     <style name="ThemeStatusBarBackground" parent="Theme.BusyBee">
         <item name="android:statusBarColor">@color/white_100</item>
