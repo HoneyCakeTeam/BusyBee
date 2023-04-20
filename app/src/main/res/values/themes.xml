@@ -27,15 +27,9 @@
         <item name="colorSurfaceInverse">@color/theme_light_inverseSurface</item>
         <item name="colorOnSurfaceInverse">@color/theme_light_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/primary_100</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <!--Splash Screen-->
-        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">
-            @drawable/logodark
-        </item>
-        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/primary_400
-        </item>
-        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">5000</item>
+
     </style>
+
     <style name="ThemeStatusBarBackground" parent="Theme.BusyBee">
         <item name="android:statusBarColor">@color/white_100</item>
     </style>
