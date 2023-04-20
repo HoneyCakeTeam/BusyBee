@@ -57,6 +57,8 @@
     <string name="text_no_task_done_personal">Congratulations! You\'re on a roll! There are currently no completed tasks, but keep up the good work and check back here soon.</string>
     <string name="text_login_desc">Enjoy with your tasks!</string>
     <string name="good_to_see_you">Good to see you</string>
+    <string name="join_us">Join us</string>
+    <string name="control_your_task">control your task</string>
 
 
 </resources>

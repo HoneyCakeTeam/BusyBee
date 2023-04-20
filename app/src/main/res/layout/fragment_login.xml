@@ -33,7 +33,8 @@
         android:layout_marginTop="@dimen/spacing_giant"
         android:layout_marginEnd="@dimen/spacing_medium"
         app:cardCornerRadius="@dimen/radius_giant"
-        app:cardElevation="@dimen/elevation_medium"
+        app:strokeWidth="0dp"
+        app:cardElevation="@dimen/elevation_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_vector">
@@ -119,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="@dimen/spacing_Xgiant"
-                android:layout_marginBottom="@dimen/spacing_small"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
