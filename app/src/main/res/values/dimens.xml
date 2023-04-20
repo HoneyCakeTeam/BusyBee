@@ -43,6 +43,7 @@
 
     <!--items dimens-->
     <dimen name="view_item_settings_height">64dp</dimen>
+    <dimen name="space_scroll">80dp</dimen>
 
 
 </resources>

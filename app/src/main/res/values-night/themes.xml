@@ -150,8 +150,8 @@
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
-        <item name="drawableStartCompat">@drawable/ic_todo_assignee</item>
-        <item name="drawableTint">@color/dark_color_icons</item>
+        <item name="drawableStartCompat">@drawable/ic_user</item>
+        <item name="drawableTint">@color/white_100</item>
         <item name="android:drawablePadding">@dimen/spacing_tiny</item>
     </style>
 
@@ -161,7 +161,7 @@
         <item name="android:textSize">@dimen/text_tiny</item>
         <item name="android:drawablePadding">@dimen/spacing_tiny</item>
         <item name="android:gravity">center</item>
-        <item name="drawableTint">@color/dark_color_icons</item>
+        <item name="drawableTint">@color/white_300</item>
     </style>
 
     <style name="TextTimeTaskStyle" parent="TextCommonDateAndTime">
@@ -220,6 +220,13 @@
         <item name="android:fontFamily">@font/notosans_regular</item>
         <item name="android:textColor">@color/white_300</item>
         <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="TextViewPlaceHolderStyle">
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textColor">@color/white_500</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="TextViewHelloStyle">
@@ -343,5 +350,66 @@
     </style>
 
     <style name="BottomSheetStyle" parent="Theme.Material3.Dark.BottomSheetDialog" />
+
+    <style name="BackButtonStyle">
+        <item name="android:background">@drawable/ic_arrow_back</item>
+        <item name="android:backgroundTint">@color/primary_300</item>
+    </style>
+
+    <style name="TitleDetailsStyle">
+        <item name="android:fontFamily">@font/notosans_medium</item>
+        <item name="android:textColor">@color/white_300</item>
+        <item name="android:textSize">@dimen/text_giant</item>
+    </style>
+
+    <style name="CardDetailsStyle">
+        <item name="android:backgroundTint">@color/cardview_dark_background</item>
+        <item name="cardCornerRadius">@dimen/radius_medium</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="CardTitleStyle">
+        <item name="fontFamily">@font/notosans_medium</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/white_200</item>
+        <item name="android:textSize">@dimen/text_giant</item>
+        <item name="android:textDirection">locale</item>
+    </style>
+
+    <style name="CardDescriptionStyle">
+        <item name="fontFamily">@font/notosans_regular</item>
+        <item name="android:textColor">@color/white_500</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textDirection">locale</item>
+    </style>
+
+    <style name="CardSeparatorStyle">
+        <item name="android:background">@color/white_100</item>
+    </style>
+
+    <style name="CardAssigneeStyle">
+        <item name="fontFamily">@font/notosans_regular</item>
+        <item name="android:textColor">@color/white_500</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="drawableStartCompat">@drawable/ic_user</item>
+        <item name="drawableTint">@color/white_100</item>
+    </style>
+
+    <style name="CardDateAndTimeStyle">
+        <item name="fontFamily">@font/notosans_regular</item>
+        <item name="android:textColor">@color/white_500</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="drawableTint">@color/white_100</item>
+    </style>
+
+    <style name="ChangeTaskStateStyle">
+        <item name="icon">@drawable/ic_move_arrow</item>
+        <item name="iconTint">@color/white_100</item>
+        <item name="android:textColor">@color/white_100</item>
+        <item name="cornerRadius">@dimen/radius_medium</item>
+        <item name="textAllCaps">false</item>
+    </style>
 
 </resources>

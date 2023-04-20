@@ -8,7 +8,9 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/spacing_tiny"
     android:layout_marginVertical="@dimen/spacing_tiny"
-    app:cardCornerRadius="@dimen/radius_semi_large">
+    app:cardCornerRadius="@dimen/radius_semi_large"
+    app:cardElevation="0dp"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/BackgroundCustomShapeRecycler"

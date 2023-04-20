@@ -1,5 +1,7 @@
 package com.example.busybee.ui.home
 
+import android.app.UiModeManager
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -74,12 +76,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun setUp() {
-        setStatusBarBackgroundColor(resources.getColor(R.color.white_100))
+        setupStatusBarColor()
         getTaskType()
         checkTaskType()
         initTabLayout()
         addCallBacks()
         onClickBackFromNavigation()
+    }
+
+    private fun setupStatusBarColor(){
+        val uiManager = requireContext().getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        when (uiManager.nightMode) {
+            UiModeManager.MODE_NIGHT_NO -> {
+                setStatusBarBackgroundColor(resources.getColor(R.color.white_100))
+            }
+
+            UiModeManager.MODE_NIGHT_YES -> {
+                setStatusBarBackgroundColor(resources.getColor(R.color.theme_dark_shape))
+            }
+
+            else -> {
+                setStatusBarBackgroundColor(resources.getColor(R.color.white_100))
+            }
+        }
     }
 
     private fun checkTaskType() {
