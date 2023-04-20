@@ -7,24 +7,22 @@
     android:layout_height="match_parent">
 
     <ImageButton
+        style="@style/BackButtonStyle"
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_medium"
-        android:background="@drawable/ic_arrow_back"
         android:padding="@dimen/spacing_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        style="@style/TitleDetailsStyle"
         android:id="@+id/text_page_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
-        android:fontFamily="@font/notosans_medium"
         android:text="@string/details"
-        android:textColor="@color/black_60"
-        android:textSize="@dimen/text_giant"
         app:layout_constraintBottom_toBottomOf="@+id/button_back"
         app:layout_constraintStart_toEndOf="@+id/button_back"
         app:layout_constraintTop_toTopOf="@+id/button_back" />
@@ -36,19 +34,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_back"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:paddingBottom="80dp"
+        android:paddingBottom="@dimen/space_scroll"
         android:clipToPadding="false"
         android:layout_marginTop="@dimen/spacing_giant"
         >
 
     <com.google.android.material.card.MaterialCardView
+        style="@style/CardDetailsStyle"
         android:id="@+id/card_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:backgroundTint="@color/white_100"
-        app:cardCornerRadius="@dimen/radius_medium"
-        app:strokeWidth="0dp"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -66,15 +62,10 @@
                 android:layout_marginTop="@dimen/spacing_small"
                  />
             <TextView
+                style="@style/CardTitleStyle"
                 android:id="@+id/text_task_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/notosans_medium"
-                android:maxLines="2"
-                android:textColor="@color/black_78"
-                android:textDirection="locale"
-                android:textSize="@dimen/text_giant"
                 android:layout_marginEnd="@dimen/spacing_medium"
                 app:layout_constraintEnd_toStartOf="@+id/shape_status"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,14 +73,12 @@
                 tools:text="Task Title" />
 
             <TextView
+                style="@style/CardDateAndTimeStyle"
                 android:id="@+id/text_task_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/spacing_small"
                 android:drawablePadding="@dimen/spacing_tiny"
-                android:fontFamily="@font/notosans_regular"
-                android:textColor="@color/black_60"
-                android:textSize="@dimen/text_small"
                 app:drawableStartCompat="@drawable/ic_date_in"
                 app:layout_constraintBottom_toBottomOf="@+id/text_task_time"
                 app:layout_constraintEnd_toStartOf="@+id/text_task_time"
@@ -97,13 +86,11 @@
                 tools:text="4 April" />
 
             <TextView
+                style="@style/CardDateAndTimeStyle"
                 android:id="@+id/text_task_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/spacing_tiny"
-                android:fontFamily="@font/notosans_regular"
-                android:textColor="@color/black_60"
-                android:textSize="@dimen/text_small"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:layout_marginBottom="@dimen/spacing_small"
                 app:drawableStartCompat="@drawable/ic_time_in"
@@ -113,25 +100,21 @@
                 tools:text="10:30 AM" />
 
             <TextView
+                style="@style/CardDescriptionStyle"
                 android:id="@+id/text_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:ellipsize="end"
-                android:fontFamily="@font/notosans_regular"
-                android:textColor="@color/black_60"
-                android:textDirection="locale"
-                android:textSize="@dimen/text_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_task_name"
                 tools:text="Description is the pattern of narrative development that aims to make vivid a place, object, character," />
 
             <View
+                style="@style/CardSeparatorStyle"
                 android:id="@+id/line_separator"
                 android:layout_width="wrap_content"
                 android:layout_height="0.5dp"
-                android:background="@color/black_38"
                 app:layout_constraintTop_toBottomOf="@+id/text_description"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,15 +122,12 @@
                 />
 
             <TextView
+                style="@style/CardAssigneeStyle"
                 android:id="@+id/text_task_member_assign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:drawablePadding="@dimen/spacing_tiny"
-                android:fontFamily="@font/notosans_regular"
-                android:textColor="@color/black_60"
-                android:textSize="@dimen/text_small"
-                app:drawableStartCompat="@drawable/ic_user"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line_separator"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -160,13 +140,11 @@
     </ScrollView>
 
     <com.google.android.material.button.MaterialButton
+        style="@style/ChangeTaskStateStyle"
         android:id="@+id/btn_move"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:layout_margin="@dimen/spacing_medium"
-        android:textAllCaps="false"
-        app:cornerRadius="@dimen/radius_medium"
-        app:icon="@drawable/ic_move_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:backgroundTint="@color/primary_500"

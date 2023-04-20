@@ -47,6 +47,7 @@
     <dimen name="view_item_settings_height">64dp</dimen>
     <dimen name="view_gradient">200dp</dimen>
     <dimen name="view_vector">270dp</dimen>
+    <dimen name="space_scroll">80dp</dimen>
 
 
 </resources>
