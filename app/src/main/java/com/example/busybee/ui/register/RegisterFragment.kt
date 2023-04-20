@@ -1,15 +1,14 @@
 package com.example.busybee.ui.register
 
+import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentRegisterBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
-import com.example.busybee.utils.LoginAndRegisterValidation
-import com.example.busybee.utils.SharedPreferencesUtils
-import com.example.busybee.utils.isOnline
-import com.example.busybee.utils.replaceFragment
+import com.example.busybee.ui.login.LoginFragment
+import com.example.busybee.utils.*
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
@@ -34,6 +33,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
         FragmentRegisterBinding.inflate(layoutInflater)
 
     override fun setUp() {
+        setStatusBarBackgroundColor(ContextCompat.getColor( requireContext(),R.color.primary_500))
         addCallBacks()
     }
 
@@ -43,7 +43,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
             validSignUp(username, password)
         }
         binding.textLogin.setOnClickListener {
-            replaceFragment(homeFragment)
+            replaceFragment(LoginFragment())
         }
     }
 

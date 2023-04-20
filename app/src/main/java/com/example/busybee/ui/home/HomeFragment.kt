@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.CompositePageTransformer
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
-import com.example.busybee.data.models.BaseResponse
 import com.example.busybee.data.models.PersonalToDo
 import com.example.busybee.data.models.TeamToDo
 import com.example.busybee.data.source.RemoteDataSourceImp
@@ -25,8 +24,7 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlin.math.abs
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
-    com.example.busybee.ui.home.HomeView {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener, HomeView {
     private val homePresenter by lazy {
         HomePresenter(
             RepositoryImp(
@@ -64,6 +62,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
 
     override fun setUp() {
+        setStatusBarBackgroundColor(resources.getColor(R.color.white_100))
         getTaskType()
         checkTaskType()
         initTabLayout()

@@ -1,5 +1,6 @@
 package com.example.busybee.ui.login
 
+import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.source.RemoteDataSourceImp
@@ -7,10 +8,7 @@ import com.example.busybee.databinding.FragmentLoginBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
 import com.example.busybee.ui.register.RegisterFragment
-import com.example.busybee.utils.LoginAndRegisterValidation
-import com.example.busybee.utils.SharedPreferencesUtils
-import com.example.busybee.utils.onClickBackFromNavigation
-import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.*
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
@@ -32,6 +30,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
         FragmentLoginBinding.inflate(layoutInflater)
 
     override fun setUp() {
+        setStatusBarBackgroundColor(ContextCompat.getColor( requireContext(),R.color.primary_500))
         addCallBacks()
         onClickBackFromNavigation()
     }

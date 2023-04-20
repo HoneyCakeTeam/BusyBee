@@ -1,5 +1,6 @@
 package com.example.busybee.ui.details
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -13,10 +14,7 @@ import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentDetailsBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
-import com.example.busybee.utils.DateTimeUtils
-import com.example.busybee.utils.SharedPreferencesUtils
-import com.example.busybee.utils.TaskType
-import com.example.busybee.utils.replaceFragment
+import com.example.busybee.utils.*
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
     override val TAG = this::class.java.simpleName.toString()
@@ -37,6 +35,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
     }
 
     override fun setUp() {
+        setStatusBarBackgroundColor(Color.TRANSPARENT)
         checkFlagFromHome()
         addCallBacks()
     }
@@ -100,10 +99,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
             btnMove.setBackgroundColor(
                 ContextCompat.getColor(
                     requireContext(),
-                    R.color.secondary_500
+                    R.color.primary_500
                 )
             )
-            textTaskStatus.text = getString(R.string.to_do)
+            shapeStatus.setBackgroundResource(R.drawable.shape_circle_todo)
         }
     }
 
@@ -113,17 +112,18 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
             btnMove.setBackgroundColor(
                 ContextCompat.getColor(
                     requireContext(),
-                    R.color.primary_500
+                    R.color.color_green
                 )
             )
-            textTaskStatus.text = getString(R.string.in_progress)
+            shapeStatus.setBackgroundResource(R.drawable.shape_circle_inprogress)
+            btnMove.icon = ContextCompat.getDrawable(requireContext() , R.drawable.ic_done)
         }
     }
 
     private fun initiatePersonalDone() {
         with(binding) {
             btnMove.visibility = View.GONE
-            textTaskStatus.text = getString(R.string.done)
+            shapeStatus.setBackgroundResource(R.drawable.shape_circle_done)
         }
     }
 
@@ -133,10 +133,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
             btnMove.setBackgroundColor(
                 ContextCompat.getColor(
                     requireContext(),
-                    R.color.secondary_500
+                    R.color.primary_500
                 )
             )
-            textTaskStatus.text = getString(R.string.to_do)
+            shapeStatus.setBackgroundResource(R.drawable.shape_circle_todo)
         }
     }
 
@@ -146,17 +146,18 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(), DetailsView {
             btnMove.setBackgroundColor(
                 ContextCompat.getColor(
                     requireContext(),
-                    R.color.primary_500
+                    R.color.color_green
                 )
             )
-            textTaskStatus.text = getString(R.string.in_progress)
+            shapeStatus.setBackgroundResource(R.drawable.shape_circle_inprogress)
+            btnMove.icon = ContextCompat.getDrawable(requireContext() , R.drawable.ic_done)
         }
     }
 
     private fun initiateTeamDone() {
         with(binding) {
             btnMove.visibility = View.GONE
-            textTaskStatus.text = getString(R.string.done)
+            shapeStatus.setBackgroundResource(R.drawable.shape_circle_done)
         }
     }
 

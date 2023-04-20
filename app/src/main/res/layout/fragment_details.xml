@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,25 +29,42 @@
         app:layout_constraintStart_toEndOf="@+id/button_back"
         app:layout_constraintTop_toTopOf="@+id/button_back" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"
+        android:layout_marginTop="@dimen/spacing_giant"
+        >
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_giant"
+        android:backgroundTint="@color/white_100"
         app:cardCornerRadius="@dimen/radius_medium"
-        app:cardElevation="@dimen/elevation_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_back"
-        app:strokeWidth="0dp">
-
+        app:strokeWidth="0dp"
+        >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/spacing_medium"
             android:paddingVertical="@dimen/spacing_small">
 
+            <View
+                android:id="@+id/shape_status"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/shape_circle_todo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/spacing_small"
+                 />
             <TextView
                 android:id="@+id/text_task_name"
                 android:layout_width="0dp"
@@ -54,10 +72,11 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/notosans_medium"
                 android:maxLines="2"
-                android:textColor="@color/black_87"
+                android:textColor="@color/black_78"
                 android:textDirection="locale"
                 android:textSize="@dimen/text_giant"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                app:layout_constraintEnd_toStartOf="@+id/shape_status"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Task Title" />
@@ -85,9 +104,12 @@
                 android:fontFamily="@font/notosans_regular"
                 android:textColor="@color/black_60"
                 android:textSize="@dimen/text_small"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_small"
                 app:drawableStartCompat="@drawable/ic_time_in"
-                app:layout_constraintBaseline_toBaselineOf="@+id/text_task_status"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line_separator"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="10:30 AM" />
 
             <TextView
@@ -97,7 +119,6 @@
                 android:layout_marginTop="@dimen/spacing_small"
                 android:ellipsize="end"
                 android:fontFamily="@font/notosans_regular"
-                android:maxLines="20"
                 android:textColor="@color/black_60"
                 android:textDirection="locale"
                 android:textSize="@dimen/text_medium"
@@ -129,48 +150,25 @@
                 app:drawableStartCompat="@drawable/ic_user"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line_separator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/spacing_small"
                 tools:text="Ahmed Nasser" />
 
-            <TextView
-                android:id="@+id/text_task_status_hint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:drawablePadding="@dimen/spacing_tiny"
-                android:fontFamily="@font/notosans_regular"
-                android:text="@string/status"
-                android:textColor="@color/black_60"
-                android:textSize="@dimen/text_small"
-                app:drawableStartCompat="@drawable/ic_status"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_task_member_assign" />
-
-            <TextView
-                android:id="@+id/text_task_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_small"
-                android:fontFamily="@font/notosans_regular"
-                android:textColor="@color/black_60"
-                android:textSize="@dimen/text_small"
-                app:layout_constraintBottom_toBottomOf="@+id/text_task_status_hint"
-                app:layout_constraintStart_toEndOf="@+id/text_task_status_hint"
-                app:layout_constraintTop_toTopOf="@+id/text_task_status_hint"
-                tools:text="InProgress" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_move"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:layout_margin="@dimen/spacing_medium"
-        android:backgroundTint="@color/secondary_500"
         android:textAllCaps="false"
         app:cornerRadius="@dimen/radius_medium"
         app:icon="@drawable/ic_move_arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:backgroundTint="@color/primary_500"
         tools:text="Move to Done" />
 </androidx.constraintlayout.widget.ConstraintLayout>
