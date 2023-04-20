@@ -1,6 +1,5 @@
 package com.example.busybee.ui.register
 
-import androidx.core.content.ContextCompat
 import com.example.busybee.R
 import com.example.busybee.data.RepositoryImp
 import com.example.busybee.data.source.RemoteDataSource
@@ -8,9 +7,13 @@ import com.example.busybee.data.source.RemoteDataSourceImp
 import com.example.busybee.databinding.FragmentRegisterBinding
 import com.example.busybee.ui.base.BaseFragment
 import com.example.busybee.ui.home.HomeFragment
+import com.example.busybee.ui.login.LoginFragment
 import com.example.busybee.utils.isOnline
 import com.example.busybee.utils.replaceFragment
 import com.example.busybee.utils.sharedpreference.SharedPreferencesInterface
+import com.example.busybee.utils.sharedpreference.SharedPreferencesUtils
+import com.example.busybee.utils.validator.Validator
+import com.example.busybee.utils.validator.ValidatorImpl
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
@@ -27,9 +30,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
             RepositoryImp(
                 remoteDataSource,
                 sharedPreferences
-            ), this
+            ), this, validator
         )
     }
+    private val validator: Validator by lazy { ValidatorImpl(requireContext()) }
     private val homeFragment by lazy { HomeFragment() }
     private var username = ""
     private var password = ""
@@ -47,24 +51,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
     private fun addCallBacks() {
         binding.buttonSignUp.setOnClickListener {
             getUserInputs()
-            validSignUp(username, password)
+            presenter.signUp(username, password, confirmPassword)
         }
         binding.textLogin.setOnClickListener {
             replaceFragment(LoginFragment())
-        }
-    }
-
-    private fun validSignUp(userName: String, password: String) {
-        val (isValid, errorMessage) = validator.checkCredential(userName, password)
-        val (isConfirmValid, confirmPasswordErrorMessage) = validator.validateConfirmPassword(
-            password,
-            confirmPassword
-        )
-        if (isValid && isConfirmValid) {
-            hideError()
-            signUp(userName, password)
-        } else {
-            showError(errorMessage.first, errorMessage.second, confirmPasswordErrorMessage)
         }
     }
 
@@ -91,11 +81,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
         binding.textFieldConfirmPassword.isErrorEnabled = false
     }
 
-    private fun signUp(userName: String, password: String) {
+    private fun signUp(userName: String, password: String, confirmPassword: String) {
         if (isOnline(requireContext())) {
             presenter.signUp(
                 userName,
-                password
+                password,
+                confirmPassword
             )
         } else {
             Snackbar.make(
@@ -131,6 +122,18 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(), RegisterView {
                 Snackbar.LENGTH_SHORT
             ).show()
         }
+    }
+
+    override fun showValidationError(
+        usernameErrorMessage: String?,
+        passwordErrorMessage: String?,
+        confirmPasswordErrorMessage: String?
+    ) {
+        showError(usernameErrorMessage, passwordErrorMessage, confirmPasswordErrorMessage)
+    }
+
+    override fun hideValidationError() {
+        hideError()
     }
 
 }

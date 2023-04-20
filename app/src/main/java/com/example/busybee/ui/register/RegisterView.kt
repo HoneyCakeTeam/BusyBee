@@ -4,5 +4,12 @@ interface RegisterView {
     fun goToHome()
     fun login()
     fun showErrorMsg(error: Throwable)
+    fun showValidationError(
+        usernameErrorMessage: String?,
+        passwordErrorMessage: String?,
+        confirmPasswordErrorMessage: String?
+    )
+
+    fun hideValidationError()
 
 }

@@ -1,11 +1,11 @@
-package com.example.busybee.utils
+package com.example.busybee.utils.validator
 
 import android.content.Context
 import com.example.busybee.R
 
-class Validator(val context: Context) {
+class ValidatorImpl(val context: Context) : Validator {
 
-    fun checkCredential(userName: String, password: String): Pair<Boolean, Pair<String?, String?>> {
+    override fun checkCredential(userName: String, password: String): Pair<Boolean, Pair<String?, String?>> {
         val usernameValid = validateUserName(userName).isEmpty()
         val passwordValid = validatePassword(password).isEmpty()
         return if (usernameValid && passwordValid) {
@@ -36,7 +36,7 @@ class Validator(val context: Context) {
         }
     }
 
-    fun validateConfirmPassword(password: String, confirmPassword: String):
+    override fun validateConfirmPassword(password: String, confirmPassword: String):
             Pair<Boolean, String?> {
         return when {
             confirmPassword.isEmpty() -> Pair(
