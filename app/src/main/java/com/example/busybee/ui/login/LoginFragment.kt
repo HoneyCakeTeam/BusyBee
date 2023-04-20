@@ -83,8 +83,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), LoginView {
     }
 
     private fun login(userName: String, password: String) {
-        showLoading()
         if (isOnline(requireContext())) {
+            showLoading()
             presenter.logIn(
                 userName,
                 password

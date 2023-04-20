@@ -80,10 +80,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     override fun setUp() {
         setupStatusBarColor()
-
-
-        showLoading()
-
         getTaskType()
         checkTaskType()
         initTabLayout()
@@ -176,16 +172,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     override fun onTabReselected(tab: TabLayout.Tab?) {}
     private fun getAllTeamTasks() {
         if (isOnline(requireContext())) {
+            showLoading()
             homePresenter.getAllTeamTasks()
             showViewsAndHideAnimation()
         } else {
+            hideLoading()
             hideViewsAndShowAnimation()
         }
     }
 
     override fun showDataOnTeamScreen(response: List<TeamToDo>) {
-
-
+        requireActivity().runOnUiThread {
+            hideLoading()
+        }
         homePresenter.setLocalTeamTasks(response)
         teamResponse = response
     }
@@ -196,15 +195,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
 
     private fun getAllPersonalTasks() {
         if (isOnline(requireContext())) {
+            showLoading()
             homePresenter.getPersonalTasks()
             showViewsAndHideAnimation()
         } else {
+            hideLoading()
             hideViewsAndShowAnimation()
         }
     }
 
     private fun showViewsAndHideAnimation() {
-        showLoading()
+        binding.homeViewPager.visibility = View.VISIBLE
+        binding.lottieNoInternet.visibility = View.GONE
     }
 
     private fun showLoading() {
@@ -213,13 +215,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnTabSelectedListener,
     }
 
     private fun hideViewsAndShowAnimation() {
-        hideLoading()
+        binding.homeViewPager.visibility = View.GONE
+        binding.lottieNoInternet.visibility = View.VISIBLE
     }
 
     private fun hideLoading() {
         with(binding) {
             homeViewPager.visibility = View.VISIBLE
-            lottieNoInternet.visibility = View.GONE
+            lottieLoading.visibility = View.GONE
         }
     }
 
