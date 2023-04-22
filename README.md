@@ -2,7 +2,11 @@
 
 ## Overview
 
-### Busy Bee is an Android Todo app built in Kotlin that allows users to save and manage their own todos, as well as view and manage the todos of their team members. The app uses the MVP architecture pattern, dependency inversion, and several other features to ensure clean and efficient code.
+<p>
+Busy Bee is an Android Todo app built in Kotlin that allows users to save and manage their own todos, 
+as well as view and manage the todos of their team members. The app uses the MVP architecture pattern,
+dependency inversion, and several other features to ensure clean and efficient code.
+</p> 
 
 ## Features
 
