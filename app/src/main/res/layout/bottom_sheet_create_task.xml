@@ -123,7 +123,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
-        app:lottie_rawRes="@raw/create_successfuliy" />
+        app:lottie_rawRes="@raw/create_successfully" />
 
     <TextView
         android:id="@+id/text_created_successfully"
