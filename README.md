@@ -4,48 +4,34 @@
 
 <p>
 Busy Bee is an Android Todo app built in Kotlin that allows users to save and manage their own todos, 
-as well as view and manage the todos of their team members. The app uses the MVP architecture pattern,
-dependency inversion, and several other features to ensure clean and efficient code.
+as well as view and manage the todos of their team members.
 </p> 
 
 ## Features
 
+* Modern splash screen.
 * User authentication and authorization for secure access to the app and todos.
 * Saving and displaying user's personal todos.
 * Saving and displaying team todos.
 * Validations for all input fields.
-* Use of OkHttp for API calls.
-* Use of Gson parsing for JSON responses.
-* Implementation of logging interceptor and request authorization interceptor.
-* View binding for efficient UI manipulation.
-* Use of SharedPreferences for persistent storage.
 * Pie chart to visualize user's todo completion status.
-* Lottie Animations for smoother user experience.
-* Modern splash screen.
-* Implementation of Repository pattern for efficient data management.
-* Clean and maintainable code.
 
 ## Technologies Used
 
 * Kotlin
 * MVP Architecture Pattern
+
+![mvp1](https://user-images.githubusercontent.com/30028905/233813225-4787e78d-76de-4a3d-a182-a106085a1d42.png)
+
 * Repository Pattern
 * OkHttp
-* Gson parsing
-* Authentication
-* Authorization
-* Validation
-* Logging Interceptor
-* Request Authorization Interceptor
-* View Binding
-* Functional Programming
-* SharedPreferences
+
+## Additional Utilities
+
 * BaseRecyclerAdapter
 * BaseFragment
 * BaseDiffUtil
-* Pie Chart
-* Lottie Animations
-* Modern Splash Screen
+* SharedPreferences
 
 ## Light Theme
 
@@ -62,18 +48,3 @@ dependency inversion, and several other features to ensure clean and efficient c
 | ![dark1](https://user-images.githubusercontent.com/30028905/233774307-d21ec1f4-983c-409c-8b31-639a2c892b1e.png) | ![dark2](https://user-images.githubusercontent.com/30028905/233774320-988d8f34-b443-4583-b6d1-2a8d44f6c484.png) | ![dark3](https://user-images.githubusercontent.com/30028905/233774334-9e2620bb-00b0-4856-b05e-d2c48be18964.png) |
 | ![dark4](https://user-images.githubusercontent.com/30028905/233774341-a6d8bd19-3888-465e-8bfb-fb7ccec6ff0f.png) | ![dark5](https://user-images.githubusercontent.com/30028905/233774351-13f25a4f-56bc-4136-8261-0111c4fc0222.png) | ![dark6](https://user-images.githubusercontent.com/30028905/233774362-66d54e23-96c9-422f-aacf-93a3cd78ca49.png) |
 | ![dark7](https://user-images.githubusercontent.com/30028905/233774407-8dbf8354-69c9-481b-a95a-f03ffe538782.png) | ![dark8](https://user-images.githubusercontent.com/30028905/233774441-cd79a0d7-5467-4ed0-9575-36ecd52a78f7.png) | ![dark9](https://user-images.githubusercontent.com/30028905/233774453-0583850c-e345-4938-b4df-1d26a9b21c7e.png) |
-
-## Installation
-
-<ol>
-  <li>Clone the repository into your local machine.</li>
-  <li>Open the project in Android Studio.</li>
-  <li>Build and run the app on your Android device or emulator.</li>
-  <li>Register for an account to access the app.</li>
-</ol>
-
-## Contributing
-
-<p> If you would like to contribute to Busy Bee, please fork the repository and submit a pull request. 
-We welcome all contributions that will make the app better and more efficient.</p>
-
