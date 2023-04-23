@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.MyApp.MySplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/primary_500</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/logodark</item>
-        <item name="postSplashScreenTheme">@style/Theme.BusyBee</item>
-    </style>
-</resources>

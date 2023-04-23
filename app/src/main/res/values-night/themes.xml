@@ -28,6 +28,11 @@
         <item name="colorOnSurfaceInverse">@color/theme_dark_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/primary_300</item>
 
+        <!-- Splash Screen-->
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/primary_400</item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">1000</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@mipmap/ic_launcher_foreground</item>
+
     </style>
 
     <style name="TextInputLayout" parent="ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense">

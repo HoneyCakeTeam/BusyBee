@@ -14,13 +14,11 @@
         android:configChanges="orientation"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
-        android:theme="@style/Theme.MyApp.MySplash"
+        android:theme="@style/Theme.BusyBee"
         tools:targetApi="31">
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyApp.MySplash">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

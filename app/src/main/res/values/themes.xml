@@ -28,6 +28,11 @@
         <item name="colorOnSurfaceInverse">@color/theme_light_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/primary_100</item>
 
+        <!-- Splash Screen-->
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/primary_400</item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">1000</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@mipmap/ic_launcher_foreground</item>
+
     </style>
 
     <style name="ThemeStatusBarBackground" parent="Theme.BusyBee">
@@ -317,7 +322,7 @@
     </style>
 
     <style name="BottomSheetStyle" parent="Theme.Material3.Light.BottomSheetDialog" />
-    
+
     <style name="BackButtonStyle">
         <item name="android:background">@drawable/ic_arrow_back</item>
         <item name="backgroundTint">@color/black_87</item>
@@ -328,14 +333,14 @@
         <item name="android:textColor">@color/black_60</item>
         <item name="android:textSize">@dimen/text_giant</item>
     </style>
-    
+
     <style name="CardDetailsStyle">
         <item name="android:backgroundTint">@color/white_100</item>
         <item name="cardCornerRadius">@dimen/radius_medium</item>
         <item name="strokeWidth">0dp</item>
         <item name="cardElevation">0dp</item>
     </style>
-    
+
     <style name="CardTitleStyle">
         <item name="fontFamily">@font/notosans_medium</item>
         <item name="android:maxLines">2</item>
